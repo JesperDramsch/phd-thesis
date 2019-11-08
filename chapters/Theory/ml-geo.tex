@@ -1,0 +1,85 @@
+\section{Machine Learning in Geoscience}
+The development of the subfield of deep learning has lead to advances in many scientific fields that are not directly related to the larger field of artificial intelligence. This section focuses on historic use-cases of machine learning models in geoscience and evaluate these in the context of recent advances in deep learning. I provide an overview of supervised and unsupervised methods that have persevered. Furthermore, I distinguish implementations of deep neural network topologies and advanced machine learning methods in geoscientific applications. I go on to investigate where these methods differ from previously unsuccessful attempts at application.
+
+Early on \acf{ml} has been reviewed in a geophysical context. Early publications of \ac{ml} in geoscience apply \acp{nn} to geophysical problems. Particularly seismic processing lends itself to explore \acp{nn} as general functional approximator \citep{Hornik1989-bl}. \citet{McCormack1991-pm} review of the emerging tool of neural networks in 1991. He highlights the application of pattern recognition and is very succinct in describing basic math associated with neural computing. The wording of most parts has changed, as compared to today. Generally this gives a good baseline and McCormack gives a good illustration and overview with examples in well log classification and trace editing. As the paper appeared in The Leading Edge, it is not peer reviewed, yet it does give a good historic overview. The author summarizes \ac{nn} applications over the 30 year prior to the review and hightlights automated well-log analysis and seismic trace editing. The review comes to a conclusion that these methods show promise as general approximators. 
+
+\citet{Van_der_Baan2000-jz} review the most recent advancements in \acfp{nn} in geophysical applications. It goes into much detail on the neural networks employed in 2000 and the difficulties in building these models and training them. They identify the following subsurface geoscience applications through history: First-break picking, electromagnetics, magnetotellurics, seismic inversion, shear-wave splitting, well log analysis, trace editing, seismic deconvolution, and event classification. The authors evaluate the application of \acp{nn} as subpar to physics-based approaches. The paper concludes that neural networks are too expensive and complex to be of real value in geoscience. Generally, this review focuses very much on exploration geoscienc. 
+
+\citet{Mjolsness2001-fq} review \ac{ml} in a broader context outside of exploration geoscience. They illustrate recent successes of \ac{ml} in analyzing sattelite data and computer robotic geology. The authors include graphical models, \acp{rmm}, \acp{hmm}, and \acp{svm}. They further highlight limitations to vector data, therefore failing richer data such as graphs and text data. Moreover, the authors from NASA JPL go into detail on pattern recognition in automated rovers to identify geological prospects on Mars. They state:
+\begin{quote}
+“The scientific need for geological feature catalogs has led to multiyear human surveys of Mars orbital imagery yielding tens of thousands of cataloged, characterized features including impact craters, faults, and ridges.” - \citep{Mjolsness2001-fq}
+\end{quote}
+The authors evaluate how especially the introduction of \ac{svm} have allowed the identification of geomorphological features without modeling the processes behind. Further they mention recurrent neural networks in gene expression data, a method that has experienced a renaissance in deep learning. The paper is very short and succinct in evaluating prospects without going into detail on the algorithms itself. In contrast, we expect our review to go more into depth and explore the applications in geoscience further.
+
+\subsection{History of Machine Learning in Geoscience}
+Machine learning, statistical, and mathematical models have a long history in geoscience. Markov models have been used to describe sedimentology as early as the 1970s \citep{schwarzacher1972semi} and the use of k-means in geoscience as early as 1964 \citep{preston1964fourier}. In geophysics applications of \acp{nn} to perform seismic devonvolution were published in the 1980s \citet{Zhao1988-hu}. Early tree-based methods were chiefly used in economic geology and exploration geophysics for prospectivity mapping with \acfp{dt} \citep{newendorp1976decision,reddy1991decisiontree}. \ac{svm} has early on been applied to AVO classification \cite{Li2004-fk} and geological facies delineation for hydrological analysis \citep{Tartakovsky2004-ml}. Due to some changes in nomenclature of methods through time, it has been difficult to identify all publications. Moreover, this thesis mostly focuses on the application of \acp{nn}, however, we give an additional overview of geoscientific applications of shallow \ac{ml}.
+
+\subsubsection{Neural Networks in Geoscience}
+Early applications of neural networks were prominent in seismic data processing and analysis. \citet{Zhao1988-hu} use a \ac{nn} to perform seismic deconvolution early on. An application of seismic inversion with \acp{nn} was published by \citet{Roth1994-na}. Early \ac{ml}-based electromagnetic geophysics performs subsurface localization \citep{Poulton1992-ft} and magnetotelluric inversion via Hopfield \acp{nn} \citep{Zhang1997-yp}. \citet{Feng1998-ck} applied \ac{nn} to model geomechanical microfractures in triaxial compression tests. Interestingly, \citet{Legget1996-nk} used a combination of \acf{som} and back-propagation \acp{nn} that function similar to modern day \acfp{cnn} to perform 3D horizon tracking \citep{Leggett2003-vq}. With the recent \ac{dl} explosion, papers on seismic interpretation have gotten very popular, given the similarity to 2D segmentation tasks (cf. \cref{tab:geonn}).
+
+\begin{table}[]
+    \centering
+    \begin{tabularx}{\textwidth}{l|X}
+\toprule
+Topic & Publications \\
+\bottomrule
+\toprule
+First Break Picking & \citet{Murat1992-qs, McCormack1993-ul, Dai1997-ta, Ross2018-kt} \\
+\midrule
+Ground Penetrating Radar & \citet{Al-Nuaimy2000-sa, Gamba2000-va, Shihab2002-po, Shihab2002-ne, Youn2002-rn, Birkenfeld2010-rd, Cui2010-rn, Maas2013-wb, Nunez-Nieto2014-il, Mertens2016-os, Hansen2017-rq, Kilic2018-to}\\
+\midrule
+Seismic Deconvolution &  \citet{Zhao1988-hu, Wang1997-is, CalderonMacias1997-pl, Harrigan1991-ij}\\
+\midrule
+Seismic Horizon Picking & \citet{Huang1990-hj, Legget1996-nk, Zhang2001-hy, Leggett2003-vq}\\
+\midrule
+Seismic Interpretation & \citet{Meldahl2001-bb, Strecker2002-dp, Klose2006-xh, Zheng2014-il, Marroquin2014-gg, Qi2016-qy, Zhao2016-ya, Roden2015-ek,Huang2017-fk, Lewis2017-ek, Waldeland2017-tx, Guo2017-ij, Zhao2017-gv, Veillard2018-sg, Araya-Polo2017-ky,dramsch2018deep, Chevitarese2018-kd, Gramstad2018-ql, Guitton2018-gd, Purves2018-dy, Shafiq2018-qt, Shafiq2018-ed, Waldeland2018-hj, AlRegib2018-yr, Le_Bouteiller2018-ma, Li2018-bm, Sacrey2018-pk, Shafiq2018-rp, Wu2018-hg}\\
+\midrule 
+Seismic Inversion & \citet{Roth1994-na, Langer1996-fv, Iturraran-Viveros2012-ta, Ansari2014-ci, Verma2014-jx, Golsanami2015-ul, Schuster2018-sj, Araya-Polo2018-xf, Mosser2018-nf, Mosser2018-hm, Richardson2018-py}\\
+\midrule
+Seismic Tomography & \citet{Bauer2008-pv, Braeuer2015-yj}\\
+\midrule
+Seismic Well-Tie & \citet{Chaki2018-mr}\\
+\midrule
+Well-Log analysis & \citet{Huang1996-eg, Fung1997-kw, Bhatt2002-kj, Helle2002-ju, Asoodeh2014-mm, Anifowose2017-bx, Saporetti2018-sq, Maiti2010-dw, Chang2002-oi, Bauer2015-hy, Emelyanova2017-vy, Carreira2018-bp}\\
+\bottomrule
+\end{tabularx}
+    \caption{Neural Networks in Geophysics}
+    \label{tab:geonn}
+\end{table}
+
+\subsection{Challenges of machine learning in geoscience}
+Statistical methods and machine learning are based on several assumptions and demand some pre-requisites that can cause problems in geoscience. These include the assumption that data is \acf{iid} and the pre-requisite of a ground truth for supervised learning. In this section I discuss these challenges and present some approaches to solve these problems.
+
+% Inherent properties of data
+% Talk about IID in geoscience
+% imbalanced data
+% heterogeneities in geoscience and ml - > distributions
+
+Geoscientific data is known to be very heterogeneous across vastly different scales (mm to km), which makes the system hard to model in general. Additionaly, a core assumption of statistics \ac{iid} is usually in conflict with the geological processes. Regionality of depositional patterns violates the assumption data is identically distributed and time-dependent processes, such as systems tracts in sedimentology, violate the independence assumption of individual samples. This fact has to be taken into account, when choosing models and sampling methods. Expanding on the sedimentology example, the time-varying deposition can be modelled as markovian \citep{schwarzacher1972semi}, instead of treating samples as strictly independent. Moreover, sampling of any data needs to honour the clustering in distribution of samples. Stratified sampling \citep{kish1965survey} can alleviate sampling bias. Additionally, stratified sampling can address the problem that geoscientific data often contains imbalanced data. Imbalanced data implies that the number of samples per class in the label data set is not uniformly distributed. These imbalances can stem from the fact that different depositional regimes cause different thicknesses in the stratigraphic columns, for example commonly leaving thicker sand columns and fine shale layers. Alternatively, imbalances can stem from the data collection process itself, be it that seismic data does not adequately image variations below 1~m or the location where data is collected, considering that e.g. hydrocarbon companies do not choose the location for 3D seismic data acquisition randomly. This imbalance due to non-uniform sampling can not be solved by sampling itself, as the bias is implicit in the available data itself. 
+
+% measurements and data
+% availability of data
+% Talk about no ground truth
+
+
+In the computer vision community hand-labelled data sets like ImageNet, CIFAR, and PASCAL-VOC are openly available, which catalyzed the developed new architectures and approaches in deep learning. Geoscientific data is often expensive to acquire and companies are reluctant to make data available, less even for processed or interpreted data. Early machine learning workshops often showed results on the open Dutch F3 dataset, however, national data repositories have started to change this approach to foster innovation. With data becoming more available, the next problem is the lack of ground truth. Obtaining accurate labels for seismic data is impossible, as any inversion process is non-unique and digging is not practical. In other imaging-based fields (e.g. radiology) that rely on interpretation of imaging results, studies investigate both interinterpreter variations, by making several interpretations available and intra-interpreter variability by re-interpreting the dataset after a set time interval \citep{macerlean2013, alikhassi2018comparison,al2010inter}. Additionally, simulations provide a ground truth, but can implicitly include modelling assumptions in the data or commit the inverse crime \citep{wirgin2004inverse}. The inverse crime presents the problem of modelling and inverting data with the same theoretical ingredients.
+
+% Talk about metrics
+% Seismic dynamic range (clip = .97)
+% noise
+
+In geophysics itself, seismic data presents a unique challenge to computer vision problems, in that the \~3\textsuperscript{rd} percentile of amplitudes occupy large parts of the dynamic range. Displays of seismic data usually clip amplitudes to make most of the seismic amplitude content visible, this has also proven to be a viable preprocessing step before feeding seismic data to computer vision systems, such as convolutional neural networks. Machine learning systems have been known to be vulnerable to noise. This noise can be physical noise (i.e. low SNR) for simpler models or adversarial attacks that reverse engineer more complex models to fool said model. Adversarial attacks include a one-pixel attack on ImageNet classifiers \citep{su2019one}, humanly imperceptible noise \citep{goodfellow2014explaining}, or physical stickers \citep{brown2017adversarial}. In addition, geological data contains regions of geological interest and regions that are inconsequential, this has not been represented in metrics adequately \citep{purves2019towards}.
+
+% solutions?
+% talk about transfer learning (myth of big data)
+% Self-supervision
+% multi+task learning
+
+Realistically, the sparsity of labelled ground truth data can be addressed in different ways. In the case when labels are available but not abundant, transfer learning of highly generalizable models like VGG-16 can be fine-tuned to seismic data. The VGG-16 architecture can also be included in U-Nets as a decoder to leverage the benefits of transfer learning in semantic segmentation tasks \citep{dramsch2018deep}. Moreover, weakly-supervised training can preform label propagation of labeled sections of the full data set to unlabeled sets. Unsupervised or self-supvervised training can be applicable, where no reliable ground truth is available, but a desired operation on the data is known or an internal structure of the data can be exploited \citep{dramsch20193dwarping}. Additionally, multi-task learning has been shown to be able to stabilize network performance in \acl{nlp} \citep{liu2019multi} and \acl{rl} \citep{yu2019meta}.
+
+% explainability and complexity
+
+One caveat of increasingly performant but complex machine learning models is stakeholder buy-in or trust. These issues can be adressed, by benchmarking complex models against simpler models and physics-based solutions. Additionally, model explainability has become an important topic of research \citep{NIPS2017_7062}. \citet{ribeiro2016should} introduce the \acf{lime} method to gain insight into black-box models for individual samples. \citet{shrikumar2017learning} propose a method to propagate activations in \aclp{dnn}. The Grad-CAM algorithm \citep{selvaraju2017grad} provides attention-like explanations for \acp{cnn} in computer vision tasks, to explain the main contributors to a classification output. Additionally, strict adherence to train-val-test splits and exploration of biases within the data can be essential. 
+
+
+

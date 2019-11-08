@@ -1,0 +1,42 @@
+%!TEX root = ../Thesis.tex
+\chapter{Presentation List}
+\begin{refsection}[bibliography/MyPapers.bib]
+
+\renewcommand*{\mkbibnamegiven}[1]{%
+  \ifitemannotation{highlight}
+    {\textbf{#1}}
+    {#1}}
+
+\renewcommand*{\mkbibnamefamily}[1]{%
+  \ifitemannotation{highlight}
+    {\textbf{#1}}
+    {#1}}
+
+\nocite{*}
+\newrefcontext[sorting=ydnt]
+
+\printbibliography[keyword={presentation}, keyword={meins}, keyword={conference}, type=inproceedings, title={Conference Presentation}, heading=subbibliography]
+
+\printbibliography[keyword={presentation}, keyword={meins}, keyword={workshop}, type=inproceedings, title={Workshop Presentation}, heading=subbibliography]
+
+\printbibliography[keyword={poster}, keyword={meins}, keyword={conference}, type=inproceedings, title={Conference Poster}, heading=subbibliography]
+
+\printbibliography[keyword={poster}, keyword={meins}, keyword={workshop}, type=inproceedings, title={Workshop Poster}, heading=subbibliography]
+
+\printbibliography[keyword={presentation}, keyword={other}, keyword={meins}, notkeyword={invited}, title={Other Presentations}, heading=subbibliography]
+
+\printbibliography[keyword={poster}, keyword={other}, keyword={meins}, title={Other Posters}, heading=subbibliography]
+
+\printbibliography[keyword={invited}, keyword={meins}, keyword={other}, title={Invited Presentation}, heading=subbibliography]
+
+\renewcommand*{\mkbibnamegiven}[1]{%
+  \ifitemannotation{highlight}
+    {#1}
+    {#1}}
+
+\renewcommand*{\mkbibnamefamily}[1]{%
+  \ifitemannotation{highlight}
+    {#1}
+    {#1}}
+
+\end{refsection}

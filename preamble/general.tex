@@ -85,6 +85,7 @@
 \usepackage{graphicx}                 % Including graphics and using colours
 \usepackage{xcolor}                   % Defined more color names
 \usepackage{eso-pic}                  % Watermark and other bag
+\usepackage{svg}
 \usepackage{preamble/dtucolors}
 \graphicspath{{graphics/}}
 
@@ -93,15 +94,24 @@
 \setdefaultlanguage{english}
 \usepackage{csquotes}       % language sensitive quotation facilities
 
+
 % Bibliography (references)
 \usepackage[backend=biber,
             style=authoryear,
             %backref=true,
             dashed=false,
-            abbreviate=false,
-            dateabbrev=false,
+            %abbreviate=false,
+            %dateabbrev=false,
+            natbib=true,
+            uniquename=false,
+            giveninits=true,
+            %citetracker=true,
+            %useprefix=false,
+            %uniquelist=false,
+            minnames=1,
             alldates=long,
-            maxnames=99,
+            sorting=nyt,
+            maxnames=2,
             maxbibnames=99]{biblatex}
 
 \preto\fullcite{\AtNextCite{\defcounter{maxnames}{99}}}

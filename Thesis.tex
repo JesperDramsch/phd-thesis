@@ -4,9 +4,9 @@
 \input{preamble/general}
 \input{preamble/fonts}
 \input{preamble/etc}
-
+\addbibresource{bibliography/MyPapers.bib}
 \addbibresource{bibliography/Bibliography.bib}
-
+\addbibresource{bibliography/DTW-Paper.bib}
 \begin{document}
 
 \prefrontmatter
@@ -20,6 +20,7 @@
 \include{frontmatter/Preface}
 \include{frontmatter/Acknowledgements}
 \include{frontmatter/Publications}
+\include{frontmatter/Presentations}
 \clearforchapter
 \tableofcontents
 \clearforchapter
@@ -27,22 +28,44 @@
 
 \mainmatter
 \include{chapters/Introduction}
-\todo{Check Publication List}
-\include{chapters/PaperTalaEAGE}
-\include{chapters/PaperTalaFractures}
-\include{chapters/PaperGaussianFred}
-\include{chapters/PaperInformationSeismic}
-\include{chapters/PaperTransferLearning}
-\include{chapters/PaperComplex}
-\include{chapters/PaperSchiehallion}
-\include{chapters/PaperPhysicsDeep}
-\blinddocument
-\include{chapters/Conclusion}
+\include{chapters/Theory}
+\include{chapters/Synopsis}
 
-\appendix
-\include{appendices/AnAppendix}
+\chapter{Data Preparation and Analysis}
+\label{sec:dataprep}
+%\include{chapters/PaperTalaEAGE}
+%\include{chapters/PaperTalaFractures}
+%\include{chapters/PaperGaussianFred}
+
+\chapter{Foundations of Deep Learning for Seismic Data Analysis}
+\label{sec:foundations}
+%\include{chapters/PaperDTW}
+%\include{chapters/PaperComplex}
+%\include{chapters/PaperInformationSeismic}
+%\include{chapters/PaperTransferLearning}
+
+
+\chapter{Deep Neural Networks for 4D Seismic Inversion}
+\label{sec:inversion}
+%\include{chapters/PaperPhysicsDeep}
+%\include{chapters/PaperSchiehallion}
+
+\chapter{Deep Convolutional Networks for 4D Time Shift Extraction}
+\label{sec:timeshift}
+%\include{chapters/Paper3DWarping}
+
+
+
+%\include{chapters/Conclusion}
+
+%\appendix
+
+%\include{appendices/AnAppendix}
 
 \backmatter
+\include{appendices/TheAcronyms}
+\clearforchapter
+\newrefcontext[sorting=nyt]
 \printbibliography
 
 \end{document}

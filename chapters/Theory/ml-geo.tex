@@ -15,24 +15,25 @@ The authors evaluate how especially the introduction of \ac{svm} have allowed th
 Machine learning, statistical, and mathematical models have a long history in geoscience. Markov models have been used to describe sedimentology as early as the 1970s \citep{schwarzacher1972semi} and the use of k-means in geoscience as early as 1964 \citep{preston1964fourier}. In geophysics applications of \acp{nn} to perform seismic devonvolution were published in the 1980s \citet{Zhao1988-hu}. Early tree-based methods were chiefly used in economic geology and exploration geophysics for prospectivity mapping with \acfp{dt} \citep{newendorp1976decision,reddy1991decisiontree}. \ac{svm} has early on been applied to AVO classification \cite{Li2004-fk} and geological facies delineation for hydrological analysis \citep{Tartakovsky2004-ml}. Due to some changes in nomenclature of methods through time, it has been difficult to identify all publications. Moreover, this thesis mostly focuses on the application of \acp{nn}, however, we give an additional overview of geoscientific applications of shallow \ac{ml}.
 
 \subsubsection{Neural Networks in Geoscience}
-Early applications of neural networks were prominent in seismic data processing and analysis. \citet{Zhao1988-hu} use a \ac{nn} to perform seismic deconvolution early on. An application of seismic inversion with \acp{nn} was published by \citet{Roth1994-na}. Early \ac{ml}-based electromagnetic geophysics performs subsurface localization \citep{Poulton1992-ft} and magnetotelluric inversion via Hopfield \acp{nn} \citep{Zhang1997-yp}. \citet{Feng1998-ck} applied \ac{nn} to model geomechanical microfractures in triaxial compression tests. Interestingly, \citet{Legget1996-nk} used a combination of \acf{som} and back-propagation \acp{nn} that function similar to modern day \acfp{cnn} to perform 3D horizon tracking \citep{Leggett2003-vq}. With the recent \ac{dl} explosion, papers on seismic interpretation have gotten very popular, given the similarity to 2D segmentation tasks (cf. \cref{tab:geonn}).
+Early applications of neural networks were prominent in seismic data processing and analysis. \citet{Zhao1988-hu} use a \ac{nn} to perform seismic deconvolution early on. An application of seismic inversion with \acp{nn} was published by \citet{Roth1994-na}. Early \ac{ml}-based electromagnetic geophysics performs subsurface localization \citep{Poulton1992-ft} and magnetotelluric inversion via Hopfield \acp{nn} \citep{Zhang1997-yp}. \citet{Feng1998-ck} applied \ac{nn} to model geomechanical microfractures in triaxial compression tests. Interestingly, \citet{Legget1996-nk} used a combination of \acf{som} and back-propagation \acp{nn} that function similar to modern day \acfp{cnn} to perform 3D horizon tracking \citep{Leggett2003-vq}. With the recent \ac{dl} explosion, papers on \acf{asi} have gotten very popular, given the similarity to 2D segmentation tasks (cf. \cref{tab:geonn}).
 
-\begin{table}[]
-    \centering
-    \begin{tabularx}{\textwidth}{l|X}
+\clearpage
+\newpage
+
+\begin{longtabu} to \textwidth {l|X}
 \toprule
 Topic & Publications \\
 \bottomrule
 \toprule
 First Break Picking & \citet{Murat1992-qs, McCormack1993-ul, Dai1997-ta, Ross2018-kt} \\
 \midrule
-Ground Penetrating Radar & \citet{Al-Nuaimy2000-sa, Gamba2000-va, Shihab2002-po, Shihab2002-ne, Youn2002-rn, Birkenfeld2010-rd, Cui2010-rn, Maas2013-wb, Nunez-Nieto2014-il, Mertens2016-os, Hansen2017-rq, Kilic2018-to}\\
+\acl{gpr} & \citet{Al-Nuaimy2000-sa, Gamba2000-va, Shihab2002-po, Shihab2002-ne, Youn2002-rn, Birkenfeld2010-rd, Cui2010-rn, Maas2013-wb, Nunez-Nieto2014-il, Mertens2016-os, Hansen2017-rq, Kilic2018-to}\\
 \midrule
 Seismic Deconvolution &  \citet{Zhao1988-hu, Wang1997-is, CalderonMacias1997-pl, Harrigan1991-ij}\\
 \midrule
 Seismic Horizon Picking & \citet{Huang1990-hj, Legget1996-nk, Zhang2001-hy, Leggett2003-vq}\\
 \midrule
-Seismic Interpretation & \citet{Meldahl2001-bb, Strecker2002-dp, Klose2006-xh, Zheng2014-il, Marroquin2014-gg, Qi2016-qy, Zhao2016-ya, Roden2015-ek,Huang2017-fk, Lewis2017-ek, Waldeland2017-tx, Guo2017-ij, Zhao2017-gv, Veillard2018-sg, Araya-Polo2017-ky,dramsch2018deep, Chevitarese2018-kd, Gramstad2018-ql, Guitton2018-gd, Purves2018-dy, Shafiq2018-qt, Shafiq2018-ed, Waldeland2018-hj, AlRegib2018-yr, Le_Bouteiller2018-ma, Li2018-bm, Sacrey2018-pk, Shafiq2018-rp, Wu2018-hg}\\
+\acl{asi} & \citet{Meldahl2001-bb, Strecker2002-dp, Klose2006-xh, Zheng2014-il, Marroquin2014-gg, Qi2016-qy, Zhao2016-ya, Roden2015-ek,Huang2017-fk, Lewis2017-ek, Waldeland2017-tx, Guo2017-ij, Zhao2017-gv, Veillard2018-sg, Araya-Polo2017-ky,dramsch2018deep, Chevitarese2018-kd, Gramstad2018-ql, Guitton2018-gd, Purves2018-dy, Shafiq2018-qt, Shafiq2018-ed, Waldeland2018-hj, AlRegib2018-yr, Le_Bouteiller2018-ma, Li2018-bm, Sacrey2018-pk, Shafiq2018-rp, Wu2018-hg}\\
 \midrule 
 Seismic Inversion & \citet{Roth1994-na, Langer1996-fv, Iturraran-Viveros2012-ta, Ansari2014-ci, Verma2014-jx, Golsanami2015-ul, Schuster2018-sj, Araya-Polo2018-xf, Mosser2018-nf, Mosser2018-hm, Richardson2018-py}\\
 \midrule
@@ -40,12 +41,11 @@ Seismic Tomography & \citet{Bauer2008-pv, Braeuer2015-yj}\\
 \midrule
 Seismic Well-Tie & \citet{Chaki2018-mr}\\
 \midrule
-Well-Log analysis & \citet{Huang1996-eg, Fung1997-kw, Bhatt2002-kj, Helle2002-ju, Asoodeh2014-mm, Anifowose2017-bx, Saporetti2018-sq, Maiti2010-dw, Chang2002-oi, Bauer2015-hy, Emelyanova2017-vy, Carreira2018-bp}\\
+Well-Log analysis & \citet{Huang1996-eg, Fung1997-kw, Bhatt2002-kj, Helle2002-ju, Asoodeh2014-mm, Anifowose2017-bx, Saporetti2018-sq, Maiti2010-dw, Chang2002-oi, Bauer2015-hy, Emelyanova2017-vy, Carreira2018-bp} \\
 \bottomrule
-\end{tabularx}
-    \caption{Neural Networks in Geophysics}
-    \label{tab:geonn}
-\end{table}
+\caption{Neural Networks in Geophysics}
+\label{tab:geonn}
+\end{longtabu}
 
 \subsection{Challenges of machine learning in geoscience}
 Statistical methods and machine learning are based on several assumptions and demand some pre-requisites that can cause problems in geoscience. These include the assumption that data is \acf{iid} and the pre-requisite of a ground truth for supervised learning. In this section I discuss these challenges and present some approaches to solve these problems.

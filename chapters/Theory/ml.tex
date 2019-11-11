@@ -36,9 +36,9 @@ This notion was challenged by Alan Turing \citep{turing1950} who proposed the "L
 \end{equation}
 which describes a linear system of the input data $x$, the weights $w$ and bias $b$ and a binary activation funtion $\sigma$. The linear system is still used in modern neurons, however, the activation $\sigma$ is usually a Rectifier function. Shortly after, \citet{belson1959matching} describe the first \acf{dt}, which learns hierarchical decision systems. The next method, \ac{knn} search, was introduced by \citet{cover1967nearest} to solve the traveling salesman problem. Two decades later Q-learning \citep{watkins1989learning} introduces a method to reinforcement learning that is still used to this day. The final two methods in the timeline were introduced in 1995. \acfp{rf} \citep{ho1995random} introduce ensemble learning of weak learning \acfp{dt}. \acf{svm} \citep{cortes1995support} introduce a strong learner that aims to maximize the margin between classes.
 
-These methods have been improved upon over the decades. Specific milestones that accelerated further developments in \ac{nn} are automatic differentiation \citep{linnainmaa1970representation} and consequently applying this to backpropagate errors in \acp{dnn} \citep{rumelhart1988learning}. Backpropagation itself as a concept existed earlier \citep{kelley1960gradient, bryson1961gradient}, followed by a simplification by using the chain rule \citep{dreyfus1962numerical}. These enable effective implementation of \acp{nn} today. Moreover, open sourcing the Torch library \citep{collobert2002torch} made and assembling the ImageNet database \citep{deng2009imagenet} has accelerated developments in computer vision and enabled modern developments in deep learning. In the same year the library Scikit-Learn \citep{scikit-learn} was established, which introduced a common open source API \citep{sklearn_api} for a diverse and growing set of shallow machine learning models (e.g. \acp{svm}, \acp{rf}, \acp{knn}, shallow \acp{nn}). Scikit-learn has had a profound impact on machine learning applications across the sciences and the API is modelled in other open source libraries. \citet{libsvm} introduced a widely used implementation for \acf{svm}, which is also used in Scikit-Learn. Recently, the Tensorflow library \citep{tensorflow} was introduced for open source deep learning models, with some different design choices than Pytorch. In this open environment fueled by competitions (e.g. ImageNet \citep{ILSVRCanalysis_ICCV2013}, Netflix Prize \citep{bennett2007netflix}, Kaggle \citep{goodfellow2013challenges}) XGBoost \citep{xgboost}, a library for extreme gradient tree boosting was developed.
+These methods have been improved upon over the decades. Specific milestones that accelerated further developments in \ac{nn} are automatic differentiation \citep{linnainmaa1970representation} and consequently applying this to backpropagate errors in \acp{dnn} \citep{rumelhart1988learning}. Backpropagation itself as a concept existed earlier \citep{kelley1960gradient, bryson1961gradient}, followed by a simplification by using the chain rule \citep{dreyfus1962numerical}. These enable effective implementation of \acp{nn} today. Moreover, open sourcing the Torch library \citep{collobert2002torch} made and assembling the ImageNet database \citep{deng2009imagenet} has accelerated developments in computer vision and enabled modern developments in deep learning. In the same year of 2009 the library Scikit-Learn \citep{scikit-learn} was established, which introduced a common open source \ac{api} \citep{sklearn_api} for a diverse and growing set of shallow machine learning models (e.g. \acp{svm}, \acp{rf}, \acp{knn}, shallow \acp{nn}). Scikit-learn has had a profound impact on machine learning applications across the sciences and the API is modelled in other open source libraries. \citet{libsvm} introduced a widely used implementation for \acf{svm}, which is also used in Scikit-Learn. Recently, the Tensorflow library \citep{tensorflow} was introduced for open source deep learning models, with some different design choices than Pytorch. In this open environment fueled by competitions (e.g. ImageNet \citep{ILSVRCanalysis_ICCV2013}, Netflix Prize \citep{bennett2007netflix}, Kaggle \citep{goodfellow2013challenges}) XGBoost \citep{xgboost}, a library for extreme gradient tree boosting was developed.
 
-Recent developments in deep learning are based in \acfp{nn}, hence, we highlight some key developments in \cref{fig:mltimeline}. \acfp{cnn} are essential in the modern computational vision systems, they were inspired by \citep{lecun2015deep} the concept of Neocognitron \citep{fukushima1980neocognitron}. In the same decade \acfp{rnn} were introduced implemented as Hopfield Networks \citep{hopfield1982neural}. While Hopfield networks are not a general \ac{rnn}, they provide content-adressable memory with the internal state memory. \citet{hochreiter1997long} implement the \acf{lstm}, which contain internal states (i.e. memory) that can process temporal sequences, still used and performing to the state-of-the-art in sequence analysis and \ac{nlp} to this day. Recently, \acf{gan} \citep{goodfellow2014generative} introduced a system of \acp{nn} that can create new samples from a distribution. The \ac{gan} consists of two \acp{nn}, a generator and a discriminator, which generate samples from a noise distribution and judge the validity of the sample respectively. We discuss \acp{nn} in more detail in \cref{section:nn}
+Recent developments in deep learning are based in \acfp{nn}, hence, we highlight some key developments in \cref{fig:mltimeline}. \acfp{cnn} are essential in the modern computational vision systems, they were inspired by the concept of Neocognitron \citep{fukushima1980neocognitron, lecun2015deep}. In the same decade \acfp{rnn} were introduced implemented as Hopfield Networks \citep{hopfield1982neural}. While Hopfield networks are not a general \ac{rnn}, they provide content-adressable memory with the internal state memory. \citet{hochreiter1997long} implement the \acf{lstm}, which contain internal states (i.e. memory) that can process temporal sequences, still used and performing to the state-of-the-art in sequence analysis and \ac{nlp} to this day. Recently, \acf{gan} \citep{goodfellow2014generative} introduced a system of \acp{nn} that can create new samples from a distribution. The \ac{gan} consists of two \acp{nn}, a generator and a discriminator, which generate samples from a noise distribution and judge the validity of the sample respectively. We discuss \acp{nn} in more detail in \cref{section:nn}
 
 \subsection{\acfp{nn}}
 \label{section:nn}
@@ -47,11 +47,11 @@ Recent developments in deep learning are based in \acfp{nn}, hence, we highlight
 \begin{figure}[H]
     \centering
     \includesvg[width=\textwidth,height=5cm]{{figures/Single-Layer_Neural_Network}}
-    \caption{A simple \ac{nn}}
+    \caption{A simple \ac{nn} \todo{More text}}
     \label{fig:simpleneuralnetwork}
 \end{figure}
 
-\acfp{nn} can be approached from several theoretical bases. Mathematically, \acp{nn} are directed acyclical graphs with edges and nodes. In neural computation, these are generally referred to as weights and nodes or neurons. In \cref{fig:simpleneuralnetwork}, we present a simple densely connected \ac{mlp} with three inputs and three outputs. This configuration is equivalent to a linear regression model. The inputs are distributed across the nodes, and each weight is multiplied with a weight inherent to that graph edge. During the trianing of this machine learning model, these weights get adjusted to obtain a generalizable result. Each node sums the contributions of these weights and possibly a bias, which is trainable but does not take input data. This amounts to each node performing
+\acfp{nn} can be approached from several theoretical bases. Mathematically, \acp{nn} are directed acyclical graphs with edges and nodes. In neural computation, these are generally referred to as weights and nodes or neurons. In \cref{fig:simpleneuralnetwork}, we present a simple densely connected \ac{mlp} with three inputs and three outputs. This configuration is equivalent to a linear regression model. The inputs are distributed across the nodes, and each weight is multiplied with a weight inherent to that graph edge. During the training of this machine learning model, these weights get adjusted to obtain a generalizable result. Each node sums the contributions of these weights and possibly a bias, which is trainable but does not take input data. This amounts to each node performing
 
 \begin{equation}
     a_{j} = \sigma \left(\sum_i w_{ij} x_{i} + b\right),
@@ -64,9 +64,9 @@ with $a$ signifying the activation at a node, $i,j$ being the index of the sourc
     \subbottom[Sigmoid activation]{\includegraphics[width=.35\textwidth]{figures/activations/act_sigmoid.png}\label{fig:act_sig}}%
     \subbottom[Tanh activation]{\includegraphics[width=.35\textwidth]{figures/activations/act_tanh.png}\label{fig:act_tanh}}%
     \\
-    \subbottom[ReLu activation]{\includegraphics[width=.35\textwidth]{figures/activations/act_relu.png}\label{fig:act_relu}}%
-    \subbottom[PReLu activation ($\alpha=.5$)]{\includegraphics[width=.35\textwidth]{figures/activations/act_prelu.png}\label{fig:act_prelu}}%
-    \subbottom[ELU activation ($\alpha=1$)]{\includegraphics[width=.35\textwidth]{figures/activations/act_elu.png}\label{fig:act_elu}}
+    \subbottom[\ac{relu} activation]{\includegraphics[width=.35\textwidth]{figures/activations/act_relu.png}\label{fig:act_relu}}%
+    \subbottom[\ac{prelu} activation ($\alpha=.5$)]{\includegraphics[width=.35\textwidth]{figures/activations/act_prelu.png}\label{fig:act_prelu}}%
+    \subbottom[\ac{elu} activation ($\alpha=1$)]{\includegraphics[width=.35\textwidth]{figures/activations/act_elu.png}\label{fig:act_elu}}
     \caption{Common Activation functions (red) and derivatives (blue)}
     \label{fig:activations}
 \end{figure}
@@ -87,7 +87,9 @@ with $\eta$ being the learning rate and $\delta$ being
 \end{equation}
 Therefore, hidden nodes are reliant on the result $\delta_{j-1}$ of the node at index $j-1$ \citep{deeplearningbook}. The training of the model can be done on a per-sample basis, which is \ac{sgd} or in the case of noisy inputs, the mean error of several samples can be calculated to perform mini-batch gradient descent. Iteration over forward and backward passes adjusts the weights to predict the correct result. 
 
-The optimization of the backpropagation is performed using \ac{sgd} or other gradient-based optimizers such as the Adam optimizer \citep{kingma2014adam}. However, during training of the \ac{nn}, it is important to ensure that the network learns a general relationship instead of memorizing the input data. This memorization is called overtraining, or overfitting. Overfitting can be avoided by regularizations like weight decay \citep{krogh1992simple} and Nesterov momentum \citep{pmlr-v28-sutskever13}, which modify the optimization loop. Alternatively, methods like Dropout \citep{hinton2012improving} and BatchNormalization \citep{ioffe2015batch} modify the network at training time. Moreover, a diverse training set and train-val-test split help avoid overfitting and ensure generalization of the trained model.
+Modern deep \acp{nn} are trained on \acp{gpu} that are optimized for matrix multiplications instead of \acp{cpu} that are magnitudes slower. However, more recently task-specific hardware such as \acp{fgpa} and \acp{tpu}, which work closely with the \ac{tf} library are being developed and made available in cloud infrastructures.
+
+The optimization of the backpropagation is performed using \ac{sgd} or other gradient-based optimizers such as the Adam optimizer \citep{kingma2014adam}. However, during training of the \ac{nn}, it is important to ensure that the network learns a general relationship instead of memorizing the input data. This memorization is called overtraining, or overfitting. Overfitting can be avoided by regularizations like weight decay \citep{krogh1992simple} and Nesterov momentum \citep{pmlr-v28-sutskever13}, which modify the optimization loop. Alternatively, methods like Dropout \citep{hinton2012improving} and \ac{bn} \citep{ioffe2015batch} modify the network at training time. Moreover, a diverse training set and train-val-test split help avoid overfitting and ensure generalization of the trained model.
 
 The train-val-test split separates the data into three parts. The training and validation set are available during training and hyperparameter tuning, the test set, however, should only be used once to ensure generalization of the model. The train test is used during the optimization loop, the actual training of the model, with the validation set ensuring generalization of the model to unseen data within the loop. In and of itself, the train and validation data would be sufficient, if no other changes to the model were made based on the results of the validation data. Since hyperparameter tuning and model selection are a common procedure today, these present an implicit source of information leakage from the validation set into the data. The hyperparameter tuning will often pose an optimization loop in itself that optimizes based on the results on the "unseen" validation set, essentially implicitly fitting the model to the validation data, therefore, a separate test set is necessary to ensure true generalization.
 
@@ -104,8 +106,18 @@ Feed forward \acfp{nn} or \acp{mlp} are the simplest for of \ac{nn}. In its simp
 
 \acp{nn} gain their powerful learning capabilities from adding layers (see \cref{fig:feedneuralnetwork}) in between the input and output node and applying a non-linear activation function. Non-linear activations scale the input from the edge at each neuron. Historically, these have been straight-forward mathematical functions such as $tanh()$ and $sig()$ (cf. \cref{fig:activations}). These suffer from some short-comings that were overcome to leverage multi-layered \acp{dnn}.
 
+\subsubsection{\acfp{dnn}}
+\label{section:dnn}
+Improvements in computational power made it possible to train many-layered \acp{nn} (see \cref{fig:deepneuralnetwork}). These \acfp{dnn} are at the core of recent developments in \acf{dl}, leading to the re-implementation of many algorithms into openly available libraries, which has led to further innovative uses of these building blocks. These networks leverage the combinatorial power of \ac{nn} layers. In deep \acp{nn} gradient propagation led to exploding or vanishing gradients before. New non-saturating activation functions lead to stabilization of training \ac{dnn} (cf. \cref{fig:activations}).
 
-\subsubsection{Self-Organizing Maps}
+\begin{figure}[H]
+    \centering
+    \includesvg[width=\textwidth,height=5cm]{{figures/Deep-Multi-Layer_Neural_Network-Vector}}
+    \caption{Deep Feed forward \ac{nn}}
+    \label{fig:deepneuralnetwork}
+\end{figure}
+
+\subsubsection{\acfp{som}}
 \acf{som}, also named Kohonen-networks \citep{kohonen1982self} are a special case of networks that do not modify the flow of data from the input to the output nodes. They treat each data point as a node and adjust the weights between each node in on a similarity metric. These tend to perform well on spatially correlated data and find good adoption in geoscience.
 
 \subsubsection{Recurrent Networks}
@@ -129,20 +141,9 @@ In \cref{fig:recurrentneuralnetwork} we show the changes of a simple \ac{rnn} gr
 \end{itemize}
 The input gate regulates the contribution of input values to the internal cell. The forget gate regulates the persistence of values in the cell. Finally, the output gate regulates the contribution of the input value to the output value convolved with the cell state. 
 
-\subsubsection{Deep Networks}
-\label{section:dnn}
-Improvements in computational power made it possible to train many-layered \acp{nn} (see \cref{fig:deepneuralnetwork}). These \acfp{dnn} are at the core of recent developments in \acf{dl}, leading to the re-implementation of many algorithms into openly available libraries, which has led to further innovative uses of these building blocks. These networks leverage the combinatorial power of \ac{nn} layers. In deep \acp{nn} gradient propagation led to exploding or vanishing gradients before. New non-saturating activation functions lead to stabilization of training \ac{dnn} (cf. \cref{fig:activations}).
-
-\begin{figure}[H]
-    \centering
-    \includesvg[width=\textwidth,height=5cm]{{figures/Deep-Multi-Layer_Neural_Network-Vector}}
-    \caption{Deep Feed forward \ac{nn}}
-    \label{fig:deepneuralnetwork}
-\end{figure}
-
 \subsubsection{Convolutional Networks}
 \label{section:cnn}
-\acf{cnn} were developed in computer vision to automatically learn a filter that spatially correlates data. The convolutional kernels are computationally efficient due to weight sharing, making them feasible for very deep networks (cf. \cref{section:dnn}). \acp{cnn} have had the biggest influence on the renaissance of modern \ac{ml}. These building blocks for \acp{nn} are very good for image data and data where spatially correlated information provides valuable context. It has therefore quickly gained attention in seismic interpretation and seismic data analysis. CNNs like other \acp{nn} are optimized by stochastic gradient descent, optimizing a defined loss over the chosen task.
+\acf{cnn} were developed in computer vision to automatically learn a filter that spatially correlates data. The convolutional kernels are computationally efficient due to weight sharing, making them feasible for very deep networks (cf. \cref{section:dnn}). \acp{cnn} have had the biggest influence on the renaissance of modern \ac{ml}. These building blocks for \acp{nn} are very good for image data and data where spatially correlated information provides valuable context. It has therefore quickly gained attention in seismic interpretation and seismic data analysis. CNNs like other \acp{nn} are optimized by \ac{sgd}, optimizing a defined loss over the chosen task.
 
 \begin{figure}[H]
     \centering
@@ -159,12 +160,12 @@ resulting in the central result $G^{*}$ around the coordinate $c$. Realistically
 \begin{equation}
     \mathcal{F}\{f * g\} = k\cdot \mathcal{F}\{f\}\cdot \mathcal{F}\{g\},
 \end{equation}
-with $\mathcal{F} \{ f\}$ denoting the Fourier transform of $f$ and $k$ being a normalization constant. This reduces the convolution to a simple multiplication in the Fourier domain.
+with $\mathcal{F} \{ f\}$ denoting the Fourier transform of $f$ and $k$ being a normalization constant. This reduces the convolution to a simple multiplication in the Fourier domain, sped up by \acp{fft}
 
 \cref{fig:cnn} shows the schematic of connected convolutional layers in a \ac{cnn}. The network learns a specified number of $3\times3$ filters from the initial image. Strided convolutions with a step-size larger than 1 or Pooling layers are used to reduce the spatial extent of the image. The repeated downsampling of the image and extraction of convolutional filters has been shown to work for computer vision tasks. Historically, the CNN architecture AlexNet \citep{krizhevsky2012imagenet} was the first \ac{cnn} to enter the ImageNet challenge and improved the classification error rate from 25.8~\% to 16.4~\% (top-5 accuracy). This has propelled research in \acp{cnn}, resulting in error rates on ImageNet of 2.25~\% on top-5 accuracy in 2017 \citep{imagenetresults}.
 
 \subsubsection{Generative Adversarial Networks}
-\citet{Goodfellow2014-ax} introduced \acf{gan} as a combination of two \acp{cnn}. Different modifications exist that draw from the original \ac{gan}, these modifications add more regularization and other feedback loops, as \acp{gan} are notoriously difficult to train without careful fine-tuning. These modifications include Wasserstein losses \citep{arjovsky2017wasserstein}, and gradient penalization \citep{gulrajani2017improved} for regularization, or cycle-consistent loss for unsupervised training \citep{zhu2017unpaired}.
+\citet{Goodfellow2014-ax} introduced \acf{gan} as a combination of two \acp{cnn}. These \acfp{dcgan} exist in different modifications that draw from the original \ac{gan}, these modifications add more regularization and other feedback loops, as \acp{gan} are notoriously difficult to train without careful fine-tuning. These modifications include Wasserstein losses \citep{arjovsky2017wasserstein}, and gradient penalization \citep{gulrajani2017improved} for regularization, or cycle-consistent loss for unsupervised training \citep{zhu2017unpaired}.
 
 \begin{figure}[H]
     \centering
@@ -182,7 +183,7 @@ with $\mathcal{F} \{ f\}$ denoting the Fourier transform of $f$ and $k$ being a 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=5cm,keepaspectratio]{figures/resnet.pdf}
-    \caption{Resnet Block with two $1\times1$ convolutional layers that frame a $3\times3$ convolutional layer with ReLU activation each. The result being added with the original data, also known as identity.}
+    \caption{Resnet Block with two $1\times1$ convolutional layers that frame a $3\times3$ convolutional layer with \ac{relu} activation each. The result being added with the original data, also known as identity.}
     \label{fig:resnet}
 \end{figure}
 
@@ -199,11 +200,11 @@ The categories of AmoebaNet, NASNet, and EfficientNet are a more recent developm
 
 Apart from building deeper networks for image classification, the neural architectures can serve as a  forcing function to the task the network is built for. Encoder-Decoder networks will compress the data with a combination of downsampling layers, which in the case of a computer vision could either be strided convolutions or pooling layers after convolutional layers. During these operations, the number of filters increases, while the spatial extent is diminished significantly. This encoding operation is equivalent to a lossy compression, with the low-dimensional layer called "code" or "bottleneck". The bottleneck is then upsampled by either strided transpose Convolutions or upsampling layers that perform a specified interpolation. This is the Decoder of the Encoder-Decoder pair. These networks can be used for data compresssion in \acp{ae}, where the decoder restores the original data as good as possible \citep{hinton2006reducing}. Alternatively, the Decoder can learn a dense classification task like semantic segmentation or seismic interpretation.
 
-Unets present a special type of encoder-decoder networks, that learn semantic segmentation on from small datasets \citep{ronneberger2015unet}. Originally developed on biomedical images, the network found wide acceptance in data sparse disciplines. The Unet implements shortcut connections between convolutional layers of equal extent in the Encoder and Decoder networks. This alleviates the pressure of the network learning and reconstructing everything from the bottleneck in isolation. 
+Unets present a special type of encoder-decoder networks, that learn semantic segmentation on from small datasets \citep{ronneberger2015unet}. They form a special kind of \ac{fcn}. Originally developed on biomedical images, the network found wide acceptance in label sparse disciplines. The Unet implements shortcut connections between convolutional layers of equal extent in the Encoder and Decoder networks. This alleviates the pressure of the network learning and reconstructing everything from the bottleneck in isolation. 
 
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth,height=5cm,keepaspectratio]{figures/unet.pdf}
-    \caption{Unet after \citet{ronneberger2015unet} using 2D convolutional layers (yellow) with ReLU activation (orange) and skip connection between equal-dimensional layers. The Encoder uses pooling (red), while the Decoder uses Upsampling layers (blue), witha final SoftMax layer (purple) for classification / semantic segmentation}
+    \caption{Unet after \citet{ronneberger2015unet} using 2D convolutional layers (yellow) with \ac{relu} activation (orange) and skip connection between equal-dimensional layers. The Encoder uses pooling (red), while the Decoder uses Upsampling layers (blue), witha final SoftMax layer (purple) for classification / semantic segmentation}
     \label{fig:unet}
 \end{figure}

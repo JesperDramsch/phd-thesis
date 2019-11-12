@@ -3,13 +3,19 @@
 % Content specific packages.
 \usepackage{grffile}
 \usepackage[final]{pdfpages}
-\usepackage{blindtext}
-\usepackage{algorithm}
-\usepackage{algpseudocode}
-\usepackage{longtable,tabu}
-\usepackage{breakcites}
+\usepackage{longtable,tabu,breakcites,lscape,booktabs,colortbl}
 \usepackage[printonlyused,withpage]{acronym}
 \usepackage{amsmath,amsfonts}
+
+% Algorithms
+\usepackage{algpseudocode}
+\newcommand{\algorithmname}{Algorithm}
+\newcommand{\listalgorithmname}{List of Algorithms}
+\newlistof{listofalgorithms}{loa}{\listalgorithmname}
+\newfloat{algorithm}{loa}{\algorithmname}
+\newfixedcaption{\falgcaption}{algorithm}
+\newlistentry{algorithm}{loa}{0}
+
 %\usepackage{pgfplots}                 % Plot tools
 %\usetikzlibrary{
 %    arrows,

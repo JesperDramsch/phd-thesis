@@ -15,37 +15,42 @@ The foundational research in this thesis includes publications on \acl{dl} and 4
     \subbottom[LB\_Envelope \citep{keogh2005exact}]{%
      \includegraphics[width=.3\textwidth]{figures/minimum_path_all_losses_lb_keogh_.png}\label{fig:lbk}
     }
-\caption{Minimum path for constraint masks for cumulative cost in \ac{dtw}}
+\caption{Minimum path for constraint masks for cumulative cost in \ac{dtw} \citep[from][]{dramsch2019dtw}}
 \label{fig:constraints}
 \end{figure} 
 % dramsch2019dtw
 \citet{dramsch2019dtw} presents a tutorial of \acf{dtw}. \ac{dtw} is a powerful signal processing tool introduced to 4D seismic analysis by \citep{Hale2013} on synthetic data. 4D seismic data relies on alignment of the seismic volumes. This enables interpreters to compare the amplitudes differences of the data. Due to the capability of \ac{dtw} to match arbitrary time-series, it is applicable to 4D time shifts, seismic-well ties, well-to-well ties, and seismic pre- and post-stack migration \citep{Luo*2014}.  \ac{dtw} is known to be computationally slow and expensive, while extracting poor matches on seismic field data. This tutorial paper goes into detail of the \ac{dtw} algorithm, exploring similarity measures, optimization, and constraints interactively through reproducible implementation in Python.
 
 \begin{algorithm}
-\begin{algorithmic}[1]
+\begin{algorithmic}
+\Procedure{DTW}{$a,b$}
 \State Given: Trace $a$ and Trace $b$ of lengths $n$.
-\State Calculate distance matrix $D$
-\State $D \gets dist(a,b)$
-\State Calculate Cumulative Cost $C$
+\Function{Calculate distance matrix $D$}{$a,b$}
+    \State $D \gets dist(a,b)$
+\EndFunction
+\Function{Calculate Cumulative Cost $C$}{$D$}
 \State $C[0,0] \gets 0$
 \For {$i = 1$ to $n$} \Comment{Populate Edge}
-    \State $C[0,i] \gets C[0,i] + C[0,i-1]$
-    \State $C[i,0] \gets C[i,0] + C[i-1,0]$
+    \State $C[0,i] \gets D[0,i] + C[0,i-1]$
+    \State $C[i,0] \gets D[i,0] + C[i-1,0]$
 \EndFor
 \For {$i = 1$ to $n$} \Comment{Fill Cumulative Cost Matrix}
     \For {$j = 1$ to $n$} 
         \State $C_{min} \gets \textbf{min} \{C[i,j-1], C[i-1,j-1], C[i-1,j]\}$
-        \State $C[i,j] \gets C[i,j] + C_{min}$
+        \State $C[i,j] \gets D[i,j] + C_{min}$
     \EndFor
 \EndFor
-\State Backtrack minimum cost path $P$
+\EndFunction
+\Function{Backtrack minimum cost path $P$}{$C$}
 \State $P \gets C[n,n]$
 \While {$i > 0 | j > 0$}
     \State $i, j \gets \textbf{index} \{ P[last] \}$
     \State $C_{min} \gets \textbf{min} \{C[i,j-1], C[i-1,j-1], C[i-1,j]\}$
     \State $P.\textbf{append} \gets \textbf{index} \{ C_{min} \}$
 \EndWhile
+\EndFunction
 \State \Return {P}
+\EndProcedure
 \end{algorithmic}
 \caption{\acl{dtw}} \label{dtw}
 \end{algorithm}
@@ -68,7 +73,7 @@ Additionally, the search space on the cumulative distance matrix can be constrai
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth]{figures/time_shift_huber_lb_keogh.png}
-    \caption{Time shifts and warped traces.}
+    \caption{Time shifts and warped traces \citep[from][]{dramsch2019dtw}}
     \label{fig:time-shifts-warped}
 \end{figure}
 
@@ -78,7 +83,7 @@ In the workshop paper \citetitle{dramsch2018information} I was able to transfer 
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{figures/information-windowing.png}
-    \caption{Normalized spectra of windows of trace with "offset" zero. Aliasing of the low frequencies is visible.}
+    \caption{Normalized spectra of windows of trace with "offset" zero. Aliasing of the low frequencies is visible \citep[from][]{dramsch2018information}}
     \label{fig:seismic-window}
 \end{figure}
 
@@ -98,7 +103,7 @@ Nevertheless, some interpretations are available openly and companies often have
     \subbottom[Pre-trained VGG-16]{%
      \includegraphics[width=.5\textwidth]{figures/vgg1_i.png} \label{fig:asi_pred_vgg}
     }
-\caption{\acl{asi} on two networks, trained from scratch and fine-tuned on pre-trained VGG-16 architecture}
+\caption{\acl{asi} on two networks, trained from scratch and fine-tuned on pre-trained VGG-16 architecture \citep[from][]{dramsch2018deep}}
 \label{fig:asi}
 \end{figure}
 

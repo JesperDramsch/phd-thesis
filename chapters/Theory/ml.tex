@@ -12,7 +12,7 @@ Applications in \ac{ml} are quickly evolving and many are improved by mathematic
 
 \subsection{History of Machine Learning}
 
-\begin{figure}[H]
+\begin{figure}[!ht]
     \centering
     \hspace*{-1.5cm}
     \includegraphics[width=1.15\textwidth]{figures/ML-Timeline.png}
@@ -44,12 +44,14 @@ Recent developments in deep learning are based in \acfp{nn}, hence, we highlight
 \label{section:nn}
 \acf{nn} as a class of \ac{ml} algorithms are very diverse and versatile. \acp{nn} have persisted for decades and their nomenclature has changed in this time. \acp{nn} were long called \ac{ann}, which has changed to simply \ac{nn}, usually prepended with the class of \acl{nn}, namely  \acf{rnn}, \acf{cnn}, \acf{dnn}, which I will discuss in more detail.
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includesvg[width=\textwidth,height=5cm]{{figures/Single-Layer_Neural_Network}}
-    \caption{A simple \ac{nn} \todo{More text}}
+    \caption{A simple \ac{nn}}
     \label{fig:simpleneuralnetwork}
 \end{figure}
+
+\todo{Expand description!!!}
 
 \acfp{nn} can be approached from several theoretical bases. Mathematically, \acp{nn} are directed acyclical graphs with edges and nodes. In neural computation, these are generally referred to as weights and nodes or neurons. In \cref{fig:simpleneuralnetwork}, we present a simple densely connected \ac{mlp} with three inputs and three outputs. This configuration is equivalent to a linear regression model. The inputs are distributed across the nodes, and each weight is multiplied with a weight inherent to that graph edge. During the training of this machine learning model, these weights get adjusted to obtain a generalizable result. Each node sums the contributions of these weights and possibly a bias, which is trainable but does not take input data. This amounts to each node performing
 
@@ -58,7 +60,7 @@ Recent developments in deep learning are based in \acfp{nn}, hence, we highlight
 \end{equation}
 with $a$ signifying the activation at a node, $i,j$ being the index of the source and target node respectively, $w$ being the trainable weight, and $b$ being the trainable bias, and $\sigma$ representing an activation function. Activation functions are an active topic of research, but the generally perform a non-linear transformation of the activation at the node.
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \subbottom[Linear activation]{\includegraphics[width=.35\textwidth]{figures/activations/act_linear.png}\label{fig:act_lin}}%
     \subbottom[Sigmoid activation]{\includegraphics[width=.35\textwidth]{figures/activations/act_sigmoid.png}\label{fig:act_sig}}%
@@ -97,7 +99,7 @@ The train-val-test split separates the data into three parts. The training and v
 \subsubsection{Feed Forward Networks}
 Feed forward \acfp{nn} or \acp{mlp} are the simplest for of \ac{nn}. In its simplest form it uses a set of linear equations to approximate a function. The network can be described as a graph with edges and nodes. In the neural information community the nodes are often named neurons. These neurons are arranged into layers in \cref{fig:feedneuralnetwork}. The first layer in a \ac{nn} is the input layer with a number of nodes corresponding to the number of input data points. The input nodes are connected to the next layer by the graph's edge. The next node can be the output layer. The weights between subsequent are floating point numbers that scale each input point and determine the value at the output nodes.
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includesvg[width=\textwidth,height=5cm]{{figures/Multi-Layer_Neural_Network-Vector}}
     \caption{Feed forward \ac{nn}}
@@ -110,7 +112,7 @@ Feed forward \acfp{nn} or \acp{mlp} are the simplest for of \ac{nn}. In its simp
 \label{section:dnn}
 Improvements in computational power made it possible to train many-layered \acp{nn} (see \cref{fig:deepneuralnetwork}). These \acfp{dnn} are at the core of recent developments in \acf{dl}, leading to the re-implementation of many algorithms into openly available libraries, which has led to further innovative uses of these building blocks. These networks leverage the combinatorial power of \ac{nn} layers. In deep \acp{nn} gradient propagation led to exploding or vanishing gradients before. New non-saturating activation functions lead to stabilization of training \ac{dnn} (cf. \cref{fig:activations}).
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includesvg[width=\textwidth,height=5cm]{{figures/Deep-Multi-Layer_Neural_Network-Vector}}
     \caption{Deep Feed forward \ac{nn}}
@@ -124,7 +126,7 @@ Improvements in computational power made it possible to train many-layered \acp{
 A special configuration of \ac{nn} is the \acf{rnn}. These networks use edges that feed back into the network. \acp{rnn} are used in two applications in \ac{ml}. They can preserve hidden states, which gives them temporal context sensitivity. Application two is time series analysis similar to feed-forward \acp{nn}, where the input is a time step that can be analyzed within the context of surrounding time steps. These \ac{rnn} represent cyclic directed graphs of computation, as opposed to the other types of \ac{nn} we discuss, which are acyclic directed graphs. 
 In \cref{fig:recurrentneuralnetwork} we show the changes of a simple \ac{rnn} graph compared to a feed forward \ac{nn} in \cref{fig:feedneuralnetwork}. The \ac{rnn} loops back into itself, which is often regarded as the internal state or feedback. This internal state enables content addressable memory and good performance on sequential data such as time series and language.
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includesvg[width=\textwidth,height=5cm]{{figures/Recurrent-Layer_Neural_Network-Vector-Blank}}
     \caption{Recurrent \ac{nn}}
@@ -145,7 +147,7 @@ The input gate regulates the contribution of input values to the internal cell. 
 \label{section:cnn}
 \acf{cnn} were developed in computer vision to automatically learn a filter that spatially correlates data. The convolutional kernels are computationally efficient due to weight sharing, making them feasible for very deep networks (cf. \cref{section:dnn}). \acp{cnn} have had the biggest influence on the renaissance of modern \ac{ml}. These building blocks for \acp{nn} are very good for image data and data where spatially correlated information provides valuable context. It has therefore quickly gained attention in seismic interpretation and seismic data analysis. CNNs like other \acp{nn} are optimized by \ac{sgd}, optimizing a defined loss over the chosen task.
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[width=\textwidth,height=5cm,keepaspectratio]{figures/cnn_schema.pdf}
     \caption{Schematic of a \ac{cnn} filter (purple) in the image data (orange)}
@@ -167,7 +169,7 @@ with $\mathcal{F} \{ f\}$ denoting the Fourier transform of $f$ and $k$ being a 
 \subsubsection{Generative Adversarial Networks}
 \citet{Goodfellow2014-ax} introduced \acf{gan} as a combination of two \acp{cnn}. These \acfp{dcgan} exist in different modifications that draw from the original \ac{gan}, these modifications add more regularization and other feedback loops, as \acp{gan} are notoriously difficult to train without careful fine-tuning. These modifications include Wasserstein losses \citep{arjovsky2017wasserstein}, and gradient penalization \citep{gulrajani2017improved} for regularization, or cycle-consistent loss for unsupervised training \citep{zhu2017unpaired}.
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[width=\textwidth]{figures/GAN.PNG}
     \caption{Schematic of a \acl{gan}}
@@ -180,7 +182,7 @@ with $\mathcal{F} \{ f\}$ denoting the Fourier transform of $f$ and $k$ being a 
 \subsection{Neural Architectures}
 \aclp{nn} can generally be assembled in different architectures. In \cref{fig:cnnsota} we present reported performances of neural architectures on the classification task of the ImageNet challenge. The colors in this figure express different classes of architectures. Early networks that broke ground as the new \aclp{sota} in image classification are the AlexNet, VGG-16, and VGG-19. These networks clearly do not leverage some tricks that modern CNNs implement, the VGG-16 with a relatively high amount of parameters is known to generalize well on transfer learning tasks however \citep{dramsch2018deep}. 
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[width=\textwidth,height=5cm,keepaspectratio]{figures/resnet.pdf}
     \caption{Resnet Block with two $1\times1$ convolutional layers that frame a $3\times3$ convolutional layer with \ac{relu} activation each. The result being added with the original data, also known as identity.}
@@ -191,7 +193,7 @@ Research into deep convolutional networks showed that the data in the network wo
 
 The categories of AmoebaNet, NASNet, and EfficientNet are a more recent development in neural architecture research, based on \acf{nas}. The AmoebaNet is based on Evolutionary Computing and hand-tuning the solution to search for an ideal neural architecture to solve the task \citep{real2019regularized}. The NASNet fixes the overall architecture, but uses a controler \ac{rnn} to modify the blocks within the architecture \citep{zoph2018learning}. The EfficientNet architecture was also acquired by \ac{nas}, by optimizing for both accuracy and FLOPS to reduce the computational cost \citep{tan2019efficientnet}. Moreover, \citet{tan2019efficientnet} derives a method of compound scaling for deep neural networks. While ResNet-50 and ResNet-101 differ only in depth, the authors derive a relationship between depth, width and resolution-scaling of deep neural networks.
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[width=1.1\textwidth]{figures/imagenetsota.png}
     \caption{Top-5 Accuracies of Neural Architectures on ImageNet plotted against Million Parameters, color-coded to similar network type. Data and references shown in \cref{tab:imagenet-sota}}
@@ -202,7 +204,7 @@ Apart from building deeper networks for image classification, the neural archite
 
 U-Nets present a special type of encoder-decoder networks, that learn semantic segmentation on from small datasets \citep{ronneberger2015unet}. They form a special kind of \ac{fcn} shown in \cref{fig:unet}. Originally developed on biomedical images, the network found wide acceptance in label sparse disciplines. The Unet implements shortcut connections between convolutional layers of equal extent in the Encoder and Decoder networks. This alleviates the pressure of the network learning and reconstructing the output data from the bottleneck in isolation. 
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[width=\textwidth,height=5cm,keepaspectratio]{figures/unet.pdf}
     \caption{Unet after \citet{ronneberger2015unet} using 2D convolutional layers (yellow) with \ac{relu} activation (orange) and skip connection between equal-dimensional layers. The Encoder uses pooling (red), while the Decoder uses Upsampling layers (blue), witha final SoftMax layer (purple) for classification / semantic segmentation}

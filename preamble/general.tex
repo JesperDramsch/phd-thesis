@@ -77,6 +77,32 @@
 \usepackage{listings}                 % Source code printer for LaTeX
 \usepackage{tikz}
 
+\makeatletter
+\def\MT@is@composite#1#2\relax{%
+  \ifx\\#2\\\else
+    \expandafter\def\expandafter\MT@char\expandafter{\csname\expandafter
+                    \string\csname\MT@encoding\endcsname
+                    \MT@detokenize@n{#1}-\MT@detokenize@n{#2}\endcsname}%
+    % 3 lines added:
+    \ifx\UnicodeEncodingName\@undefined\else
+      \expandafter\expandafter\expandafter\MT@is@uni@comp\MT@char\iffontchar\else\fi\relax
+    \fi
+    \expandafter\expandafter\expandafter\MT@is@letter\MT@char\relax\relax
+    \ifnum\MT@char@ < \z@
+      \ifMT@xunicode
+        \edef\MT@char{\MT@exp@two@c\MT@strip@prefix\meaning\MT@char>\relax}%
+          \expandafter\MT@exp@two@c\expandafter\MT@is@charx\expandafter
+            \MT@char\MT@charxstring\relax\relax\relax\relax\relax
+      \fi
+    \fi
+  \fi
+}
+% new:
+\def\MT@is@uni@comp#1\iffontchar#2\else#3\fi\relax{%
+  \ifx\\#2\\\else\edef\MT@char{\iffontchar#2\fi}\fi
+}
+\makeatother
+
 % Links
 \usepackage[hyphens]{url}             % Allow hyphens in URL's
 \usepackage[unicode=false,psdextra]{hyperref}                 % References package
@@ -98,7 +124,7 @@
 % Bibliography (references)
 \usepackage[backend=biber,
             style=authoryear,
-            %backref=true,
+            backref=true,
             dashed=false,
             %abbreviate=false,
             %dateabbrev=false,
@@ -106,11 +132,10 @@
             uniquename=false,
             giveninits=true,
             %citetracker=true,
-            %useprefix=false,
-            %uniquelist=false,
-            minnames=1,
+            useprefix=false,
+            uniquelist=false,
             sorting=nyt,
-            maxnames=2,
+            maxcitenames=1,
             maxbibnames=99]{biblatex}
 
 \preto\fullcite{\AtNextCite{\defcounter{maxnames}{99}}}
@@ -118,8 +143,8 @@
 
 % Floating objets, captions and references
 \usepackage{flafter}  % floats is positioned after or where it is defined! 
-%\setfloatlocations{figure}{bhtp}   % Set floats for all figures
-%\setfloatlocations{table}{bhtp}    % Set floats for all tables
+\setfloatlocations{figure}{!htbp}   % Set floats for all figures
+\setfloatlocations{table}{!bhtp}    % Set floats for all tables
 %\setFloatBlockFor{section}         % Typeset floats before each section
 \usepackage[noabbrev,nameinlink,capitalise]{cleveref} % Clever references. Options: "fig. !1!" --> "!Figure 1!"
 \hangcaption
@@ -215,6 +240,7 @@
     \createmark{section}{right}{shownumber}{}{\space}
     \createplainmark{toc}{both}{\contentsname}
     \createplainmark{lof}{both}{\listfigurename}
+    \createplainmark{loa}{both}{\listalgorithmname}
     \createplainmark{lot}{both}{\listtablename}
     \createplainmark{bib}{both}{\bibname}
     \createplainmark{index}{both}{\indexname}

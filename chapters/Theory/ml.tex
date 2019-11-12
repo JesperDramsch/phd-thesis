@@ -104,7 +104,7 @@ Feed forward \acfp{nn} or \acp{mlp} are the simplest for of \ac{nn}. In its simp
     \label{fig:feedneuralnetwork}
 \end{figure}
 
-\acp{nn} gain their powerful learning capabilities from adding layers (see \cref{fig:feedneuralnetwork}) in between the input and output node and applying a non-linear activation function. Non-linear activations scale the input from the edge at each neuron. Historically, these have been straight-forward mathematical functions such as $tanh()$ and $sig()$ (cf. \cref{fig:activations}). These suffer from some short-comings that were overcome to leverage multi-layered \acp{dnn}.
+\acp{nn} gain their powerful learning capabilities from adding layers (see \cref{fig:feedneuralnetwork}) in between the input and output node and applying a non-linear activation function. Non-linear activations scale the input from the edge at each neuron. Historically, these have been straight-forward mathematical functions such as $tanh()$ and $sig()$ (cf. \cref{fig:activations}). These suffer from some short-comings that were overcome to leverage multi-layered \acfp{dnn}.
 
 \subsubsection{\acfp{dnn}}
 \label{section:dnn}
@@ -122,7 +122,7 @@ Improvements in computational power made it possible to train many-layered \acp{
 
 \subsubsection{Recurrent Networks}
 A special configuration of \ac{nn} is the \acf{rnn}. These networks use edges that feed back into the network. \acp{rnn} are used in two applications in \ac{ml}. They can preserve hidden states, which gives them temporal context sensitivity. Application two is time series analysis similar to feed-forward \acp{nn}, where the input is a time step that can be analyzed within the context of surrounding time steps. These \ac{rnn} represent cyclic directed graphs of computation, as opposed to the other types of \ac{nn} we discuss, which are acyclic directed graphs. 
-In \cref{fig:recurrentneuralnetwork} we show the changes of a simple \ac{rnn} graph compared to a feed forward \ac{nn} in \cref{fig:feedneuralnetwork}. The \ac{rnn} loops back into itself, which is often regarded as the internal state or feedback. This internal state enables content addressable memory and good performance on 
+In \cref{fig:recurrentneuralnetwork} we show the changes of a simple \ac{rnn} graph compared to a feed forward \ac{nn} in \cref{fig:feedneuralnetwork}. The \ac{rnn} loops back into itself, which is often regarded as the internal state or feedback. This internal state enables content addressable memory and good performance on sequential data such as time series and language.
 
 \begin{figure}[H]
     \centering
@@ -160,7 +160,7 @@ resulting in the central result $G^{*}$ around the coordinate $c$. Realistically
 \begin{equation}
     \mathcal{F}\{f * g\} = k\cdot \mathcal{F}\{f\}\cdot \mathcal{F}\{g\},
 \end{equation}
-with $\mathcal{F} \{ f\}$ denoting the Fourier transform of $f$ and $k$ being a normalization constant. This reduces the convolution to a simple multiplication in the Fourier domain, sped up by \acp{fft}
+with $\mathcal{F} \{ f\}$ denoting the Fourier transform of $f$ and $k$ being a normalization constant. This reduces the convolution to a simple multiplication in the Fourier domain, sped up by \ac{fft}.
 
 \cref{fig:cnn} shows the schematic of connected convolutional layers in a \ac{cnn}. The network learns a specified number of $3\times3$ filters from the initial image. Strided convolutions with a step-size larger than 1 or Pooling layers are used to reduce the spatial extent of the image. The repeated downsampling of the image and extraction of convolutional filters has been shown to work for computer vision tasks. Historically, the CNN architecture AlexNet \citep{krizhevsky2012imagenet} was the first \ac{cnn} to enter the ImageNet challenge and improved the classification error rate from 25.8~\% to 16.4~\% (top-5 accuracy). This has propelled research in \acp{cnn}, resulting in error rates on ImageNet of 2.25~\% on top-5 accuracy in 2017 \citep{imagenetresults}.
 
@@ -194,15 +194,15 @@ The categories of AmoebaNet, NASNet, and EfficientNet are a more recent developm
 \begin{figure}[H]
     \centering
     \includegraphics[width=1.1\textwidth]{figures/imagenetsota.png}
-    \caption{Top-5 Accuracies of Neural Architectures on ImageNet plotted against Million Parameters, color-coded to similar network type}
+    \caption{Top-5 Accuracies of Neural Architectures on ImageNet plotted against Million Parameters, color-coded to similar network type. Data and references shown in \cref{tab:imagenet-sota}}
     \label{fig:cnnsota}
 \end{figure}
 
 Apart from building deeper networks for image classification, the neural architectures can serve as a  forcing function to the task the network is built for. Encoder-Decoder networks will compress the data with a combination of downsampling layers, which in the case of a computer vision could either be strided convolutions or pooling layers after convolutional layers. During these operations, the number of filters increases, while the spatial extent is diminished significantly. This encoding operation is equivalent to a lossy compression, with the low-dimensional layer called "code" or "bottleneck". The bottleneck is then upsampled by either strided transpose Convolutions or upsampling layers that perform a specified interpolation. This is the Decoder of the Encoder-Decoder pair. These networks can be used for data compresssion in \acp{ae}, where the decoder restores the original data as good as possible \citep{hinton2006reducing}. Alternatively, the Decoder can learn a dense classification task like semantic segmentation or seismic interpretation.
 
-Unets present a special type of encoder-decoder networks, that learn semantic segmentation on from small datasets \citep{ronneberger2015unet}. They form a special kind of \ac{fcn}. Originally developed on biomedical images, the network found wide acceptance in label sparse disciplines. The Unet implements shortcut connections between convolutional layers of equal extent in the Encoder and Decoder networks. This alleviates the pressure of the network learning and reconstructing everything from the bottleneck in isolation. 
+U-Nets present a special type of encoder-decoder networks, that learn semantic segmentation on from small datasets \citep{ronneberger2015unet}. They form a special kind of \ac{fcn} shown in \cref{fig:unet}. Originally developed on biomedical images, the network found wide acceptance in label sparse disciplines. The Unet implements shortcut connections between convolutional layers of equal extent in the Encoder and Decoder networks. This alleviates the pressure of the network learning and reconstructing the output data from the bottleneck in isolation. 
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=5cm,keepaspectratio]{figures/unet.pdf}
     \caption{Unet after \citet{ronneberger2015unet} using 2D convolutional layers (yellow) with \ac{relu} activation (orange) and skip connection between equal-dimensional layers. The Encoder uses pooling (red), while the Decoder uses Upsampling layers (blue), witha final SoftMax layer (purple) for classification / semantic segmentation}

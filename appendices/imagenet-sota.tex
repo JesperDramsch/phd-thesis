@@ -1,0 +1,47 @@
+%!TEX root = ../Thesis.tex
+\chapter{ImageNet Results}
+\begin{longtabu} to \textwidth {ll|r|r|r}
+\toprule
+Name & Citation & Top-1 [\%] & Top-5 [\%] & Param [M] \\
+\bottomrule
+\toprule
+AlexNet         & \citet{krizhevsky2012imagenet} & 63,3    & 84,6   &  60  \\
+\bottomrule
+VGG-16          & \citet{simonyan2014very}       & 74,4    & 91,9    & 138     \\
+VGG-19          & \citet{simonyan2014very}       & 74,5    & 92,0    & 144    \\
+\bottomrule
+AmoebaNet-B   & \citet{real2019regularized}    & 82,3    & 96,1    & 84      \\
+AmoebaNet-C   & \citet{real2019regularized}    & 83,1    & 96,3    & 155,3      \\
+\bottomrule
+DenseNet-201  & \citet{huang2017densely}       & 78,5    & 94,4    & 20      \\
+\bottomrule
+EfficientNet-B1  & \citet{tan2019efficientnet}  & 78,8     & 94,4     & 7,8     \\
+EfficientNet-B2  & \citet{tan2019efficientnet}  & 79,8     & 94,9     & 9,2      \\
+EfficientNet-B3  & \citet{tan2019efficientnet}  & 81,1     & 95,5     & 12      \\
+EfficientNet-B4  & \citet{tan2019efficientnet}  & 82,6     & 96,3     & 19      \\
+EfficientNet-B5  & \citet{tan2019efficientnet}  & 83,3     & 96,7     & 30      \\
+EfficientNet-B6  & \citet{tan2019efficientnet}  & 84,0     & 96,9     & 43      \\
+EfficientNet-B7  & \citet{tan2019efficientnet}  & 85,0     & 97,2     & 66      \\
+\bottomrule
+Inception V1        & \citet{szegedy2015going}       & 69,8     & 89,9     & 5      \\
+Inception V2        & \citet{ioffe2015batch}         & 74,8     & 92,2     & 11,2      \\
+Inception V3        & \citet{szegedy2016rethinking}  & 78,8     & 94,4     & 23,8       \\
+InceptResNet V2     & \citet{szegedy2017inception}   & 80,1     & 95,1     & 55,8     \\
+\bottomrule
+  MixNet-S          & \citet{tan2019mixconv}    & 75,8      & 92,8     & 4,1     \\
+  MixNet-M          & \citet{tan2019mixconv}    & 77,0      & 93,3     & 5      \\
+  MixNet-L          & \citet{tan2019mixconv}    & 78,9      & 94,2     & 7,3      \\
+  NasNet-A6         & \citet{zoph2018learning}  & 82,7      & 96,2     & 89      \\
+  MNasNet-A1        & \citet{tan2019mnasnet}    & 76,7      & 93,3     & 5,2      \\
+  MNasNet-A3        & \citet{tan2019mnasnet}    & 75,2      & 92,5     & 3,9      \\
+  FixPNasNet-5      & \citet{touvron2019fixing} & 83,7      & 96,8     & 86,1      \\
+\bottomrule
+  ResNet-50-D         & \citet{he2019bag}          & 77,1     & 93,5     & 25     \\
+  FixResNet-50        & \citet{touvron2019fixing}  & 79,1     & 94,6     & 25,6      \\
+  ResNet-101          & \citet{he2016deep}         & 78,2     & 93,9     & 40      \\
+  ResNeXt-101         & \citet{xie2017aggregated}  & 80,9     & 95,6     & 83,6     \\
+  Oct-ResNet-152      & \citet{chen2019drop}       & 82,9     & 96,3     & 67     \\
+\bottomrule
+\caption{ImageNet results of different neural network architectures.}
+\label{tab:imagenet-sota}
+\end{longtabu}

@@ -15,7 +15,7 @@ The foundational research in this thesis includes publications on \acl{dl} and 4
     \subbottom[LB\_Envelope \citep{keogh2005exact}]{%
      \includegraphics[width=.3\textwidth]{figures/minimum_path_all_losses_lb_keogh_.png}\label{fig:lbk}
     }
-\caption{Minimum path for constraint masks for cumulative cost in \ac{dtw} \citep[from][]{dramsch2019dtw}}
+\caption{Minimum path for constraint masks for cumulative cost in \ac{dtw}. Images show the optimum path for different loss functions $L_1$, $L_2$, and Huber loss \citep[from][]{dramsch2019dtw}}
 \label{fig:constraints}
 \end{figure} 
 % dramsch2019dtw
@@ -52,7 +52,7 @@ The foundational research in this thesis includes publications on \acl{dl} and 4
 \State \Return {P}
 \EndProcedure
 \end{algorithmic}
-\caption{\acl{dtw}} \label{dtw}
+\caption{\acl{dtw} algorithm consists of calculating the element-wise distance matrix, cumulative cost and then find the optimal path in the cumulative cost matrix} \label{dtw}
 \end{algorithm}
 
 The \ac{dtw} algorithm, represented in \cref{dtw}, relies on calculating a distance matrix sample-wise between two traces. This is the first avenue of optimization we explore in this paper. The commonly used $L_1$ norm to calculate the distance norm is shown to perform worst out-of-the-box calculating $|b-a|$. Alternatively, the euclidean distance or $L_2$ norm can be used, which modifies the calculation to $(b-a)^2$. The difference between $L_1$ and $L_2$ is significant in the sense that the $L_1$ norm is not differentiable or convex, however it scales linearly for outliers. The $L_2$ norm converges fast close to zero, however the error "explodes" for outliers. We introduce a constraint used in convex optimization, which combines the advantages of the $L_1$ norm and $L_2$ norm, namely the Huber loss:
@@ -78,23 +78,23 @@ Additionally, the search space on the cumulative distance matrix can be constrai
 \end{figure}
 
 % dramsch2018information
-In the workshop paper \citetitle{dramsch2018information} I was able to transfer the insight from applying the LB\_Keogh constraint to \aclp{cnn}. \acp{cnn} apply a windowed convolution to the input data. Windowed areas of non-stationary physical data can be offset from the usually baselevel of an amplitude of zero. In the case of seismic data, traces tend to be zero-centered. In the case of a simple activation of a single neuron in a \ac{nn} with $\sigma(w\cdot x + b)$ (cf. \cref{section:nn}), this equates to a bias of $b=0$. Seismic data contains sections that fall within the range of most patches, where the reflection response is entirely offset from zero, which equates to a mean-shift within the network. This paper served as a preliminary study for \citet{dramsch2019complex}, which explores a solution for this property of patch-based training in \acp{cnn} that deteriorates the generalization.
+In the workshop paper \citetitle{dramsch2018information} \citep{dramsch2018information} the insight from applying the LB\_Keogh constraint was transferable to \aclp{cnn}. \acp{cnn} apply a windowed convolution to the input data. Windowed areas of non-stationary physical data can be offset from the usually baselevel of an amplitude of zero. In the case of seismic data, traces tend to be zero-centered. In the case of a simple activation of a single neuron in a \ac{nn} with $\sigma(w\cdot x + b)$ (cf. \cref{section:nn}), this equates to a bias of $b=0$. Seismic data contains sections that fall within the range of most patches, where the reflection response is entirely offset from zero, which equates to a mean-shift within the network. This paper served as a preliminary study for \citet{dramsch2019complex}, which explores a solution for this property of patch-based training in \acp{cnn} that deteriorates the generalization.
 
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{figures/information-windowing.png}
-    \caption{Normalized spectra of windows of trace with "offset" zero. Aliasing of the low frequencies is visible \citep[from][]{dramsch2018information}}
+    \caption{Normalized spectra of windows of trace with "offset" zero. Aliasing of the low frequencies is visible.Phase information not reconstructed from windowed data, slope depending on the window size. Data tapered before \ac{fft} \citep[from][]{dramsch2018information}}
     \label{fig:seismic-window}
 \end{figure}
 
 \aclp{nn} apply real-valued transformations on the data, discarding phase information entirely. \cref{fig:seismic-window} shows the spectra of the full trace in green as a background, with two selected cutouts of different sizes overlaid. It is clear that both windows show a sufficiently good reconstruction of the original amplitude spectrum, except for the offset at the low frequencies. The slope of the phase spectrum is reconstructed somewhat by the larger window, but non can reconstruct the notch. Many deterministic signals contain significant information in the phase of the signal. Discarding the phase information leads to low-frequency aliasing analogous to the Nyquist-Shannon theorem for high frequencies.
 
 % dramsch2019complex
-In the paper \citetitle{dramsch2019complex} I explore complex-valued deep convolutional networks to leverage non-linear feature maps and show that in non-stationary data, the phase content improves generalization of \acp{cnn}. Furthermore, complex-valued networks result in a smaller network with better performance compared to a larger real-valued network. In this study I implemented a deep convolutional \acl{ae} to compress 2D slices from a 3D seismic cube to evaluate the reconstruction error. There is a difference of network implementations, where complex-valued neurons are represented as two feature maps, one for the real component and complex component each. Therefore, matching the networks proved to be a complicated task, which led me to build four different architectures that get progressively bigger and compare the results.
+In the paper \citetitle{dramsch2019complex} \citep{dramsch2019complex} I explore complex-valued deep convolutional networks to leverage non-linear feature maps and show that in non-stationary data, the phase content improves generalization of \acp{cnn}. Furthermore, complex-valued networks result in a smaller network with better performance compared to a larger real-valued network. In this study I implemented a deep convolutional \acl{ae} to compress 2D slices from a 3D seismic cube to evaluate the reconstruction error. There is a difference of network implementations, where complex-valued neurons are represented as two feature maps, one for the real component and complex component each. Therefore, matching the networks proved to be a complicated task, which led me to build four different architectures that get progressively bigger and compare the results.
 
-The work in \citetitle{dramsch2019complex} was in part based on reconstruction to test lossy compression and reconstruction of seismic data. Another reason to implement an unsupervised method was the limited availability of realiable interpretations of seismic data. Defining a decision boundary for seismic interpretation is only in the beginning stages of research, which leads us to the decision to inspect reconstructed seismic numerically as signal analysis is well-explored in seismic data processing. Therefore, analysing the result in the \ac{fk}-domain was possible and gave additional insight to the denoising effect of the \ac{ae}.
+The work in \citetitle{dramsch2019complex} \citep{dramsch2019complex} was in part based on reconstruction to test lossy compression and reconstruction of seismic data. Another reason to implement an unsupervised method was the limited availability of realiable interpretations of seismic data. Defining a decision boundary for seismic interpretation is only in the beginning stages of research, which leads us to the decision to inspect reconstructed seismic numerically as signal analysis is well-explored in seismic data processing. Therefore, analysing the result in the \ac{fk}-domain was possible and gave additional insight to the denoising effect of the \ac{ae}.
 
-Nevertheless, some interpretations are available openly and companies often have a plethora of interpretations and re-interpretations of seismic data, making automatic seismic interpretation a topic of interest as evidenced by \cref{tab:geonn}. However, \aclp{dnn} are notorious for needing large numbers of diverse annotated samples. That is often prohibitive to geoscience applications of \acl{ml}. In \citetitle{dramsch2018deep} we show that \aclp{sota} \aclp{cnn} pre-trained on ImageNet can be transferred to perform \acl{asi}. The pre-trained network decreases both training time and data requirements significantly, while not compromising accuracy. A pre-trained network with diverse generalizable learned filters seems to alleviate some limitations of smaller non-diverse data sets used in the fine-tuning process.
+Nevertheless, some interpretations are available openly and companies often have a plethora of interpretations and re-interpretations of seismic data, making automatic seismic interpretation a topic of interest as evidenced by \cref{tab:geonn}. However, \aclp{dnn} are notorious for needing large numbers of diverse annotated samples. That is often prohibitive to geoscience applications of \acl{ml}. In \citetitle{dramsch2018deep} \citep{dramsch2018deep} we show that \aclp{sota} \aclp{cnn} pre-trained on ImageNet can be transferred to perform \acl{asi}. The pre-trained network decreases both training time and data requirements significantly, while not compromising accuracy. A pre-trained network with diverse generalizable learned filters seems to alleviate some limitations of smaller non-diverse data sets used in the fine-tuning process.
 
 \begin{figure}[!ht]
     \subbottom[Waldeland CNN trained from scratch]{%
@@ -103,7 +103,7 @@ Nevertheless, some interpretations are available openly and companies often have
     \subbottom[Pre-trained VGG-16]{%
      \includegraphics[width=.5\textwidth]{figures/vgg1_i.png} \label{fig:asi_pred_vgg}
     }
-\caption{\acl{asi} on two networks, trained from scratch and fine-tuned on pre-trained VGG-16 architecture \citep[from][]{dramsch2018deep}}
+\caption{\acl{asi} on two networks, trained from scratch and fine-tuned on pre-trained VGG-16 architecture. The pre-trained network generating a more consistent seismic interpretation, however showing an overall deficiency in diverse training data \citep[from][]{dramsch2018deep}}
 \label{fig:asi}
 \end{figure}
 

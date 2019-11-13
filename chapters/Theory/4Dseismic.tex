@@ -8,7 +8,7 @@ The main applications of 4D seismic analysis according to \citet{Yilmaz2003-hp,J
 \item Tracking fluid movement (steam, gas, and water)
 \item Monitoring pressure depletion and validating depletion plans
 \item Fault property estimation i.e. sealing or leaking faults
-\item Locating Bypassed oil imaging in heterogeneous reservoirs
+\item Locating bypassed oil imaging in heterogeneous reservoirs
 \item Validating and updating geological and reservoir-simulation models
 \end{itemize}
 
@@ -29,16 +29,16 @@ Considering normal incidence on a horizontal layer of thickness $z$ and a P-wave
 
 for homogeneous isotropic $v$ and small changes in $z$ and $v$. Originally developed in \citet{Hatchell2005-eg}, with a rigorous integral derivation presented in \citet{macbeth2019post}.
 
-The vertical strain $\frac{\Delta z}{z}$ directly relates to the geomechanical strain $\epsilon_{zz}$, describing the vertical strain on the vertical surface of a infinitesemal element \citep{Herwanger2015-qz}. Independently \citet{Hatchell2005-eg} and \citet{roste2006estimation} developed a single-parameter solution to relate velocity changes and vertical strain
+The vertical strain $\frac{\Delta z}{z}$ directly relates to the geomechanical strain $\xi_{zz}$, describing the vertical strain on the vertical surface of a infinitesemal element \citep{Herwanger2015-qz}. Independently \citet{Hatchell2005-eg} and \citet{roste2006estimation} developed a single-parameter solution to relate velocity changes and vertical strain
 
 \begin{equation}
-    \frac{\Delta v}{v} = - R \epsilon_{zz}
+    \frac{\Delta v}{v} = - R \xi_{zz}
     \label{eq:R}
 \end{equation}
-with $R$ being the single parameter \ac{hbr} \citep{Hatchell2005-op, macbeth2019post}. The \ac{hbr} being a lithological constant, we can relate \cref{eq:R} and \cref{eq:timestrain} and obtain a direct relationship between the vertical strain $\epsilon_{zz}$ and the time shift $\Delta t$ for a given lithology with property $R$
+with $R$ being the single parameter \ac{hbr}-factor \citep{Hatchell2005-op, macbeth2019post}. The \ac{hbr} being a lithological constant, we can relate \cref{eq:R} and \cref{eq:timestrain} and obtain a direct relationship between the vertical strain $\xi_{zz}$ and the time shift $\Delta t$ for a given lithology with property $R$
 
 \begin{equation}
-    \Delta t = t \cdot (1 + R) \cdot \epsilon_{zz}.
+    \Delta t = t \cdot (1 + R) \cdot \xi_{zz}.
 \end{equation}
 
 Contingent on the assumption of zero-offset incidence, homogeneous velocity and isotropy, time shift extraction is mostly performed in z-direction by comparing traces directly. Prominently, the 1D windowed cross-correlation is used due to its computational speed and general lack of limiting underlying assumptions \citep{Rickett2001-nx}. The main drawback of this method is, however, that the result is highly dependent on the window-size and susceptible to noise. Other methods for post-stack seismic time shift extraction include \ac{dtw} \citep{Hale2013} and inversion-based approaches \citep{Rickett2007-yo}. 

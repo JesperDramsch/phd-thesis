@@ -47,11 +47,9 @@ Recent developments in deep learning are based in \acfp{nn}, hence, we highlight
 \begin{figure}
     \centering
     \includesvg[width=\textwidth,height=5cm]{{figures/Single-Layer_Neural_Network}}
-    \caption{A simple \ac{nn}}
+    \caption{Basic \ac{nn} with three inputs that are densely connected to three output neurons by weights}
     \label{fig:simpleneuralnetwork}
 \end{figure}
-
-\todo{Expand description!!!}
 
 \acfp{nn} can be approached from several theoretical bases. Mathematically, \acp{nn} are directed acyclical graphs with edges and nodes. In neural computation, these are generally referred to as weights and nodes or neurons. In \cref{fig:simpleneuralnetwork}, we present a simple densely connected \ac{mlp} with three inputs and three outputs. This configuration is equivalent to a linear regression model. The inputs are distributed across the nodes, and each weight is multiplied with a weight inherent to that graph edge. During the training of this machine learning model, these weights get adjusted to obtain a generalizable result. Each node sums the contributions of these weights and possibly a bias, which is trainable but does not take input data. This amounts to each node performing
 
@@ -69,7 +67,7 @@ with $a$ signifying the activation at a node, $i,j$ being the index of the sourc
     \subbottom[\ac{relu} activation]{\includegraphics[width=.35\textwidth]{figures/activations/act_relu.png}\label{fig:act_relu}}%
     \subbottom[\ac{prelu} activation ($\alpha=.5$)]{\includegraphics[width=.35\textwidth]{figures/activations/act_prelu.png}\label{fig:act_prelu}}%
     \subbottom[\ac{elu} activation ($\alpha=1$)]{\includegraphics[width=.35\textwidth]{figures/activations/act_elu.png}\label{fig:act_elu}}
-    \caption{Common Activation functions (red) and derivatives (blue)}
+    \caption{Common Activation functions (red) and derivatives (blue). The linear activation does not modify the data. The sigmoid and tanh functions are mainly used to limit output activations to a range of values. The \ac{relu}, \ac{prelu} and \ac{elu} activations are different iterations of rectifiers that are used in \aclp{dnn}}
     \label{fig:activations}
 \end{figure}
 
@@ -102,7 +100,7 @@ Feed forward \acfp{nn} or \acp{mlp} are the simplest for of \ac{nn}. In its simp
 \begin{figure}
     \centering
     \includesvg[width=\textwidth,height=5cm]{{figures/Multi-Layer_Neural_Network-Vector}}
-    \caption{Feed forward \ac{nn}}
+    \caption{Feed forward \ac{nn} with three input neurons that are connected to a single hidden layer with three neurons. The hidden layer is densely connected to two output neurons}
     \label{fig:feedneuralnetwork}
 \end{figure}
 
@@ -115,7 +113,7 @@ Improvements in computational power made it possible to train many-layered \acp{
 \begin{figure}
     \centering
     \includesvg[width=\textwidth,height=5cm]{{figures/Deep-Multi-Layer_Neural_Network-Vector}}
-    \caption{Deep Feed forward \ac{nn}}
+    \caption{Deep Feed forward \ac{nn} with two hidden layers with three neurons each, densely connected to three inputs and two output neurons. Deep networks are \acp{nn} that contain more than one hidden layer}
     \label{fig:deepneuralnetwork}
 \end{figure}
 
@@ -129,7 +127,7 @@ In \cref{fig:recurrentneuralnetwork} we show the changes of a simple \ac{rnn} gr
 \begin{figure}
     \centering
     \includesvg[width=\textwidth,height=5cm]{{figures/Recurrent-Layer_Neural_Network-Vector-Blank}}
-    \caption{Recurrent \ac{nn}}
+    \caption{Recurrent \ac{nn} that connects two input neurons to two recurrent neurons. These recurrent neurons feed back into themselves, which signifies the state of the neuron. \ac{rnn} neurons are more complicated internally than the neurons in \acp{cnn} accomodating the state memory}
     \label{fig:recurrentneuralnetwork}
 \end{figure}
 
@@ -150,7 +148,7 @@ The input gate regulates the contribution of input values to the internal cell. 
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth,height=5cm,keepaspectratio]{figures/cnn_schema.pdf}
-    \caption{Schematic of a \ac{cnn} filter (purple) in the image data (orange)}
+    \caption{Schematic of a \ac{cnn} filter (purple) in the image data (orange) in 2D. The filter passes over the image, extracting a filtered representation of the input image. The image is downsampled spatially by striding or pooling. Convolutional filters are efficient due to weight sharing}
     \label{fig:cnn}
 \end{figure}
 
@@ -172,7 +170,7 @@ with $\mathcal{F} \{ f\}$ denoting the Fourier transform of $f$ and $k$ being a 
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{figures/GAN.PNG}
-    \caption{Schematic of a \acl{gan}}
+    \caption{Schematic of a \acl{gan}. The generator samples a latent space to generate fake data. The discriminator randomly obtains real or fake data and decides whether it was created by the generator or a real sample. The networks learn by gradient descent gaining information regardless of the discriminator being right}
     \label{fig:gan}
 \end{figure}
 

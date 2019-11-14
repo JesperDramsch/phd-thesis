@@ -21,6 +21,7 @@
 \include{frontmatter/Preface}
 \include{frontmatter/Acknowledgements}
 \include{frontmatter/Publications}
+\include{frontmatter/Software}
 \include{frontmatter/Presentations}
 \clearforchapter
 \tableofcontents
@@ -28,41 +29,40 @@
 \mylistoftodos
 
 \mainmatter
-\include{chapters/Introduction}
-\include{chapters/Data}
-\include{chapters/Theory}
-\include{chapters/Synopsis}
+\include{chapters/01-Introduction}
+%\include{chapters/Data}
+\include{chapters/02-Theory}
+\include{chapters/03-Synopsis}
 
 \chapter{Data Preparation and Analysis}
 \label{sec:dataprep}
-% \include{chapters/PaperTalaEAGE}
-% \include{chapters/PaperTalaFractures} 
-% \include{chapters/PaperGaussianFred}
+\include{chapters/04-DataPrep/PaperTalaEAGE}
+\include{chapters/04-DataPrep/PaperTalaFractures}
+\include{chapters/04-DataPrep/PaperGaussianFred}
 
 \chapter{Foundations of Deep Learning for Seismic Data Analysis}
 \label{sec:foundations}
-% \include{chapters/PaperDTW}
-% \include{chapters/PaperComplex}
-% \include{chapters/PaperInformationSeismic}
-% \include{chapters/PaperTransferLearning}
+\include{chapters/PaperDTW}
+\include{chapters/PaperComplex}
+\include{chapters/PaperInformationSeismic}
+\include{chapters/PaperTransferLearning}
 
 
 \chapter{Deep Neural Networks for 4D Seismic Inversion}
 \label{sec:inversion}
-% \include{chapters/PaperPhysicsDeep}
-% \include{chapters/PaperSchiehallion}
+\include{chapters/PaperPhysicsDeep}
+\include{chapters/PaperSchiehallion}
 
 \chapter{Deep Convolutional Networks for 4D Time Shift Extraction}
 \label{sec:timeshift}
-%  include{chapters/Paper3DWarping}
-
-%\include{chapters/Conclusion}
+ include{chapters/Paper3DWarping}
 
 \appendix
 
-\include{appendices/data}
+%\include{appendices/data}
 \include{appendices/imagenet-sota}
 \include{appendices/geo-ml}
+\include{appendices/keras-complex}
 
 
 \backmatter

@@ -3,7 +3,7 @@ _Jesper S Dramsch<sup>[Orcid](https://orcid.org/0000-0001-8273-905X)</sup>_
 
 ![DTU Logo](graphics/fysik_uk.png)
 
-This repository generate the submitted PDF version of the thesis in [thesis.pdf](Dramsch_PhD_Thesis.pdf). This readme lists the chapters and the location of code to reproduce the [chapters](#Chapters) in the thesis. 
+This repository generate the submitted PDF version of the thesis in [thesis.pdf](Dramsch_PhD_Thesis.pdf). This readme lists the chapters and the location of code to reproduce the [chapters](#Chapters-with-code) in the thesis. 
 
 ## Popular Science Summary
 Machine learning is a new paradigm in instructing computers to perform a task. Classically, computers were told rules to follow, when given some data, whereas, in machine learning computers are provided with data and answers and left with a method to figure out the rules. Recently these methods have become increasingly powerful in identifying images, which enabled image search and self-driving cars.
@@ -16,7 +16,7 @@ This thesis investigates the fundamental properties of neural networks in geophy
 
 In addition to this fundamental work, this thesis contains two applications of machine learning to real-world problems. The first, being that the geophysical data over hydrocarbon fields contains a plethora of information from different effects. In this application we develop a network that incorporates basic physical relationships of the geophysical input data to separate the effects of changes in pressure and saturation of water and gas in a thin reservoir in the UK North Sea. The second application introduces a novel algorithm that evaluates a problem that is usually approached in a one-dimensional view and extends it to a three-dimensional algorithm. This method corrects for the slight changes of the imaged subsurface between surveys. In addition to extending the problem to three dimensions, the method provides uncertainty values for the geophysicist to evaluate. Moreover, this algorithm works unsupervised, which means that we do not have to provide the machine learning system with information on how to align the images. Instead, we apply a mathematical constraint that ensures that the algorithm does not cross geological layers, a simple yet powerful limitation to guides the algorithm to develop physically and geologically sensible matching patterns.
 
-## Chapters
+## Chapters with code
 
 ### 4: Data Preparation and Analysis
 #### 4.3 Gaussian Mixture Models for Robust Unsupervised Scanning-Electron Microscopy Image Segmentation of North Sea Chalk

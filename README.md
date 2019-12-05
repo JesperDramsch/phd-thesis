@@ -18,41 +18,32 @@ In addition to this fundamental work, this thesis contains two applications of m
 
 ## Chapters
 
-### Introduction
-### Methods & Theory
-#### 4D seismic
-#### Machine Learning 
-#### Machine Learning in Geoscience
-### Synopsis 
-#### Data Preparation
-#### Foundational Research
-#### Machine Learning in 4D Seismic Inversion 
-#### Machine Learning in 4D Seismic Time-Shift Extraction 
-#### Contributions of this Study
-
-### Data Preparation and Analysis
-#### Correlation of Fractures From Core, Borehole Images and Seismic Data in a Chalk Reservoir in the Danish North Sea
-
-#### An Integrated Approach to Fracture Characterization of the Kraka Field 
-
-#### Gaussian Mixture Models for Robust Unsupervised Scanning-Electron Microscopy Image Segmentation of North Sea Chalk
+### 4: Data Preparation and Analysis
+#### 4.3 Gaussian Mixture Models for Robust Unsupervised Scanning-Electron Microscopy Image Segmentation of North Sea Chalk
 
 
-### Foundations of Deep Learning for Seismic Data Analysis
+### 5: Foundations of Deep Learning for Seismic Data Analysis
 #### Dynamic Time Warping Tutorial Paper
 
-#### Complex-valued neural networks for machine learning on non-stationary physical data
+- Github: https://github.com/JesperDramsch/dtw-tutorial
 
+#### Complex-valued neural networks for machine learning on non-stationary physical data
+- Github: https://github.com/JesperDramsch/Complex-CNN-Seismic
 #### Information Theory Considerations in Patch-based Training of Deep Neural Networks on Seismic Time-Series
 
 #### Deep learning seismic facies on state of the art CNN architectures
 
+- Github: https://github.com/JesperDramsch/segam18
 
-### Deep Neural Networks for 4D Seismic Inversion
+### 6: Deep Neural Networks for 4D Seismic Inversion
 #### Including Physics in Deep Learning – An Example from 4D Seismic Pressure Saturation Inversion
 
 #### Deep Learning Application for 4D Pressure Saturation Inversion Compared to Bayesian Inversion on North Sea Data
 
 
-### Deep Convolutional Networks for 4D Time Shift Extraction
+### 7: Deep Convolutional Networks for 4D Time Shift Extraction
 
+- Github: https://github.com/JesperDramsch/voxelmorph-seismic
+
+### Appendix C Software Manual: Keras Complex
+- Github: https://github.com/JesperDramsch/keras-complex

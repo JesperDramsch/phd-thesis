@@ -16,3 +16,26 @@ This thesis investigates the fundamental properties of neural networks in geophy
 
 In addition to this fundamental work, this thesis contains two applications of machine learning to real-world problems. The first, being that the geophysical data over hydrocarbon fields contains a plethora of information from different effects. In this application we develop a network that incorporates basic physical relationships of the geophysical input data to separate the effects of changes in pressure and saturation of water and gas in a thin reservoir in the UK North Sea. The second application introduces a novel algorithm that evaluates a problem that is usually approached in a one-dimensional view and extends it to a three-dimensional algorithm. This method corrects for the slight changes of the imaged subsurface between surveys. In addition to extending the problem to three dimensions, the method provides uncertainty values for the geophysicist to evaluate. Moreover, this algorithm works unsupervised, which means that we do not have to provide the machine learning system with information on how to align the images. Instead, we apply a mathematical constraint that ensures that the algorithm does not cross geological layers, a simple yet powerful limitation to guides the algorithm to develop physically and geologically sensible matching patterns.
 
+## Chapters
+### Data Preparation and Analysis
+#### Gaussian Mixture Models for Robust Unsupervised Scanning-Electron Microscopy Image Segmentation of North Sea Chalk
+
+
+### Foundations of Deep Learning for Seismic Data Analysis
+#### Dynamic Time Warping Tutorial Paper
+
+#### Complex-valued neural networks for machine learning on non-stationary physical data
+
+#### Information Theory Considerations in Patch-based Training of Deep Neural Networks on Seismic Time-Series
+
+#### Deep learning seismic facies on state of the art CNN architectures
+
+
+### Deep Neural Networks for 4D Seismic Inversion
+#### Including Physics in Deep Learning – An Example from 4D Seismic Pressure Saturation Inversion
+
+#### Deep Learning Application for 4D Pressure Saturation Inversion Compared to Bayesian Inversion on North Sea Data
+
+
+### Deep Convolutional Networks for 4D Time Shift Extraction
+

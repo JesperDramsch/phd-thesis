@@ -5,6 +5,8 @@ _Jesper S Dramsch<sup>[Orcid](https://orcid.org/0000-0001-8273-905X)</sup>_
 
 This repository generate the submitted PDF version of the thesis in [thesis.pdf](Dramsch_PhD_Thesis.pdf). This readme lists the chapters and the location of code to reproduce the [chapters](#Chapters-with-code) in the thesis. 
 
+![DTU Logo](graphics/cover.png)
+
 ## Popular Science Summary
 Machine learning is a new paradigm in instructing computers to perform a task. Classically, computers were told rules to follow, when given some data, whereas, in machine learning computers are provided with data and answers and left with a method to figure out the rules. Recently these methods have become increasingly powerful in identifying images, which enabled image search and self-driving cars.
 

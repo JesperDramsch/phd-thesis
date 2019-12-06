@@ -20,30 +20,38 @@ In addition to this fundamental work, this thesis contains two applications of m
 
 ### 4: Data Preparation and Analysis
 #### 4.3 Gaussian Mixture Models for Robust Unsupervised Scanning-Electron Microscopy Image Segmentation of North Sea Chalk
-
+[![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2018.2.pdf)
 
 ### 5: Foundations of Deep Learning for Seismic Data Analysis
 #### Dynamic Time Warping Tutorial Paper
-
-- Github: https://github.com/JesperDramsch/dtw-tutorial
+[![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2019.4.pdf)
 
 #### Complex-valued neural networks for machine learning on non-stationary physical data
+[![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2019.1.pdf) ![](https://img.shields.io/badge/license-Apache--2.0-green)
+
+- Preprint: [Dramsch, J. S.](https://orcid.org/0000-0001-8273-905X), [Lüthje, M.](https://orcid.org/0000-0003-2715-1653), & [Christensen, A. N.](https://orcid.org/0000-0002-3668-3128) (2019). Complex-valued neural networks for machine learning on non-stationary physical data. arXiv preprint arXiv:[1905.12321](https://arxiv.org/abs/1905.12321).
 - Github: https://github.com/JesperDramsch/Complex-CNN-Seismic
+
 #### Information Theory Considerations in Patch-based Training of Deep Neural Networks on Seismic Time-Series
+[![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2018.3.pdf)
 
 #### Deep learning seismic facies on state of the art CNN architectures
+[![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2018.4.pdf) ![](https://img.shields.io/badge/license-MIT-green) 
 
+- Publication: [Dramsch, J. S.](https://orcid.org/0000-0001-8273-905X), & [Lüthje, M.](https://orcid.org/0000-0003-2715-1653). (2018). Deep-learning seismic facies on state-of-the-art CNN architectures. In SEG Technical Program Expanded Abstracts 2018 [(pp. 2036-2040)](https://dramsch.net/assets/files/SEG_expanded_abstract_2018___Deep_learning_seismic_facies_on_state_of_the_art_CNN_architectures.pdf). Society of Exploration Geophysicists.
 - Github: https://github.com/JesperDramsch/segam18
 
 ### 6: Deep Neural Networks for 4D Seismic Inversion
 #### Including Physics in Deep Learning – An Example from 4D Seismic Pressure Saturation Inversion
-
+[![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2019.3.pdf)
 #### Deep Learning Application for 4D Pressure Saturation Inversion Compared to Bayesian Inversion on North Sea Data
-
+[![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2019.2.pdf)
 
 ### 7: Deep Convolutional Networks for 4D Time Shift Extraction
-
+[![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2019.5.pdf) ![](https://img.shields.io/badge/license-GPL--3.0-green)
 - Github: https://github.com/JesperDramsch/voxelmorph-seismic
 
 ### Appendix C Software Manual: Keras Complex
+[![Documentation](https://readthedocs.org/projects/keras-complex/badge/?version=latest)](https://keras-complex.readthedocs.io/) [![PyPI Status](https://img.shields.io/pypi/status/keras-complex.svg)](https://pypi.python.org/pypi/keras-complex) [![PyPI Versions](https://img.shields.io/pypi/pyversions/keras-complex.svg)](https://pypi.python.org/pypi/keras-complex) [![Build Status](https://travis-ci.org/JesperDramsch/keras-complex.svg?branch=master)](https://travis-ci.org/JesperDramsch/keras-complex) [![PyPI License](https://img.shields.io/pypi/l/keras-complex.svg)](LICENSCE.md)
+
 - Github: https://github.com/JesperDramsch/keras-complex

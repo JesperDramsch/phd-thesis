@@ -20,7 +20,8 @@ In addition to this fundamental work, this thesis contains two applications of m
 
 ### 4: Data Preparation and Analysis
 #### 4.3 Gaussian Mixture Models for Robust Unsupervised Scanning-Electron Microscopy Image Segmentation of North Sea Chalk
-[![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2018.2.pdf)
+[![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2018.2.pdf) [![](https://img.shields.io/badge/talk-presentation-informational)](https://doi.org/10.6084/m9.figshare.7421489.v1)
+
 
 ### 5: Foundations of Deep Learning for Seismic Data Analysis
 #### Dynamic Time Warping Tutorial Paper
@@ -33,19 +34,19 @@ In addition to this fundamental work, this thesis contains two applications of m
 - Github: https://github.com/JesperDramsch/Complex-CNN-Seismic
 
 #### Information Theory Considerations in Patch-based Training of Deep Neural Networks on Seismic Time-Series
-[![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2018.3.pdf)
+[![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2018.3.pdf) [![](https://img.shields.io/badge/talk-poster-informational)](https://doi.org/10.6084/m9.figshare.7421474.v1)
 
 #### Deep learning seismic facies on state of the art CNN architectures
-[![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2018.4.pdf) ![](https://img.shields.io/badge/license-MIT-green) 
+[![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2018.4.pdf) [![](https://img.shields.io/badge/talk-presentation-informational)](https://doi.org/10.6084/m9.figshare.7301645.v1) ![](https://img.shields.io/badge/license-MIT-green)
 
 - Publication: [Dramsch, J. S.](https://orcid.org/0000-0001-8273-905X), & [Lüthje, M.](https://orcid.org/0000-0003-2715-1653). (2018). Deep-learning seismic facies on state-of-the-art CNN architectures. In SEG Technical Program Expanded Abstracts 2018 [(pp. 2036-2040)](https://dramsch.net/assets/files/SEG_expanded_abstract_2018___Deep_learning_seismic_facies_on_state_of_the_art_CNN_architectures.pdf). Society of Exploration Geophysicists.
 - Github: https://github.com/JesperDramsch/segam18
 
 ### 6: Deep Neural Networks for 4D Seismic Inversion
 #### Including Physics in Deep Learning – An Example from 4D Seismic Pressure Saturation Inversion
-[![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2019.3.pdf)
+[![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2019.3.pdf) [![](https://img.shields.io/badge/talk-presentation-informational)](https://doi.org/10.6084/m9.figshare.8218421.v1)
 #### Deep Learning Application for 4D Pressure Saturation Inversion Compared to Bayesian Inversion on North Sea Data
-[![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2019.2.pdf)
+[![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2019.2.pdf) [![](https://img.shields.io/badge/talk-presentation-informational)](https://doi.org/10.6084/m9.figshare.7963775.v1)
 
 ### 7: Deep Convolutional Networks for 4D Time Shift Extraction
 [![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2019.5.pdf) ![](https://img.shields.io/badge/license-GPL--3.0-green)

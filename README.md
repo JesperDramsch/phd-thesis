@@ -39,6 +39,8 @@ In addition to this fundamental work, this thesis contains two applications of m
 
 > [Dramsch, J. S.](https://orcid.org/0000-0001-8273-905X), & [Lüthje, M.](https://orcid.org/0000-0003-2715-1653). (2018, November). Information Theory Considerations in Patch-based Training of Deep Neural Networks on Seismic Time-Series. In First EAGE/PESGB Workshop Machine Learning.
 
+- Github: https://github.com/JesperDramsch/windowing-seismic-for-deep-learning
+
 #### Deep learning seismic facies on state of the art CNN architectures
 [![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2018.4.pdf) [![](https://img.shields.io/github/repo-size/JesperDramsch/segam18)](https://github.com/JesperDramsch/segam18) [![](https://img.shields.io/badge/talk-presentation-informational)](https://doi.org/10.6084/m9.figshare.7301645.v1) ![](https://img.shields.io/badge/license-MIT-green)
 

@@ -74,4 +74,6 @@ In addition to this fundamental work, this thesis contains two applications of m
 ### Appendix C Software Manual: Keras Complex
 [![Documentation](https://readthedocs.org/projects/keras-complex/badge/?version=latest)](https://keras-complex.readthedocs.io/) [![PyPI Status](https://img.shields.io/pypi/status/keras-complex.svg)](https://pypi.python.org/pypi/keras-complex) [![PyPI Versions](https://img.shields.io/pypi/pyversions/keras-complex.svg)](https://pypi.python.org/pypi/keras-complex) [![Build Status](https://travis-ci.org/JesperDramsch/keras-complex.svg?branch=master)](https://travis-ci.org/JesperDramsch/keras-complex) [![PyPI License](https://img.shields.io/pypi/l/keras-complex.svg)](LICENSCE.md)
 
+> [Dramsch, J. S.](https://orcid.org/0000-0001-8273-905X), Trabelski, C., Bilaniuk, O., & Serdyuk, D.. (2019, September 7). Complex-Valued Neural Networks in Keras with Tensorflow (Version 3). figshare. doi:10.6084/m9.figshare.9783773.v3
+
 - Github: https://github.com/JesperDramsch/keras-complex

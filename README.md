@@ -22,9 +22,11 @@ In addition to this fundamental work, this thesis contains two applications of m
 
 ### 4: Data Preparation and Analysis
 #### 4.3 Gaussian Mixture Models for Robust Unsupervised Scanning-Electron Microscopy Image Segmentation of North Sea Chalk
-[![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2018.2.pdf) [![](https://img.shields.io/badge/talk-presentation-informational)](https://doi.org/10.6084/m9.figshare.7421489.v1)
+[![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2018.2.pdf) [![](https://img.shields.io/badge/talk-presentation-informational)](https://doi.org/10.6084/m9.figshare.7421489.v1)  ![](https://img.shields.io/badge/license-MIT-green)
 
 > [Dramsch, J. S.](https://orcid.org/0000-0001-8273-905X), [Amour, F.](https://orcid.org/0000-0003-0242-6569), & [Lüthje, M.](https://orcid.org/0000-0003-2715-1653) (2018, November). Gaussian Mixture Models for Robust Unsupervised Scanning-Electron Microscopy Image Segmentation of North Sea Chalk. In First EAGE/PESGB Workshop Machine Learning.
+
+- Github: https://github.com/JesperDramsch/backscatter-sem-segmentation
 
 ### 5: Foundations of Deep Learning for Seismic Data Analysis
 #### Complex-valued neural networks for machine learning on non-stationary physical data
@@ -35,7 +37,7 @@ In addition to this fundamental work, this thesis contains two applications of m
 - Github: https://github.com/JesperDramsch/Complex-CNN-Seismic
 
 #### Information Theory Considerations in Patch-based Training of Deep Neural Networks on Seismic Time-Series
-[![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2018.3.pdf) [![](https://img.shields.io/badge/talk-poster-informational)](https://doi.org/10.6084/m9.figshare.7421474.v1)
+[![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2018.3.pdf) [![](https://img.shields.io/badge/talk-poster-informational)](https://doi.org/10.6084/m9.figshare.7421474.v1) ![](https://img.shields.io/badge/license-MIT-green)
 
 > [Dramsch, J. S.](https://orcid.org/0000-0001-8273-905X), & [Lüthje, M.](https://orcid.org/0000-0003-2715-1653). (2018, November). Information Theory Considerations in Patch-based Training of Deep Neural Networks on Seismic Time-Series. In First EAGE/PESGB Workshop Machine Learning.
 

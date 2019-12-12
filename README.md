@@ -54,14 +54,14 @@ In addition to this fundamental work, this thesis contains two applications of m
 #### Including Physics in Deep Learning – An Example from 4D Seismic Pressure Saturation Inversion
 [![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2019.3.pdf) [![](https://img.shields.io/github/repo-size/JesperDramsch/4D-seismic-neural-inversion)](https://github.com/JesperDramsch/4D-seismic-neural-inversion) [![](https://img.shields.io/badge/talk-presentation-informational)](https://doi.org/10.6084/m9.figshare.8218421.v1) ![](https://img.shields.io/badge/license-Apache--2.0-green)
 
-> [Dramsch, J. S.](https://orcid.org/0000-0001-8273-905X), Corte, G., Amini, H., [MacBeth, C.](https://orcid.org/0000-0001-8593-3456), & [Lüthje, M.](https://orcid.org/0000-0003-2715-1653). (2019). Including Physics in Deep Learning--An example from 4D seismic pressure saturation inversion. arXiv preprint arXiv:1904.02254.
+> [Dramsch, J. S.](https://orcid.org/0000-0001-8273-905X), Corte, G., [Amini, H.](https://orcid.org/0000-0001-9588-6374), [MacBeth, C.](https://orcid.org/0000-0001-8593-3456), & [Lüthje, M.](https://orcid.org/0000-0003-2715-1653). (2019). Including Physics in Deep Learning--An example from 4D seismic pressure saturation inversion. arXiv preprint arXiv:1904.02254.
 
 - Github: https://github.com/JesperDramsch/4D-seismic-neural-inversion
 
 #### Deep Learning Application for 4D Pressure Saturation Inversion Compared to Bayesian Inversion on North Sea Data
 [![](https://img.shields.io/badge/PDF-Download-important)](https://github.com/JesperDramsch/PhD-Thesis/blob/master/papers/2019.2.pdf) [![](https://img.shields.io/github/repo-size/JesperDramsch/4D-seismic-neural-inversion)](https://github.com/JesperDramsch/4D-seismic-neural-inversion) [![](https://img.shields.io/badge/talk-presentation-informational)](https://doi.org/10.6084/m9.figshare.7963775.v1) [![](https://img.shields.io/badge/video-youtube-red)](https://www.youtube.com/watch?v=-5YHV2vdKHo) ![](https://img.shields.io/badge/license-Apache--2.0-green)
 
-> [Dramsch, J. S.](https://orcid.org/0000-0001-8273-905X), Corte, G., Amini, H., [Lüthje, M.](https://orcid.org/0000-0003-2715-1653), & [MacBeth, C.](https://orcid.org/0000-0001-8593-3456). (2019, April). Deep Learning Application for 4D Pressure Saturation Inversion Compared to Bayesian Inversion on North Sea Data. In Second EAGE Workshop Practical Reservoir Monitoring 2019.
+> [Dramsch, J. S.](https://orcid.org/0000-0001-8273-905X), Corte, G., [Amini, H.](https://orcid.org/0000-0001-9588-6374), [Lüthje, M.](https://orcid.org/0000-0003-2715-1653), & [MacBeth, C.](https://orcid.org/0000-0001-8593-3456). (2019, April). Deep Learning Application for 4D Pressure Saturation Inversion Compared to Bayesian Inversion on North Sea Data. In Second EAGE Workshop Practical Reservoir Monitoring 2019.
 
 - Github: https://github.com/JesperDramsch/4D-seismic-neural-inversion
 

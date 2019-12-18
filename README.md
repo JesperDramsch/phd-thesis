@@ -3,7 +3,7 @@ _Jesper S Dramsch<sup>[Orcid](https://orcid.org/0000-0001-8273-905X)</sup>_
 
 ![DTU Logo](graphics/fysik_uk.png)
 
-This repository generate the submitted PDF version of the thesis in [thesis.pdf](Dramsch_PhD_Thesis.pdf). This readme lists the chapters and the location of code to reproduce the [chapters](#Chapters-with-code) in the thesis. 
+This repository generate the submitted PDF version of the thesis in [thesis.pdf](Dramsch_PhD_Thesis.pdf). This readme lists the chapters and the location of code to read the the [chapters](#chapters-without-code) and reproduce the [chapters](#chapters-with-code) in the thesis. 
 
 [![DTU Logo](graphics/cover.png)](https://orbit.dtu.dk/en/publications/machine-learning-in-4d-seismic-data-analysis-deep-neural-networks)
 

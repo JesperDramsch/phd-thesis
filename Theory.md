@@ -1,3 +1,5 @@
+# Chapter 2: Theory
+
 This thesis applies Machine Learning methods to 4D seismic data. In
 this chapter I introduce 4D seismic concepts and the motivation to
 acquire and analyze 4D seismic data. I go on to introduce machine

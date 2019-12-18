@@ -528,7 +528,7 @@ other method. Supervised training is discussed in the paper as
 implicitly introducing the assumption of the extraction method for the
 training data into the newly trained network.
 
-![](figures/Voxelmorph.pdf)
+![](figures/Voxelmorph.png)
 
 **Figure 3.9:** Voxelmorph Architecture 2D
 abstraction. Two 3D volumes are passed to the network, concatenated

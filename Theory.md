@@ -622,7 +622,7 @@ n*-dimensional image *G* with a filter matrix *f* can be expressed as:
 
 ![convolution](https://render.githubusercontent.com/render/math?math=G^{*}[x,y]%20=%20\sum_{i=1}^{n}%20\sum_{j=1}^{m}%20f[i,j]\cdot%20G[x-i+c,\;%20y-j+c],)
 
-![](cnn_schema.pdf)
+![](cnn_schema.png)
 
 **Figure 2.7:** Schematic of a [CNN](#_bookmark193) filter (purple) in the image data (orange) in 2D.
 The filter passes over the image, extracting a filtered representation
@@ -704,7 +704,7 @@ implement, the VGG-16 with a relatively high amount of parameters is
 known to generalize well on transfer learning tasks however (Dramsch
 et al., [2018c)](#_bookmark321).
 
-![](figures/resnet.pdf)
+![](figures/resnet.png)
 
 **Figure 2.9:** Resnet Block with two 1 1
 convolutional layers that frame a 3 3 convolutional layer with
@@ -776,7 +776,7 @@ extent in the Encoder and Decoder networks. This alleviates the
 pressure of the network learning and reconstructing the output data
 from the bottleneck in isolation.
 
-![](figures/cnn_schema.pdf)
+![](figures/unet.png)
 **Figure 2.11:** Unet after Ronneberger et al.
 [(2015](#_bookmark483)) using 2D convolutional layers (yellow) with
 [ReLU](#_bookmark229) activation (orange) and skip connection between

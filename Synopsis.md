@@ -246,9 +246,9 @@ we
 ![](figures/minimum_path_all_losses_lb_keogh_.png)
 ![](figures/minimum_path_all_losses_sakoe_chiba_.png)
 
-a.  Itakura ([1975](#_bookmark378)) Parallelogram
-b.  Sakoe et al. ([1978](#_bookmark497)) Disc 
-c.  LB\_Envelope (Keogh et al., [2005](#_bookmark388))
+**(a)**  Itakura ([1975](#_bookmark378)) Parallelogram
+**(b)**  Sakoe et al. ([1978](#_bookmark497)) Disc 
+**(c)**  LB\_Envelope (Keogh et al., [2005](#_bookmark388))
 
 **Figure 3.3:** Minimum path for constraint
 masks for cumulative cost in [DTW](#_bookmark201). Images show the

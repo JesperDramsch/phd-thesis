@@ -415,9 +415,7 @@ input to arbitrary non-linear outputs. The mathematical function in
 used less, because of the vanishing gradient problem (Hochreiter,
 [1991)](#_bookmark368). These occur in the extrema of both functions,
 where the function saturates and the gradient is close to zero for
-large values of x. Rectifiers presented in [Figures
-2.3(d)](#_bookmark61) to [2.3(f)](#_bookmark62) circumvent this
-problem by one-sided saturation.
+large values of x. Rectifiers presented in [Figures 2.3(d)](#_bookmark61) to [2.3(f)](#_bookmark62) circumvent this problem by one-sided saturation.
 
 **Training the Model** Before training, each weight and bias is
 assigned an initial number that is drawn from a distribution
@@ -496,8 +494,7 @@ Feed forward Neural Networks [(NNs](#_bookmark225)) or
 its simplest form it uses a set of linear equations to approximate a
 function. The network can be described as a graph with edges and
 nodes. In the neural information community the nodes are often named
-neurons. These neurons are arranged into layers in [Figure
-2.4](#_bookmark74). The first layer in a [NN](#_bookmark225) is the
+neurons. These neurons are arranged into layers in [Figure 2.4](#_bookmark74). The first layer in a [NN](#_bookmark225) is the
 input layer with a number of nodes corresponding to the number of
 input data points. The input nodes are connected to the next layer by
 the graph's edge. The next node can be the output layer. The weights
@@ -595,11 +592,9 @@ state memory.
 implementations of Long Short-Term Memory [(LSTM)](#_bookmark218),
 however the main criteria are three gates and an inner cell.
 
-  Input Gate
-
-  Forget Gate
-
-  Output Gate
+-  Input Gate
+-  Forget Gate
+-  Output Gate
 
 The input gate regulates the contribution of input values to the
 internal cell. The forget gate regulates the persistence of values in
@@ -625,7 +620,7 @@ chosen task.
 For a two-dimensional [CNN](#_bookmark193), the convolution of the *m
 n*-dimensional image *G* with a filter matrix *f* can be expressed as:
 
-![formula](https://render.githubusercontent.com/render/math?math=G^{*}(x,y)%20=%20\sum_{i=1}^{n}%20\sum_{j=1}^{m}%20f(i,j)\cdot%20G(x-i+c,\;%20y-j+c),)
+![convolution](https://render.githubusercontent.com/render/math?math=G^{*}[x,y]%20=%20\sum_{i=1}^{n}%20\sum_{j=1}^{m}%20f[i,j]\cdot%20G[x-i+c,\;%20y-j+c],)
 
 ![](cnn_schema.pdf)
 
@@ -640,7 +635,6 @@ the Convolution theorem reducing the computational complexity from
 *O*(*n*^2^) to *O*(*n* log *n*) with
 
 ![formula](https://render.githubusercontent.com/render/math?math=\mathcal{F}\{f%20*%20g\}%20=%20k\cdot%20\mathcal{F}\{f\}\cdot%20\mathcal{F}\{g\},)
-![formula](https://render.githubusercontent.com/render/math?math=)
 
 with *f* denoting the Fourier transform of *f* and *k* being a
 normalization constant. This reduces the

@@ -30,15 +30,11 @@ The main applications of 4D seismic analysis according to Yilmaz
 [(2003](#_bookmark542)) and Johnston [(2013a](#_bookmark383))
 include:
 
-  Tracking fluid movement (steam, gas, and water)
-
-  Monitoring pressure depletion and validating depletion plans
-
-  Fault property estimation i.e. sealing or leaking faults
-
-  Locating bypassed oil in heterogeneous reservoirs
-
-  Validating and updating geological and reservoir-simulation models
+-  Tracking fluid movement (steam, gas, and water)
+-  Monitoring pressure depletion and validating depletion plans
+-  Fault property estimation i.e. sealing or leaking faults
+-  Locating bypassed oil in heterogeneous reservoirs
+-  Validating and updating geological and reservoir-simulation models
 
 4D seismic data analysis suffers from the superposition of multiple
 effects on the seismic imaging. These effects include changes in the

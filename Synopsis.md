@@ -1,6 +1,4 @@
-[[]{#_bookmark110 .anchor}]{#_bookmark109 .anchor}CHAPTER 3
-
-Synopsis
+# CHAPTER 3: Synopsis
 
 The following chapters are comprised of four journal papers that are
 supplemented with two conference papers and four workshop papers, of
@@ -53,21 +51,19 @@ variance and structural cubes yielded some initial promise the
 following image processing workflow yielded the best results. These
 were geared to-
 
-![](figures/seismic-comparisons.png){width="6.183332239720035in" height="2.0in"}
+![](figures/seismic-comparisons.png)
 
-[]{#_bookmark113 .anchor}**Figure 3.1:**[]{#_bookmark112 .anchor}
-Comparison of seismic data, variance, and ant-track time slice to
+**Figure 3.1:** Comparison of seismic data, variance, and ant-track time slice to
 enhance fractures in images (modified from Aabø et al.,
 [2020)](#_bookmark242).
 
 wards enhancing vertically coherent structures. This was achieved by a
 workflow includ- ing colorspace transformations and ant-tracking,
 which is a search algorithm leveraging biologically inspired software
-agen[]{#_bookmark114 .anchor}ts.
+agents.
 
-Normally, images are shown in []{#_bookmark115 .anchor}Red-Green-Blue
-([RGB](#_bookmark231)) colorspace, however, these can []{#_bookmark116
-.anchor}be transformed into other space, such as,
+Normally, images are shown in Red-Green-Blue
+([RGB](#_bookmark231)) colorspace, however, these can be transformed into other space, such as,
 Cyan-Magenta-Yellow-blacK ([CMYK](#_bookmark194)) and
 Hue-Saturation-Value ([HSV](#_bookmark213)). The [HSV](#_bookmark213)
 colorspace is commonly used in image analysis to detect edges on the
@@ -109,11 +105,9 @@ for to regional fault systems and [BHI](#_bookmark190) to several
 wells for Aabø et al. [(2020](#_bookmark242)) presented in [Section
 4.2](#an-integrated-approach-to-fracture-characterization-of-the-kraka-field).
 
-![](figures/fracture-workflow.PNG){width="6.164061679790026in"
-height="3.2390616797900265in"}
+![](figures/fracture-workflow.PNG)
 
-[]{#_bookmark118 .anchor}**Figure 3.2:**[]{#_bookmark117 .anchor}
-Workflow to identify fractures in post-stack seismic data to prepare
+**Figure 3.2:** Workflow to identify fractures in post-stack seismic data to prepare
 for comparison to [BHI](#_bookmark190) analysis.
 
 The analysis of ant-tracked attribute volumes, allowed us to relate
@@ -143,15 +137,13 @@ NNE trend is representative for smaller-scale lineations, with a
 Northern deviation on regional scales.
 
 Further research into the porosity and sedimentology of the
-[]{#_bookmark119 .anchor}chalk reservoirs con- ducted on microscoping
+chalk reservoirs con- ducted on microscoping
 scales focused on identifying porosity using Backscatter Scanning-
 Electron Microscopy [(BSEM](#_bookmark192)) in [Section
 4.3](#gaussian-mixture-models-for-robust-unsupervised-scanning-electron-microscopy-image-segmentation-of-north-sea-chalk),
 which comprises the third paper in this chapter (Dramsch et al.,
 [2018a)](#_bookmark314). Identifying the grain size and orientation of
-the oolites
-
-[]{#_bookmark120 .anchor}is usually a manual work-intensive task,
+the oolites is usually a manual work-intensive task,
 ideal for computer vision tasks, considering the good contrast of
 light-grey to white oolites and the black background. Unfortu- nately,
 training data was not available, so unsupervised clustering was
@@ -210,9 +202,7 @@ to compare the amplitudes differences of the data. Due to the
 capability of [DTW](#_bookmark201) to match arbitrary time-series, it
 is applicable to 4D time shifts, seismic-well ties, well-to-well ties,
 and seismic pre- and post-stack migration (Luo et al.,
-[2014)](#_bookmark422). [DTW](#_bookmark201)
-
-[]{#_bookmark122 .anchor}is known to be computationally slow and
+[2014)](#_bookmark422). [DTW](#_bookmark201) is known to be computationally slow and
 expensive, while extracting poor matches on seismic field data. This
 tutorial paper goes into detail of the [DTW](#_bookmark201) algorithm,
 exploring similarity measures, optimization, and constraints
@@ -232,12 +222,8 @@ The *L*~2~ norm converges fast close to zero, however the error
 optimization, which combines the advantages of the *L*~1~ norm and
 *L*~2~ norm, namely the Huber loss:
 
-( ) = ⎧⎨ [ 1]{.underline} (*b − a*)2 [ ]{.underline} for *\|b − a\| ≤
-δ,*
+![Huber](figures/huber.png)
 
-(3.1)
-
-⎩*δ*(*\|b − a\| −* ~2~ *δ*)*,* otherwise.
 
 which is convex for small values, scales linearly for outliers and is
 differentiable for all values of R, with *δ* being a scaling factor.
@@ -256,93 +242,36 @@ path. This strategy in [Figure 3.3(b)](#bookmark124) introduces a
 global maximum time shift. Contrary to these two global constraints,
 we
 
-![](figures/minimum_path_all_losses_itakura_.png){width="1.8015616797900262in"
-height="1.46875in"}![](figures/minimum_path_all_losses_lb_keogh_.png){width="1.8015616797900262in"
-height="1.46875in"}![](figures/minimum_path_all_losses_sakoe_chiba_.png){width="1.8125in"
-height="1.4671872265966754in"}
+![](figures/minimum_path_all_losses_itakura_.png)
+![](figures/minimum_path_all_losses_lb_keogh_.png)
+![](figures/minimum_path_all_losses_sakoe_chiba_.png)
 
-a.  []{#bookmark123 .anchor}Itakura ([1975](#_bookmark378)) Parallelo-
-    gram
+a.  Itakura ([1975](#_bookmark378)) Parallelogram
+b.  Sakoe et al. ([1978](#_bookmark497)) Disc 
+c.  LB\_Envelope (Keogh et al., [2005](#_bookmark388))
 
-b.  []{#bookmark124 .anchor}\
-    Sakoe et al. ([1978](#_bookmark497)) Disc []{#_bookmark125
-    .anchor}**(c)** LB\_Envelope (Keogh et al.,
-
-[2005](#_bookmark388))
-
-**Figure 3.3:**[]{#_bookmark126 .anchor} Minimum path for constraint
+**Figure 3.3:** Minimum path for constraint
 masks for cumulative cost in [DTW](#_bookmark201). Images show the
 optimum path for different loss functions *L*~1~, *L*~2~, and Huber
 loss (from Dramsch et al., [2019a](#_bookmark315)).
 
-**procedure** DTW(*a, b*)
+![](figures/DTW-Procedure.png)
 
-Given: Trace *a* and Trace *b* of lengths *n*.
-
-**function** Calculate distance matrix *D*(*a, b*) *D dist*(*a, b*)
-
-####### end function
-
-**function** Calculate Cumulative Cost *C*(*D*)
-
-*C*\[0*,* 0\] 0
-
-**for** *i* = 1 to *n* **do** *▷* Populate Edge
-
-*C*\[0*, i*\] *D*\[0*, i*\] + *C*\[0*, i* 1\]
-
-*C*\[*i,* 0\] *D*\[*i,* 0\] + *C*\[*i* 1*,* 0\]
-
-####### end for
-
-**for** *i* = 1 to *n* **do** *▷* Fill Cumulative Cost Matrix
-
-**for** *j* = 1 to *n* **do**
-
-*C~min~* **min** *C*\[*i, j* 1\]*, C*\[*i* 1*, j* 1\]*, C*\[*i* 1*,
-j*\]
-
-*C*\[*i, j*\] *D*\[*i, j*\] + *C~min~*
-
-####### end for end for
-
-**end function**
-
-**function** Backtrack minimum cost path *P* (*C*)
-
-*P C*\[*n, n*\]
-
-**while** *i \* 0 *j \* 0 **do**
-
-*i, j* **index** *P* \[*last*\]
-
-*C~min~* **min** *C*\[*i, j* 1\]*, C*\[*i* 1*, j* 1\]*, C*\[*i* 1*,
-j*\]
-
-*P.***append index** *C~min~*
-
-####### end while end function return P
-
-**end procedure**
-
-**Algorithm 1:**[]{#_bookmark127 .anchor} Dynamic Time Warping
+**Algorithm 1:** Dynamic Time Warping
 algorithm consists of calculating the element- wise distance matrix,
 cumulative cost and then find the optimal path in the cumulative cost
 matrix.
 
-[]{#_bookmark128 .anchor}introduce the LB\_Keogh (Keogh et al.,
-[2005](#_bookmark388)) constraint in the paper. This lower bound- ing
+introduce the LB\_Keogh (Keogh et al., [2005](#_bookmark388)) constraint in the paper. This lower bounding
 method provides a mathematical lower bound for the
 [DTW](#_bookmark201) algorithm. We use this lower bound to constrain
 the warp path, which provides larger variability to high am- plitude
-areas, where cycle-skipping can occur, presented in [Figure
-3.3(c)](#_bookmark125). The results of combining the Huber loss with
-the LB\_Keogh constraint are presented in [Figure 3.4](#_bookmark129).
+areas, where cycle-skipping can occur, presented in [Figure 3.3(c)](#_bookmark125). The results of combining the Huber loss with the LB\_Keogh constraint are presented in [Figure 3.4](#_bookmark129).
 
-![](figures/time_shift_huber_lb_keogh.png){width="6.15625in" height="3.03125in"}
 
-**Figure 3.4:**[]{#_bookmark129 .anchor} Time shifts and warped traces
-(from Dramsch et al., [2019a)](#_bookmark315).
+![](figures/time_shift_huber_lb_keogh.png)
+
+**Figure 3.4:** Time shifts and warped traces (from Dramsch et al., [2019a)](#_bookmark315).
 
 In the workshop paper "Information Theory Considerations In
 Patch-Based Training Of Deep Neural Networks On Seismic Time-Series"
@@ -373,11 +302,9 @@ window, but non can reconstruct the notch. Many deterministic signals
 contain significant information in the phase of the signal. Discarding
 the phase
 
-![](figures/information-windowing.png){width="5.953541119860017in"
-height="2.8870833333333334in"}
+![](figures/information-windowing.png)
 
-[]{#_bookmark131 .anchor}**Figure 3.5:**[]{#_bookmark130 .anchor}
-Normalized spectra of windows of trace with "offset" zero. Aliasing of
+**Figure 3.5:** Normalized spectra of windows of trace with "offset" zero. Aliasing of
 the low frequencies is visible.Phase information not reconstructed
 from windowed data, slope depending on the window size. Data tapered
 before [FFT](#_bookmark206) (from Dramsch et al.,
@@ -410,12 +337,10 @@ pervised method was the limited availability of realiable
 interpretations of seismic data. Defining a decision boundary for
 seismic interpretation is only in the beginning stages of research,
 which leads us to the decision to inspect reconstructed seismic
-numerically as signal []{#_bookmark132 .anchor}analysis is
+numerically as signal analysis is
 well-explored in seismic data processing. Therefore, analysing the
 result in the Frequency-Wavenumber [(FK)-domai](#_bookmark204)n was
-possible and gave additional insight to
-
-[]{#_bookmark133 .anchor}the denoising effect of the
+possible and gave additional insight to the denoising effect of the
 [AE](#_bookmark185).
 
 Nevertheless, some interpretations are available openly and companies
@@ -436,14 +361,12 @@ pre-trained network with diverse generalizable learned filters seems
 to alleviate some limitations of smaller non-diverse data sets used in
 the fine- tuning process.
 
-![](figures/pred1_i.png){width="3.03875in"
-height="1.98in"}![](figures/vgg1_i.png){width="3.03875in"
-height="1.98in"}
+![](figures/pred1_i.png)
+![](figures/vgg1_i.png)
 
-(a) Waldeland CNN trained from scratch **(b)** Pre-trained VGG-16
+**(a)** Waldeland CNN trained from scratch **(b)** Pre-trained VGG-16
 
-**Figure 3.6:**[]{#_bookmark134 .anchor} Automatic Seismic
-Interpretation on two networks, trained from scratch and fine-tuned on
+**Figure 3.6:** Automatic Seismic Interpretation on two networks, trained from scratch and fine-tuned on
 pre-trained VGG-16 architecture. The pre-trained net- work generating
 a more consistent seismic interpretation, however showing an overall
 deficiency in diverse training data (from Dramsch et al.,
@@ -473,12 +396,11 @@ Learning -- An Example from 4D Seismic Pressure Saturation Inversion"
 (Dramsch et al., [2019e](#_bookmark319)) and a data perspective in the
 paper titled "Deep Learning Application for 4D Pressure Saturation
 Inversion Compared to Bayesian Inversion on North Sea Data" (Dramsch
-et al., [2019d)](#_bookmark317).
+et al., [2019d](#_bookmark317)).
 
-![](figures/AVO-Net.png){width="5.960832239720035in"
-height="2.577916666666667in"}
+![](figures/AVO-Net.png)
 
-**Figure 3.7:**[]{#_bookmark137 .anchor} Architecture includes
+**Figure 3.7:** Architecture includes
 automatic physics-based gradient calculation of in- put seismic and an
 variational encoder-decoder architecture to invert seis- mic data for
 pressure and saturation changes (from Dramsch et al.,
@@ -504,9 +426,7 @@ In Dramsch et al. [(2019e](#_bookmark319)) we present a novel network
 structure that explicitly includes AVO gradient calculation within the
 network as physical knowledge, shown in [Figure 3.7](#_bookmark137).
 The network architecture was chosen to follow an encoder-decoder
-architecture as a forc-
-
-[]{#_bookmark138 .anchor}ing function for information distillation.
+architecture as a forcing function for information distillation.
 Additionally, the bottleneck layer implements a variational encoding
 layer to be less susceptible to noisy input. The network explicitly
 includes AVO gradient calculation in the network architecture,
@@ -517,7 +437,7 @@ defining another forcing function for the networks learning process.
 
 The initial phase was carried out on simulation data with a train test
 split, leaving a full 4D time step as validation set. Neural
-Architecture Search []{#_bookmark139 .anchor}was applied to the
+Architecture Search was applied to the
 network to determine depth and width of the architecture, using a Tree
 of Parzen Es- timator ([TPE](#_bookmark239)) hyper-parameter search
 (Bergstra et al., [2015)](#_bookmark262). Afterwards, to transfer the
@@ -526,10 +446,9 @@ additive Gaussian noise (Bishop, [1995](#_bookmark269)) to train the
 network for noisy field data input. This was a manual process of
 estimating good noise levels.
 
-![](figures/NN_results.PNG){width="6.157187226596675in"
-height="4.559998906386702in"}
+![](figures/NN_results.PNG)
 
-**Figure 3.8:**[]{#_bookmark140 .anchor} 4D QI inversion results from
+**Figure 3.8:** 4D QI inversion results from
 Bayesian inversion and Neural Network inver- sion. Bayesian inversion
 closely resembles simulation output. [NN](#_bookmark225) result
 showing good coherency, consistent amplitudes, but problems in strong
@@ -537,9 +456,7 @@ changes of gas saturation (from Dramsch et al.,
 [2019d)](#_bookmark317).
 
 The workshop paper Dramsch et al. ([2019d](#_bookmark317)) contains
-these results compared to the
-
-[]{#_bookmark141 .anchor}simulation results and Bayesian inversion
+these results compared to the simulation results and Bayesian inversion
 results, shown in [Figure 3.8](#_bookmark140). These initial results
 on limited training data show that the stochastic process can extract
 pressure saturation information from field data, after training on
@@ -596,7 +513,7 @@ Machine Learning systems just like conventional algorithms. In this
 chapter the medical Voxelmorph algorithm is adapted to match 4D
 seismic data volumes in 3D.
 
-[]{#_bookmark143 .anchor}The Voxelmorph algorithm is based on the
+The Voxelmorph algorithm is based on the
 diffeomorphic assumption, which at its core describes the map of one
 data set to another data set, providing this map with particular
 properties. The main benefit of applying diffeomorphic mapping to
@@ -613,7 +530,7 @@ training data into the newly trained network.
 
 ![](figures/Voxelmorph.pdf)
 
-**Figure 3.9:**[]{#_bookmark144 .anchor} Voxelmorph Architecture 2D
+**Figure 3.9:** Voxelmorph Architecture 2D
 abstraction. Two 3D volumes are passed to the network, concatenated
 (purple) and passed to a U-Net architecture. The U-Net outputs two
 cubes that generate the mean static velocity and the standard
@@ -635,9 +552,7 @@ transparency of the process. The architecture following the U-net
 samples the extracted velocity distribution and integrates this value
 to obtain the diffeomorphic flow. These values are passed to a dense
 3D warping mechanism to enable the unsupervised training. The losses
-involved are a Kullback-Leibler [(KL)](#_bookmark215)-
-
-[]{#_bookmark145 .anchor}divergence on the stationary velocity field
+involved are a Kullback-Leibler [(KL)](#_bookmark215)-divergence on the stationary velocity field
 and [MSE](#_bookmark222) on the difference between that warped monitor
 volume and the base volume.
 
@@ -699,9 +614,7 @@ transfer learning can alleviate the necessity for large amounts of
 labeled data, by re-using a neural network on natural images. This
 study showed the generalizable networks can be transferred to seismic
 data and outperform smaller networks trained from scratch, the smaller
-network size being
-
-[]{#_bookmark147 .anchor}necessary to avoid overfitting. The source
+network size beingnecessary to avoid overfitting. The source
 code for this research was made available and has been of use to
 multiple researchers (Dramsch, [2018](#_bookmark311)). This has wide
 applications in industry and research settings, considering the

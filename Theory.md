@@ -5,7 +5,7 @@ learning and review the development of machine learning in itself and
 in the field of geoscience. The focus on this thesis is on Neural
 Networks, particularly Deep Learnings to geophysical problems.
 Considering recent developments in computer vision, a focus on
-[]{#_bookmark24 .anchor}Convolutional Neural Networks, the
+Convolutional Neural Networks, the
 developments and break-throughs of this type of Neural Network
 ([NN](#_bookmark225)) and the innovations that lead to the recent
 adoption of Machine Learning in geoscience are explored.
@@ -44,9 +44,7 @@ acquisition equipment due to technological advances, changes in
 acquisition geometry (source-receiver mismatch), as well as physical
 changes in the subsurface (Yilmaz, [2003](#_bookmark542); Johnston,
 [2013b](#_bookmark384)). These physical changes are in part due to
-fluid movement in the subsurface (Lumley, [1995](#_bookmark419)),
-
-[]{#_bookmark26 .anchor}as well as, changes in the geology due to
+fluid movement in the subsurface (Lumley, [1995](#_bookmark419)), as well as, changes in the geology due to
 compaction and expansion (Hatchell et al., [2005a](#_bookmark358)).
 These geomechanical effects change the position of the reflectors, the
 thickness of stratigraphy and the physical properties such as density
@@ -54,7 +52,7 @@ and wave velocity (Herwanger, [2015](#_bookmark363)).
 
 Succesfull 4D applications rely on careful acquisition planning,
 closely matching the mismatch of source (∆*S*) and receiver (∆*R*).
-This a[]{#_bookmark27 .anchor}wareness has generally improved the
+This awareness has generally improved the
 repeatability of seismic acquisition, however, the Normalized Root
 Mean Squared Error [(NRMS](#_bookmark226)) remains to be an important
 measure of noise sources that deteriorate the 4D seismic analysis.
@@ -86,10 +84,7 @@ Considering normal incidence on a horizontal layer of thickness *z*
 and a P-wave velocity *v* with a traveltime *t*, we can express the
 changes in traveltime as:
 
-[]{#_bookmark28 .anchor} [ ∆*t*]{.underline} = [ ∆*z*]{.underline} [
-∆*v*]{.underline}*,* (2.1)
-
-*t z v*
+![time shifts](https://render.githubusercontent.com/render/math?math=\frac{\Delta%20t}{t}%20=%20\frac{\Delta%20z}{z}%20-%20\frac{\Delta%20v}{v},)
 
 for homogeneous isotropic *v* and small changes in *z* and *v*.
 Originally developed in Hatchell et al. [(2005b)](#_bookmark359), with
@@ -104,10 +99,7 @@ vertical surface of a infinitesemal element (Herwanger,
 developed a single-parameter solution to relate velocity changes and
 vertical strain
 
-[]{#_bookmark29 .anchor} [ ∆*v*]{.underline} = *Rξ*[]{#_bookmark30
-.anchor} *v zz*
-
-(2.2)
+![formula](https://render.githubusercontent.com/render/math?math=\frac{\Delta%20v}{v}%20=%20-%20R%20\xi_{zz},)
 
 with *R* being the single parameter Hatchell-Bourne-Røste
 [(HBR)-facto](#_bookmark211)r (Hatchell et al.,
@@ -117,7 +109,7 @@ with *R* being the single parameter Hatchell-Bourne-Røste
 relationship between the vertical strain *ξ~zz~* and the time shift
 ∆*t* for a given lithology with property *R*
 
-[]{#_bookmark31 .anchor}∆*t* = *t ·* (1 + *R*) *· ξ~zz~.* (2.3)
+![formula](https://render.githubusercontent.com/render/math?math=\Delta%20t%20=%20t%20\cdot%20(1%20+%20R)%20\cdot%20\xi_{zz}.)
 
 Contingent on the assumption of zero-offset incidence, homogeneous
 velocity and isotropy, time shift extraction is mostly performed in
@@ -126,7 +118,7 @@ windowed cross-correlation is used due to its computational speed and
 general lack of limiting underlying assumptions (Rickett et al.,
 [2001)](#_bookmark479). The main drawback of this method is, however,
 that the result is highly dependent on the window-size and
-[]{#_bookmark32 .anchor}susceptible to noise. Other methods for
+susceptible to noise. Other methods for
 post-stack seismic time shift extraction include Dynamic Time Warping
 [(DTW](#_bookmark201)) (Hale, [2013a](#_bookmark350)) and
 inversion-based approaches (Rickett et al., [2007)](#_bookmark480).
@@ -136,8 +128,7 @@ More recently research into pre-stack time shift extraction and
 some assumptions of 1D applications (Ghaderi et al.,
 [2005](#_bookmark335); Hall et al., [2002b](#_bookmark355)). 3D time
 shifts have the ability to capture subsurface movement of reflectors
-and account for 3D effects of the ∆*R/*∆*S* acquisition[]{#_bookmark33
-.anchor} mismatch, which effect seismic illumination.
+and account for 3D effects of the ∆*R/*∆*S* acquisition mismatch, which effect seismic illumination.
 
 Qantitative Interpretation ([QI](#_bookmark228)) extends the
 interpretation of 4D changes to estimate fluid saturation and pressure
@@ -168,7 +159,7 @@ feedback-loop.
 Machine Learning
 ----------------
 
-[]{#_bookmark35 .anchor}Machine Learning ([ML](#_bookmark220)) is the
+Machine Learning ([ML](#_bookmark220)) is the
 discipline of defining a statistical or mathematical models based on
 data. These [ML](#_bookmark220) models are either trained in a
 supervised or unsupervised fashion, which usually results in them
@@ -176,15 +167,13 @@ learning a decision boundary, or a representation or structure of the
 data respectively. Historically, [ML](#_bookmark220) has been an
 interest in geoscience but has not gained momentum due to sparse data,
 computational capability, and availability of algorithms. Geoscience
-data was often not available and still is often not available
-
-[]{#_bookmark36 .anchor}with a reliable ground truth. However,
+data was often not available and still is often not available with a reliable ground truth. However,
 particularly [NN](#_bookmark225)s have found broad interest in
 geophysical applications, Bayesian methods are often used in inversion
 schemes and recent software developments have changed the research
 entirely.
 
-Recently, the subfield []{#_bookmark37 .anchor}Deep Learning
+Recently, the subfield Deep Learning
 ([DL](#_bookmark198)) has reignited interest in the wider field of
 [ML](#_bookmark220) by outperforming rule-based algorithms on computer
 vision tasks, such as image classification and segmentation (Bishop,
@@ -241,11 +230,9 @@ published architecture. Particularly in [NN](#_bookmark225) we have to
 focus on the most practical building blocks, to be able to give a
 comprehensive overview.
 
-![](figures/ML-Timeline.png){width="7.073437226596676in"
-height="1.9968744531933509in"}
+![](figures/ML-Timeline.png)
 
-[]{#_bookmark39 .anchor}**Figure 2.1:**[]{#_bookmark38 .anchor}
-Selection of notable milestones in machine learning.
+**Figure 2.1:** Selection of notable milestones in machine learning.
 
 ### History of Machine Learning
 
@@ -269,7 +256,7 @@ This notion was challenged by Alan Turing (Turing,
 specifically predict genetic algorithms, a metaheuristic that finds
 application in optimization and search problems. Evolutionary
 computing and genetic algorithms specifically can perform some machine
-[]{#_bookmark40 .anchor}learning tasks (Goldberg et al.,
+learning tasks (Goldberg et al.,
 [1988)](#_bookmark337). This is generally considered the commencement
 of Artificial Intelligence ([AI](#_bookmark186)) and
 [ML](#_bookmark220), however, they rely heavily on earlier
@@ -288,26 +275,20 @@ method was developed to mimic the human brain, namely Neural Networks
 decision boundary learner (Rosenblatt, [1958)](#_bookmark484). The
 decision is made according to
 
-[]{#_bookmark41 .anchor}= ⎨1
-
-∑*i w~ij~x~i~* + *b \* 0 (2.4)
-
-0 otherwise
+![](figures/Perceptron.png)
 
 which describes a linear system of the input data *x*, the weights *w*
 and bias *b* and a binary activation funtion *σ*. The linear system is
-still used in modern neurons, however, the []{#_bookmark42
-.anchor}activation *σ* is usually a Rectifier function. Shortly after,
-Belson ([1959](#_bookmark260)) describe the[]{#_bookmark43 .anchor}
+still used in modern neurons, however, the activation *σ* is usually a Rectifier function. Shortly after,
+Belson ([1959](#_bookmark260)) describe the
 first Decision Tree ([DT](#_bookmark200)), which learns hierarchical
 decision systems. The next method, k-Nearest Neighbour
 ([KNN](#_bookmark216)) search, was introduced by Cover et al.
 ([1967](#_bookmark296)) to solve the traveling salesman problem. Two
 decades later Q-learning (Watkins, [1989](#_bookmark536)) introduces a
-method to reinforcement learning that is []{#_bookmark44 .anchor}still
+method to reinforcement learning that is still
 used to this day. The final two methods in the timeline were
-introduced in 1995. Random Forests ([]{#_bookmark45
-.anchor}[RF](#_bookmark230)s) (Ho, [1995](#_bookmark367)) introduce
+introduced in 1995. Random Forests ([RF](#_bookmark230)s) (Ho, [1995](#_bookmark367)) introduce
 ensemble learning of weak learning Decision Trees
 ([DT](#_bookmark200)s). Support Vector Machine ([SVM](#_bookmark236))
 (Cortes et al., [1995](#_bookmark295)) introduce a strong learner that
@@ -315,8 +296,7 @@ aims to maximize the margin between classes.
 
 These methods have been improved upon over the decades. Specific
 milestones that accelerated further developments in
-[NN](#_bookmark225) are automatic differen[]{#_bookmark47
-.anchor}tiation (Linnainmaa, [1970](#_bookmark415)) and consequently
+[NN](#_bookmark225) are automatic differentiation (Linnainmaa, [1970](#_bookmark415)) and consequently
 applying this to backpropagate errors in Deep Neural Networks
 ([DNNs](#_bookmark199)) (Rumelhart et al., [1988)](#_bookmark491).
 Backpropagation itself as a concept existed earlier (Kelley,
@@ -327,8 +307,7 @@ simplification by using the chain rule (Dreyfus,
 (Collobert et al., [2002](#_bookmark293)) made and assembling the Im-
 ageNet database (Deng et al., [2009](#_bookmark303)) has accelerated
 developments in computer vision and enabled modern developments in
-deep learning. In the same year of 2009 the library[]{#_bookmark46
-.anchor} Scikit-Learn (Pedregosa et al., [2011](#_bookmark468)) was
+deep learning. In the same year of 2009 the library Scikit-Learn (Pedregosa et al., [2011](#_bookmark468)) was
 established, which introduced a common open source Application
 Programming Interface [(API](#_bookmark187)) (Buitinck et al.,
 [2013](#_bookmark276)) for a diverse and growing set of shallow
@@ -348,24 +327,20 @@ al., [2013](#_bookmark492)), Netflix Prize (Bennett et al.,
 [2013](#_bookmark339))) XGBoost (Chen et al., [2016)](#_bookmark286),
 a library for extreme gradient tree boosting was developed.
 
-Recent developments in deep learning are []{#_bookmark48 .anchor}based
+Recent developments in deep learning are based
 in Neural Networks [(NNs)](#_bookmark225), hence, we highlight some
 key developments in [Figure 2.1](#_bookmark38). Convolutional Neural
 Networks [(CNNs](#_bookmark193)) are essential in the modern
-computational vision systems, they were inspired by the[]{#_bookmark49
-.anchor} concept of Neocognitron (Fukushima, [1980](#_bookmark331);
+computational vision systems, they were inspired by the concept of Neocognitron (Fukushima, [1980](#_bookmark331);
 LeCun et al., [2015)](#_bookmark409). In the same decade Recurrent
 Neural Networks ([RNNs](#_bookmark232)) were introduced implemented as
 Hopfield Networks (Hopfield, [1982](#_bookmark370)). While Hopfield
 networks are not a general [RNN](#_bookmark232), they provide content-
 adressable memory with the internal state memory. Hochreiter et al.
-[(1997](#_bookmark369)) implement
-
-[]{#_bookmark53 .anchor}the []{#_bookmark51 .anchor}Long Short-Term
+[(1997](#_bookmark369)) implement the Long Short-Term
 Memory ([LSTM)](#_bookmark218), which contain internal states (i.e.
-memory) that can process tempora[]{#_bookmark52 .anchor}l sequences,
-still used and performing to the state-of-the-art[]{#_bookmark50
-.anchor} in sequence analysis and Natural Language Processing
+memory) that can process temporal sequences,
+still used and performing to the state-of-the-art in sequence analysis and Natural Language Processing
 [(NLP](#_bookmark224)) to this day. Recently, Generative Adversarial
 Network [(GAN](#_bookmark207)) (Goodfellow et al.,
 [2014c](#_bookmark343)) introduced a system of [NN](#_bookmark225)s
@@ -380,7 +355,7 @@ and judge the validity of the sample respectively. We discuss
 
 Neural Network ([NN](#_bookmark225)) as a class of [ML](#_bookmark220)
 algorithms are very diverse and versatile. [NN](#_bookmark225)s have
-p[]{#_bookmark55 .anchor}ersisted for decades and their nomenclature
+persisted for decades and their nomenclature
 has changed in this time. [NN](#_bookmark225)s were long called
 Artificial Neural Network [(ANN)](#_bookmark189), which has changed to
 simply [NN](#_bookmark225), usually prepended with the class of Neural
@@ -390,14 +365,12 @@ Network [(DNN)](#_bookmark199), which I will discuss in more detail.
 
 ![](figures/Single-Layer_Neural_Network.svg)
 
-**Figure 2.2:**[]{#_bookmark56 .anchor} Basic [NN](#_bookmark225) with
-three inputs that are densely connected to three output neurons by
-weights.
+**Figure 2.2:** Basic [NN](#_bookmark225) with three inputs that are densely connected to three output neurons by weights.
 
 Neural Networks ([NNs](#_bookmark225)) can be approached from several
 theoretical bases. Mathematically, [NN](#_bookmark225)s are directed
 acyclical graphs with edges and nodes. In neural computation, these
-are generally referred []{#_bookmark57 .anchor}to as weights and nodes
+are generally referred to as weights and nodes
 or neurons. In [Figure 2.2](#_bookmark56), we present a simple densely
 connected Multi-Layer Perceptron ([MLP](#_bookmark221)) with three
 inputs and three outputs. This configuration is equivalent to a linear
@@ -408,7 +381,7 @@ adjusted to obtain a generalizable result. Each node sums the
 contributions of these weights and possibly a bias, which is trainable
 but does not take input data. This amounts to each node performing
 
-[]{#_bookmark58 .anchor}*a~j~* = *σ* (∑ *w~ij~x~i~* + *b*) *,* (2.5)
+![formula](https://render.githubusercontent.com/render/math?math=a_{j}%20=%20\sigma%20\left(\sum_i%20w_{ij}%20x_{i}%20+%20b\right),)
 
 with *a* signifying the activation at a node, *i, j* being the index
 of the source and target node respectively, *w* being the trainable
@@ -417,24 +390,18 @@ activation function. Activation functions are an active topic of
 research, but the generally perform a non-linear transformation of the
 activation at the node.
 
-![](figures/activations/act_linear.png){width="1.9315616797900264in"
-height="1.1856244531933509in"}![](figures/activations/act_sigmoid.png){width="1.9315616797900264in"
-height="0.7809372265966754in"}![](figures/activations/act_tanh.jpeg){width="1.9315616797900264in"
-height="1.1856244531933509in"}
+![](figures/activations/act_linear.png)
+![](figures/activations/act_sigmoid.png)
+![](figures/activations/act_tanh.jpeg)
+**(a)** Linear activation **(b)** Sigmoid activation **(c)** Tanh activation
 
-**(a)** Linear activation []{#_bookmark59 .anchor}**(b)** Sigmoid
-activation []{#_bookmark60 .anchor}**(c)** Tanh activation
 
-![](figures/activations/act_relu.png){width="1.9315616797900264in"
-height="1.0259372265966755in"}![](figures/activations/act_prelu.png){width="1.9315616797900264in"
-height="0.7809372265966754in"}![](figures/activations/act_elu.jpeg){width="1.9315616797900264in"
-height="1.1856244531933509in"}
+![](figures/activations/act_relu.png)
+![](figures/activations/act_prelu.png)
+![](figures/activations/act_elu.jpeg)
+**(d)** [ReLU](#_bookmark229) activation **(e)** [PReLU](#_bookmark227) activation (*α* = *.*5) **(f)** [ELU](#_bookmark202) activation (*α* = 1)
 
-[]{#_bookmark61 .anchor}**(d)** [ReLU](#_bookmark229) activation
-**(e)** [PReLU](#_bookmark227) activation (*α* = *.*5) []{#_bookmark62
-.anchor}**(f)** [ELU](#_bookmark202) activation (*α* = 1)
-
-**Figure 2.3:**[]{#_bookmark63 .anchor} Common Activation functions
+**Figure 2.3:** Common Activation functions
 (red) and derivatives (blue). The linear activation does not modify
 the data. The sigmoid and tanh functions are mainly used to limit
 output activations to a range of values. The [ReLU](#_bookmark229),
@@ -460,47 +427,34 @@ appropriate to the network architecture and data (LeCun et al.,
 [2012](#_bookmark408); Glorot et al., [2010](#_bookmark336); He et
 al., [2015)](#_bookmark360). These strategies collectively initialize
 weights in a pseudo-random way within limits. The data is then passed
-through
-
-[]{#_bookmark66 .anchor}the network, which []{#_bookmark64
-.anchor}calculates a result. This result is then []{#_bookmark65
-.anchor}compared to the ground truth, using a loss function (e.g. Mean
+through the network, which calculates a result. This result is then compared to the ground truth, using a loss function (e.g. Mean
 Absolute Error ([MAE)](#_bookmark219), Mean Squared Error
 ([MSE))](#_bookmark222). The resulting error ∆*t* is then used to
 correct the weights and biases in the network, calculating the
 correction per weight ∆*w~ij~* recursively (for many-layered
 networks).
 
-∆*w* = *−η [ ∂E]{.underline}* = *−ηδ a ,* (2.6)
-
-*ij j i*
-
-*ij*
+![formula](https://render.githubusercontent.com/render/math?math=\Delta%20w_{ij}=%20-\eta%20\dfrac{\partial%20E}{\partial%20w_{ij}}%20=%20-\eta%20\delta_{j}%20a_{i},)
 
 with *η* being the learning rate and *δ* being
 
-*δ* = ⎧⎨*σ^′^*(net*~j~*)∆*t* if *j* is output node,
-
-(2.7)
-
-*j* ⎩*σ^′^*(net ) ∑ *δ w* if *j* is hidden node.
+![](figures/backprop.png)
 
 Therefore, hidden nodes are reliant on the result *δ~j~* ~1~ of the
-node at index *j* 1 (Good-[]{#_bookmark68 .anchor} fellow et al.,
+node at index *j* 1 (Goodfellow et al.,
 [2016)](#_bookmark341). The training of the model can be done on a
 per-sample basis, which is Stochastic Gradient Descent
 [(SGD](#_bookmark234)) or in the case of noisy inputs, the mean error
 of several samples can be calculated to perform mini-batch gradient
 descent. Iteration over forward and backward passes adjusts
-[]{#_bookmark67 .anchor}the weights to predict the correct result.
+the weights to predict the correct result.
 
-Modern deep [NN](#_bookmark225)s are trained on []{#_bookmark69
-.anchor}Graphical Processing Units ([GPUs](#_bookmark210)) that are
+Modern deep [NN](#_bookmark225)s are trained on Graphical Processing Units ([GPUs](#_bookmark210)) that are
 optimized for matrix multiplications instead of Central Processing
-Units[]{#_bookmark70 .anchor} [(CPUs](#_bookmark195)) that are
-magnitudes slower. However, more []{#_bookmark72 .anchor}recently
+Units [(CPUs](#_bookmark195)) that are
+magnitudes slower. However, more recently
 task-specific hardware such as Field Programmable Gate
-[]{#_bookmark71 .anchor}Arrays ([FGPA](#_bookmark205)s) and Tensor
+Arrays ([FGPA](#_bookmark205)s) and Tensor
 Processing Units ([TPU](#_bookmark238)s), which work closely with the
 Tensorflow ([TF](#_bookmark237)) library are being developed and made
 available in cloud infrastructures.
@@ -513,7 +467,7 @@ the network learns a general relationship instead of memorizing the
 input data. This memorization is called overtraining, or overfitting.
 Overfitting can be avoided by regularizations like weight decay (Krogh
 et al., [1992](#_bookmark399)) and Nesterov momentum (Sutskever et
-al., [2013)](#_bookmark515), which modif[]{#_bookmark73 .anchor}y the
+al., [2013)](#_bookmark515), which modify the
 optimization loop. Alternatively, methods like Dropout (Hinton et al.,
 [2012](#_bookmark366)) and Batch Normalization ([BN](#_bookmark191))
 (Ioffe et al., [2015](#_bookmark377)) modify the network at training
@@ -554,7 +508,7 @@ point and determine the value at the output nodes.
 
 ![](figures/Multi-Layer_Neural_Network-Vector.svg)
 
-**Figure 2.4:**[]{#_bookmark74 .anchor} Feed forward
+**Figure 2.4:** Feed forward
 [NN](#_bookmark225) with three input neurons that are connected to a
 single hidden layer with three neurons. The hidden layer is densely
 connected to two output neurons.
@@ -582,9 +536,9 @@ propagation led to exploding or vanishing gradients before. New
 non-saturating activation functions lead to stabilization of training
 [DNN](#_bookmark199) (cf. [Figure 2.3)](#_bookmark63).
 
-![](figures/Deep-Multi-Layer_Neural_Network-Vector.svg){width="5.74701334208224in" height="1.96875in"}
+![](figures/Deep-Multi-Layer_Neural_Network-Vector.svg)
 
-[]{#_bookmark77 .anchor}**Figure 2.5:**[]{#_bookmark76 .anchor} Deep
+**Figure 2.5:** Deep
 Feed forward [NN](#_bookmark225) with two hidden layers with three
 neurons each, densely connected to three inputs and two output
 neurons. Deep networks are [NN](#_bookmark225)s that contain more than
@@ -631,7 +585,7 @@ model.
 
 ![](figures/Recurrent-Layer_Neural_Network-Vector-Blank.svg)
 
-**Figure 2.6:**[]{#_bookmark79 .anchor} Recurrent [NN](#_bookmark225)
+**Figure 2.6:** Recurrent [NN](#_bookmark225)
 that connects two input neurons to two recurrent neurons. These
 recurrent neurons feed back into themselves, which signifies the state
 of the neuron. [RNN](#_bookmark232) neurons are more complicated
@@ -673,16 +627,11 @@ chosen task.
 For a two-dimensional [CNN](#_bookmark193), the convolution of the *m
 n*-dimensional image *G* with a filter matrix *f* can be expressed as:
 
-*n m*
+![formula](https://render.githubusercontent.com/render/math?math=G^{*}(x,y)%20=%20\sum_{i=1}^{n}%20\sum_{j=1}^{m}%20f(i,j)\cdot%20G(x-i+c,\;%20y-j+c),)
 
-*G^∗^*(*x, y*) = *f* (*i, j*) *G*(*x i* + *c, y j* + *c*)*,* (2.8)
+![](cnn_schema.pdf)
 
-*i*=1 *j*=1
-
-[]{#_bookmark80 .anchor}1
-
-**Figure 2.7:**[]{#_bookmark81 .anchor} Schematic of a
-[CNN](#_bookmark193) filter (purple) in the image data (orange) in 2D.
+**Figure 2.7:** Schematic of a [CNN](#_bookmark193) filter (purple) in the image data (orange) in 2D.
 The filter passes over the image, extracting a filtered representation
 of the input image. The image is downsampled spatially by striding
 or pooling. Convolutional filters are efficient due to weight sharing.
@@ -692,10 +641,11 @@ Realistically, the calculation is done in the Fourier domain, due to
 the Convolution theorem reducing the computational complexity from
 *O*(*n*^2^) to *O*(*n* log *n*) with
 
-*F{f ∗ g}* = *k · F{f} · F{g},* (2.9)
+![formula](https://render.githubusercontent.com/render/math?math=\mathcal{F}\{f%20*%20g\}%20=%20k\cdot%20\mathcal{F}\{f\}\cdot%20\mathcal{F}\{g\},)
+![formula](https://render.githubusercontent.com/render/math?math=)
 
 with *f* denoting the Fourier transform of *f* and *k* being a
-normalization constant.[]{#_bookmark82 .anchor} This reduces the
+normalization constant. This reduces the
 convolution to a simple multiplication in the Fourier domain, sped up
 by Fast Fourier transform ([FFT)](#_bookmark206).
 
@@ -717,8 +667,7 @@ error rates on ImageNet of
 
 #### Generative Adversarial Networks
 
-Goodfellow et al. ([2014b](#_bookmark342)) intro[]{#_bookmark83
-.anchor}duced Generative Adversarial Network ([GAN](#_bookmark207)) as
+Goodfellow et al. ([2014b](#_bookmark342)) introduced Generative Adversarial Network ([GAN](#_bookmark207)) as
 a combination of two [CNN](#_bookmark193)s. These Deep Convolutional
 Generative Adversarial Networks ([DCGAN](#_bookmark196)s) exist in
 different modifications that draw from the original
@@ -730,11 +679,9 @@ and gradient penalization (Gulrajani et al., [2017](#_bookmark347))
 for regularization, or cycle-consistent loss for unsupervised training
 (Zhu et al., [2017)](#_bookmark552).
 
-![](figures/GAN.PNG){width="6.1424989063867015in"
-height="4.172187226596676in"}
+![](figures/GAN.PNG)
 
-[]{#_bookmark85 .anchor}**Figure 2.8:**[]{#_bookmark84 .anchor}
-Schematic of a Generative Adversarial Network. The generator samples a
+**Figure 2.8:** Schematic of a Generative Adversarial Network. The generator samples a
 latent space to generate fake data. The discriminator randomly obtains
 real or fake data and decides whether it was created by the generator
 or a real sample. The networks learn by gradient descent gaining
@@ -759,9 +706,7 @@ In [Figure 2.10](#_bookmark89) we present reported performances of
 neural architectures on the classification task of the ImageNet
 challenge. The colors in this figure express different classes of
 architectures. Early networks that broke ground as the new
-state-of-the-arts in image classification are
-
-[]{#_bookmark86 .anchor}the AlexNet, VGG-16, and VGG-19. These
+state-of-the-arts in image classification are the AlexNet, VGG-16, and VGG-19. These
 networks clearly do not leverage some tricks that modern CNNs
 implement, the VGG-16 with a relatively high amount of parameters is
 known to generalize well on transfer learning tasks however (Dramsch
@@ -769,7 +714,7 @@ et al., [2018c)](#_bookmark321).
 
 ![](figures/resnet.pdf)
 
-**Figure 2.9:**[]{#_bookmark87 .anchor} Resnet Block with two 1 1
+**Figure 2.9:** Resnet Block with two 1 1
 convolutional layers that frame a 3 3 convolutional layer with
 [ReLU](#_bookmark229) activation each. The result being added with the
 original data, also known as identity..
@@ -787,8 +732,7 @@ block output. DenseNets (Huang et al., [2017a](#_bookmark372)) and
 Inception-style networks (Szegedy et al., [2015](#_bookmark517)) are
 other approaches to build deeper [NN](#_bookmark225)s.
 
-The categories of AmoebaNet, NASNet, and []{#_bookmark88
-.anchor}EfficientNet are a more recent development in neural
+The categories of AmoebaNet, NASNet, and EfficientNet are a more recent development in neural
 architecture research, based on Neural Architecture Search
 ([NAS](#_bookmark223)). The AmoebaNet is based on Evolutionary
 Computing and hand-tuning the solution to search for an ideal neural
@@ -812,10 +756,9 @@ computer vision could either be strided convolutions or pooling layers
 after convolutional layers. During these operations, the number of
 filters increases, while the
 
-![](figures/imagenetsota.png){width="6.71875in" height="3.5625in"}
+![](figures/imagenetsota.png)
 
-[]{#_bookmark90 .anchor}**Figure 2.10:**[]{#_bookmark89 .anchor} Top-5
-Accuracies of Neural Architectures on ImageNet plotted against Million
+**Figure 2.10:** Top-5 Accuracies of Neural Architectures on ImageNet plotted against Million
 Parameters, color-coded to similar network type. Data and references
 shown in [Table A.1](#_bookmark177).
 
@@ -823,8 +766,7 @@ spatial extent is diminished significantly. This encoding operation is
 equivalent to a lossy compression, with the low-dimensional layer
 called "code" or "bottleneck". The bottleneck is then upsampled by
 either strided transpose Convolutions or upsampling layers that
-perform a specified interpolation. This is the []{#_bookmark91
-.anchor}Decoder of the Encoder-Decoder pair. These networks can be
+perform a specified interpolation. This is the Decoder of the Encoder-Decoder pair. These networks can be
 used for data compresssion in AutoEncoders ([AEs)](#_bookmark185),
 where the decoder restores the original data as good as possible
 (Hinton et al., [2006](#_bookmark365)). Alternatively, the Decoder
@@ -832,8 +774,8 @@ can learn a dense classification task like semantic segmentation or
 seismic interpretation.
 
 U-Nets present a special type of encoder-decoder networks, that learn
-semantic seg-[]{#_bookmark92 .anchor} mentation on from small datasets
-(Ronneberger et al., [2015)](#_bookmark483). They form a special kind
+semantic segmentation on from small datasets
+(Ronneberger et al., [2015](#_bookmark483)). They form a special kind
 of Fully Convolutional Network (F[CN](#_bookmark203)) shown in [Figure
 2.11](#_bookmark94). Originally developed on biomedical images, the
 network found wide acceptance in label sparse disciplines. The Unet
@@ -842,9 +784,8 @@ extent in the Encoder and Decoder networks. This alleviates the
 pressure of the network learning and reconstructing the output data
 from the bottleneck in isolation.
 
-![](figures/cnn_schema.pdf)[]{#_bookmark93 .anchor}
-
-**Figure 2.11:**[]{#_bookmark94 .anchor} Unet after Ronneberger et al.
+![](figures/cnn_schema.pdf)
+**Figure 2.11:** Unet after Ronneberger et al.
 [(2015](#_bookmark483)) using 2D convolutional layers (yellow) with
 [ReLU](#_bookmark229) activation (orange) and skip connection between
 equaldimensional layers. The Encoder uses pooling (red), while the
@@ -889,9 +830,7 @@ in 2000 and the difficulties in building these models and training
 them. They identify the following subsurface geoscience applications
 through history: First-break picking, electromagnetics,
 magnetotellurics, seismic inversion, shear-wave splitting, well log
-anal-
-
-[]{#_bookmark96 .anchor}ysis, trace editing, seismic deconvolution,
+analysis, trace editing, seismic deconvolution,
 and event classification. The authors evaluate the application of
 [NN](#_bookmark225)s as subpar to physics-based approaches. The paper
 concludes that neural networks are too expensive and complex to be of
@@ -900,8 +839,7 @@ exploration geoscienc.
 
 Mjolsness et al. [(2001](#_bookmark448)) review [ML](#_bookmark220) in
 a broader context outside of exploration geoscience. They illustrate
-recent successes of [ML](#_bookmark220) in analyzing []{#_bookmark98
-.anchor}sattelite data and computer roboti[]{#_bookmark97 .anchor}c
+recent successes of [ML](#_bookmark220) in analyzing sattelite data and computer robotic
 geology. The authors include graphical models, Random Markov Models
 ([RMMs)](#_bookmark233), Hidden Markov Models [(HMMs)](#_bookmark212),
 and [SVMs](#_bookmark236). They further highlight limitations to
@@ -956,16 +894,14 @@ al., [1997)](#_bookmark546). Feng et al. ([1998](#_bookmark328))
 applied [NN](#_bookmark225) to model geomechanical microfractures in
 triaxial compression tests. Interestingly, Legget et al.
 [(1996](#_bookmark410)) used a combination of Self-Organizing Map
-[(SOM](#_bookmark235))
-
-[]{#_bookmark100 .anchor}and back-propagation [NN](#_bookmark225)s
+[(SOM](#_bookmark235)) and back-propagation [NN](#_bookmark225)s
 that function similar to modern day Convolutional Neural Networks
-([CNN](#_bookmark193)s) to perform 3[]{#_bookmark99 .anchor}D horizon
+([CNN](#_bookmark193)s) to perform 3D horizon
 tracking (Leggett et al., [2003](#_bookmark411)). With the recent
 [DL](#_bookmark198) explosion, papers on Automatic Seismic
 Interpretation ([ASI](#_bookmark188)) have gotten very popular, given
 the similarity to 2D segmentation tasks (cf. [Table
-B.1)](#_bookmark180).
+B.1](#_bookmark180)).
 
 Modern [CNN](#_bookmark193)s have been applied to a wide variety of
 geoscience problems including seismic inversion (Araya-Polo et al.,
@@ -977,7 +913,7 @@ Adversarial Networks in geoscience in digital rock modelling (Mosser
 et al., [2017](#_bookmark449)), geostatistical modelling (Laloy et
 al., [2017](#_bookmark402)) and seismic inversion (Mosser et al.,
 [2018d](#_bookmark453); Mosser et al., [2018c)](#_bookmark452).
-F[]{#_bookmark102 .anchor}urther applications extend to geochemical
+Further applications extend to geochemical
 anomaly detection (Zuo et al., [2018](#_bookmark555)) using
 Variational AutoEncoders ([VAE](#_bookmark240)s) and hydrogeological
 modelling (Sahoo et al., [2017](#_bookmark496)). Common applications
@@ -991,9 +927,7 @@ learning in aftershock prediction" (Mignan et al.,
 [2019b)](#_bookmark447). Criticizing the original publication for
 over-engineering a problem that is well-defined on less input data. A
 common critique of [ML](#_bookmark220) and big data analytics by
-classical statistics and
-
-rigorous data science (Mignan et al., [2019a)](#_bookmark446).
+classical statistics and rigorous data science (Mignan et al., [2019a)](#_bookmark446).
 
 Support Vector Machines have early-on been used for seismic data
 analysis (Li et al., [2004](#_bookmark413)) and the popular approach
@@ -1037,9 +971,7 @@ Rouet‐Leduc et al., [2018)](#_bookmark490). Gradint Boosted Trees were
 the most performant models in the 2016 SEG [ML](#_bookmark220)
 challenge (Hall et al., [2017](#_bookmark353)) for well-log analysis,
 propelling a variety of publications in facies prediction (Bestagini
-et al., [2017](#_bookmark263); Blouin et al., [2017](#_bookmark271);
-
-[]{#_bookmark103 .anchor}Caté et al., [2018](#_bookmark282); Saporetti
+et al., [2017](#_bookmark263); Blouin et al., [2017](#_bookmark271); Caté et al., [2018](#_bookmark282); Saporetti
 et al., [2018](#_bookmark498)). Moreover, random forests were applied
 to detect reservoir property changes from 4D seismic data (Cao et al.,
 [2017)](#_bookmark278).
@@ -1067,7 +999,7 @@ al., [2002](#_bookmark467)) and in conjunction with
 [NN](#_bookmark225)s (Zheng et al., [2014)](#_bookmark551). Graph
 modelling has been applied to seismology in modelling the earthquake
 parameters (Kuehn et al., [2011)](#_bookmark400), basin
-modelling[]{#_bookmark104 .anchor} (Martinelli et al.,
+modelling (Martinelli et al.,
 [2013)](#_bookmark435), seismic interpretation (Ferreira et al.,
 [2018](#_bookmark329)) and flow modelling in Discrete Fracture
 Networks ([DFNs](#_bookmark197)) (Karra et al.,
@@ -1083,7 +1015,7 @@ the implication of cost of data acquisition.
 ### Challenges of machine learning in geoscience
 
 Statistical methods and machine learning are based on several
-assumptions and demand some []{#_bookmark105 .anchor}pre-requisites
+assumptions and demand some pre-requisites
 that can cause problems in geoscience. These include the assumption
 that data is independent and identically distributed
 ([iid](#_bookmark214)) and the pre-requisite of a ground truth for
@@ -1108,9 +1040,7 @@ alleviate sampling bias. Additionally, stratified sampling can address
 the problem that geoscientific data often contains imbalanced data.
 Imbalanced data implies that the number of samples per class in the
 label data set is not uniformly distributed. These imbalances can stem
-from the fact that different depositional regimes cause different
-
-[]{#_bookmark106 .anchor}thicknesses in the stratigraphic columns, for
+from the fact that different depositional regimes cause different thicknesses in the stratigraphic columns, for
 example commonly leaving thicker sand columns and fine shale layers.
 Alternatively, imbalances can stem from the data collection process
 itself, be it that seismic data does not adequately image variations
@@ -1174,9 +1104,7 @@ data set to unlabeled sets. Unsupervised or self-supvervised training
 can be applicable, where no reliable ground truth is available, but a
 desired operation on the data is known or an internal structure of the
 data can be exploited (Dramsch et al., [2019b)](#_bookmark316).
-Addition-
-
-[]{#_bookmark107 .anchor}ally, multi-task learning has been shown to
+Additionally, multi-task learning has been shown to
 be able to stabilize network performance in Natural Language
 Processing (Liu et al., [2019](#_bookmark416)) and Reinforcement
 Learning (Yu et al., [2019](#_bookmark544)).
@@ -1185,7 +1113,7 @@ One caveat of increasingly performant but complex machine learning
 models is stakeholder buy-in or trust. These issues can be adressed,
 by benchmarking complex models against simpler models and
 physics-based solutions. Additionally, model explainability has become
-an []{#_bookmark108 .anchor}important topic of research (Lundberg et
+an important topic of research (Lundberg et
 al., [2017)](#_bookmark421). Ribeiro et al. ([2016](#_bookmark477))
 introduce the local interpretable model-agnostic explanation
 [(LiME](#_bookmark217)) method to gain insight into black-box models

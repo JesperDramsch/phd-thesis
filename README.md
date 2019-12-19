@@ -89,3 +89,5 @@ In addition to this fundamental work, this thesis contains two applications of m
 > [Dramsch, J. S.](https://orcid.org/0000-0001-8273-905X), Trabelski, C., Bilaniuk, O., & Serdyuk, D.. (2019, September 7). Complex-Valued Neural Networks in Keras with Tensorflow (Version 3). figshare. doi:10.6084/m9.figshare.9783773.v3
 
 - Github: https://github.com/JesperDramsch/keras-complex
+
+<link rel="shortcut icon" type="image/x-icon" href="graphics/grad.ico">

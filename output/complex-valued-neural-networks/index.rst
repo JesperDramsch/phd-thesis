@@ -237,7 +237,7 @@ of the components instead of the variance of the data (Trabelsi et al.
 Autoencoders
 ^^^^^^^^^^^^
 
-.. figure:: ../images/encdec.pdf
+.. figure:: ../images/encdec.png
   :alt: Typical autoencoder architecture. The data is compressed to a
    low dimensional bottleneck, and then reconstructed. In the encoder
    convolutional layers (yellow) are followed by a down-sampling

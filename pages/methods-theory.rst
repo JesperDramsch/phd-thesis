@@ -1201,7 +1201,7 @@ and :math:`m` to compress the spatial information. This serves as a
 forcing function to learn increasingly abstract representations in
 subsequent convolutional layers.
 
-.. figure:: ../images/conv.pdf
+.. figure:: ../images/conv.png
   :alt: Three layer convolutional network. The input image (yellow) is
    convolved with several filters or kernel matrices (purple). Commonly,
    the convolution is used to downsample an image in the spatial
@@ -1436,7 +1436,7 @@ application are explored.
 Convolutional Neural Network Architectures
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. figure:: ../images/vgg16.pdf
+.. figure:: ../images/vgg16.png
   :alt: Schematic of a VGG16 network for ImageNet. The input data is
    convolved and down-sampled repeatedly. The final image classification
    is performed by flattening the image and feeding it to a classic
@@ -1483,7 +1483,7 @@ the following problem:
 
    K. He et al. (2016)
 
-.. figure:: ../images/resnet.pdf
+.. figure:: ../images/resnet.png
   :alt: Schematic of a ResNet block. The block contains a
    :math:`1\times1`, :math:`3\times3`, and :math:`1\times1` convolution
    with ReLU activation. The output is concatenated with the input and
@@ -1548,7 +1548,7 @@ enabling models that are ten times as deep with less than half the
 parameters, and significantly better accuracy on image benchmark
 problems.
 
-.. figure:: ../images/unet.pdf
+.. figure:: ../images/unet.png
   :alt: Schematic of Unet architecture. Convolutional layers are
    followed by a downsampling operation in the encoder. The central
    bottleneck contains a compressed representation of the input data.

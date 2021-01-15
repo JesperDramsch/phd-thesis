@@ -459,7 +459,7 @@ networks (CNN) in deep learning. We discuss different approaches that
 include supervised and unsupervised / self-supervised methods. These
 methods are all based on convolutional neural networks (CNNs).
 
-.. figure:: ../images/real.pdf
+.. figure:: ../images/real.png
   :alt: Schematic convolutional neural network. The input layer
    (yellow) is convolved with a :math:`3\times3` filter that results in
    a spatially subsampled subsequent layer that contains the filter
@@ -569,7 +569,7 @@ time-shifts.
 Method
 ~~~~~~
 
-.. image:: figures/Voxelmorph_Full.pdf
+.. image:: figures/Voxelmorph_Full.png
    :alt: image
 
 The Voxelmorph (Balakrishnan et al. 2019) implements a U-net

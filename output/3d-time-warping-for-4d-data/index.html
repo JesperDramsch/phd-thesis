@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html prefix="
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Machine Learning Geoscience · 3D Time Warping for 4D Data </title>
+<link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700%7CAbril+Fatface">
+<meta content="#5670d4" name="theme-color">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+<link rel="canonical" href="https://dramsch.net/phd/3d-time-warping-for-4d-data/">
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{equation}", "\\end{equation}"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script><!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><meta name="author" content="Jesper S Dramsch">
+</head>
+<body class="">
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+    <div class="hsidebar">
+        <div class="container sidebar-sticky">
+            <div class="sidebar-about">
+              <h1>
+                <a href="https://dramsch.net/phd/">
+                      <h1 id="brand"><a href="https://dramsch.net/phd/" title="Machine Learning Geoscience" rel="home">
+
+        <span id="blog-title">Machine Learning Geoscience</span>
+    </a></h1>
+
+                </a>
+              </h1>
+                <p class="lead">Applications of Deep Neural Networks in 4D Seismic Data Analysis</p>
+
+            </div>
+                <nav id="menu" role="navigation" class="sidebar-nav"><a class="sidebar-nav-item" href="../abstract/">Abstract</a>
+        <a class="sidebar-nav-item" href="../dansk-resume/">Dansk Resumé</a>
+        <a class="sidebar-nav-item" href="../preface/">Preface</a>
+        <a class="sidebar-nav-item" href="../introduction/">1: Introduction</a>
+        <a class="sidebar-nav-item" href="../methods-theory/">2: Methods &amp; Theory</a>
+        <a class="sidebar-nav-item" href="../unsupervised-geological-image-segmentation/">3: Unsupervised Geological Image Segmentation</a>
+        <a class="sidebar-nav-item" href="../transfer-learning-in-automatic-seismic-interpretation/">4: Transfer learning in Automatic Seismic Interpretation</a>
+        <a class="sidebar-nav-item" href="../complex-valued-neural-networks/">5: Complex-valued neural networks</a>
+        <a class="sidebar-nav-item" href="../machine-learning-in-4d-seismic-inversion/">6: Machine Learning in 4D Seismic Inversion</a>
+        <a class="sidebar-nav-item" href=".">7: 3D Time Warping for 4D Data</a>
+        <a class="sidebar-nav-item" href="../conclusion/">8: Conclusion</a>
+        <a class="sidebar-nav-item" href="../bibliography/">Bibliography</a>
+        <a class="sidebar-nav-item" href="../acronyms/">Acronyms</a>
+        <a class="sidebar-nav-item" href="../code/">Code</a>
+    
+    
+    </nav><footer id="footer"><span class="copyright">
+              Contents © 2021         <a href="mailto:jesper@dramsch.net">Jesper S Dramsch</a>
+            </span>
+            
+            
+        </footer>
+</div>
+    </div>
+
+    <div class="content container" id="content">
+<article class="post-text storypage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="post-title p-name"><a href="." class="u-url">3D Time Warping for 4D Data</a></h1>
+
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p><a class="reference external" href="../2019.5.pdf"><img alt="image21" src="https://img.shields.io/badge/PDF-Download-important"></a> <a class="reference external" href="https://github.com/JesperDramsch/voxelmorph-seismic"><img alt="image22" src="https://img.shields.io/github/repo-size/JesperDramsch/voxelmorph-seismic"></a> <img alt="image23" src="https://img.shields.io/badge/license-GPL--3.0-green"></p>
+<blockquote>
+<p><a class="reference external" href="https://orcid.org/0000-0001-8273-905X">Dramsch, J. S.</a>,
+<a class="reference external" href="https://orcid.org/0000-0002-3668-3128">Christensen, A. N.</a>,
+<a class="reference external" href="https://orcid.org/0000-0001-8593-3456">MacBeth, C.</a>, &amp; <a class="reference external" href="https://orcid.org/0000-0003-2715-1653">Lüthje,
+M.</a>. (2019, October 31).
+Deep Unsupervised 4D Seismic 3D Time-Shift Estimation with
+Convolutional Neural Networks. <a class="reference external" href="https://doi.org/10.31223/osf.io/82bnj">https://doi.org/10.31223/osf.io/82bnj</a></p>
+</blockquote>
+<ul class="simple">
+<li><p>Github: <a class="reference external" href="https://github.com/JesperDramsch/voxelmorph-seismic">https://github.com/JesperDramsch/voxelmorph-seismic</a></p></li>
+</ul>
+<hr class="docutils">
+<p>This chapter consists of the submitted journal paper (Jesper Sören
+Dramsch, Christensen, et al. 2019). This paper presents a novel 3D
+warping technique for the estimation of 4D seismic time-shifts. The
+algorithm is unsupervised and provides 3D time shifts with uncertainty
+measures. The unsupervised nature of this algorithm avoids biasing the
+ml model with ground truth data from existing time-shift extraction
+algorithms.</p>
+<p>4D seismic time shift extraction is often performed in 1D due to time
+constraints and often sub-par performance of 3D algorithms (P. Hatchell
+and Bourne 2005). In geologically complex systems and pre-stack
+time-shifts, these simple approaches often break down and obtaining 3D
+time-shifts is beneficial. This chapter explores and summarizes
+conventional 3D warping methods and machine learning approaches. The
+paper Jesper Sören Dramsch, Christensen, et al. (2019) in this chapter
+adapts the medical Voxelmorph algorithm to match 4D seismic data volumes
+in 3D.</p>
+<p>Common 1D approaches include local 1D cross-correlation, dynamic time
+warping (Dave Hale 2013a), optical flow methods and methods based on
+Taylor expansion (Zabihi Naeini et al. 2009). 3D methods include Dynamic
+Image Warping (DIW) (D. Hale 2013), which expands dynamic time warping
+to two and three dimensions respectively. DIW is, however, at its core a
+depth-wise method that then gets smoothed across trace-wise matches. 3D
+local cross-correlation defines a multi-dimensional cross-correlation in
+a fixed Gaussian window to make the problem computationally feasible.
+The method requires processing of the seismic images to perform
+reasonably, usually smoothing and spectral whitening. J. Rickett,
+Duranti, Hudson, et al. (2007) introduce a non-linear inversion-based
+time-shift extraction in 3D. Cherrett, Escobar, and Hansen (2011)
+further develop a geostatistical inversion combining data constraints
+with geostatistical information in a Bayesian inversion scheme.</p>
+<p>Zitova and Flusser (2003) review the rich history of medical
+registration methods that partially overlap with 4D seismic methods.
+These methods include affine transformations, piece-wise linear
+transformations (Goshtasby 1988), radial basis function-based methods
+(Zitova and Flusser 2003), and elastic deformations (Bajcsy and Kovačič
+1989). The method most relevant to this paper is lddmm (Beg et al.
+2005), which has not found application in 4D seismic, due to being
+computationally expensive. The method finds a combination of
+diffeomorphisms, which will be introduced in
+<a class="reference external" href="#sec:diffeomorphisms">16.1</a>, through the deformation field of two
+images. lddmm then finds the shortest path of these diffeomorphisms
+iteratively.</p>
+<div class="section" id="diffeomorphisms">
+<span id="sec-diffeomorphisms"></span><h2>Diffeomorphisms</h2>
+<p>In simple terms a diffeomorphism is a smooth transformation of an image,
+i.e. no discontinuities or holes are introduced. In the following we
+will constrain ourselves to <span class="math">\(\mathbb{R}^3\)</span> for brevity’s sake. We
+define two images <span class="math">\(B, M\)</span> and assume <span class="math">\(B\)</span> is a random
+deformation of <span class="math">\(M\)</span>, then
+<span class="math">\(B \in \mathcal {B} := \{ B=M \circ \varphi, \varphi \in {Diff}_V \}\)</span>,
+with <span class="math">\(\varphi\)</span> being a diffeomorphic flow from <span class="math">\({Diff}_V\)</span>.
+Diffeomorphisms in <span class="math">\(\mathbb{R}^3\)</span> are a group of bijective, smooth
+transformations of local areas in dense images generated as smooth flows
+<span class="math">\(\phi_t, t \in [0,1]\)</span>, with
+<span class="math">\(\varphi := \phi_1, \phi_0 := \text{id}\)</span> (Beg et al. 2005). They
+satisfy the Lagrangian and Eulerian specification of the flow field for
+diffeomorphisms associated with the ode</p>
+<div class="math">
+\begin{equation*}
+\frac{d\phi_t}{dt} = v_t \circ \phi_t, \phi_0 = \text{id}, t \in [0, 1],
+\end{equation*}
+</div>
+<p>with <span class="math">\(\phi\)</span> being the smooth flow, where
+<span class="math">\(\dot{\phi}_t \in \mathbb{R}^3\)</span> are the Lagrangian vector fields
+and <span class="math">\(v\)</span> the Euclidean velocities of the system. <span class="math">\(\phi_0\)</span> is
+determined to be the identity transformation. Beg et al. (2005)
+approached this problem as a variational problem, whereas M. I. Miller,
+Trouvé, and Younes (2015) reformulated as a Hamiltonian optimal control
+problem on the variational objective. The variational objective for
+densely matched images <span class="math">\(B\)</span> and <span class="math">\(M\)</span> as is the case in seismic
+data following can then be defined as minimizing the Cost <span class="math">\(C\)</span> of a
+given vector field <span class="math">\(v\)</span></p>
+<div class="math">
+\begin{equation*}
+\label{eq:diffeomorphism}
+    \min\limits_v C(v) \colon= \frac{1}{2} \int_0^1 (A v_t | v_t) dt + \frac{1}{2\sigma^2} \Vert B\circ \phi_1^{-1}-M\Vert^2
+\end{equation*}
+</div>
+<p>for images B, M:
+<span class="math">\(\mathbb{R}^3 \rightarrow  \mathbb{R}^+, \phi\cdot B \colon=B\circ\phi^{-1}\)</span>.
+Here <span class="math">\(A\)</span> is the one-to-one matrix linear differential operator
+such that <span class="math">\(A: V \rightarrow V^*\)</span>, which enforces the smoothness
+constraint by modelling the norm <span class="math">\((V, \Vert\cdot\Vert_V)\)</span>.
+<span class="math">\(\sigma\)</span> represents vector elements in the dual space <span class="math">\(V^*\)</span>,
+which in this case are generalized functions which represent the
+conjugate momentum representations of the system. They act on smooth
+vector functions <span class="math">\(f \in V\)</span> further following M. I. Miller, Trouvé,
+and Younes (2015) to provide energy with
+<span class="math">\((\sigma | f) \colon= \int_X\vec{f}(x)\cdot\vec{\sigma}(dx)\)</span>. It
+follows that <span class="math">\(A v\)</span> can be interpreted as the Eulerian momentum.
+Allowing <span class="math">\(A v\)</span> to be singular implies that coordinates can be
+displaced homogeneously by a singular momentum. Then
+<a class="reference external" href="#eq:diffeomorphism">[eq:diffeomorphism]</a> can be interpreted as
+minimizing two objectives, namely the action integral of kinetic energy
+and the endpoint matching. This is equivalent to finding the
+aforementioned shortest path of diffeomorphisms, while matching the
+resulting image as closely as possible.</p>
+</div>
+<div class="section" id="image-matching-algorithms">
+<h2>Image Matching Algorithms</h2>
+<p>Machine learning-based methods within computer vision are mostly applied
+in image- and video-processing applications. Supervised methods largely
+work off the assumptions in Optical Flow (Dosovitskiy et al. 2015;
+Ranjan and Black 2017). FlowNet (Dosovitskiy et al. 2015) implements an
+Encoder-Decoder CNN architecture. It has reached wide reception in the
+field, and several modifications were implemented; namely, FlowNet 2.0
+(Ilg et al. 2017) improving accuracy, and LiteFlowNet (Hui, Tang, and
+Change Loy 2018) reducing the computational cost. SpyNet (Ranjan and
+Black 2017) and PWC-Net (D. Sun et al. 2018) implement stacked
+coarse-to-fine networks for residual flow correction. PatchBatch (Gadot
+and Wolf 2016) and deep discrete flow (Güney and Geiger 2016) implement
+Siamese Networks (Sumit Chopra et al. 2005) to estimate the optical
+flow. Alternatively, DeepFlow (Weinzaepfel et al. 2013) attempts to
+extract large displacements optical flow using pyramids of sift
+features. These methods are prone to the same problems classic optical
+flow algorithms exhibit. Moreover, supervised methods necessitate ground
+truth time shifts. This leads to two problems; Either the model needs to
+be trained on synthetic data, where shifts are known and transfer model
+to field data, or we need to train the network on time shifts extracted
+by a different method. The implication of training a deep neural network
+on data extracted by a different method trains the network to include
+all assumptions the extraction methods make. Training on time shifts
+extracted by a 1D method would, therefore bias the network to return
+pseudo-trace-wise predictions.</p>
+<p>Unsupervised methods include different approaches to the problem of
+image- and volume-matching. Meister, Hur, and Roth (2018) modifies the
+FlowNet architecture to an unsupervised optical flow estimator with
+bidirectional census loss called UnFlow. UnFlow makes several changes to
+the original optical flow formulation, which relax the illumination
+constraint (Stein 2004). Bansal et al. (2018) implements a
+cycle-consistent generative adversarial network (Cycle-GAN) to
+interpolate video frames. This method is potentially promising but falls
+short due to training data constraints in seismic data. Video data
+contains at least 24 frames per second of video, which provides training
+data. One second of video, therefore, already contains more time steps
+than the best-covered field in 4D seismic data. Voxelmorph (Balakrishnan
+et al. 2019) implements a U-net (Ronneberger, Fischer, and Brox 2015b)
+within an architecture that extracts a static velocity field, which is
+integrated to obtain a diffeomorphic warp field and performs a 3D
+interpolation to match the fields and trains unsupervised. This method
+significantly reduces the underlying assumptions necessary to make the
+network perform well on seismic data. The Voxelmorph algorithm is based
+on the diffeomorphic assumption, which constrains the solution space of
+the mapping. The main benefit of applying the diffeomorphic mapping to
+geoscience data comes in the fact that all diffeomorphisms are
+homeomorphic. The homeomorphic assumption transfers well to the
+geological reality that the mathematical topology stays constant,
+resulting in reflectors neither crossing nor generating loops.</p>
+<p>The paper in (Jesper Sören Dramsch, Christensen, et al. 2019) applies
+the Voxelmorph architecture in Dalca, Balakrishnan, Guttag, et al.
+(2018) to 4D seismic data. I make the network work on seismic data and
+train it on the Dan 1988-2005 seismic volumes in 3D. Seismic data is
+significantly larger than most brain scan data, which necessitates
+patch-based training of the network. I compare the obtained warp field
+to the best match, I could obtain using classic methods on the available
+data. The DIW match is sufficiently similar to the Voxelmorph warping
+field to warrant further investigation. The Voxelmorph architecture
+implements a subsampled flow field, which I replaced by a full U-Net
+that provides full-scale 3D flow fields with uncertainties. The paper
+includes an investigation of the differences between the subsampled and
+full-scale flow fields. Moreover, I validate the unsupervised model on
+the same field with different seismic data, collected at different
+times, with differing seismic acquisition equipment, including different
+azimuths. Moreover, I test the model on a seismic data set from a
+different field, with different geology, acquisition, and year. Finally,
+the ml approach is compared to a time-shift field obtained with diw.</p>
+</div>
+<div class="section" id="dynamic-time-and-image-warping">
+<h2>Dynamic Time and Image Warping</h2>
+<p>The paper in Jesper Sören Dramsch, Christensen, et al. (2019) uses dtw
+but does not expand on the method; hence an introduction to the
+algorithm is presented here. dtw is a signal processing tool for time
+series with the capability to match arbitrary time-series. Within
+geophysics it is applicable to 4D time shifts, seismic-well ties,
+well-to-well ties, and seismic pre- and post-stack migration (Hale2013?;
+Luo*2014?). dtw itself is a dynamic programming problem described in
+<a class="reference external" href="#dtw">[dtw]</a>.</p>
+<p>The dtw algorithm, represented in <a class="reference external" href="#dtw">[dtw]</a>, relies on
+calculating a distance matrix sample-wise between two traces <span class="math">\(a\)</span>
+and <span class="math">\(b\)</span>. Commonly, the <span class="math">\(L_1\)</span> norm is used to calculate the
+distance with <span class="math">\(|b-a|\)</span>. Alternatively, the euclidean distance or
+<span class="math">\(L_2\)</span> norm can be used, which modifies the calculation to
+<span class="math">\((b-a)^2\)</span>. The difference between <span class="math">\(L_1\)</span> and <span class="math">\(L_2\)</span> is
+significant in the sense that the <span class="math">\(L_1\)</span> norm is not differentiable
+or convex; however, it scales linearly for outliers. The <span class="math">\(L_2\)</span>
+norm converges fast close to zero; however, the error "explodes" for
+outliers. The Huber loss from convex optimization combines the
+advantages of the <span class="math">\(L_1\)</span> norm and <span class="math">\(L_2\)</span> norm</p>
+<div class="math">
+\begin{equation*}
+L_\delta (a, b) =
+\begin{cases}
+ \frac{1}{2} (b-a)^2 &amp; \text{for } |b-a| \le \delta, \\
+ \delta (|b-a| - \frac{1}{2} \delta), &amp; \text{otherwise.}
+\end{cases}
+\label{eq:huber}
+\end{equation*}
+</div>
+<p>which is convex for small values, scales linearly for outliers and is
+differentiable for all values of <span class="math">\(\mathbb{R}\)</span>, with <span class="math">\(\delta\)</span>
+being a scaling factor.</p>
+<p>Given: Trace <span class="math">\(a\)</span> and Trace <span class="math">\(b\)</span> of lengths <span class="math">\(n\)</span>.
+<span class="math">\(D \gets dist(a,b)\)</span> <span class="math">\(C[0,0] \gets 0\)</span>
+<span class="math">\(C[0,i] \gets D[0,i] + C[0,i-1]\)</span>
+<span class="math">\(C[i,0] \gets D[i,0] + C[i-1,0]\)</span>
+<span class="math">\(C_{min} \gets \textbf{min} \{C[i,j-1], C[i-1,j-1], C[i-1,j]\}\)</span>
+<span class="math">\(C[i,j] \gets D[i,j] + C_{min}\)</span> <span class="math">\(P \gets C[n,n]\)</span>
+<span class="math">\(i, j \gets \textbf{index} \{ P[last] \}\)</span>
+<span class="math">\(C_{min} \gets \textbf{min} \{C[i,j-1], C[i-1,j-1], C[i-1,j]\}\)</span>
+<span class="math">\(P.\textbf{append} \gets \textbf{index} \{ C_{min} \}\)</span></p>
+<p>Additionally, the search space on the cumulative distance matrix can be
+constrained to both increase performance and avoid non-optimal
+solutions. The different global constraint strategies are presented in
+<a class="reference external" href="#fig:constraints">[fig:constraints]</a>. The Itakura parallelogram
+(Itakura1975?) in <a class="reference external" href="#fig:itakura">[fig:itakura]</a> describes a
+parallelogram that has the largest width across the diagonal of the
+matrix, providing the highest degree of flexibility for the dtw
+algorithm in the centre parts of the seismic traces. The Sakoe-Chiba
+disc (Sakoe1978?) follows a different strategy, which provides a
+constant maximum warp path. This strategy in
+<a class="reference external" href="#fig:sakoe">[fig:sakoe]</a> introduces a global maximum time shift.
+Other constraints on the warp path in dtw are local rate changes that
+limit the local changes, also called step patterns (Sakoe1978?; Giorgino
+and others 2009).</p>
+<p>diw is the extension of dtw to 2D and 3D datasets. (Hale2013?)
+introduced DIW for seismic data by applying the DTW algorithm in
+z-direction along the time-series and smoothing adjacent time-shifts to
+obtain consistent results. This process can be done iteratively with
+progressively smaller smoothing windows to obtain x-y consistent DIW
+results. It is important to note that DIW does not increase the
+computational cost of the DTW algorithm itself. Contrary to the
+intuition, the distance matrixes and cumulative cost presented in the
+are calculated in the same way resulting in a 2D cost matrix for each
+pair of 1D time series. However, the amount of comparisons of traces
+increases in 2D and 3D, scaling up the computational cost.</p>
+</div>
+<div class="section" id="journal-paper-deep-unsupervised-4d-seismic-3d-time-shift-estimation-with-convolutional-neural-networks">
+<h2>Journal Paper: Deep Unsupervised 4D Seismic 3D Time-Shift Estimation with Convolutional Neural Networks</h2>
+<div class="section" id="introduction">
+<span id="introduction-5"></span><h3>Introduction</h3>
+<p>Seismic time-lapse data consists of two 3D reflection amplitude cubes
+that represent the subsurface they were collected from. These cubes are
+acquired years apart with expected changes in the subsurface due to
+e.g. hydrocarbon production. The differences in the subsurface cause
+changes in both amplitudes and velocities, which introduces misalignment
+of seismic reflectors. Measuring the misalignment and aligning these
+surfaces to obtain a reliable difference cube is one of the main
+disciplines in 4D seismic processing.</p>
+<p>These time shifts are most commonly obtained by windowed
+cross-correlation and other statistical or signal processing approaches
+(MacBeth, Mangriotis, and Amini 2019). Considering the recent advances
+of machine learning in imaging and domain transfer, we explore
+possibilities of alignment with convolutional neural networks. Machine
+learning approaches, however, most commonly require labeled data to find
+a mapping <span class="math">\(f(x) = y\)</span>, with <span class="math">\(x\)</span> being the input data,
+<span class="math">\(f\)</span> being the blackbox algorithm like a neural network, and
+<span class="math">\(y\)</span> being the labels or target.</p>
+<p>A common problem in machine learning for subsurface science is
+determining the ground truth. Obtaining information from the subsurface
+is often prohibited by cost, and e.g. core samples are highly localised
+data that is often altered by the extraction method as well as the sheer
+act of unearthing the sample. Additionally, synthetic data may introduce
+the inverse crime (Wirgin 2004) of using the same theory to generate and
+invert data. Luckily, the physics of medical imaging and inversion is
+very similar to geophysics, where methods can be validated and
+fine-tuned. The main method discussed in this paper is adapted from the
+medical imaging literature.</p>
+<p>The lack of ground truths leads to another problem that deep learning
+address but do not solve. For classic neural networks, we need to know a
+target label dataset, i.e. knowing a prior warp velocity. In 4D seismic
+this would mean employing an established method to obtain time shifts.
+This would effectively result in abstracting that method in a neural
+network, or modelling the warp, which would lead to committing the
+inverse crime. Logically, this lead us to explore unsupervised methods.</p>
+<p>We discuss several options for architectures for mapping the monitor
+seismic cube to the base seismic cube directly within the network. This
+is possible in unsupervised configurations but depending on the
+architecture of the network this problem can be ill-constrained and
+generate non-physical mappings. One warranted criticism of deep learning
+and neural networks is the lack of explainability and limited
+interpretability. However, we employ a deep neural network to obtain
+warp velocity vectors, a 3D equivalent of time shifts, for dense
+deterministic warping instead of directly obtaining the warped result
+from a neural network. This enables us to interpret the warping vectors
+and constrain the warp path in addition to the warp result.</p>
+<p>Moreover, we present the first 4D seismic 3D time shift estimator with
+uncertainty measures. We achieve this by implementing a variational
+layer that samples from a Gaussian with the reparametrization trick
+(Durk P. Kingma, Salimans, and Welling 2015). Therefore, we can
+counteract some of the influence of noise on the performance of the
+network.</p>
+</div>
+<div class="section" id="theory">
+<h3>Theory</h3>
+<p>Extracting time shifts from 4D seismic data is most commonly done
+trace-wise (1D), which limits the problem to depth. This provides
+sufficient results for simple problems. However, geologically complex
+systems and pre-stack time shifts benefit from obtaining 3D time-shifts.
+We discuss classical 3D time-shift extraction methods, we then go on to
+discuss relevant deep learning methods. These methods extract
+time-shifts with different constraints which we explore. For brevity we
+present the results of the best method to date, developed for the
+medical domain: VoxelMorph (Balakrishnan et al. 2019).</p>
+<p>The goal of both conventional and machine learning methods is to obtain
+a warp velocity field <span class="math">\(\textbf{u}(x,y,z)\)</span> that ideally aligns two
+3D cubes <span class="math">\(B\)</span> and <span class="math">\(M\)</span> within given constraints. That means a
+sample <span class="math">\(m[x,y,z]\)</span> will be aligned by adjusting
+<span class="math">\(m[x+u_x,y+u_y,z+u_z]\)</span>. In image processing this is considered
+"dense alignment" or "dense warping", hence we need a dense vector field
+to align each sample in the base and the monitor cube. Generally,
+<span class="math">\(\textbf{u}(x,y,z) \in \mathbb{R}^3\)</span>, which implies interpolation
+to obtain the warped result.</p>
+<div class="section" id="conventional-methods">
+<h4>Conventional Methods</h4>
+<p>Most conventional methods in 4D seismic warping focus on 1D methods (P.
+Hatchell and Bourne 2005), which include local 1D cross-correlation,
+dynamic time warping (Dave Hale 2013a), optical flow methods and methods
+based on Taylor expansion (Zabihi Naeini et al. 2009). We do not cover
+these methods in detail, but focus on the limited applications of 3D
+methods in 4D seismic warping.</p>
+<div class="section" id="local-3d-cross-correlation">
+<h5>Local 3D Cross Correlation</h5>
+<p>Hall et al (S. A. Hall et al. 2005) introduced local 3D
+cross-correlation as a method for surface-based image alignment. The
+horizon-based nodal cross-correlation results were then linearly
+interpolated to full cubes. Hale et al (Dave Hale 2006) extended this
+method to full seismic cubes by calculating the multi-dimensional
+cross-correlation windowed by a Gaussian with a specified radius. The
+correlation results are normalized to avoid spurious correlations by
+amplitude fluctuations and high-amplitude events. Subsequently the
+cross-correlation result is searched for peaks using the following
+triple sum:</p>
+<div class="math">
+\begin{equation*}
+c[u_x,u_y,u_z] = \sum^\infty_{x,y,z = -\infty}  b[x, y, z] \cdot m[x + u_x, y + u_y, z + u_z],
+\end{equation*}
+</div>
+<p>with <span class="math">\(c\)</span> being the cross-correlation lag. The computational
+complexity of this method is <span class="math">\(\mathcal{O}(N_s \times N_l)\)</span> with
+<span class="math">\(N_s\)</span> being the total number of samples and <span class="math">\(N_l\)</span> being the
+total number of lags.</p>
+<p>Stabilization of the results of 3D cross-correlation is obtained by
+applying spectral whitening of the signals and smoothing the images with
+a Gaussian filter without increasing the computational complexity
+despite the windowing function (Dave Hale 2006).</p>
+</div>
+<div class="section" id="inversion-based-methods">
+<h5>Inversion-based methods</h5>
+<p>Rickett et al (J. Rickett, Duranti, Hudson, et al. 2007) describe a
+non-linear inversion approach, with the objective function being</p>
+<div class="math">
+\begin{equation*}
+\mathbb{E} = | \textbf{d} - f(\textbf{m})|^2 + | \nabla_x(\textbf{m)}|^2 + | \nabla_y(\textbf{m)}|^2 + | \nabla_z^2(\textbf{m)}|^2
+\end{equation*}
+</div>
+<p>with <strong>m</strong> being the model vector, <strong>d</strong> being the data vector. The
+non-linear inversion is constrained by applying the first-derivative to
+the spatial dimensions z, y and Laplacian in z to obtain a smooth
+solution. Cherrett et al(Cherrett, Escobar, and Hansen 2011) implement a
+geostatistical joint inversion that uses the geostatistical information
+combined with data constraints as a prior in a Bayesian inversion
+scheme.</p>
+<div class="math">
+\begin{equation*}
+P(x | geostats, data) \propto \exp\left( - ( \mathbf{x} - \boldsymbol{\mu})^\text{T}  \mathbf{C}^{-1} (\mathbf{x} - \boldsymbol{\mu}) / 2  \right)
+\end{equation*}
+</div>
+<p>with <span class="math">\(\mathbf{C}\)</span> being the posterior covariance matrix,
+<span class="math">\(\mathbf{x}\)</span> the sample mean vector and <span class="math">\(\boldsymbol{\mu}\)</span>
+being the posterior mean vector.</p>
+</div>
+<div class="section" id="medical-imaging">
+<h5>Medical Imaging</h5>
+<p>According to (Zitova and Flusser 2003), the rich history of medical
+image registration consists of four main steps, being feature detection,
+feature matching, transform model estimation, and image resampling and
+transformation. Within the scope of this paper, transform model
+estimation is the main interest, which defines a mapping function from
+the base image to the moving image. The transformation models fall into
+several general categories. Global Mapping Models define a global
+transformation of the entire image, which is unsuitable to this
+application of 4D seismic. Local mapping models have been shown to
+outperform global methods (Zitova and Flusser 2003) and include
+piecewise mappings and weighted least squares (Goshtasby 1988).
+Alternatively, transforming the moving image through radial basis
+functions and matching a globally linear model matches images with
+significant local distortion (Zitova and Flusser 2003). Finally, elastic
+matching presents a non-rigid registration method (Bajcsy and Kovačič
+1989) that finds an optimal matching between images according to
+intensity values and boundary conditions such as smoothness and
+stiffness of the matching vectors (Klein et al. 2009). Diffeomorphic
+mapping is not explicitly outlined in (Zitova and Flusser 2003), but
+particularly relevant to this paper. In (G. E. Christensen, Rabbitt, and
+Miller 1994) large deformation flows were put forth that greedily find a
+parth through diffeomorphic transformations. Diffeomorphisms have gained
+great attention in the medical field, particularly with large
+deformation diffeomorphic metric mapping (LDDMM) (Beg et al. 2005). This
+method iteratively finds the shortest path through small diffeomorphisms
+and is computationally expensive, which is a possible explanation that
+they have not found greater use in geophysics, due to larger datasets.</p>
+</div>
+</div>
+<div class="section" id="machine-learning-methods">
+<h4>Machine Learning Methods</h4>
+<p>The machine learning methods discussed in this section are imaging
+based, and therefore rely on recent advances of convolutional neural
+networks (CNN) in deep learning. We discuss different approaches that
+include supervised and unsupervised / self-supervised methods. These
+methods are all based on convolutional neural networks (CNNs).</p>
+<div class="figure">
+<img alt="Schematic convolutional neural network. The input layer (yellow) is convolved with a :math:`3\times3` filter that results in a spatially subsampled subsequent layer that contains the filter responses. This second layer is again convolved with a :math:`3\times3` filter to obtain the next layer. Subsampling is achieved by strided convolutions or pooling." id="d-fig-cnn" src="../images/real.pdf"><p class="caption">Schematic convolutional neural network. The input layer (yellow) is
+convolved with a <span class="math">\(3\times3\)</span> filter that results in a spatially
+subsampled subsequent layer that contains the filter responses. This
+second layer is again convolved with a <span class="math">\(3\times3\)</span> filter to
+obtain the next layer. Subsampling is achieved by strided
+convolutions or pooling.</p>
+</div>
+<p>CNNs are a type of neural network that is particularly suited to imaging
+approaches. They learn arbitrary data-dependent filters that are
+optimized based on the chosen objective via gradient descent. These
+filters can operate on real images, medical images, or seismic data
+alike. The convolutional filter benefits from weight sharing, making the
+operation efficient and particularly suited to GPUs or specialized
+hardware. In Figure <a class="reference external" href="#3d:fig:cnn">16.1</a> we show a schematic image,
+that is convolved with moving 3x3 filters repeatedly to obtain a
+spatially downsampled representation. These convolutional layers in
+neural networks can be arranged in different architectures that we
+explore in the following analysis of prior methods in image alignment.</p>
+<div class="section" id="supervised-cnns">
+<h5>Supervised CNNs</h5>
+<p>Supervised end-to-end CNNs rely on reliable ground truth, including the
+time shifts being available. Training a supervised machine learning
+system requires both a data vector <span class="math">\(x\)</span> and a target vector
+<span class="math">\(y\)</span> to train the blackbox system <span class="math">\(f(x) \Rightarrow y\)</span>. This
+means that we have to provide extracted time-shifts from other methods,
+which implicitly introduce assumptions from that method into the
+supervised model. Alternatively, expensive synthetic models would be
+required.</p>
+<p>The supervised methods are largely based on Optical Flow methods
+(Dosovitskiy et al. 2015; Ranjan and Black 2017). The FlowNet
+(Dosovitskiy et al. 2015) architecture is based on an Encoder-Decoder
+CNN architecture. Particularly, FlowNet has reached wide reception and
+several modifications were implemented, namely FlowNet 2.0 (Ilg et al.
+2017) improving accuracy, and LiteFlowNet (Hui, Tang, and Change Loy
+2018) reducing computational cost. SpyNet (Ranjan and Black 2017) and
+PWC-Net (D. Sun et al. 2018) implement stacked coarse-to-fine networks
+for residual flow correction. PatchBatch (Gadot and Wolf 2016) and deep
+discrete flow (Güney and Geiger 2016) implement Siamese Networks (Sumit
+Chopra et al. 2005) to estimate optical flow. Alternatively, DeepFlow
+(Weinzaepfel et al. 2013) attempts to extract large displacements
+optical flow using pyramids of SIFT features. These methods introduce
+varying types of network architectures, optimizations, and losses that
+attempt to solve the optical flow problem in computer vision.</p>
+</div>
+<div class="section" id="unsupervised-cnns">
+<h5>Unsupervised CNNs</h5>
+<p>Unsupervised or self-supervised CNNs only rely on the data, relaxing the
+necessity for ground truth time shifts. In (Meister, Hur, and Roth 2018)
+the FlowNet architecture is reformulated into an unsupervised optical
+flow estimator with bidirectional census loss called UnFlow. The UnFlow
+network relies on the smooth estimation of the forward and backward
+loss, then adds a consistency loss between the forward and backward loss
+and finally warps the monitor to the base image to obtain the final data
+loss. Optical flow has historically underperformed on seismic data, due
+to both smoothness and illumination constraints. However, UnFlow
+replaces the commonly used illumination loss by a ternary census loss
+(Zabih and Woodfill 1994) with the <span class="math">\(\epsilon\)</span>-modification by
+(Stein 2004). While this bears possible promise for seismic data, UnFlow
+implements 2D losses as opposed to a 3D implementation that we focus on.</p>
+</div>
+<div class="section" id="cycle-consistent-generative-adversarial-networks">
+<h5>Cycle-consistent Generative Adversarial Networks</h5>
+<p>Cycle-GANs are a unsupervised implementation of Generative Adversarial
+Networks that are known for domain adaptation (J.-Y. Zhu et al. 2017).
+These implement two GAN networks that perform a forward and backward
+operation that implements a cycle-consistent loss in addition to the GAN
+loss. The warping problem can be reformulated as a domain adaptation
+problem. This implements two Generator networks <span class="math">\(F\)</span> and <span class="math">\(G\)</span>
+and the according discriminators <span class="math">\(D_X\)</span> and <span class="math">\(D_Y\)</span>. These
+perform a mapping <span class="math">\(G: X \rightarrow Y\)</span> and
+<span class="math">\(F: Y \rightarrow X\)</span>, trained via the GAN discrimination. The
+cycle-consistency implements
+<span class="math">\(x \rightarrow G(x) \rightarrow F(G(x)) \approx x\)</span> with the
+backwards cycle-consistency being
+<span class="math">\(y \rightarrow F(y) \rightarrow G(F(y)) \approx y\)</span>.</p>
+<p>Cycle-GANs such as pix2pix (Isola et al. 2017) separate image data into
+a content vector and a texture vector, which could bear promise in the
+seismic domain, adapting a wavelet vector and an interval vector (Lukas
+Mosser, Kimman, Dramsch, Purves, De la Fuente Briceño, et al. 2018).
+However, the confounding of imaging effects, changing underlying
+geology, changing acquisition, etc makes the separation non-unique.
+Moreover, extracting the time shift information and conditioning in the
+GAN is a very complex problem. The Recycle-GAN (Bansal et al. 2018)
+addresses temporal continuity in videos, this is however hard to
+transfer to seismic data, considering the low number of time-steps in a
+4D seismic survey as opposed to videos. Furthermore, the lack of
+interpretability of GANs at the point of writing, prohibits GANs from
+replacing many physics-based approaches, like the extraction of
+time-shifts.</p>
+</div>
+</div>
+</div>
+<div class="section" id="method">
+<span id="method-2"></span><h3>Method</h3>
+<img alt="image" src="figures/Voxelmorph_Full.pdf"><p>The Voxelmorph (Balakrishnan et al. 2019) implements a U-net
+(Ronneberger, Fischer, and Brox 2015b) architecture to obtain a dense
+warp velocity field and subsequently warps the monitor volume to match
+the base volume. This minimizes assumptions that have to be satisfied
+for applying optical flow-based methods. Additionally, the Voxelmorph
+architecture was specifically developed on medical data. Here we use an
+advancement of Voxelmorph that includes a variational layer, which
+introduced uncertainty to the static velocity estimation, developed in
+(Dalca, Balakrishnan, Guttag, et al. 2018). Medical data often has fewer
+samples, like seismic data, as opposed to popular video datasets, which
+FlowNet and derivative architectures are geared towards application of
+popular video datasets. A U-net architecture is particularly suited for
+segmentation tasks and transformations with smaller than usual amounts
+of data, considering it was introduced on a small biomedical dataset.
+The short-cut concatenation between the input and output layers
+stabilizes training and avoids the vanishing gradient problem. It is
+particularly suited to stable training in this image matching
+architecture. In Figure <a class="reference external" href="#3d:fig:voxelmorph">[3d:fig:voxelmorph]</a> the
+U-Net is the left-most stack of layers, aranged in an hourglass
+architecture with shortcuts. These feed into a variational layer
+<span class="math">\(\mathcal{N(\mu,\sigma)}\)</span>, the variational layer is sampled with
+the reparametrization trick, due to the sampler not being differentiable
+(Durk P. Kingma, Salimans, and Welling 2015). The resulting differential
+flow is integrated using the VecInt layer, which uses Scaling and
+Squaring (Higham 2005). Subsequently, the data is passed into a spatial
+transformation layer. This layer transforms the monitor cube according
+to the warp velocity field obtained from the integrated sampler. The
+result is used to calculate the data loss between the warped image and
+the base cube.</p>
+<p>More formally, we define two 3D images <span class="math">\(\bm{b, m}\)</span> being the base
+and monitor seismic respectively. We try to find a deformation field
+<span class="math">\(\phi\)</span> parameterized by the latent variable <span class="math">\(z\)</span> such that
+<span class="math">\(\phi_z: \mathbb{R}^3 \rightarrow \mathbb{R}^3\)</span>. The deformation
+field itself is defined by this ordinary differential equation (ODE)
+according to (Balakrishnan et al. 2019):</p>
+<div class="math">
+\begin{equation*}
+\frac{\partial\phi^{(t)}}{\partial t} = v(\phi^{(t)}),
+\end{equation*}
+</div>
+<p>where <span class="math">\(t\)</span> is time, <span class="math">\(v\)</span> is the stationary velocity and the
+following holds true <span class="math">\(\phi^{(0)} = \bm{I}\)</span>. The integration of
+<span class="math">\(v\)</span> over <span class="math">\(t=[0,1]\)</span> provides <span class="math">\(\phi^{(1)}\)</span>. This
+integration represents and implements the one-parameter diffeomorphism
+in this network architecture. The variational Voxelmorph formulation
+assumes an approximate posterior probability
+<span class="math">\(q_\psi(z|\bm{b};\bm{m})\)</span>, with <span class="math">\(\psi\)</span> representing the
+parameterization. This posterior is modeled as a multivariate normal
+distribution with the covariance <span class="math">\(\Sigma_{z|m,b}\)</span> being diagonal:</p>
+<div class="math">
+\begin{equation*}
+q_\psi(z|\bm{b};\bm{m}) = \mathcal{N}(z,\bm{\mu}_{z|m,b}, \Sigma_{z|m,b}),
+\end{equation*}
+</div>
+<p>the effects of this assumption are explored in (Dalca, Balakrishnan,
+Guttag, et al. 2018).</p>
+<p>The approximate posterior probability <span class="math">\(q_\psi\)</span> is used to obtain
+the variational lower bound of the model evidence by minimizing the
+Kullback-Leibler (KL) divergence with <span class="math">\(p(z|\bm{b};\bm{m})\)</span> being
+the intractable posterior probability. Following the full derivation in
+(Dalca, Balakrishnan, Guttag, et al. 2018), considering the sampling of
+<span class="math">\(z_k \sim q_\psi(z|\bm{b},\bm{m})\)</span> for each image pair
+<span class="math">\((\bm{b},\bm{m})\)</span>, we compute <span class="math">\(\bm{m}\circ\phi_{z_k}\)</span> the
+warped image we obtain the loss:</p>
+<div class="math">
+\begin{equation*}
+\begin{split}
+    \mathcal{L}(\psi; \bm{b}, \bm{m}) &amp; = - \mathbf{E}_q [\log p(\bm{b}|z;\bm{m})] \\
+    &amp; \hspace{4mm} + \mathbf{KL} [q_\psi(z|\bm{b};\bm{m}) || p_\psi(z|\bm{b};\bm{m})]\\
+    &amp; \hspace{4mm} + \text{const}\\
+    &amp; = \frac{1}{2\sigma^2K} \sum_k || \bm{b} - \bm{m} \circ \phi_{z_k} ||^2 \\
+    &amp; \hspace{4mm} + \frac{1}{2} [\mathbf{tr}(\lambda\bm{D}\Sigma_{z|x;y}) - \log \Sigma_{z|x;y}) \\
+    &amp; \hspace{12mm} + \bm{\mu}^T_{z|m,b}\bm{\Lambda}_z\bm{\mu}_{z|m,b}] + \text{const},
+\end{split}
+\end{equation*}
+</div>
+<p>where <span class="math">\(\Lambda_z\)</span> is a precision matrix, enforcing smoothness by
+the relationship <span class="math">\(\Sigma_z^{-1} = \Lambda_z = \lambda \bm{L}\)</span>,
+<span class="math">\(\lambda\)</span> controlling the scale of the velocity field.
+Furthermore, following (Dalca, Balakrishnan, Guttag, et al. 2018)
+<span class="math">\(\bm{L} = \bm{D} - \bm{A}\)</span> is the Laplacian of a neighbourhood
+graph over the voxel grid, where <span class="math">\(\bm{D}\)</span> is the graph degree
+matrix, and <span class="math">\(A\)</span> defining the voxel neighbourhood. <span class="math">\(K\)</span>
+signifies the number of samples. We can express <span class="math">\(\bm{\mu}_{z|m,b}\)</span>
+and <span class="math">\(\Sigma_{z|m,b}\)</span> as variational layers in a neural network and
+sample from the distributions of these layers. Given the diagonal
+constraint on <span class="math">\(\Sigma\)</span>, we define the variational layer as the
+according standard deviation <span class="math">\(\sigma\)</span> of the corresponding
+dimension. Therefore, we sample
+<span class="math">\(\mathcal{X} \sim \mathcal{N}(\mu, \sigma^2)\)</span> using the
+reparameterization trick first implemented in variational auto-encoders
+(Diederik P. Kingma and Welling 2013). The reparameterization trick
+defines a differentiable estimator for the variational lower bound,
+replacing the stoachastic, non-differentiable and therefore untrainable,
+sampler.</p>
+<p>Defining the architecture and losses as presented in (Dalca,
+Balakrishnan, Guttag, et al. 2018), ensures several benefits. The
+registration of two images is domain-agnostic, which enables us to apply
+the medical algorithm to seismic data. The warp field is diffeomorphic,
+which ensures physically viable, topology-preserving warp velocity
+fields. Moreover, this method implements a variational formulation based
+on the covariance of the flow field. 3D warping with uncertainty measure
+has not been used in seismic data before.</p>
+<p>The network is implemented using Tensorflow (Abadi et al. 2015a) and
+Keras (Chollet and others 2015a). Our implementation is based on the
+original code in the Voxelmorph package (Dalca, Balakrishnan, Fischl, et
+al. 2018).</p>
+</div>
+<div class="section" id="experimental-results-and-discussion">
+<h3>Experimental Results and Discussion</h3>
+<div class="section" id="experimental-setup">
+<h4>Experimental Setup</h4>
+<p>The experimental setup for this paper is based on a variation of the
+modified Voxelmorph (Balakrishnan et al. 2019) formulation. We extended
+the network to accept patches of data, because our seismic cubes are
+generally larger than the medical brain scans and therefore exceed the
+memory limits of our GPUs. Moreover, Voxelmorph in its original
+formulation provides sub-sampled flow fields, this is due to
+computational constraints. We decided to modify the network to provide
+full-scale flow fields, despite the computational cost. This enables
+direct interpretation of the warp field, which is common in 4D seismic
+analysis. However, we do provide an analysis in
+Section <a class="reference external" href="#sec:subsample">16.4.4.2.4</a> of the sub-sampled flow-field
+interpolated to full scale, in the way it would be passed to the Spatial
+Transformer layer.</p>
+<p>The code is made available in (Jesper Soeren Dramsch 2020c). The model
+is trained with the Adam optimizer (Diederik P. Kingma and Ba 2014) with
+a learning rate of <span class="math">\(0.001\)</span> and weight decays <span class="math">\(\beta_1 = 0.9\)</span>
+and <span class="math">\(beta_2 = 0.999\)</span>. We train the model for 350 epochs to account
+for experimentation and time. We set the regularization parameter
+<span class="math">\(\lambda = 10\)</span> and the image noise parameter <span class="math">\(\sigma = 0.02\)</span>
+in accordance with the authors of (Dalca, Balakrishnan, Guttag, et al.
+2018). We adjust the batch-size to the maximum on our architecture,
+which was 16 and purely manually tuned to the maximum possible. The KL
+divergence and MSE loss are unweighted in the total loss.</p>
+<p>The network definition for the subsampled flow field differs from the
+definition in Figure <a class="reference external" href="#3d:fig:voxelmorph">[3d:fig:voxelmorph]</a> that
+the last upsampling and convolution layer in the Unet, including the
+skip connection, right before the variational layers
+<span class="math">\((\mu, \sigma)\)</span> is omitted. That leaves the flow field at a
+subsampled map by a factor of two. Computationally, this lowers the cost
+on the Integration operation before resampling for the Spatial
+Transformer.</p>
+<div class="figure">
+<img alt="Training Losses over time with the KL-divergence at the sampling layer, the data loss calculated by MSE, and the combined total loss." id="d-fig-loss" src="../images/miccai_loss.png"><p class="caption">Training Losses over time with the KL-divergence at the sampling layer, the data loss calculated by MSE, and the combined total loss.</p>
+</div>
+<p>The data situation for this experiment is special in the sense that the
+method is self-supervised. We therefore do not provide a validation
+dataset during training. The data are 6 surveys from the North Sea. Main
+field from years 1088, 2005 A, 2005 B, and 2012. Further we compare to a
+different field 1903 and 2005 with different geology, acquisition
+geometry and acquisition parameters. While we would be content with the
+method working on the field data (years 1988 and 2005 Survey A) by
+itself, we do validate the results on separate data from the same field
+which was acquired with different acquisition parameters and at
+different times (years 2005 Survey B and 2012). Moreover, we test the
+data on seismic data from an adjacent field that was acquired
+independently (years 1993 and 2005). All data is presented with a
+relative coordinate system due to confidentiality, where 0 s on the
+y-axis does not represent the actual onset of the recording. The field
+geology and therefore seismic responses are very different. Due to lack
+of availability we do not test the trained network on land data or data
+from different parts of the world. Considering, that the training set is
+one 4D seismic monitor-base pair, a more robust network would emerge
+from training on a variety of different seismic volumes.</p>
+<p>Figure <a class="reference external" href="#3d:fig:loss">16.2</a> shows the training losses of the batch
+training. Within a few epochs the network converges strongly, however
+within 10 epochs the KL divergence increases slightly over the training.
+The data loss, optimizing the warping result decreases over the training
+period. An increase of the KL divergence is acceptable as long as the
+total loss decreases, which indicates better matching of the volumes. In
+case the KL divergence would increase vastly, it would violate the base
+assumption that the static velocity can be approximated by Gaussians and
+requires re-evaluation.</p>
+</div>
+<div class="section" id="results-and-discussion">
+<h4>Results and Discussion</h4>
+<div class="line-block">
+<div class="line"><br></div>
+<div class="line"><br></div>
+</div>
+<div class="line-block">
+<div class="line"><br></div>
+<div class="line"><br></div>
+</div>
+<p>The network presented generates warp fields in three dimensions as well
+as uncertainty measures. We present results for three cases in
+Figure <a class="reference external" href="#3d:fig:a_cross">[3d:fig:a_cross]</a>,
+<a class="reference external" href="#3d:fig:d_inli">[3d:fig:d_inli]</a>, and
+<a class="reference external" href="#3d:fig:hfd_inli">[3d:fig:hfd_inli]</a> with the corresponding warp
+fieds and uncertainties in
+Figure <a class="reference external" href="#3d:fig:a_cross_warp">[3d:fig:a_cross_warp]</a>,
+<a class="reference external" href="#3d:fig:d_inli_warp">[3d:fig:d_inli_warp]</a>, and
+<a class="reference external" href="#3d:fig:hfd_inli_warp">[3d:fig:hfd_inli_warp]</a>. In
+Figure <a class="reference external" href="#3d:fig:a_cross">[3d:fig:a_cross]</a> we show the results on the
+data, which the unsupervised method was trained on. Obtaining a warp
+field on the data itself is a good result, however, we additionally
+explore the generalizability of the method. Considering the network is
+trained to find an optimum warp field for the data it was originally
+trained on, we go on to test the network on data from the same field,
+that was recorded with significantly different acquisition parameters in
+Figure <a class="reference external" href="#3d:fig:d_inli">[3d:fig:d_inli]</a>. These results test the
+networks generalizability on co-located data, therefore not expecting
+vastly differing seismic responses from the subsurface itself. The are
+imaging differences and differences in equipment in addition to the 4D
+difference however. In Figure <a class="reference external" href="#3d:fig:hfd_inli">[3d:fig:hfd_inli]</a>
+we use the network on unseen data from a different field. The geometry
+of the field, as well as the acquisition parameters are different,
+making generalization a challenge.</p>
+<p>In Figure <a class="reference external" href="#3d:fig:a_cross">[3d:fig:a_cross]</a> we collect six 2D
+panels from the 3D warping operation. In
+Figure <a class="reference external" href="#3d:fig:a_cross">[3d:fig:a_cross]</a> and
+Figure <a class="reference external" href="#3d:fig:a_cross">[3d:fig:a_cross]</a> we show the unaltered base
+and monitor respectively. The difference between the unaltered cubes is
+shown in Figure <a class="reference external" href="#3d:fig:a_cross">[3d:fig:a_cross]</a>. In
+Figure <a class="reference external" href="#3d:fig:a_cross">[3d:fig:a_cross]</a> we show the warped result
+by applying the z-warp field in
+Figure <a class="reference external" href="#3d:fig:a_cross">[3d:fig:a_cross]</a>, as well as the warp
+fields in (x,y) direction fully displayed in
+Figure <a class="reference external" href="#3d:fig:a_cross_warp">[3d:fig:a_cross_warp]</a> including their
+respective uncertainties. The difference of the warped result in
+Figure <a class="reference external" href="#3d:fig:a_cross">[3d:fig:a_cross]</a> is calculated from the
+matched monitor in Figure <a class="reference external" href="#3d:fig:a_cross">[3d:fig:a_cross]</a> and the
+base in Figure <a class="reference external" href="#3d:fig:a_cross">[3d:fig:a_cross]</a>.</p>
+<p>It is apparent that the matched monitor significantly reduced noise by
+mis-aligned reflections. In Table <a class="reference external" href="#tab:results">16.1</a> we present the
+numeric results. These were computed on the 3D cube for an accurate
+representation. We present the root mean square (RMS) and mean absolute
+error (MAE) and the according difference between Monitor and Matched
+Difference results. We present RMS and MAE to make the values comparable
+in magnitude as opposed the mean squared error (MSE). We present both
+values, because the RMS value is more sensitive to large values, while
+MAE scales the error linearly therefore not masking low amplitude
+mis-alignments. Both measurements show a reduction on the train data to
+50% or below. The test on both the validation data on the same field and
+the test data on another field show a similar reduction, while the
+absolute error differs in a stable manner.</p>
+<div class="docutils container" id="tab-results">
+<table>
+<caption>Quantitative Evaluation of Results. RMS and MAE calculated against respective base data. Training recall, Test A - Same field, different acquisition, Test B - different field, different acquisition</caption>
+<colgroup>
+<col style="width: 17%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 11%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 11%">
+</colgroup>
+<tbody>
+<tr>
+<td><p>Run</p></td>
+<td><p>Monitor
+RMS</p></td>
+<td><p>Matched
+RMS</p></td>
+<td><p>Ratio
+%</p></td>
+<td><p>Monitor
+MAE</p></td>
+<td><p>Matched
+MAE</p></td>
+<td><p>Ratio
+%</p></td>
+</tr>
+<tr>
+<td><p>Baseline</p></td>
+<td><p>0.1047</p></td>
+<td><p>0.0718</p></td>
+<td><p>68.6</p></td>
+<td><p>0.0744</p></td>
+<td><p>0.0512</p></td>
+<td><p>68.7</p></td>
+</tr>
+<tr>
+<td><p>Train</p></td>
+<td><p>0.1047</p></td>
+<td><p>0.0525</p></td>
+<td><p>50.1</p></td>
+<td><p>0.0744</p></td>
+<td><p>0.0348</p></td>
+<td><p>46.7</p></td>
+</tr>
+<tr>
+<td><p>Test A</p></td>
+<td><p>0.0381</p></td>
+<td><p>0.0237</p></td>
+<td><p>62.2</p></td>
+<td><p>0.0291</p></td>
+<td><p>0.0172</p></td>
+<td><p>59.1</p></td>
+</tr>
+<tr>
+<td><p>Test B</p></td>
+<td><p>0.0583</p></td>
+<td><p>0.0361</p></td>
+<td><p>62.0</p></td>
+<td><p>0.0451</p></td>
+<td><p>0.0254</p></td>
+<td><p>56.4</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In Figure <a class="reference external" href="#3d:fig:a_cross_warp">[3d:fig:a_cross_warp]</a> we present
+the three dimensional warp field to accompany the results in
+Figure <a class="reference external" href="#3d:fig:a_cross">[3d:fig:a_cross]</a>.
+Figure <a class="reference external" href="#3d:fig:a_cross_warp">[3d:fig:a_cross_warp]</a>, <a class="reference external" href="#3d:fig:a_cross_warp">[3d:fig:a_cross_warp]</a>, and <a class="reference external" href="#3d:fig:a_cross_warp">[3d:fig:a_cross_warp]</a>
+show the warp field in x, y, and z-direction. The z-direction is
+generally referred to as time shifts in 4D seismic.
+Figure <a class="reference external" href="#3d:fig:a_cross_warp">[3d:fig:a_cross_warp]</a>, <a class="reference external" href="#3d:fig:a_cross_warp">[3d:fig:a_cross_warp]</a>, and <a class="reference external" href="#3d:fig:a_cross_warp">[3d:fig:a_cross_warp]</a>
+contain the corresponding uncertainties in x, y, and z-direction
+obtained from the network.</p>
+<div class="section" id="recall-to-training-data">
+<span id="sec-recall"></span><h5>Recall to Training Data</h5>
+<p>In Figure <a class="reference external" href="#3d:fig:a_cross">[3d:fig:a_cross]</a> we evaluate the results
+of the self-supervised method on the training data itself. The main
+focus is on the main reflector in the center of the panels. The
+difference in Figure <a class="reference external" href="#3d:fig:a_cross">[3d:fig:a_cross]</a> shows that
+the packet of reflectors marked reservoir in the monitor is out of
+alignment, causing a large difference, which is corrected for in
+Figure <a class="reference external" href="#3d:fig:a_cross">[3d:fig:a_cross]</a>. The topmost section in
+the panel of Figure <a class="reference external" href="#3d:fig:a_cross">[3d:fig:a_cross]</a> shows the
+alignment of a faulted segment, marked fault in the monitor, to an
+unfaulted segment in the base. The fault appearing is most likely due to
+vastly improved acquisition technology for the monitor.</p>
+<p>The warp fields in
+Figure <a class="reference external" href="#3d:fig:a_cross_warp">[3d:fig:a_cross_warp]</a> are an integral
+part in QC-ing the validity of the results. Physically, we expect the
+strongest changes in the z-direction in
+Figure <a class="reference external" href="#3d:fig:a_cross_warp">[3d:fig:a_cross_warp]</a>. The changes in
+Figure <a class="reference external" href="#3d:fig:a_cross_warp">[3d:fig:a_cross_warp]</a> and
+Figure <a class="reference external" href="#3d:fig:a_cross_warp">[3d:fig:a_cross_warp]</a> show mostly
+sub-sampling magnitude shifts, except for the x-direction shifts around
+the fault in the top-most panel present in the monitor in
+Figure <a class="reference external" href="#3d:fig:a_cross">[3d:fig:a_cross]</a>.
+Figure <a class="reference external" href="#3d:fig:a_cross_warp">[3d:fig:a_cross_warp]</a> and
+Figure <a class="reference external" href="#3d:fig:a_cross_warp">[3d:fig:a_cross_warp]</a> show strong
+shifts at 0.4s on the left of the panel which corresponds to the strong
+amplitude changes in the base and monitor. On the one side these
+correspond to the strongest difference section, additionally these are
+geological hinges, which are under large geomechanical strain. However,
+these are very close to the sides of the warp, which may cause
+artifacts. Figure <a class="reference external" href="#3d:fig:a_cross_warp">[3d:fig:a_cross_warp]</a>,
+Figure <a class="reference external" href="#3d:fig:a_cross_warp">[3d:fig:a_cross_warp]</a>, and
+Figure <a class="reference external" href="#3d:fig:a_cross_warp">[3d:fig:a_cross_warp]</a> show the
+uncertainty of the network. These uncertainties are across the bank
+within the 10% range of the sampling rate
+(<span class="math">\(\Delta t = 4\)</span> ms, <span class="math">\(\Delta x,y = 25\)</span> m). The certainty
+within the bulk package in the center of the panels is the lowest in x-,
+y-, and z-direction. While being relatively lover in the problematic
+regions discussed before.</p>
+<p>The warp field in
+Figure <a class="reference external" href="#3d:fig:a_cross_warp">[3d:fig:a_cross_warp]</a> contains some
+reflector shaped warp vectors around 0.4 s, which is due to the wavelet
+mismatch of the 1988 base to the 2005 monitor. The diffeomorphic nature
+of the network aligns the reflectors in the image, which causes some
+reflector artifacts in the z-direction maps.</p>
+<p>r.5</p>
+</div>
+<div class="section" id="comparison-to-baseline-method">
+<h5>Comparison to Baseline Method</h5>
+<p>We use the Dynamic Image Warping method (Dave Hale 2013a) to align the
+images in Figure <a class="reference external" href="#3d:fig:a_cross">[3d:fig:a_cross]</a>. This method
+extends the Dynamic Time Warping method to 2D and provides a much
+improved result in 2D compared to standard cross-correlation and DTW
+methods. Inversion methods need pre-stack seismic data, which is not
+available. We chose this baseline to provide a fair comparison with the
+available data. Figure <a class="reference external" href="#3d:fig:dtw">[3d:fig:dtw]</a> shows the
+timeshifts or warp fields generated by the Voxelmorph network and by the
+DIW algorithm. The DIW algorithm shows a smoothed image. Overall, the
+Subfigre <a class="reference external" href="#3d:fig:dtw_warp">[3d:fig:dtw_warp]</a> shows the general
+trends of
+Subfigre <a class="reference external" href="#3d:fig:dtw_full_scale_warp">[3d:fig:dtw_full_scale_warp]</a>.
+The Voxelmorph algorithm is more detailed than the DIW image, however
+the general magnitude of the time shifts matches well in the correct
+areas.</p>
+<p>Figure <a class="reference external" href="#3d:fig:dtw_cross">[3d:fig:dtw_cross]</a> shows the matched
+monitors from Voxelmorph and DIW. The matched monitors align quite well
+without any significant discrepancies. The matched difference shows that
+the Voxelmorph algorithm performs similarly to the baseline method,
+while removing more 4D noise from the image. It keeps the 4D signal
+intact, albeit slightly varying. The DIW algorithm seems to struggle to
+align the topmost part of the image, while Voxelmorph aligns these well,
+removing additional 4D noise. Table <a class="reference external" href="#tab:results">16.1</a> confirms
+this quantitatively, where the overall RMSE and MAE are reduced
+proportionally.</p>
+<div class="line-block">
+<div class="line"><br></div>
+<div class="line"><br></div>
+</div>
+</div>
+<div class="section" id="generalization-of-the-network">
+<h5>Generalization of the Network</h5>
+<p>While the performance of the method on a data set by itself is good,
+obtaining a trained model that can be applied on other similar data sets
+is essential even for self-supervised methods. We test the network on
+two test sets, Test A is conducted on the same geology with unseen data
+from a different acquisition, while Test B is on a different field and a
+different acquisition. The network was trained on a single acquisition
+relation (2005a - 1988). In Figure <a class="reference external" href="#3d:fig:d_inli">[3d:fig:d_inli]</a>
+we present the crossline data from the same field the network was
+trained on. The data sets was however acquired at a different calendar
+times (2005b - 2012), with different acquisition parameters. It follows
+that although the geology and therefore the reflection geometry is
+similar, the wavelet and hence the seismic response are vastly
+different. This becomes apparent when comparing the base
+Figure <a class="reference external" href="#3d:fig:d_inli_base">[3d:fig:d_inli_base]</a> to
+Figure <a class="reference external" href="#3d:fig:a_cross">[3d:fig:a_cross]</a>, which were acquired in
+the same year.</p>
+<p>Test A evaluates the network performance on unseen data in the same
+field (Train: 1988-2005a, Test A: 2005b - 2012). The quantitative
+results in Table <a class="reference external" href="#tab:results">16.1</a> for Test A generally show lower
+absolute errors compared to the training results in
+Section <a class="reference external" href="#sec:recall">16.4.4.2.1</a>. The reduction of the overall
+amplitudes in the difference maps is reduce by 40%. The unaligned
+monitor difference in Figure <a class="reference external" href="#3d:fig:d_inli">[3d:fig:d_inli]</a> shows
+a strong coherent difference around below the main packet of reflectors
+around 0.3 s to 0.4 s. This would suggest a velocity draw-down in this
+packet. While the top half of the unaligned difference contains some
+misalignment, we would expect the warp field to display a shift around
+0.35 s, which can be observed in
+Figure <a class="reference external" href="#3d:fig:d_inli">[3d:fig:d_inli]</a>. The aligned difference in
+Figure <a class="reference external" href="#3d:fig:d_inli">[3d:fig:d_inli]</a> contains less coherent
+differences. The difference does still show some overall noise in the
+maps. This could be improved upon by a more diverse training set. The
+higher resolution data from 2005 and 2012 possibly has an influence on
+the result too. Regardless, we can see some persisting amplitude
+difference around 0.4 s which appears to be signal as opposed to some
+misalignment noise above. The warp fields in
+Figure <a class="reference external" href="#3d:fig:d_inli_warp">[3d:fig:d_inli_warp]</a> show relatively
+smooth warp fields in x- and y-direction. The warp field in
+Figure <a class="reference external" href="#3d:fig:d_inli_warp">[3d:fig:d_inli_warp]</a> shows overall good
+coherence, including the change around 0.4 s we would expect. The
+uncertainty values are in sub-sampling range, with the strongest
+certainty within the strong reflector packet at 0.35 s.</p>
+<p>Test B evaluates the network performance on a different field, with
+different geology, with unrelated acquisition geometry and equipment and
+at different times. The test shows a very similar reduction of overall
+errors in Table <a class="reference external" href="#tab:results">16.1</a>. The RMS is reduced by 38% and
+the MAE is reduced more slightly more in comparison to Test A. In
+Figure <a class="reference external" href="#3d:fig:hfd_inli">[3d:fig:hfd_inli]</a> we present the seismic
+panels to accompany Test B. The data in
+Figure <a class="reference external" href="#3d:fig:hfd_inli">[3d:fig:hfd_inli]</a> and
+Figure <a class="reference external" href="#3d:fig:hfd_inli">[3d:fig:hfd_inli]</a> is well resolved and
+shows good coherence. However, the unaligned difference in
+Figure <a class="reference external" href="#3d:fig:hfd_inli">[3d:fig:hfd_inli]</a> shows very strong
+variations in the difference maps.
+Figure <a class="reference external" href="#3d:fig:hfd_inli">[3d:fig:hfd_inli]</a> reduces these errors
+significantly, bringing out coherent differences in the main reflector
+at 0.27 s. We can see strong chaotic differences in
+Figure <a class="reference external" href="#3d:fig:hfd_inli">[3d:fig:hfd_inli]</a>, due to the faulted
+nature of the geology. The network aligns these faulted blocks
+relatively well, however, some artifacts persist. This is consistent
+with the warp fields in
+Figure <a class="reference external" href="#3d:fig:hfd_inli_warp">[3d:fig:hfd_inli_warp]</a>. The x- and
+y-direction in Figure <a class="reference external" href="#3d:fig:hfd_inli_warp">[3d:fig:hfd_inli_warp]</a>
+and Figure <a class="reference external" href="#3d:fig:hfd_inli_warp">[3d:fig:hfd_inli_warp]</a>
+respectively show overall smooth changes, around faults, these changes
+are stronger. The z-direction changes are consistent with the Training
+validation and Test A, where the changes are overall stronger. This is
+also consistent with our geological intuition.</p>
+</div>
+<div class="section" id="subsampled-flow">
+<span id="sec-subsample"></span><h5>Subsampled Flow</h5>
+<div class="line-block">
+<div class="line">r.5</div>
+<div class="line"><br></div>
+</div>
+<p>The original Voxelmorph implementation uses a subsampled warp field. The
+authors claim two benefits, namely a smoother warp velocity field and
+reduced computational cost. The aforementioned results were obtained
+using our full-scale network. In
+Figure <a class="reference external" href="#3d:fig:upsample">[3d:fig:upsample]</a> we present the full
+scale and upsampled results on the training set. The matched difference
+in Figure <a class="reference external" href="#3d:fig:upsample_match">[3d:fig:upsample_match]</a> contains
+more overall noise compared to
+Figure <a class="reference external" href="#3d:fig:full_scale_match">[3d:fig:full_scale_match]</a>. This is
+congruent with the warp fields in the figure. The upsampled z-direction
+warp field in Figure <a class="reference external" href="#3d:fig:upsample_warp">[3d:fig:upsample_warp]</a>
+seems to have some aliasing on the diagonal reflector around 0.4 s. This
+explains some of the artifacts in the difference in
+Figure <a class="reference external" href="#3d:fig:upsample_match">[3d:fig:upsample_match]</a>. The overall
+warp velocity in
+Figure <a class="reference external" href="#3d:fig:upsample_warp">[3d:fig:upsample_warp]</a> is smoother
+compared to the full-scale field. However, the general structure of
+coherent negative and positive areas matches in both warp fields, while
+the details differ. The main persistent difference of the reflector
+packet at 0.4 s seems similar, nevertheless, the differences further up
+slope to the right are smoother in the full scale network result and
+have stronger residual amplitudes in the upsampled network. Overall, the
+full-scale network results are better for seismic data at a slightly
+increased computational cost. The subsampled field introduced artifacts
+in our observations.</p>
+</div>
+</div>
+</div>
+<div class="section" id="conclusion">
+<span id="conclusion-2"></span><h3>Conclusion</h3>
+<p>We introduce a deep learning based self-supervised 4D seismic warping
+method. Currently, time shifts are most commonly estimated in 1D due to
+computational constraints. We explore 3D time-shift estimation as a
+viable alternative, which decouples imaging and acquisition effects,
+geomechanical movement and changes in physical properties like velocity
+and porosity from confounding into a single dimension. Existing 3D
+methods are computationally expensive, where this learnt model can
+generalize to unseen data without re-training, with calculation times
+within minutes on consumer hardware. Moreover, this method supplies
+invertible, reproducible, dense 3D alignment while providing warp fields
+with uncertainty measures, while leveraging recent advancements in
+neural networks and deep learning.</p>
+<p>We evaluate our network on the training data and two different
+independent test sets. We do not expect the aligned difference to be
+exactly zero, due to actual physical changes in the imaged subsurface.
+Although the network is unsupervised, a transfer to unseen data is
+desirable and despite some increase in the overall error possible. The
+warping on the training data is very good and the warp fields are
+coherent and reflect the physical reality one would expect. The transfer
+too unseen data works well, although the misalignment error increases.
+The decrease in both RMS and MAE is consistent across test sets.</p>
+<p>Furthermore, we implement a variational scheme which provides
+uncertainty measures for the time shifts. On the data presented, we
+obtain subsample scale uncertainties across all directions. The main
+assumption of the network is a diffeomorphic deformation, which is
+topology preserving. We show that the network handles faults well in
+both training recall and test data, that in theory could violate the
+diffeomorphic assumption.</p>
+<p>We go on to compare a full-scale network to an upsampled network. The
+full-scale network yields better results and is preferable on seismic
+data in comparison to the upsampled network presented in the original
+medical Voxelmorph.</p>
+<p>We do expect the network to improve upon training on a more diverse
+variety of data sets and seismic responses. While the initial training
+is time-consuming (25 h on a Nvidia Titan X with Pascal chipset),
+inference is near instantaneous. Moreover, transfer of the trained
+network to a new data set is possible without training, while accepting
+some error. Alternatively fine-tuning to new data is possible within few
+epochs (<span class="math">\(&lt;\)</span>1 h).</p>
+<div class="line-block">
+<div class="line"><br></div>
+<div class="line"><br></div>
+</div>
+<div class="line-block">
+<div class="line"><br></div>
+<div class="line"><br></div>
+</div>
+<div class="line-block">
+<div class="line"><br></div>
+<div class="line"><br></div>
+</div>
+<div class="line-block">
+<div class="line"><br></div>
+<div class="line"><br></div>
+</div>
+</div>
+</div>
+<div class="section" id="acknowledgment">
+<h2>Acknowledgment</h2>
+<p>The research leading to these results has received funding from the
+Danish Hydrocarbon Research and Technology Centre under the Advanced
+Water Flooding program. We thank DTU Compute for access to the GPU
+Cluster. We thank Total E&amp;P Denmark for permission to use the data and
+publish examples.</p>
+</div>
+<div class="section" id="contributions-of-this-study">
+<span id="contributions-of-this-study-4"></span><h2>Contributions of This Study</h2>
+<p>In the paper, we present the modified self-supervised nn system and test
+the results on the training data itself and two generalization test
+sets. The first test set is on the same field but recorded at different
+times to the training set, ensuring similar underlying geology, whereas,
+the second test set is taken from an adjacent field, recorded at
+different times, with different geology, testing the full transfer of
+the trained network. We go on to test the original Voxelmorph
+architecture, which uses upsampled velocity fields and evaluate the
+results against our modified architecture, which uses the full flow
+field. Overall, this technique introduces a generalizable dl approach to
+extract 3D time-shifts with uncertainty measures from raw stacked 4D
+seismic data.</p>
+<p>The Voxelmorph network performs very well on seismic data with
+patch-based seismic data. It is essential to implement the full-scale
+architecture to obtain reliable 3D time-shifts on 4D seismic data. The
+network exhibits stable error on the unseen data on the same field and
+differing test field, which indicates that the networks learn relevant
+generalizable information. Despite being a 3D method, the primary shifts
+are estimated in the z-direction, which is consistent with the
+expectation we have for seismic data. The diffeomorphic assumption
+performs well on the seismic data even on faulted data, preserving the
+topology. Additionally, unsupervised training reduces further implicit
+assumptions from extracted time-shifts or synthetic models. The model
+would improve from data augmentation methods and including multiple
+fields in the training data.</p>
+</div>
+</div>
+    </div>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{equation}", "\\end{equation}"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script></article>
+</div>
+            <script src="../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

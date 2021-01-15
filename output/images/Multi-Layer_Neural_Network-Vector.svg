@@ -1,0 +1,66 @@
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" viewBox="152 7 524.70407 248.0657" id="svg2" version="1.1" inkscape:version="0.91 r13725" sodipodi:docname="Multi-Layer_Neural_Network-Vector.svg" viewport="0 0 1280px 640px">
+  <metadata id="metadata126">
+    <rdf:RDF>
+      <cc:Work rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <dc:title/>
+        <cc:license rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/"/>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <defs id="defs124"/>
+  <sodipodi:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-width="2498" inkscape:window-height="1418" id="namedview122" showgrid="false" fit-margin-top="0" fit-margin-left="0" fit-margin-right="0" fit-margin-bottom="0" inkscape:zoom="0.36584362" inkscape:cx="9.936759" inkscape:cy="186.07405" inkscape:window-x="1432" inkscape:window-y="724" inkscape:window-maximized="1" inkscape:current-layer="g4"/>
+  <g id="g4" transform="translate(-1.3019876,-4.6481431)">
+    <circle style="fill:#990000;fill-opacity:1" cx="355" cy="45" id="ellipse6" r="35"/>
+    <circle style="fill:none;fill-opacity:0;stroke:#000000;stroke-width:4" cx="355" cy="45" id="ellipse8" r="35"/>
+    <line style="fill:none;fill-opacity:0;stroke:#000000;stroke-width:2" x1="310.26401" y1="44.9715" x2="154.371" y2="44.5144" id="line10"/>
+    <polygon style="fill:#000000;stroke:#000000;stroke-width:2" points="307.779,39.9641 317.764,44.9934 307.749,49.9641 310.264,44.9715 " id="polygon12"/>
+    <path style="fill:#000000;stroke:#000000;stroke-width:2" d="m 154.371,44.5144 c 0.012,-4 4.024,-7.9882 8.024,-7.9765 4,0.0117 7.988,4.0234 7.976,8.0234 -0.012,4 -4.023,7.9882 -8.023,7.9765 -4,-0.0117 -7.989,-4.0234 -7.977,-8.0234 z" id="path14" inkscape:connector-curvature="0"/>
+    <line style="fill:none;fill-opacity:0;stroke:#000000;stroke-width:2" x1="313.79501" y1="62.409401" x2="154.33701" y2="134.60001" id="line16"/>
+    <polygon style="fill:#000000;stroke:#000000;stroke-width:2" points="309.455,58.8856 320.627,59.3162 313.579,67.9955 313.795,62.4094 " id="polygon18"/>
+    <line style="fill:none;fill-opacity:0;stroke:#000000;stroke-width:2" x1="322.94501" y1="76.183098" x2="154.302" y2="224.686" id="line20"/>
+    <polygon style="fill:#000000;stroke:#000000;stroke-width:2" points="317.764,74.0828 328.574,71.2266 324.373,81.5878 322.945,76.1831 " id="polygon22"/>
+    <circle style="fill:#990000;stroke:#000000;stroke-width:4;fill-opacity:1" cx="355" cy="135" id="ellipse24" r="35"/>
+    <line style="fill:none;fill-opacity:0;stroke:#000000;stroke-width:2" x1="310.26401" y1="134.97701" x2="154.33701" y2="134.60001" id="line26"/>
+    <polygon style="fill:#000000" points="307.776,129.97 317.764,134.995 307.752,139.97 310.264,134.977 " id="polygon28"/>
+    <polygon style="fill:none;fill-opacity:0;stroke:#000000;stroke-width:2" points="307.776,129.97 317.764,134.995 307.752,139.97 310.264,134.977 " id="polygon30"/>
+    <path style="fill:#000000" d="m 154.337,134.6 c 0.009,-4 4.019,-7.99 8.019,-7.98 4,0.009 7.99,4.019 7.981,8.019 -0.01,4 -4.02,7.99 -8.02,7.98 -4,-0.009 -7.99,-4.019 -7.98,-8.019 z" id="path32" inkscape:connector-curvature="0"/>
+    <path style="fill:none;fill-opacity:0;stroke:#000000;stroke-width:2" d="m 154.337,134.6 c 0.009,-4 4.019,-7.99 8.019,-7.98 4,0.009 7.99,4.019 7.981,8.019 -0.01,4 -4.02,7.99 -8.02,7.98 -4,-0.009 -7.99,-4.019 -7.98,-8.019" id="path34" inkscape:connector-curvature="0"/>
+    <line style="fill:none;fill-opacity:0;stroke:#000000;stroke-width:2" x1="313.79599" y1="152.41299" x2="154.302" y2="224.686" id="line36"/>
+    <polygon style="fill:#000000;stroke:#000000;stroke-width:2" points="309.455,148.89 320.627,149.317 313.583,157.999 313.796,152.413 " id="polygon38"/>
+    <line style="fill:none;fill-opacity:0;stroke:#000000;stroke-width:2" x1="313.81201" y1="117.551" x2="154.371" y2="44.5144" id="line40"/>
+    <polygon style="fill:#000000;stroke:#000000;stroke-width:2" points="313.622,111.964 320.631,120.675 309.457,121.056 313.812,117.551 " id="polygon42"/>
+    <circle style="fill:#990000;stroke:#000000;stroke-width:4;fill-opacity:1" cx="355" cy="225" id="ellipse44" r="35"/>
+    <line style="fill:none;fill-opacity:0;stroke:#000000;stroke-width:2" x1="310.26401" y1="224.98199" x2="154.302" y2="224.686" id="line46"/>
+    <polygon style="fill:#000000;stroke:#000000;stroke-width:2" points="307.773,219.977 317.764,224.996 307.754,229.977 310.264,224.982 " id="polygon48"/>
+    <path style="fill:#000000;stroke:#000000;stroke-width:2" d="m 154.302,224.686 c 0.008,-4 4.015,-7.992 8.015,-7.985 4,0.008 7.993,4.015 7.985,8.015 -0.008,4 -4.015,7.993 -8.015,7.985 -4,-0.007 -7.993,-4.015 -7.985,-8.015 z" id="path50" inkscape:connector-curvature="0"/>
+    <line style="fill:none;fill-opacity:0;stroke:#000000;stroke-width:2" x1="313.81" y1="207.556" x2="154.33701" y2="134.60001" id="line52"/>
+    <polygon style="fill:#000000;stroke:#000000;stroke-width:2" points="313.617,201.969 320.631,210.676 309.457,211.062 313.81,207.556 " id="polygon54"/>
+    <line style="fill:none;fill-opacity:0;stroke:#000000;stroke-width:2" x1="322.96301" y1="193.798" x2="154.371" y2="44.5144" id="line56"/>
+    <polygon style="fill:#000000;stroke:#000000;stroke-width:2" points="324.406,188.397 328.578,198.77 317.776,195.884 322.963,193.798 " id="polygon58"/>
+    <circle style="fill:#990000;stroke:#000000;stroke-width:4;fill-opacity:1" cx="542.612" cy="90.185402" id="ellipse60" r="35"/>
+    <line style="fill:none;fill-opacity:0;stroke:#000000;stroke-width:2" x1="498.52399" y1="86.693703" x2="390" y2="45" id="line62"/>
+    <polygon style="fill:#000000;stroke:#000000;stroke-width:2" points="497.983,81.1297 505.525,89.3835 494.397,90.4645 498.524,86.6937 " id="polygon64"/>
+    <line style="fill:none;fill-opacity:0;stroke:#000000;stroke-width:2" x1="500.85599" y1="106.04" x2="390" y2="135" id="line66"/>
+    <polygon style="fill:#000000;stroke:#000000;stroke-width:2" points="497.173,101.834 508.113,104.145 499.701,111.51 500.856,106.04 " id="polygon68"/>
+    <line style="fill:none;fill-opacity:0;stroke:#000000;stroke-width:2" x1="510.48499" y1="121.286" x2="390" y2="225" id="line70"/>
+    <polygon style="fill:#000000;stroke:#000000;stroke-width:2" points="505.329,119.127 516.169,116.393 511.852,126.706 510.485,121.286 " id="polygon72"/>
+    <circle style="fill:#990000;stroke:#000000;stroke-width:4;fill-opacity:1" cx="542.612" cy="180.185" id="ellipse74" r="35"/>
+    <line style="fill:none;fill-opacity:0;stroke:#000000;stroke-width:2" x1="498.51401" y1="183.65199" x2="390" y2="225" id="line76"/>
+    <polygon style="fill:#000000;stroke:#000000;stroke-width:2" points="494.398,179.87 505.522,180.982 497.958,189.215 498.514,183.652 " id="polygon78"/>
+    <line style="fill:none;fill-opacity:0;stroke:#000000;stroke-width:2" x1="500.86301" y1="164.304" x2="390" y2="135" id="line80"/>
+    <polygon style="fill:#000000;stroke:#000000;stroke-width:2" points="499.724,158.831 508.114,166.22 497.168,168.499 500.863,164.304 " id="polygon82"/>
+    <line style="fill:none;fill-opacity:0;stroke:#000000;stroke-width:2" x1="510.496" y1="149.073" x2="390" y2="45" id="line84"/>
+    <polygon style="fill:#000000;stroke:#000000;stroke-width:2" points="511.872,143.655 516.172,153.975 505.336,151.223 510.496,149.073 " id="polygon86"/>
+    <line style="fill:none;fill-opacity:0;stroke:#000000;stroke-width:2" x1="668.25403" y1="90.204697" x2="577.612" y2="90.185402" id="line88"/>
+    <polygon style="fill:#000000;stroke:#000000;stroke-width:2" points="665.755,85.2042 675.754,90.2063 665.753,95.2042 668.254,90.2047 " id="polygon90"/>
+    <line style="fill:none;fill-opacity:0;stroke:#000000;stroke-width:2" x1="668.27002" y1="180.189" x2="577.612" y2="180.185" id="line92"/>
+    <polygon style="fill:#000000;stroke:#000000;stroke-width:2" points="665.77,175.189 675.77,180.19 665.77,185.189 668.27,180.189 " id="polygon94"/>
+  </g>
+</svg>

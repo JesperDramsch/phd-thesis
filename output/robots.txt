@@ -1,0 +1,4 @@
+Sitemap: https://dramsch.net/phd/sitemapindex.xml
+
+User-Agent: *
+Host: dramsch.net

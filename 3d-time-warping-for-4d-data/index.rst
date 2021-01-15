@@ -132,7 +132,7 @@ Machine learning-based methods within computer vision are mostly applied
 in image- and video-processing applications. Supervised methods largely
 work off the assumptions in Optical Flow (Dosovitskiy et al. 2015;
 Ranjan and Black 2017). FlowNet (Dosovitskiy et al. 2015) implements an
-Encoder-Decoder CNN architecture. It has reached wide reception in the
+Encoder-Decoder convolutional neural network architecture. It has reached wide reception in the
 field, and several modifications were implemented; namely, FlowNet 2.0
 (Ilg et al. 2017) improving accuracy, and LiteFlowNet (Hui, Tang, and
 Change Loy 2018) reducing the computational cost. SpyNet (Ranjan and
@@ -195,7 +195,7 @@ the same field with different seismic data, collected at different
 times, with differing seismic acquisition equipment, including different
 azimuths. Moreover, I test the model on a seismic data set from a
 different field, with different geology, acquisition, and year. Finally,
-the ml approach is compared to a time-shift field obtained with diw.
+the machine learning approach is compared to a time-shift field obtained with diw.
 
 Dynamic Time and Image Warping
 ------------------------------
@@ -487,10 +487,10 @@ spatially downsampled representation. These convolutional layers in
 neural networks can be arranged in different architectures that we
 explore in the following analysis of prior methods in image alignment.
 
-Supervised CNNs
+Supervised convolutional neural networks
 '''''''''''''''
 
-Supervised end-to-end CNNs rely on reliable ground truth, including the
+Supervised end-to-end convolutional neural networks rely on reliable ground truth, including the
 time shifts being available. Training a supervised machine learning
 system requires both a data vector :math:`x` and a target vector
 :math:`y` to train the blackbox system :math:`f(x) \Rightarrow y`. This
@@ -515,10 +515,10 @@ optical flow using pyramids of SIFT features. These methods introduce
 varying types of network architectures, optimizations, and losses that
 attempt to solve the optical flow problem in computer vision.
 
-Unsupervised CNNs
+Unsupervised convolutional neural networks
 '''''''''''''''''
 
-Unsupervised or self-supervised CNNs only rely on the data, relaxing the
+Unsupervised or self-supervised convolutional neural networks only rely on the data, relaxing the
 necessity for ground truth time shifts. In (Meister, Hur, and Roth 2018)
 the FlowNet architecture is reformulated into an unsupervised optical
 flow estimator with bidirectional census loss called UnFlow. The UnFlow
@@ -1115,7 +1115,7 @@ publish examples.
 Contributions of This Study
 ---------------------------
 
-In the paper, we present the modified self-supervised nn system and test
+In the paper, we present the modified self-supervised neural network system and test
 the results on the training data itself and two generalization test
 sets. The first test set is on the same field but recorded at different
 times to the training set, ensuring similar underlying geology, whereas,

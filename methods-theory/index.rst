@@ -9,14 +9,14 @@
 .. has_math: yes
 .. _sec:theory:
 
-This thesis applies ml methods to 4D seismic data. In this chapter I
+This thesis applies machine learning methods to 4D seismic data. In this chapter I
 introduce 4D seismic concepts and the motivation to acquire and analyze
 4D seismic data. I go on to introduce machine learning and review the
 development of machine learning in itself and in the field of
-geoscience. The focus on this thesis is on nns, particularly dl to
+geoscience. The focus on this thesis is on neural networks, particularly dl to
 geophysical problems. Considering recent developments in computer
-vision, a focus on cnns, the developments and break-throughs of this
-type of nn and the innovations that lead to the recent adoption of ml in
+vision, a focus on convolutional neural networks, the developments and break-throughs of this
+type of neural network and the innovations that lead to the recent adoption of machine learning in
 geoscience are explored in a published book chapter, reprinted here.
 
 4D seismic
@@ -182,34 +182,34 @@ developments of machine learning in geoscience (Jesper Sören Dramsch
 2020c). The book chapter covers the historical development of machine
 learning with a focus on co-developments with geoscience and provides
 the theoretical background for this thesis. `11.2.1.2 <#book:nn>`__
-specifically gives a treatment of nns, the main driver of modern ml
+specifically gives a treatment of neural networks, the main driver of modern machine learning
 applications. `11.2.2.4 <#book:dl>`__ goes on to discuss the development
-of dl, with `11.2.2.6 <#ssec:cnnarch>`__ going into detail about cnn
+of dl, with `11.2.2.6 <#ssec:cnnarch>`__ going into detail about convolutional neural network
 architectures that are particularly relevant to both this thesis and the
-wider field of ml in geoscience.
+wider field of machine learning in geoscience.
 
 Essential machine learning concepts that are used throughout this thesis
-will be introduced. This includes dnns and cnns, as well as, common
-natural image benchmarks, i.e. ImageNet. Moreover, the cnns
+will be introduced. This includes dnns and convolutional neural networks, as well as, common
+natural image benchmarks, i.e. ImageNet. Moreover, the convolutional neural networks
 architectures VGG-16 and ResNet are discussed, which are used in
 `13 <#sec:transfer>`__. This chapter goes on to discuss the U-Net
 architecture, which is at the core of the Voxelmorph algorithm discussed
 in `16 <#sec:timeshift>`__. Moreover, `11.2 <#sec:mlingeo>`__ discusses
-composition of nns as applied to geoscience.
+composition of neural networks as applied to geoscience.
 
 In addition svms, kriging and gps, and rfs are discussed as they are
-important ml models used in geoscience detailed in their respective
+important machine learning models used in geoscience detailed in their respective
 sections. gps in particular have a rich history in geoscience,
-originating in geostatistics, having reached the wider ml community.
+originating in geostatistics, having reached the wider machine learning community.
 These methods are particularly suitable for problems on smaller
-datasets, where nns would overfit on the dataset and not generalize to
+datasets, where neural networks would overfit on the dataset and not generalize to
 unseen data.
 
-The review shows the use of modern ml software applications and
+The review shows the use of modern machine learning software applications and
 discusses the necessity of thorough model validation. The machine
 learning applications in this thesis split the labelled data into
 subsets that are used for training and validation. This serves as a
-basic test of generalization of the individual ml model to unseen data.
+basic test of generalization of the individual machine learning model to unseen data.
 
 .. _sec:mlgeotheory:
 
@@ -914,7 +914,7 @@ Support-vector machines were applied to seismic data analysis (J. Li and
 Castagna 2004) and the automatic seismic interpretation (Yexin Liu et
 al. 2015; H. Di, Shafiq, and AlRegib 2017b; Mardan, Javaherian, and
 others 2017). Compared to convolutional neural networks, these
-approaches usually do not perform as well, when the CNN can gain
+approaches usually do not perform as well, when the convolutional neural network can gain
 information from adjacent samples. Seismological volcanic tremor
 classification (Masotti et al. 2006, 2008) and analysis of
 ground-penetrating radar (E. Pasolli, Melgani, and Donelli 2009; X. Xie
@@ -1090,11 +1090,11 @@ Modern Deep Learning
 The 2010s marked a renaissance of deep learning and particularly
 convolutional neural networks. The convolutional neural network (CNN)
 architecture AlexNet (Krizhevsky, Sutskever, and Hinton 2012c) was the
-first CNN to enter the ImageNet challenge (Jia Deng et al. 2009). The
+first convolutional neural network to enter the ImageNet challenge (Jia Deng et al. 2009). The
 ImageNet challenge is considered a benchmark competition and database of
 natural images established in the field of computer vision. This
 improved the classification error rate from 25.8 % to 16.4 % (top-5
-accuracy). This has propelled research in CNNs, resulting in error rates
+accuracy). This has propelled research in convolutional neural networks, resulting in error rates
 on ImageNet of 2.25 % on top-5 accuracy in 2017 (Russakovsky et al.
 2015). The Tensorflow library (Abadi et al. 2015a) was introduced for
 open source deep learning models, with some different software design
@@ -1183,9 +1183,9 @@ al. 2019).
    tf.keras.layers.Dense(2, activation='softmax')])
 
 These sequential models are also used for simple image classification
-models using CNNs. Instead of Dense layers, these are built up with
+models using convolutional neural networks. Instead of Dense layers, these are built up with
 convolutional layers, which are readily available in 1D, 2D, and 3D as
-Conv1D, Conv2D and Conv3D respectively. A two-dimensional CNN learns a
+Conv1D, Conv2D and Conv3D respectively. A two-dimensional convolutional neural network learns a
 so-called filter :math:`f` for the :math:`n\times m`-dimensional image
 :math:`G`, expressed as:
 
@@ -1195,7 +1195,7 @@ so-called filter :math:`f` for the :math:`n\times m`-dimensional image
    \label{eq:convolution}
 
 resulting in the central result :math:`G^{*}` around the central
-coordinate :math:`c`. In CNNs each layer learns several of these filters
+coordinate :math:`c`. In convolutional neural networks each layer learns several of these filters
 :math:`f`, usually following by a down-sampling operation in :math:`n`
 and :math:`m` to compress the spatial information. This serves as a
 forcing function to learn increasingly abstract representations in
@@ -1500,7 +1500,7 @@ competitions like ImageNet and Pascal-VOC inspired applications in
 automatic seismic interpretation. These networks are usually single
 image classifiers using convolutional neural networks (CNNs). The first
 application of a convolutional neural network to seismic data used a
-relatively small deep CNN for salt identification (A. U. Waldeland and
+relatively small deep convolutional neural network for salt identification (A. U. Waldeland and
 Solberg 2017). The open source software "MaLenoV" implemented a single
 image classification network, which was the earliest freely available
 implementation of deep learning for seismic interpretation (Ildstad and
@@ -1709,7 +1709,7 @@ to certain data types that are present in each field of geoscience.
 However, fields with data present in machine-readable format experienced
 accelerated adoption of machine learning tools and applications. For
 example, Z. E. Ross, Meier, and Hauksson (2018) were able to
-successfully apply CNNs to seismological phase detection, relying on an
+successfully apply convolutional neural networks to seismological phase detection, relying on an
 extensive catalogue of hand-picked data (Z. E. Ross, Meier, and Hauksson
 2018) and consequently generalize this work (Zachary E. Ross et al.
 2018b). It has to be noted that synthetic or specifically sampled data
@@ -1718,7 +1718,7 @@ can introduce an implicit bias into the network (Wirgin 2004; Kim et al.
 learning model makes them versatile and powerful tools that were
 leveraged in every subdiscipline of the Earth sciences.
 
-The State of ML on Geoscience
+The State of machine learning on Geoscience
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Overall, geoscience and especially geophysics has followed developments
@@ -1726,13 +1726,13 @@ in machine learning closely. Across disciplines, machine learning
 methods have been applied to various problems that can generally be
 categorized into three subsections:
 
-#. Build a surrogate ML model of a well-understood process. This model
+#. Build a surrogate machine learning model of a well-understood process. This model
    usually provides an advantage in computational cost.
 
-#. Build an ML model of a task previously only possible with human
+#. Build an machine learning model of a task previously only possible with human
    interaction, interpretation, or knowledge and experience.
 
-#. Build a novel ML model that performs a task that was previously not
+#. Build a novel machine learning model that performs a task that was previously not
    possible.
 
 Granulometry on SEM images is an example of an application in category
@@ -1765,11 +1765,11 @@ interpretation with validation on a separate geographic area.
 Geoscientific publishing can be challenging to navigate with respect to
 machine learning. While papers investigating the theoretical
 fundamentals of machine learning in geoscience exist, it is clear that
-the overwhelming majority of papers present applications of ML to
+the overwhelming majority of papers present applications of machine learning to
 geoscientific problems. It is complex to evaluate whether a paper is a
 case study or a methodological paper with an exemplary application to a
 specific data set. Despite the difficulty of most thorough applications
-of ML, "idea papers" exist that simply present an established algorithm
+of machine learning, "idea papers" exist that simply present an established algorithm
 to a problem in geoscience without a specific implementation or
 addressing the possible caveats. On the flip-side, some papers apply
 machine learning algorithms as pure regression models without the aim to
@@ -1999,8 +1999,8 @@ Contributions of this Study
 ---------------------------
 
 This chapter provides the basic principles in 4D seismic and an overview
-of ml in geoscience in the last 70 years. This lays the foundation for
-the applications outlined in the following chapters that use cnns on
+of machine learning in geoscience in the last 70 years. This lays the foundation for
+the applications outlined in the following chapters that use convolutional neural networks on
 seismic data, as well as dnns on seismic maps. Specialized theory and
 methods are introduced in their respective chapters. The work in this
 chapter resulted in a review book chapter (Jesper Sören Dramsch 2020c)

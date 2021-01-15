@@ -13,7 +13,7 @@
 
    `Dramsch, J. S. <https://orcid.org/0000-0001-8273-905X>`__, &
    `Lüthje, M. <https://orcid.org/0000-0003-2715-1653>`__ (2018).
-   Deep-learning seismic facies on state-of-the-art CNN architectures.
+   Deep-learning seismic facies on state-of-the-art convolutional neural network architectures.
    In SEG Technical Program Expanded Abstracts 2018
    `(pp. 2036-2040) <https://dramsch.net/assets/files/SEG_expanded_abstract_2018___Deep_learning_seismic_facies_on_state_of_the_art_CNN_architectures.pdf>`__.
    Society of Exploration Geophysicists.
@@ -26,11 +26,11 @@ This chapter discusses transfer learning in asi. Transfer learning is a
 technique that uses a dnns pre-trained on a different data set that is
 usually larger and more diverse, which is then fine-tuned to the target
 data. dnns are notorious for needing large numbers of diverse annotated
-samples. That is often prohibitive to geoscience applications of ml,
+samples. That is often prohibitive to geoscience applications of machine learning,
 where data is expensive and difficult to acquire, labelling by experts
 is complicated and prone to bias (Bond et al. 2007), and often only
 available within commercial environments. In (Jesper Sören Dramsch and
-Lüthje 2018b) we show that sotas cnns pre-trained on a natural image
+Lüthje 2018b) we show that sotas convolutional neural networks pre-trained on a natural image
 data set (ImageNet, cf. `11.2.2.4 <#book:dl>`__) can be transferred to
 perform asi. This paper forms the central contribution of this chapter.
 
@@ -82,7 +82,7 @@ eye cannot see a change, but the classifier is led to misclassify the
 image (I. J. Goodfellow, Shlens, and Szegedy 2014), which is
 particularly interesting to physical applications of machine learning,
 that can have significant amounts of noise in their data. Alternatively,
-even physical printed stickers are used to fool a cnn in real-world
+even physical printed stickers are used to fool a convolutional neural network in real-world
 applications (Brown et al. 2017). Besides, geological data contains
 regions of geological interest and regions that are inconsequential to
 geological interpretation. This selective interpretation of geological
@@ -118,7 +118,7 @@ ResNet-101 in `13.1 <#fig:cnnsota>`__ (K. He et al. 2016). Details on
 ResNet blocks differ, the main take-away being the sum or concatenation
 of the original data with the block output. DenseNets (G. Huang et al.
 2017) and Inception-style networks (Szegedy et al. 2015) are other
-approaches to build deeper nns.
+approaches to build deeper neural networks.
 
 .. figure:: ../images/imagenetsota.png
   :alt: Top-5 Accuracies of Neural Architectures on ImageNet plotted
@@ -131,7 +131,7 @@ approaches to build deeper nns.
   Million Parameters, color-coded to similar network type. Data and
   references shown in `[tab:imagenet-sota] <#tab:imagenet-sota>`__
 
-`13.1 <#fig:cnnsota>`__ additionally contains several classes of nn
+`13.1 <#fig:cnnsota>`__ additionally contains several classes of neural network
 architectures, namely AmoebaNet, NASNet, and EfficientNet. These
 categories are a more recent development in neural architecture
 research, based on nas, which automates the search for novel
@@ -160,7 +160,7 @@ accuracy on ImageNet is comparable, while the number of parameters
 vastly differ. VGG-16 contains 138 million parameters, while ResNet- 52
 contains 23 million parameters, the VGG-16 network is, however, 16
 layers deep, while Resnet-52 contains 52 layers. These networks are
-compared to the end-to-end trained CNN built by Anders Waldeland and
+compared to the end-to-end trained convolutional neural network built by Anders Waldeland and
 Solberg (2016).
 
 Training and Fine-Tuning
@@ -168,7 +168,7 @@ Training and Fine-Tuning
 
 The training of the three networks in this chapter, namely Waldeland
 CNN, VGG-16, and Resnet-52, requires different strategies to obtain
-optimal results. The Waldeland CNN is end-to-end trained on the training
+optimal results. The Waldeland convolutional neural network is end-to-end trained on the training
 data. The VGG-16 and ResNet-52 are fine-tuned with pre-trained weights,
 which require a lower learning rate and fixing the weights in parts of
 the network. The networks are trained with the categorical cross-entropy
@@ -198,20 +198,20 @@ deteriorate. This avoids overfitting of the network, which is
 particularly essential when fine-tuning an over-parametrized network to
 smaller-scale data.
 
-End-to-End CNN training
+End-to-End convolutional neural network training
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-The training of the Waldeland cnn is trained end-to-end. The optimizer
-for the Waldeland CNN is the Adam optimizer (Diederik P. Kingma and Ba
+The training of the Waldeland convolutional neural network is trained end-to-end. The optimizer
+for the Waldeland convolutional neural network is the Adam optimizer (Diederik P. Kingma and Ba
 2014) with a learning rate of :math:`0.001`, the decay of first-order
 moments of :math:`\beta_1=0.9`, and second-order moments of
 :math:`\beta_2=0.999`.
 
 .. figure:: ../images/waldeland-loss.png
-  :alt: Accuracy and Categorical Cross Entropy for Waldeland CNN
+  :alt: Accuracy and Categorical Cross Entropy for Waldeland convolutional neural network
   :name: fig:waldeland-loss
 
-  Accuracy and Categorical Cross Entropy for Waldeland CNN
+  Accuracy and Categorical Cross Entropy for Waldeland convolutional neural network
 
 `13.2 <#fig:waldeland-loss>`__ shows the training loss of end-to-end
 training. The accuracy shows that the network very quickly reaches 100%
@@ -242,10 +242,10 @@ that updates the learning rate (lr) according to
 :math:`lr(t) = 0.0001 \cdot \left( 1 + 10^{-6} \cdot t \right)^{-1}`.
 
 .. figure:: ../images/vgg-loss.png
-  :alt: Accuracy and Categorical Cross Entropy for VGG16 CNN
+  :alt: Accuracy and Categorical Cross Entropy for VGG16 convolutional neural network
   :name: fig:vgg-loss
 
-  Accuracy and Categorical Cross Entropy for VGG16 CNN
+  Accuracy and Categorical Cross Entropy for VGG16 convolutional neural network
 
 The VGG-16 network quickly converges to 100% accuracy, the loss, however
 smoothly converges towards a cross-entropy of :math:`0.1`. The network
@@ -254,10 +254,10 @@ the available hardware at the time of writing the paper and the good
 results despite possibly increasing the convergence.
 
 .. figure:: ../images/resnet-loss.png
-  :alt: Accuracy and Categorical Cross Entropy for ResNet52 CNN
+  :alt: Accuracy and Categorical Cross Entropy for ResNet52 convolutional neural network
   :name: fig:resnet-loss
 
-  Accuracy and Categorical Cross Entropy for ResNet52 CNN
+  Accuracy and Categorical Cross Entropy for ResNet52 convolutional neural network
 
 The ResNet-52 network immediately reports a training accuracy of close
 to 100% while the test data report 11% accuracy, which is a performance
@@ -266,7 +266,7 @@ loss in `13.4 <#fig:resnet-loss>`__ shows the same problem of a
 massively overfit network. For this reason, the network predictions were
 not displayed in the paper in this chapter.
 
-Conference Paper: Deep learning seismic facies on state of the art CNN architectures
+Conference Paper: Deep learning seismic facies on state of the art convolutional neural network architectures
 ------------------------------------------------------------------------------------
 
 .. _introduction-1:
@@ -347,17 +347,17 @@ normalization to the network. These methods improve regularization and
 prevent overfitting. Furthermore, we use early-stopping to prevent
 overfitting the model by over-training. We chose two metrics to monitor
 in the training and validation sets, namely mean absolute error and
-accuracy. The Waldeland CNN is relatively shallow compared to modern
+accuracy. The Waldeland convolutional neural network is relatively shallow compared to modern
 deep learning networks with 95,735 parameters to optimize for.
 
 .. figure:: ../images/waldeland_complexity.png
-  :alt: Waldeland CNN architecture. Input at the Top. Softmax
+  :alt: Waldeland convolutional neural network architecture. Input at the Top. Softmax
    Classification Layer on bottom. Width of objects shows ``log`` of
    spatial extent of layer. Height shows ``log`` of complexity of layer.
    The layers are color coded to show similar purpose.
   :name: transfer:fig:waldelandcnn
 
-  Waldeland CNN architecture. Input at the Top. Softmax Classification
+  Waldeland convolutional neural network architecture. Input at the Top. Softmax Classification
   Layer on bottom. Width of objects shows ``log`` of spatial extent of
   layer. Height shows ``log`` of complexity of layer. The layers are
   color coded to show similar purpose.
@@ -385,7 +385,7 @@ development, called residual blocks. These residual blocks add a skip-
 or identity-connection around a stack of 1x1, 3x3, 1x1 convolutional
 layers (K. He et al. 2016). The 1x1 are identity convolutions, used for
 down- and subsequent up-sampling to decrease the computational cost of
-very deep CNNs. The convolutional layers are followed by one fully
+very deep convolutional neural networks. The convolutional layers are followed by one fully
 connected layer for classification.
 
 All networks use rectified linear units (ReLu) as neural activation. The
@@ -422,7 +422,7 @@ figure `13.7 <#transfer:fig:labels>`__.
       ============= ======== ====== ===== ======
       Network       Run      Loss   MAE   Acc
       ============= ======== ====== ===== ======
-      Waldeland CNN Training 0.001  0.000 100.0%
+      Waldeland convolutional neural network Training 0.001  0.000 100.0%
                     Test     0.003  0.000 99.9%
       VGG16         Training 0.010  0.005 99.8%
                     Test     0.127  0.026 100.0%
@@ -454,7 +454,7 @@ freely. We show results of crossline slice 500. We have used the same
 plotting parameters for both either results, both have been generated
 programatically, without human intervention.
 Figure `[transfer:fig:predi] <#transfer:fig:predi>`__ shows the
-prediction of the Waldeland CNN at every location of the 2D slice based
+prediction of the Waldeland convolutional neural network at every location of the 2D slice based
 on a 65 x 65 patch of the data. Border patches were zero padded. We see
 clear patches for the low coherency region in brown. The low amplitude
 dipping (grass green) region has been reproduced well, however some
@@ -478,7 +478,7 @@ amplitudes (orange) have been mislabeled as grizzly amplitudes.
 
 The VGG16 network classification is shown in
 figure `[transfer:fig:vggpredi] <#transfer:fig:vggpredi>`__. The network
-performs similar to the Waldeland CNN in
+performs similar to the Waldeland convolutional neural network in
 figure `[transfer:fig:predi] <#transfer:fig:predi>`__, however some key
 differences will be pointed out. The separation of low coherency and the
 "else" region around :math:`t\approx400~\text{ms}` is less defined and,
@@ -487,7 +487,7 @@ and high amplitude continuous (blue) is worse in the region around
 location 280, :math:`t\approx800~\text{ms}`. This might be due to higher
 sensitivity to declines in seismic quality. Below
 :math:`t\approx1000~\text{ms}` the "else" region is free from differing
-patches, in contrast, the Waldeland CNN interspersed two other classes
+patches, in contrast, the Waldeland convolutional neural network interspersed two other classes
 in this region. VGG16 also classifies some "else" regions in the high
 amplitude (magenta) region between location 600-800. The area around
 location 200 below the high amplitude (magenta) region is also blocky,
@@ -501,7 +501,7 @@ the data. This is supported by the numeric results presented in
 table `13.1 <#tab:scores>`__. The network training error indicates a
 perfect fit to the data, whereas the test score is unseen data with
 labels to evaluate the performance of networks on unseen data. While
-both the Waldeland CNN and VGG16 perform well, the ResNet50 performs
+both the Waldeland convolutional neural network and VGG16 perform well, the ResNet50 performs
 very poorly.
 
 | 
@@ -510,10 +510,10 @@ Conclusion
 ~~~~~~~~~~
 
 Convolutional neural networks show good results for propagating
-interpretations through seismic cubes. The pre-trained VGG16 CNN has
+interpretations through seismic cubes. The pre-trained VGG16 convolutional neural network has
 shown very good results in adapting to seismic texture identification.
 Transfer learning was fast and the results are similar to the shallower
-Waldeland CNN. Both networks have trade-offs in the misclassification
+Waldeland convolutional neural network. Both networks have trade-offs in the misclassification
 and can be improved upon.
 
 The ResNet50 was shown to be ineffective on transfer learning seismic
@@ -547,7 +547,7 @@ with diverse generalizable learned filters seems to alleviate some
 limitations of smaller non-diverse data sets used in the fine-tuning
 process. These pre-trained networks themselves are of little use to most
 applications in geoscience. Nevertheless, they can be integrated into
-more task-appropriate nn architectures that leverage the pre-training.
+more task-appropriate neural network architectures that leverage the pre-training.
 
 Apart from building deeper networks for image classification, the neural
 architectures can serve as a forcing function to the task the network is

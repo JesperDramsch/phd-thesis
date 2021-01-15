@@ -24,12 +24,12 @@
 
 In the paper (Jesper Sören Dramsch, Lüthje, and Christensen 2019) I
 explore complex-valued deep convolutional networks to show that phase
-content in non-stationary data improves generalization of cnns. This
+content in non-stationary data improves generalization of convolutional neural networks. This
 work implements self-supervised aes that compress the data and measure
 the reconstruction of the seismic data.
 
 Four different deep convolutional aes are constructed. Two aes are
-real-valued and two aes are complex-valued. The complex-valued cnn is
+real-valued and two aes are complex-valued. The complex-valued convolutional neural network is
 implemented as two real-valued feature maps, one for the real component
 :math:`a` and one for the complex component :math:`b` each, which are
 combined into a complex-valued number with :math:`a + b\text{i}`. The
@@ -823,13 +823,13 @@ Contributions of this Study
 ---------------------------
 
 This chapter and Jesper Sören Dramsch, Lüthje, and Christensen (2019)
-investigate the application of complex trace analysis to cnns. It uses
+investigate the application of complex trace analysis to convolutional neural networks. It uses
 lossy compression to measure the reconstruction error and therefore, the
-informational content in complex-valued nns. We were able to show that
+informational content in complex-valued neural networks. We were able to show that
 networks containing phase information in the complex complement of data
 reduce the error as compared to real-valued networks. Moreover, the code
 to reproduce the findings in this paper (Jesper Sören Dramsch 2019b), as
-well as, a standalone Python library for complex-valued cnns in
+well as, a standalone Python library for complex-valued convolutional neural networks in
 tensorflow has been made available as foss (Jesper Sören Dramsch and
 Contributors 2019).
 

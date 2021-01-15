@@ -48,7 +48,7 @@ jagged, which is aggravated by the noise.
 Unsupervised Image Segmentation
 -------------------------------
 
-Labelled training data was not available to apply cnns to this problem.
+Labelled training data was not available to apply convolutional neural networks to this problem.
 Instead of hand-labelling the data, unsupervised clustering was
 appropriate to find the optimal boundary of the grains from the
 background. gmms learned a two-fold representation that separated the
@@ -221,7 +221,7 @@ extends the toolkit beyond histogram segmentation.
 
 Modern Neural Networks (NN) can segment images exceptionally well
 (Ronneberger, Fischer, and Brox 2015b). Modarres et al. (2017)
-investigated the application of NNs to SEM images. However, as with most
+investigated the application of neural networks to SEM images. However, as with most
 applications in Geoscience and supervised learning, we would have to
 label a significant amount of images by hand to assure quality or
 automatically with subpar methods to train the network adequately. This
@@ -336,7 +336,7 @@ labels.
 These binary labels enable computational granulometry on the grain data.
 This data has good accordance with the image data, as well as measured
 porosity on the rock sample. Finally, this method can be used to
-generate labels for more complex machine learning models, i.e. cnns.
+generate labels for more complex machine learning models, i.e. convolutional neural networks.
 
 The code of this analysis is published under .
 

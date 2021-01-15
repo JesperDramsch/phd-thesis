@@ -9,16 +9,18 @@
 .. has_math: yes
 .. _sec:transfer:
 
-|image5| |image6| |image7| |image8|
-
-   `Dramsch, J. S. <https://orcid.org/0000-0001-8273-905X>`__, &
-   `Lüthje, M. <https://orcid.org/0000-0003-2715-1653>`__ (2018).
-   Deep-learning seismic facies on state-of-the-art convolutional neural network architectures.
-   In SEG Technical Program Expanded Abstracts 2018
-   `(pp. 2036-2040) <https://dramsch.net/assets/files/SEG_expanded_abstract_2018___Deep_learning_seismic_facies_on_state_of_the_art_CNN_architectures.pdf>`__.
-   Society of Exploration Geophysicists.
-
--  Github: https://github.com/JesperDramsch/segam18
++-----------+-----------+-----------+----------------------------------+
+| |image5|  | |image6|  | |image7|  | |image8|                         |
++-----------+-----------+-----------+----------------------------------+                         
+|   `Dramsch, J. S. <https://orcid.org/0000-0001-8273-905X>`__, &      |
+|   `Lüthje, M. <https://orcid.org/0000-0003-2715-1653>`__ (2018).     |
+|   Deep-learning seismic facies on state-of-the-art convolutional     |
+|   neural network architectures.                                      |
+|   In SEG Technical Program Expanded Abstracts 2018 (pp. 2036-2040).  |
+|   Society of Exploration Geophysicists.                              |
++----------------------------------------------------------------------+                         
+| Github: https://github.com/JesperDramsch/segam18                     |
++----------------------------------------------------------------------+
 
 -----------
 

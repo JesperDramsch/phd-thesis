@@ -9,16 +9,18 @@
 .. has_math: yes
 .. _sec:complex:
 
-|image9| |image10| |image11|
-
-   Preprint: `Dramsch, J. S. <https://orcid.org/0000-0001-8273-905X>`__,
-   `Lüthje, M. <https://orcid.org/0000-0003-2715-1653>`__, &
-   `Christensen, A. N. <https://orcid.org/0000-0002-3668-3128>`__
-   (2019). Complex-valued neural networks for machine learning on
-   non-stationary physical data. arXiv preprint
-   arXiv:`1905.12321 <https://arxiv.org/abs/1905.12321>`__.
-
--  Github: https://github.com/JesperDramsch/Complex-CNN-Seismic
++----------+-----------+------------------------------------------------+
+| |image9| | |image10| | |image11|                                      |
++----------+-----------+------------------------------------------------+
+|   `Dramsch, J. S. <https://orcid.org/0000-0001-8273-905X>`__,         |
+|   `Lüthje, M. <https://orcid.org/0000-0003-2715-1653>`__, &           |
+|   `Christensen, A. N. <https://orcid.org/0000-0002-3668-3128>`__      |
+|   (2019). Complex-valued neural networks for machine learning on      |
+|   non-stationary physical data. arXiv preprint                        |
+|   arXiv:`1905.12321 <https://arxiv.org/abs/1905.12321>`__.            |
++-----------------------------------------------------------------------+                         
+| Github: https://github.com/JesperDramsch/Complex-CNN-Seismic          |
++-----------------------------------------------------------------------+
 
 -----------
 

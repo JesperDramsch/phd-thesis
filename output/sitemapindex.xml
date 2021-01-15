@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
   <loc>https://dramsch.net/phd/galleries/rss.xml</loc>
-  <lastmod>2021-01-15T14:52:00Z</lastmod>
+  <lastmod>2021-01-15T16:49:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://dramsch.net/phd/rss.xml</loc>
@@ -15,6 +15,6 @@
  </sitemap>
  <sitemap>
   <loc>https://dramsch.net/phd/sitemap.xml</loc>
-  <lastmod>2021-01-15T15:17:00Z</lastmod>
+  <lastmod>2021-01-15T16:49:00Z</lastmod>
  </sitemap>
 </sitemapindex>

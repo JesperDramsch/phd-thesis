@@ -11,7 +11,7 @@ _Jesper S Dramsch<sup>[Orcid](https://orcid.org/0000-0001-8273-905X)</sup>_
 
 ![DTU Logo](images/fysik_uk.png)
 
-This presents a webview of the thesis "Machine Learning in Geoscience" by Jesper Dramsch. The webview can contain errors. The PDF is available [here](Dramsch-thesis.pdf). This is the product of a thorough revision after [v1](v1.pdf) was rejected.
+This presents a webview of the thesis "Machine Learning in Geoscience" by [Jesper Dramsch](dramsch.net). The webview can contain errors. The PDF is available [here](Dramsch-thesis.pdf). This is the product of a thorough revision after [v1](v1.pdf) was rejected.
 
 [![DTU Logo](images/cover.png)](https://orbit.dtu.dk/en/publications/machine-learning-in-4d-seismic-data-analysis-deep-neural-networks)
 

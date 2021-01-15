@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html prefix="
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Machine Learning Geoscience · Jesper Dramsch' PhD Thesis </title>
+<link href="assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700%7CAbril+Fatface">
+<meta content="#5670d4" name="theme-color">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<link rel="canonical" href="https://dramsch.net/phd/">
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{equation}", "\\end{equation}"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script><!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><meta name="author" content="Jesper S Dramsch">
+</head>
+<body class="">
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+    <div class="hsidebar">
+        <div class="container sidebar-sticky">
+            <div class="sidebar-about">
+              <h1>
+                <a href="https://dramsch.net/phd/">
+                      <h1 id="brand"><a href="https://dramsch.net/phd/" title="Machine Learning Geoscience" rel="home">
+
+        <span id="blog-title">Machine Learning Geoscience</span>
+    </a></h1>
+
+                </a>
+              </h1>
+                <p class="lead">Applications of Deep Neural Networks in 4D Seismic Data Analysis</p>
+
+            </div>
+                <nav id="menu" role="navigation" class="sidebar-nav"><a class="sidebar-nav-item" href="abstract/">Abstract</a>
+        <a class="sidebar-nav-item" href="dansk-resume/">Dansk Resumé</a>
+        <a class="sidebar-nav-item" href="preface/">Preface</a>
+        <a class="sidebar-nav-item" href="introduction/">1: Introduction</a>
+        <a class="sidebar-nav-item" href="methods-theory/">2: Methods &amp; Theory</a>
+        <a class="sidebar-nav-item" href="unsupervised-geological-image-segmentation/">3: Unsupervised Geological Image Segmentation</a>
+        <a class="sidebar-nav-item" href="transfer-learning-in-automatic-seismic-interpretation/">4: Transfer learning in Automatic Seismic Interpretation</a>
+        <a class="sidebar-nav-item" href="complex-valued-neural-networks/">5: Complex-valued neural networks</a>
+        <a class="sidebar-nav-item" href="machine-learning-in-4d-seismic-inversion/">6: Machine Learning in 4D Seismic Inversion</a>
+        <a class="sidebar-nav-item" href="3d-time-warping-for-4d-data/">7: 3D Time Warping for 4D Data</a>
+        <a class="sidebar-nav-item" href="conclusion/">8: Conclusion</a>
+        <a class="sidebar-nav-item" href="bibliography/">Bibliography</a>
+        <a class="sidebar-nav-item" href="acronyms/">Acronyms</a>
+        <a class="sidebar-nav-item" href="code/">Code</a>
+    
+    
+    </nav><footer id="footer"><span class="copyright">
+              Contents © 2021         <a href="mailto:jesper@dramsch.net">Jesper S Dramsch</a>
+            </span>
+            
+            
+        </footer>
+</div>
+    </div>
+
+    <div class="content container" id="content">
+<article class="post-text storypage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="post-title p-name"><a href="." class="u-url">Jesper Dramsch' PhD Thesis</a></h1>
+
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p><em>Jesper S Dramsch<sup><a href="https://orcid.org/0000-0001-8273-905X">Orcid</a></sup></em></p>
+<p><img alt="DTU Logo" src="images/fysik_uk.png"></p>
+<p>This presents a webview of the thesis "Machine Learning in Geoscience" by Jesper Dramsch. The webview can contain errors. The PDF is available <a href="Dramsch-thesis.pdf">here</a>. This is the product of a thorough revision after <a href="v1.pdf">v1</a> was rejected.</p>
+<p><a href="https://orbit.dtu.dk/en/publications/machine-learning-in-4d-seismic-data-analysis-deep-neural-networks"><img alt="DTU Logo" src="images/cover.png"></a></p>
+<h3>Popular Science Summary</h3>
+<p>Machine learning is a new paradigm in instructing computers to perform a task. Classically, computers were told rules to follow, when given some data, whereas, in machine learning computers are provided with data and answers and left with a method to figure out the rules. Recently these methods have become increasingly powerful in identifying images, which enabled image search and self-driving cars.</p>
+<p>Geophysics is the discipline of imaging the Earth to gain understanding, find natural resources and analyze geohazards. In 4D seismic, we image the same geological area repeatedly throughout time. Changes in the imaging equipment, the underlying geology, and variations in the way we image the area between surveys make the problem highly complicated. The data obtained from geophysical imaging can be fed to the same machine learning algorithms used for images to build systems that can automate tedious work tasks or provide new insights. </p>
+<p>In this study, I combine powerful machine learning algorithms such as biologically inspired neural networks with geophysical insights. At the core of geophysics lie signal processing knowledge, which we can investigate in neural networks itself, shedding light on the internal properties of these networks. Moreover, incorporating physical knowledge in neural networks directly, bears promise to gain accurate and reliable systems that increase our understanding in Earth’s processes.</p>
+<p>This thesis investigates the fundamental properties of neural networks in geophysical applications. These include re-using trained neural networks that are excellent at identifying images and applying them to identify rock layers and geological events in geophysical images. This thesis does a deep dive to evaluate whether the theory of including specific information from seismic data, which is known to be very beneficial in classical approaches in neural networks improves the performance. We show that smaller networks that incorporate this complex-valued information perform better than their real-valued equivalent, decreasing computational cost.</p>
+<p>In addition to this fundamental work, this thesis contains two applications of machine learning to real-world problems. The first, being that the geophysical data over hydrocarbon fields contains a plethora of information from different effects. In this application we develop a network that incorporates basic physical relationships of the geophysical input data to separate the effects of changes in pressure and saturation of water and gas in a thin reservoir in the UK North Sea. The second application introduces a novel algorithm that evaluates a problem that is usually approached in a one-dimensional view and extends it to a three-dimensional algorithm. This method corrects for the slight changes of the imaged subsurface between surveys. In addition to extending the problem to three dimensions, the method provides uncertainty values for the geophysicist to evaluate. Moreover, this algorithm works unsupervised, which means that we do not have to provide the machine learning system with information on how to align the images. Instead, we apply a mathematical constraint that ensures that the algorithm does not cross geological layers, a simple yet powerful limitation to guides the algorithm to develop physically and geologically sensible matching patterns.</p>
+</div>
+    </div>
+    
+</article>
+</div>
+            <script src="assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

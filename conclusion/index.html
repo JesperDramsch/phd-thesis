@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html prefix="
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Machine Learning Geoscience · Conclusion </title>
+<link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700%7CAbril+Fatface">
+<meta content="#5670d4" name="theme-color">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+<link rel="canonical" href="https://dramsch.net/phd/conclusion/">
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{equation}", "\\end{equation}"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script><!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><meta name="author" content="Jesper S Dramsch">
+</head>
+<body class="">
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+    <div class="hsidebar">
+        <div class="container sidebar-sticky">
+            <div class="sidebar-about">
+              <h1>
+                <a href="https://dramsch.net/phd/">
+                      <h1 id="brand"><a href="https://dramsch.net/phd/" title="Machine Learning Geoscience" rel="home">
+
+        <span id="blog-title">Machine Learning Geoscience</span>
+    </a></h1>
+
+                </a>
+              </h1>
+                <p class="lead">Applications of Deep Neural Networks in 4D Seismic Data Analysis</p>
+
+            </div>
+                <nav id="menu" role="navigation" class="sidebar-nav"><a class="sidebar-nav-item" href="../abstract/">Abstract</a>
+        <a class="sidebar-nav-item" href="../dansk-resume/">Dansk Resumé</a>
+        <a class="sidebar-nav-item" href="../preface/">Preface</a>
+        <a class="sidebar-nav-item" href="../introduction/">1: Introduction</a>
+        <a class="sidebar-nav-item" href="../methods-theory/">2: Methods &amp; Theory</a>
+        <a class="sidebar-nav-item" href="../unsupervised-geological-image-segmentation/">3: Unsupervised Geological Image Segmentation</a>
+        <a class="sidebar-nav-item" href="../transfer-learning-in-automatic-seismic-interpretation/">4: Transfer learning in Automatic Seismic Interpretation</a>
+        <a class="sidebar-nav-item" href="../complex-valued-neural-networks/">5: Complex-valued neural networks</a>
+        <a class="sidebar-nav-item" href="../machine-learning-in-4d-seismic-inversion/">6: Machine Learning in 4D Seismic Inversion</a>
+        <a class="sidebar-nav-item" href="../3d-time-warping-for-4d-data/">7: 3D Time Warping for 4D Data</a>
+        <a class="sidebar-nav-item" href=".">8: Conclusion</a>
+        <a class="sidebar-nav-item" href="../bibliography/">Bibliography</a>
+        <a class="sidebar-nav-item" href="../acronyms/">Acronyms</a>
+        <a class="sidebar-nav-item" href="../code/">Code</a>
+    
+    
+    </nav><footer id="footer"><span class="copyright">
+              Contents © 2021         <a href="mailto:jesper@dramsch.net">Jesper S Dramsch</a>
+            </span>
+            
+            
+        </footer>
+</div>
+    </div>
+
+    <div class="content container" id="content">
+<article class="post-text storypage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="post-title p-name"><a href="." class="u-url">Conclusion</a></h1>
+
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>This thesis contributes ml applications in geoscience with a focus on
+field data applications in 4D seismic, bsem, and asi. Additionally, the
+introduction contains a published review of the history of ml in
+geoscience with insights into the recent interest around the topic.</p>
+<p>The book chapter in <a class="reference external" href="#sec:mlingeo">11.2</a> discusses the historic
+development of ml in geoscience. It highlights key papers and
+developments through the decades, relating the developments to larger
+developments in the field of ai and ml. In the book key algorithms are
+detailed including svm, rf, gp and the development from kriging, as well
+as, key nn developments and dl architectures that enable modern
+applications throughout many scientific disciplines including geoscience
+as a whole.</p>
+<p>The exploration of bsem data in <a class="reference external" href="#sec:gaussian">12</a> introduced a
+novel unsupervised method to extract chalk grain boundaries from image
+data and shows the improvement of subsequent morphological filtering
+(Jesper Sören Dramsch, Amour, and Lüthje 2018). These methods reduce
+labour-intensive manual tasks, introducing varying degrees of automation
+in geoscience workflows. Following the extraction of the boundaries in
+the bsem images, computational granulometry can be performed. This
+includes statistics about grain size and circularity of the grains and
+the orientation of grains. Commonly this data had to be obtained by
+manual measurement of every grain. The unsupervised nature of this
+application means that no training data is necessary; in turn, it can be
+used to obtain high-quality training data for subsequent supervised
+machine learning tasks.</p>
+<p>The research in <a class="reference external" href="#sec:transfer">13</a> showed that transfer learning
+could alleviate the necessity for large amounts of labelled data, by
+re-using a nn trained on natural images. This study showed that nns can
+be transferred to seismic data and outperform smaller networks trained
+from scratch. The smaller network size was necessary to avoid
+overfitting. The source code for this research was made available and
+has been of use to multiple researchers (Jesper Sören Dramsch 2018h).
+This has broad applications in industry and research settings performing
+asi. The limited availability of labelled data and wide availability of
+pre-trained network architectures makes this a viable option to obtain
+improved results and more robust models. Moreover, this insight is
+applicable to pre-training geoscientific nns.</p>
+<p>Jesper Sören Dramsch, Lüthje, and Christensen (2019) shows that
+explicitly using phase information as input in a complex-valued neural
+network can stabilize the reconstruction of compressed seismic data. The
+smaller complex-valued network in <a class="reference external" href="#sec:complex">14</a> outperforms
+larger real-valued networks; however, a very large real-valued network
+that does not compress the seismic data can implicitly learn partial
+phase information. The paper touches on deficits of current metrics
+applied to geoscience and exposes a periodic dimming effect of
+frequencies from neural networks that should be further investigated,
+particularly in the context of aliasing. This paper led to the creation
+of the open-source software package <code class="docutils literal">keras complex</code> to enable
+complex-valued deep learning in <code class="docutils literal">tf</code> (Manual in
+<a class="reference external" href="#section:keras-complex">22.5</a>). Considering the modularity of neural
+networks, this insight can be transferred to other deep learning tasks
+on physical data like seismic data. Additionally, this research could
+lead to further investigation of including known physical information in
+neural networks not limited to explicitly using the phase information as
+input.</p>
+<p><a class="reference external" href="#sec:inversion">15</a> introduces a novel method to perform
+pressure-saturation inversion on amplitude difference maps (Jesper Sören
+Dramsch, Corte, et al. 2019a). This work incorporates basic physical
+relationships directly as features into the neural network architecture,
+which was shown to stabilize the training result. Moreover, this work
+shows the possibility of training dnns on simulation data and
+subsequently transferring the network to field data. This particularly
+was enabled by applying Gaussian noise within the network. The dnn
+results were compared to results from the Bayesian inversion showing a
+promising application of dnns in 4D qi (Jesper Sören Dramsch, Corte, et
+al. 2019a). While this work has attracted interest in a sponsors meeting
+and the workshop presentations (Jesper Sören Dramsch, Corte, et al.
+2019a, 2019d), further investigation into model explainability and lower
+complexity baseline models is necessary (Côrte et al. 2020; G. Corte et
+al. 2020).</p>
+<p>In <a class="reference external" href="#sec:timeshift">16</a> a novel method for time-shift extraction is
+presented. This method combines recent advancements in diffeomorphic
+mapping, dl and unsupervised learning to introduce a 3D time shift
+extraction method including uncertainty values, where 1D extraction is
+the standard (Jesper Sören Dramsch, Christensen, et al. 2019). The
+method is shown to work on 3D seismic post-stack data with strongly
+differing acquisition parameters, without supplying any time shift
+information. After applying the method, the 3D seismic volumes are well
+aligned, with the diffeomorphic constraint performing well on seismic
+data. This work tests the trained network on two other 3D seismic volume
+pairs to test the generalization of the cnn after training. The two test
+sets show that the trained model on a single 3D seismic volume pair
+transfers well to the same field with different acquisition parameters
+and even a different field with a vastly different geological setting.</p>
+<p>Overall, this thesis shows dl applications in seismic geophysics and
+resulted in multiple workshop, conference, journal papers, and a book
+chapter, including reproducible Python code for all publications. The
+publications, developed through interdepartmental and international
+collaboration, have been disseminated at international workshops and
+conferences. Two novel methods for 4D seismic analysis were introduced
+and compared to conventional methods. Moreover, transfer learning as a
+viable application in asi was shown and has found wide application. The
+Python code in this thesis has been open-sourced for all published
+papers for reproducibility including the open-source package "keras
+complex".</p>
+</div>
+    </div>
+    
+</article>
+</div>
+            <script src="../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

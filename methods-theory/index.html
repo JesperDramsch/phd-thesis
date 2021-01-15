@@ -675,11 +675,11 @@ different arguments to adjust the desired arguments, we are generating
 (<code class="docutils literal">n_features</code>), of which three features are actually relevant to the
 classification (<code class="docutils literal">n_informative</code>). The data is stored in <span class="math">\(X\)</span>,
 whereas the labels are contained in <span class="math">\(y\)</span>.</p>
-<pre class="code python"><a name="rest_code_38b8187bd07047f8b9155a3482525f9c-1"></a><span class="c1"># Generate random classification dataset for example</span>
-<a name="rest_code_38b8187bd07047f8b9155a3482525f9c-2"></a><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
-<a name="rest_code_38b8187bd07047f8b9155a3482525f9c-3"></a><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-<a name="rest_code_38b8187bd07047f8b9155a3482525f9c-4"></a>                           <span class="n">n_informative</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_redundant</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-<a name="rest_code_38b8187bd07047f8b9155a3482525f9c-5"></a>                           <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<pre class="code python"><a name="rest_code_420f2d63e7dd4df4b5e3388b7d0d3c9f-1"></a><span class="c1"># Generate random classification dataset for example</span>
+<a name="rest_code_420f2d63e7dd4df4b5e3388b7d0d3c9f-2"></a><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
+<a name="rest_code_420f2d63e7dd4df4b5e3388b7d0d3c9f-3"></a><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+<a name="rest_code_420f2d63e7dd4df4b5e3388b7d0d3c9f-4"></a>                           <span class="n">n_informative</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_redundant</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<a name="rest_code_420f2d63e7dd4df4b5e3388b7d0d3c9f-5"></a>                           <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre>
 <p>It is good practice to divide the available labeled data into a training
 data set and a validation or test data set. This split ensures that
@@ -689,11 +689,11 @@ arbitrary amount of input arrays and separates them according to
 specified arguments. In this case 25% of the data are kept for the
 hold-out validation set and not used in training. The <code class="docutils literal">random_state</code>
 is fixed to make these examples reproducible.</p>
-<pre class="code python"><a name="rest_code_a11d7523c34047fbb25a4ba29eb8029c-1"></a><span class="c1"># Split data into train and validation set</span>
-<a name="rest_code_a11d7523c34047fbb25a4ba29eb8029c-2"></a><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<a name="rest_code_a11d7523c34047fbb25a4ba29eb8029c-3"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
-<a name="rest_code_a11d7523c34047fbb25a4ba29eb8029c-4"></a>                                            <span class="n">test_size</span><span class="o">=.</span><span class="mi">25</span><span class="p">,</span>
-<a name="rest_code_a11d7523c34047fbb25a4ba29eb8029c-5"></a>                                            <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<pre class="code python"><a name="rest_code_c55fa823f79b4addbd5009d730435f2a-1"></a><span class="c1"># Split data into train and validation set</span>
+<a name="rest_code_c55fa823f79b4addbd5009d730435f2a-2"></a><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<a name="rest_code_c55fa823f79b4addbd5009d730435f2a-3"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+<a name="rest_code_c55fa823f79b4addbd5009d730435f2a-4"></a>                                            <span class="n">test_size</span><span class="o">=.</span><span class="mi">25</span><span class="p">,</span>
+<a name="rest_code_c55fa823f79b4addbd5009d730435f2a-5"></a>                                            <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre>
 <p>Then we need to define a machine learning model, considering the
 previous discussion of high impact machine learning models, the first
@@ -711,17 +711,17 @@ scikit-learn model contains information about all its hyperparameters in
 addition to the trained model, shown below. The exact meaning of all
 these hyperparameters is laid out in the scikit-learn documentation
 (Buitinck et al. 2013).</p>
-<pre class="code python"><a name="rest_code_1562db702e264a06b06b1850f1b29f29-1"></a><span class="c1"># Define and train a Support Vector Machine Classifier</span>
-<a name="rest_code_1562db702e264a06b06b1850f1b29f29-2"></a><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
-<a name="rest_code_1562db702e264a06b06b1850f1b29f29-3"></a><span class="n">svm</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<a name="rest_code_1562db702e264a06b06b1850f1b29f29-4"></a><span class="n">svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<a name="rest_code_1562db702e264a06b06b1850f1b29f29-5"></a>
-<a name="rest_code_1562db702e264a06b06b1850f1b29f29-6"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">SVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">break_ties</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cache_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
-<a name="rest_code_1562db702e264a06b06b1850f1b29f29-7"></a>        <span class="n">class_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coef0</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-<a name="rest_code_1562db702e264a06b06b1850f1b29f29-8"></a>        <span class="n">decision_function_shape</span><span class="o">=</span><span class="s1">'ovr'</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="s1">'scale'</span><span class="p">,</span>
-<a name="rest_code_1562db702e264a06b06b1850f1b29f29-9"></a>        <span class="n">kernel</span><span class="o">=</span><span class="s1">'rbf'</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">probability</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<a name="rest_code_1562db702e264a06b06b1850f1b29f29-10"></a>        <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shrinking</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
-<a name="rest_code_1562db702e264a06b06b1850f1b29f29-11"></a>        <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<pre class="code python"><a name="rest_code_d0bc4cba09b64abab61c58a49585234b-1"></a><span class="c1"># Define and train a Support Vector Machine Classifier</span>
+<a name="rest_code_d0bc4cba09b64abab61c58a49585234b-2"></a><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<a name="rest_code_d0bc4cba09b64abab61c58a49585234b-3"></a><span class="n">svm</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<a name="rest_code_d0bc4cba09b64abab61c58a49585234b-4"></a><span class="n">svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a name="rest_code_d0bc4cba09b64abab61c58a49585234b-5"></a>
+<a name="rest_code_d0bc4cba09b64abab61c58a49585234b-6"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">SVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">break_ties</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cache_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+<a name="rest_code_d0bc4cba09b64abab61c58a49585234b-7"></a>        <span class="n">class_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coef0</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<a name="rest_code_d0bc4cba09b64abab61c58a49585234b-8"></a>        <span class="n">decision_function_shape</span><span class="o">=</span><span class="s1">'ovr'</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="s1">'scale'</span><span class="p">,</span>
+<a name="rest_code_d0bc4cba09b64abab61c58a49585234b-9"></a>        <span class="n">kernel</span><span class="o">=</span><span class="s1">'rbf'</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">probability</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<a name="rest_code_d0bc4cba09b64abab61c58a49585234b-10"></a>        <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shrinking</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+<a name="rest_code_d0bc4cba09b64abab61c58a49585234b-11"></a>        <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre>
 <p>The trained SVM can the be used to predict on new data, by calling
 <code class="docutils literal">classifier.predict(data)</code> on the trained classifier object. The new
@@ -731,11 +731,11 @@ input features as the data available for prediction. The <code class="docutils l
 method outputs the most likely estimate on the new data to generate
 predictions. In the following code snippet, three predictions on three
 input vectors are performed on the previously trained model.</p>
-<pre class="code python"><a name="rest_code_2d7192528d7c4e38b240d3ae5be8ba8e-1"></a><span class="c1"># Predict on new data with trained SVM</span>
-<a name="rest_code_2d7192528d7c4e38b240d3ae5be8ba8e-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">svm</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-<a name="rest_code_2d7192528d7c4e38b240d3ae5be8ba8e-3"></a>                  <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
-<a name="rest_code_2d7192528d7c4e38b240d3ae5be8ba8e-4"></a>                  <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]))</span>
-<a name="rest_code_2d7192528d7c4e38b240d3ae5be8ba8e-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
+<pre class="code python"><a name="rest_code_e46e492eed8d4773a8d66bf714f4129d-1"></a><span class="c1"># Predict on new data with trained SVM</span>
+<a name="rest_code_e46e492eed8d4773a8d66bf714f4129d-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">svm</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<a name="rest_code_e46e492eed8d4773a8d66bf714f4129d-3"></a>                  <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+<a name="rest_code_e46e492eed8d4773a8d66bf714f4129d-4"></a>                  <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]))</span>
+<a name="rest_code_e46e492eed8d4773a8d66bf714f4129d-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
 </pre>
 <p>The blackbox model should be evaluated with the <code class="docutils literal">classifier.score()</code>
 function. Evaluating the performance on the training data set gives an
@@ -760,11 +760,11 @@ than training score can be an indication of a deeper problem with the
 data split, scoring, class imbalances, and needs to be investigated by
 means of external cross-validation, building standard "dummy" models,
 independence tests, and further manual investigations.</p>
-<pre class="code python"><a name="rest_code_99fc99932a394d18aa23826b40bbc455-1"></a><span class="c1"># Score SVM on train and test data</span>
-<a name="rest_code_99fc99932a394d18aa23826b40bbc455-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
-<a name="rest_code_99fc99932a394d18aa23826b40bbc455-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
-<a name="rest_code_99fc99932a394d18aa23826b40bbc455-4"></a><span class="o">&gt;&gt;&gt;</span> <span class="mf">0.9098666666666667</span>
-<a name="rest_code_99fc99932a394d18aa23826b40bbc455-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="mf">0.9032</span>
+<pre class="code python"><a name="rest_code_81447f29e8034117824b8641e012686b-1"></a><span class="c1"># Score SVM on train and test data</span>
+<a name="rest_code_81447f29e8034117824b8641e012686b-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
+<a name="rest_code_81447f29e8034117824b8641e012686b-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+<a name="rest_code_81447f29e8034117824b8641e012686b-4"></a><span class="o">&gt;&gt;&gt;</span> <span class="mf">0.9098666666666667</span>
+<a name="rest_code_81447f29e8034117824b8641e012686b-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="mf">0.9032</span>
 </pre>
 <div class="figure">
 <img alt="Example of Support Vector Machine separating two classes, showing the decision boundary learnt from the data. The data contains three informative features, the decision boundary is therefore three dimensional, shown is a central slice of data points in 2D. (A video is available at (Jesper Soeren Dramsch 2020a))" id="bookchapter-fig-svm" src="../images/SVM.png"><p class="caption">Example of Support Vector Machine separating two classes, showing the
@@ -849,16 +849,16 @@ and two random data columns. The mean values of the calculated
 importances show that three features are estimated to be three
 magnitudes more important, with the second feature containing the
 maximum amount of information to predict the labels.</p>
-<pre class="code python"><a name="rest_code_97daf52bfc494ff48ed564f58b833367-1"></a><span class="c1"># Calculate permutation importance of SVM model</span>
-<a name="rest_code_97daf52bfc494ff48ed564f58b833367-2"></a><span class="kn">from</span> <span class="nn">sklearn.inspection</span> <span class="kn">import</span> <span class="n">permutation_importance</span>
-<a name="rest_code_97daf52bfc494ff48ed564f58b833367-3"></a><span class="n">importances</span> <span class="o">=</span> <span class="n">permutation_importance</span><span class="p">(</span><span class="n">svm</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span>
-<a name="rest_code_97daf52bfc494ff48ed564f58b833367-4"></a>                                     <span class="n">n_repeats</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<a name="rest_code_97daf52bfc494ff48ed564f58b833367-5"></a>
-<a name="rest_code_97daf52bfc494ff48ed564f58b833367-6"></a><span class="c1"># Show mean value of importances and the ranking</span>
-<a name="rest_code_97daf52bfc494ff48ed564f58b833367-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">importances</span><span class="o">.</span><span class="n">importances_mean</span><span class="p">)</span>
-<a name="rest_code_97daf52bfc494ff48ed564f58b833367-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">importances</span><span class="o">.</span><span class="n">importances_mean</span><span class="o">.</span><span class="n">argsort</span><span class="p">())</span>
-<a name="rest_code_97daf52bfc494ff48ed564f58b833367-9"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span> <span class="mf">2.1787e-01</span>  <span class="mf">2.8712e-01</span>  <span class="mf">1.2293e-01</span> <span class="o">-</span><span class="mf">1.8667e-04</span>  <span class="mf">7.7333e-04</span><span class="p">]</span>
-<a name="rest_code_97daf52bfc494ff48ed564f58b833367-10"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">3</span> <span class="mi">4</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
+<pre class="code python"><a name="rest_code_2194289401aa416488acb11f33d8c949-1"></a><span class="c1"># Calculate permutation importance of SVM model</span>
+<a name="rest_code_2194289401aa416488acb11f33d8c949-2"></a><span class="kn">from</span> <span class="nn">sklearn.inspection</span> <span class="kn">import</span> <span class="n">permutation_importance</span>
+<a name="rest_code_2194289401aa416488acb11f33d8c949-3"></a><span class="n">importances</span> <span class="o">=</span> <span class="n">permutation_importance</span><span class="p">(</span><span class="n">svm</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span>
+<a name="rest_code_2194289401aa416488acb11f33d8c949-4"></a>                                     <span class="n">n_repeats</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<a name="rest_code_2194289401aa416488acb11f33d8c949-5"></a>
+<a name="rest_code_2194289401aa416488acb11f33d8c949-6"></a><span class="c1"># Show mean value of importances and the ranking</span>
+<a name="rest_code_2194289401aa416488acb11f33d8c949-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">importances</span><span class="o">.</span><span class="n">importances_mean</span><span class="p">)</span>
+<a name="rest_code_2194289401aa416488acb11f33d8c949-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">importances</span><span class="o">.</span><span class="n">importances_mean</span><span class="o">.</span><span class="n">argsort</span><span class="p">())</span>
+<a name="rest_code_2194289401aa416488acb11f33d8c949-9"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span> <span class="mf">2.1787e-01</span>  <span class="mf">2.8712e-01</span>  <span class="mf">1.2293e-01</span> <span class="o">-</span><span class="mf">1.8667e-04</span>  <span class="mf">7.7333e-04</span><span class="p">]</span>
+<a name="rest_code_2194289401aa416488acb11f33d8c949-10"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">3</span> <span class="mi">4</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
 </pre>
 <p>Support-vector machines were applied to seismic data analysis (J. Li and
 Castagna 2004) and the automatic seismic interpretation (Yexin Liu et
@@ -897,28 +897,28 @@ modify for the inclined reader. The classifier is then trained using the
 same API of all classifiers in scikit-learn. The example shows a very
 high number of hyperparameters, however, Random Forests work well
 without further optimization of these.</p>
-<pre class="code python"><a name="rest_code_5fd56c5b782f4f4885000cc98a73ec1e-1"></a><span class="c1"># Define and train a Random Forest Classifier</span>
-<a name="rest_code_5fd56c5b782f4f4885000cc98a73ec1e-2"></a><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
-<a name="rest_code_5fd56c5b782f4f4885000cc98a73ec1e-3"></a><span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<a name="rest_code_5fd56c5b782f4f4885000cc98a73ec1e-4"></a><span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<a name="rest_code_5fd56c5b782f4f4885000cc98a73ec1e-5"></a>
-<a name="rest_code_5fd56c5b782f4f4885000cc98a73ec1e-6"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">bootstrap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ccp_alpha</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
-<a name="rest_code_5fd56c5b782f4f4885000cc98a73ec1e-7"></a>                <span class="n">class_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s1">'gini'</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
-<a name="rest_code_5fd56c5b782f4f4885000cc98a73ec1e-8"></a>                <span class="n">max_features</span><span class="o">=</span><span class="s1">'auto'</span><span class="p">,</span> <span class="n">max_leaf_nodes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<a name="rest_code_5fd56c5b782f4f4885000cc98a73ec1e-9"></a>                <span class="n">max_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_impurity_decrease</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
-<a name="rest_code_5fd56c5b782f4f4885000cc98a73ec1e-10"></a>                <span class="n">min_impurity_split</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<a name="rest_code_5fd56c5b782f4f4885000cc98a73ec1e-11"></a>                <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">min_weight_fraction_leaf</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
-<a name="rest_code_5fd56c5b782f4f4885000cc98a73ec1e-12"></a>                <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">oob_score</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<a name="rest_code_5fd56c5b782f4f4885000cc98a73ec1e-13"></a>                <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">warm_start</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<pre class="code python"><a name="rest_code_e3abbc1f97ca446292616a7666042b7b-1"></a><span class="c1"># Define and train a Random Forest Classifier</span>
+<a name="rest_code_e3abbc1f97ca446292616a7666042b7b-2"></a><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<a name="rest_code_e3abbc1f97ca446292616a7666042b7b-3"></a><span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<a name="rest_code_e3abbc1f97ca446292616a7666042b7b-4"></a><span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a name="rest_code_e3abbc1f97ca446292616a7666042b7b-5"></a>
+<a name="rest_code_e3abbc1f97ca446292616a7666042b7b-6"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">bootstrap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ccp_alpha</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+<a name="rest_code_e3abbc1f97ca446292616a7666042b7b-7"></a>                <span class="n">class_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s1">'gini'</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+<a name="rest_code_e3abbc1f97ca446292616a7666042b7b-8"></a>                <span class="n">max_features</span><span class="o">=</span><span class="s1">'auto'</span><span class="p">,</span> <span class="n">max_leaf_nodes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<a name="rest_code_e3abbc1f97ca446292616a7666042b7b-9"></a>                <span class="n">max_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_impurity_decrease</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+<a name="rest_code_e3abbc1f97ca446292616a7666042b7b-10"></a>                <span class="n">min_impurity_split</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<a name="rest_code_e3abbc1f97ca446292616a7666042b7b-11"></a>                <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">min_weight_fraction_leaf</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+<a name="rest_code_e3abbc1f97ca446292616a7666042b7b-12"></a>                <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">oob_score</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<a name="rest_code_e3abbc1f97ca446292616a7666042b7b-13"></a>                <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">warm_start</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre>
 <p>The prediction of the random forest is performed in the same API call
 again, also consistent with all classifiers available. The values are
 slightly different from the prediction of the SVM.</p>
-<pre class="code python"><a name="rest_code_52a989b680c340688217124e46b74287-1"></a><span class="c1"># Predict on new data with trained Random Forest</span>
-<a name="rest_code_52a989b680c340688217124e46b74287-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-<a name="rest_code_52a989b680c340688217124e46b74287-3"></a>                 <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
-<a name="rest_code_52a989b680c340688217124e46b74287-4"></a>                 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]))</span>
-<a name="rest_code_52a989b680c340688217124e46b74287-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
+<pre class="code python"><a name="rest_code_d7a560f7e7ca491c80d27057fbbdc578-1"></a><span class="c1"># Predict on new data with trained Random Forest</span>
+<a name="rest_code_d7a560f7e7ca491c80d27057fbbdc578-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<a name="rest_code_d7a560f7e7ca491c80d27057fbbdc578-3"></a>                 <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+<a name="rest_code_d7a560f7e7ca491c80d27057fbbdc578-4"></a>                 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]))</span>
+<a name="rest_code_d7a560f7e7ca491c80d27057fbbdc578-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
 </pre>
 <p>The training score of the random forest model is 2.5 % better than the
 SVM in this instance, this score however not informative. Comparing the
@@ -933,11 +933,11 @@ be avoided in real application, but can be seen in competitions, on
 benchmarks, and show-cases of new algorithms and architectures to
 oversell the improvement over state-of-the-art methods (Recht et al.
 2019).</p>
-<pre class="code python"><a name="rest_code_c5d337d319e94b7495f66156fa47918e-1"></a><span class="c1"># Score Random Forest on train and test data</span>
-<a name="rest_code_c5d337d319e94b7495f66156fa47918e-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
-<a name="rest_code_c5d337d319e94b7495f66156fa47918e-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
-<a name="rest_code_c5d337d319e94b7495f66156fa47918e-4"></a><span class="o">&gt;&gt;&gt;</span> <span class="mf">0.9306</span>
-<a name="rest_code_c5d337d319e94b7495f66156fa47918e-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="mf">0.912</span>
+<pre class="code python"><a name="rest_code_e77dfe0a057c48a4a81365dc5344c5a1-1"></a><span class="c1"># Score Random Forest on train and test data</span>
+<a name="rest_code_e77dfe0a057c48a4a81365dc5344c5a1-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
+<a name="rest_code_e77dfe0a057c48a4a81365dc5344c5a1-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+<a name="rest_code_e77dfe0a057c48a4a81365dc5344c5a1-4"></a><span class="o">&gt;&gt;&gt;</span> <span class="mf">0.9306</span>
+<a name="rest_code_e77dfe0a057c48a4a81365dc5344c5a1-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="mf">0.912</span>
 </pre>
 <p>Random forests have specialized methods available for introspection,
 which can be used to calculate feature importance. These are based on
@@ -955,11 +955,11 @@ importance instead is a valid choice. In this instance as opposed to the
 permutation importance, the random forest estimates the two
 non-informative features to be one magnitude less useful than the
 informative features, instead of two magnitudes.</p>
-<pre class="code python"><a name="rest_code_3a847a8afd984c1ca7634191e16af017-1"></a><span class="c1"># Inspect random forest for feature importance</span>
-<a name="rest_code_3a847a8afd984c1ca7634191e16af017-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">)</span>
-<a name="rest_code_3a847a8afd984c1ca7634191e16af017-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">feature_importances_</span><span class="o">.</span><span class="n">argsort</span><span class="p">())</span>
-<a name="rest_code_3a847a8afd984c1ca7634191e16af017-4"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mf">0.2324</span> <span class="mf">0.4877</span> <span class="mf">0.2527</span> <span class="mf">0.0141</span> <span class="mf">0.0129</span><span class="p">]</span>
-<a name="rest_code_3a847a8afd984c1ca7634191e16af017-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">4</span> <span class="mi">3</span> <span class="mi">0</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">]</span>
+<pre class="code python"><a name="rest_code_f7b8bdc508b74465b8ffec41464b5fa6-1"></a><span class="c1"># Inspect random forest for feature importance</span>
+<a name="rest_code_f7b8bdc508b74465b8ffec41464b5fa6-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">)</span>
+<a name="rest_code_f7b8bdc508b74465b8ffec41464b5fa6-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">feature_importances_</span><span class="o">.</span><span class="n">argsort</span><span class="p">())</span>
+<a name="rest_code_f7b8bdc508b74465b8ffec41464b5fa6-4"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mf">0.2324</span> <span class="mf">0.4877</span> <span class="mf">0.2527</span> <span class="mf">0.0141</span> <span class="mf">0.0129</span><span class="p">]</span>
+<a name="rest_code_f7b8bdc508b74465b8ffec41464b5fa6-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">4</span> <span class="mi">3</span> <span class="mi">0</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">]</span>
 </pre>
 <p>Random forests and other tree-based methods, including gradient
 boosting, a specialized version of random forests, have generally found
@@ -1094,12 +1094,12 @@ constraints, or early-stopping of the training loop (I. Goodfellow,
 Bengio, and Courville 2016a). Modern deep learning systems may even
 leverage noisy student-teacher networks for regularization (Q. Xie et
 al. 2019).</p>
-<pre class="code python"><a name="rest_code_c89830d737014c2fbd66269858eb41e1-1"></a><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
-<a name="rest_code_c89830d737014c2fbd66269858eb41e1-2"></a><span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
-<a name="rest_code_c89830d737014c2fbd66269858eb41e1-3"></a><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">),</span>
-<a name="rest_code_c89830d737014c2fbd66269858eb41e1-4"></a><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="o">.</span><span class="mi">3</span><span class="p">),</span>
-<a name="rest_code_c89830d737014c2fbd66269858eb41e1-5"></a><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">),</span>
-<a name="rest_code_c89830d737014c2fbd66269858eb41e1-6"></a><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'softmax'</span><span class="p">)])</span>
+<pre class="code python"><a name="rest_code_951eb437690342c18956543d60d95f4f-1"></a><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<a name="rest_code_951eb437690342c18956543d60d95f4f-2"></a><span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+<a name="rest_code_951eb437690342c18956543d60d95f4f-3"></a><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">),</span>
+<a name="rest_code_951eb437690342c18956543d60d95f4f-4"></a><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="o">.</span><span class="mi">3</span><span class="p">),</span>
+<a name="rest_code_951eb437690342c18956543d60d95f4f-5"></a><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">),</span>
+<a name="rest_code_951eb437690342c18956543d60d95f4f-6"></a><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'softmax'</span><span class="p">)])</span>
 </pre>
 <p>These sequential models are also used for simple image classification
 models using CNNs. Instead of Dense layers, these are built up with
@@ -1120,7 +1120,7 @@ and <span class="math">\(m\)</span> to compress the spatial information. This se
 forcing function to learn increasingly abstract representations in
 subsequent convolutional layers.</p>
 <div class="figure">
-<img alt='Three layer convolutional network. The input image (yellow) is convolved with several filters or kernel matrices (purple). Commonly, the convolution is used to downsample an image in the spatial dimension, while expanding the dimension of the filter response, hence expanding in "thickness" in the schematic. The filters are learned in the machine learning optimization loop. The shared weights within a filter improve efficiency of the network over classic dense networks.' id="bookchapter-fig-cnn" src="../images/conv.pdf"><p class="caption">Three layer convolutional network. The input image (yellow) is
+<img alt='Three layer convolutional network. The input image (yellow) is convolved with several filters or kernel matrices (purple). Commonly, the convolution is used to downsample an image in the spatial dimension, while expanding the dimension of the filter response, hence expanding in "thickness" in the schematic. The filters are learned in the machine learning optimization loop. The shared weights within a filter improve efficiency of the network over classic dense networks.' id="bookchapter-fig-cnn" src="../images/conv.png"><p class="caption">Three layer convolutional network. The input image (yellow) is
 convolved with several filters or kernel matrices (purple). Commonly,
 the convolution is used to downsample an image in the spatial
 dimension, while expanding the dimension of the filter response,
@@ -1183,9 +1183,9 @@ and this means we could use the sigmoid activation function in the last
 layer and optimize a binary CE. This can speed up computation, but in
 this example, an approach is shown that works for many other problems
 and can therefore be applied to the readers data.</p>
-<pre class="code python"><a name="rest_code_a6eee5985bdb46889dea376c15490c62-1"></a><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">'adam'</span><span class="p">,</span> <span class="c1"># Often 'adam' or 'sgd' are good</span>
-<a name="rest_code_a6eee5985bdb46889dea376c15490c62-2"></a>              <span class="n">loss</span><span class="o">=</span><span class="s1">'sparse_categorical_crossentropy'</span><span class="p">,</span>
-<a name="rest_code_a6eee5985bdb46889dea376c15490c62-3"></a>              <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">'accuracy'</span><span class="p">])</span> <span class="c1"># Monitor other metrics</span>
+<pre class="code python"><a name="rest_code_e9f9e1e6e9ee40cf8963611a19d93c91-1"></a><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">'adam'</span><span class="p">,</span> <span class="c1"># Often 'adam' or 'sgd' are good</span>
+<a name="rest_code_e9f9e1e6e9ee40cf8963611a19d93c91-2"></a>              <span class="n">loss</span><span class="o">=</span><span class="s1">'sparse_categorical_crossentropy'</span><span class="p">,</span>
+<a name="rest_code_e9f9e1e6e9ee40cf8963611a19d93c91-3"></a>              <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">'accuracy'</span><span class="p">])</span> <span class="c1"># Monitor other metrics</span>
 </pre>
 <p>Large neural networks can be extremely costly to train with significant
 developments in 2019/2020 reporting multi-billion parameter language
@@ -1198,15 +1198,15 @@ set. The validation set can be provided or be defined as a percentage of
 the training data, as shown below. In the example, 10% of the training
 data are held out for validation after every epoch, reducing the
 training data set from 3750 to 3375 individual samples.</p>
-<pre class="code python"><a name="rest_code_c09c289a82ea40c7b3fabfa999617f0d-1"></a><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span>
-<a name="rest_code_c09c289a82ea40c7b3fabfa999617f0d-2"></a>          <span class="n">y_train</span><span class="p">,</span>
-<a name="rest_code_c09c289a82ea40c7b3fabfa999617f0d-3"></a>          <span class="n">validation_split</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span>
-<a name="rest_code_c09c289a82ea40c7b3fabfa999617f0d-4"></a>          <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<a name="rest_code_c09c289a82ea40c7b3fabfa999617f0d-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span>
-<a name="rest_code_c09c289a82ea40c7b3fabfa999617f0d-6"></a>    <span class="n">Epoch</span> <span class="mi">100</span><span class="o">/</span><span class="mi">100</span>
-<a name="rest_code_c09c289a82ea40c7b3fabfa999617f0d-7"></a>    <span class="mi">3375</span><span class="o">/</span><span class="mi">3375</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">0</span><span class="n">s</span> <span class="mi">66</span><span class="n">us</span><span class="o">/</span><span class="n">sample</span>
-<a name="rest_code_c09c289a82ea40c7b3fabfa999617f0d-8"></a>    <span class="n">loss</span><span class="p">:</span> <span class="mf">0.1567</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.9401</span> <span class="o">-</span>
-<a name="rest_code_c09c289a82ea40c7b3fabfa999617f0d-9"></a>    <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.1731</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">0.9359</span>
+<pre class="code python"><a name="rest_code_669adc4d17104c8783501463c05d93a0-1"></a><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span>
+<a name="rest_code_669adc4d17104c8783501463c05d93a0-2"></a>          <span class="n">y_train</span><span class="p">,</span>
+<a name="rest_code_669adc4d17104c8783501463c05d93a0-3"></a>          <span class="n">validation_split</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span>
+<a name="rest_code_669adc4d17104c8783501463c05d93a0-4"></a>          <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<a name="rest_code_669adc4d17104c8783501463c05d93a0-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<a name="rest_code_669adc4d17104c8783501463c05d93a0-6"></a>    <span class="n">Epoch</span> <span class="mi">100</span><span class="o">/</span><span class="mi">100</span>
+<a name="rest_code_669adc4d17104c8783501463c05d93a0-7"></a>    <span class="mi">3375</span><span class="o">/</span><span class="mi">3375</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">0</span><span class="n">s</span> <span class="mi">66</span><span class="n">us</span><span class="o">/</span><span class="n">sample</span>
+<a name="rest_code_669adc4d17104c8783501463c05d93a0-8"></a>    <span class="n">loss</span><span class="p">:</span> <span class="mf">0.1567</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.9401</span> <span class="o">-</span>
+<a name="rest_code_669adc4d17104c8783501463c05d93a0-9"></a>    <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.1731</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">0.9359</span>
 </pre>
 <p>Neural networks are trained with variations of stochastic gradient
 descent (SGD), an incremental version of the classic steepest descent
@@ -1252,10 +1252,10 @@ seed is very important to ensure reproducibility of claims. Moreover, to
 avoid bad practices or so-called "lucky seeds", a statistical analysis
 of multiple fixed seeds is good practice to report results in any
 machine learning model.</p>
-<pre class="code python"><a name="rest_code_06ff78a738c14f299460ffab5ba69da9-1"></a><span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-<a name="rest_code_06ff78a738c14f299460ffab5ba69da9-2"></a><span class="o">&gt;&gt;&gt;</span> <span class="mi">1250</span><span class="o">/</span><span class="mi">1250</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">0</span><span class="n">s</span> <span class="mi">93</span><span class="n">us</span><span class="o">/</span><span class="n">sample</span>
-<a name="rest_code_06ff78a738c14f299460ffab5ba69da9-3"></a>    <span class="n">loss</span><span class="p">:</span> <span class="mf">0.1998</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.9360</span>
-<a name="rest_code_06ff78a738c14f299460ffab5ba69da9-4"></a>    <span class="p">[</span><span class="mf">0.19976349686831235</span><span class="p">,</span> <span class="mf">0.936</span><span class="p">]</span>
+<pre class="code python"><a name="rest_code_b6d3d1a565cf43cd901c1a9bc5cc94fb-1"></a><span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<a name="rest_code_b6d3d1a565cf43cd901c1a9bc5cc94fb-2"></a><span class="o">&gt;&gt;&gt;</span> <span class="mi">1250</span><span class="o">/</span><span class="mi">1250</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">0</span><span class="n">s</span> <span class="mi">93</span><span class="n">us</span><span class="o">/</span><span class="n">sample</span>
+<a name="rest_code_b6d3d1a565cf43cd901c1a9bc5cc94fb-3"></a>    <span class="n">loss</span><span class="p">:</span> <span class="mf">0.1998</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.9360</span>
+<a name="rest_code_b6d3d1a565cf43cd901c1a9bc5cc94fb-4"></a>    <span class="p">[</span><span class="mf">0.19976349686831235</span><span class="p">,</span> <span class="mf">0.936</span><span class="p">]</span>
 </pre>
 <p>In the example before, the SVM and Random Forest classifier were scored
 on unseen data. This is equally important for neural networks. Neural
@@ -1315,7 +1315,7 @@ application are explored.</p>
 <div class="section" id="convolutional-neural-network-architectures">
 <span id="ssec-cnnarch"></span><h4>Convolutional Neural Network Architectures</h4>
 <div class="figure">
-<img alt="Schematic of a VGG16 network for ImageNet. The input data is convolved and down-sampled repeatedly. The final image classification is performed by flattening the image and feeding it to a classic feed-forward densely connected neural network. The 1000 output nodes for the 1000 ImageNet classes are normalized by a final softmax layer (cf. equation `[eq:softmax] &lt;#eq:softmax&gt;`__). Visualization library (Iqbal 2018)" id="bookchapter-fig-vgg16" src="../images/vgg16.pdf"><p class="caption">Schematic of a VGG16 network for ImageNet. The input data is
+<img alt="Schematic of a VGG16 network for ImageNet. The input data is convolved and down-sampled repeatedly. The final image classification is performed by flattening the image and feeding it to a classic feed-forward densely connected neural network. The 1000 output nodes for the 1000 ImageNet classes are normalized by a final softmax layer (cf. equation `[eq:softmax] &lt;#eq:softmax&gt;`__). Visualization library (Iqbal 2018)" id="bookchapter-fig-vgg16" src="../images/vgg16.png"><p class="caption">Schematic of a VGG16 network for ImageNet. The input data is
 convolved and down-sampled repeatedly. The final image classification
 is performed by flattening the image and feeding it to a classic
 feed-forward densely connected neural network. The 1000 output nodes
@@ -1354,7 +1354,7 @@ error.</p>
 </ol>
 </blockquote>
 <div class="figure">
-<img alt="Schematic of a ResNet block. The block contains a :math:`1\times1`, :math:`3\times3`, and :math:`1\times1` convolution with ReLU activation. The output is concatenated with the input and passed through another ReLU activation function." id="bookchapter-fig-resnet" src="../images/resnet.pdf"><p class="caption">Schematic of a ResNet block. The block contains a <span class="math">\(1\times1\)</span>,
+<img alt="Schematic of a ResNet block. The block contains a :math:`1\times1`, :math:`3\times3`, and :math:`1\times1` convolution with ReLU activation. The output is concatenated with the input and passed through another ReLU activation function." id="bookchapter-fig-resnet" src="../images/resnet.png"><p class="caption">Schematic of a ResNet block. The block contains a <span class="math">\(1\times1\)</span>,
 <span class="math">\(3\times3\)</span>, and <span class="math">\(1\times1\)</span> convolution with ReLU
 activation. The output is concatenated with the input and passed
 through another ReLU activation function.</p>
@@ -1411,7 +1411,7 @@ enabling models that are ten times as deep with less than half the
 parameters, and significantly better accuracy on image benchmark
 problems.</p>
 <div class="figure">
-<img alt="Schematic of Unet architecture. Convolutional layers are followed by a downsampling operation in the encoder. The central bottleneck contains a compressed representation of the input data. The decoder contains upsampling operations followed by convolutions. The last layer is commonly a softmax layer to provide classes. Equally sized layers are connected via shortcut connections." id="bookchapter-fig-unet" src="../images/unet.pdf"><p class="caption">Schematic of Unet architecture. Convolutional layers are followed by
+<img alt="Schematic of Unet architecture. Convolutional layers are followed by a downsampling operation in the encoder. The central bottleneck contains a compressed representation of the input data. The decoder contains upsampling operations followed by convolutions. The last layer is commonly a softmax layer to provide classes. Equally sized layers are connected via shortcut connections." id="bookchapter-fig-unet" src="../images/unet.png"><p class="caption">Schematic of Unet architecture. Convolutional layers are followed by
 a downsampling operation in the encoder. The central bottleneck
 contains a compressed representation of the input data. The decoder
 contains upsampling operations followed by convolutions. The last

@@ -9,16 +9,18 @@
 .. has_math: yes
 .. _sec:gaussian:
 
-|image1| |image2| |image3| |image4|
-
-   `Dramsch, J. S. <https://orcid.org/0000-0001-8273-905X>`__, `Amour,
-   F. <https://orcid.org/0000-0003-0242-6569>`__, & `Lüthje,
-   M. <https://orcid.org/0000-0003-2715-1653>`__ (2018, November).
-   Gaussian Mixture Models for Robust Unsupervised Scanning-Electron
-   Microscopy Image Segmentation of North Sea Chalk. In First EAGE/PESGB
-   Workshop Machine Learning.
-
--  Github: https://github.com/JesperDramsch/backscatter-sem-segmentation
++----------+----------+----------+--------------------------------------+
+| |image1| | |image2| | |image3| | |image4|                             |
++----------+----------+----------+--------------------------------------+                         
+|   `Dramsch, J. S. <https://orcid.org/0000-0001-8273-905X>`__, `Amour, |
+|   F. <https://orcid.org/0000-0003-0242-6569>`__, & `Lüthje,           |
+|   M. <https://orcid.org/0000-0003-2715-1653>`__ (2018, November).     |
+|   Gaussian Mixture Models for Robust Unsupervised Scanning-Electron   |
+|   Microscopy Image Segmentation of North Sea Chalk.                   |
+|   In First EAGE/PESGB Workshop Machine Learning.                      |
++-----------------------------------------------------------------------+                         
+| Github: https://github.com/JesperDramsch/backscatter-sem-segmentation |
++-----------------------------------------------------------------------+
 
 -----------
 
@@ -342,8 +344,12 @@ The code of this analysis is published under .
 
 .. |image1| image:: https://img.shields.io/badge/PDF-Download-important
    :target: ../2018.2.pdf
+   :align: middle
 .. |image2| image:: https://img.shields.io/github/repo-size/JesperDramsch/backscatter-sem-segmentation
    :target: https://github.com/JesperDramsch/backscatter-sem-segmentation
+   :align: middle
 .. |image3| image:: https://img.shields.io/badge/talk-presentation-informational
    :target: https://doi.org/10.6084/m9.figshare.7421489.v1
+   :align: middle
 .. |image4| image:: https://img.shields.io/badge/license-MIT-green
+   :align: middle

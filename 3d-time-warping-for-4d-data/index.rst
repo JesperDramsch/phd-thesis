@@ -9,16 +9,19 @@
 .. has_math: yes
 .. _sec:timeshift:
 
-|image21| |image22| |image23|
 
-   `Dramsch, J. S. <https://orcid.org/0000-0001-8273-905X>`__,
-   `Christensen, A. N. <https://orcid.org/0000-0002-3668-3128>`__,
-   `MacBeth, C. <https://orcid.org/0000-0001-8593-3456>`__, & `Lüthje,
-   M. <https://orcid.org/0000-0003-2715-1653>`__. (2019, October 31).
-   Deep Unsupervised 4D Seismic 3D Time-Shift Estimation with
-   Convolutional Neural Networks. https://doi.org/10.31223/osf.io/82bnj
-
-- Github: https://github.com/JesperDramsch/voxelmorph-seismic
++-----------+-----------+------------------------------------------------+
+| |image21| | |image22| | |image23|                                      |
++-----------+-----------+------------------------------------------------+
+|   `Dramsch, J. S. <https://orcid.org/0000-0001-8273-905X>`__,          |
+|   `Christensen, A. N. <https://orcid.org/0000-0002-3668-3128>`__,      |
+|   `MacBeth, C. <https://orcid.org/0000-0001-8593-3456>`__, & `Lüthje,  |
+|   M. <https://orcid.org/0000-0003-2715-1653>`__ (2019, October 31).    |
+|   Deep Unsupervised 4D Seismic 3D Time-Shift Estimation with           |
+|   Convolutional Neural Networks. https://doi.org/10.31223/osf.io/82bnj |
++------------------------------------------------------------------------+                         
+| Github: https://github.com/JesperDramsch/voxelmorph-seismic            |
++------------------------------------------------------------------------+
 
 -----------
 

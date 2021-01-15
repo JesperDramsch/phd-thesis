@@ -18,13 +18,13 @@ architecture for pressure-saturation inversion and a novel algorithm for
 3D timeshift extraction in 4D seismic.
 
 The growing interest in machine learning sometimes overlooks the fact
-that the underlying idea of ml was introduced in 1950.
-`11.2 <#sec:mlingeo>`__ reviews the history of ml with a special focus
+that the underlying idea of machine learning was introduced in 1950.
+`11.2 <#sec:mlingeo>`__ reviews the history of machine learning with a special focus
 on geoscience. Geoscience and in particular geophysics has followed the
 innovation in artificial intelligence and especially neural networks
 closely. Early applications of neural networks include seismic
 processing and seismic inversion. Moreover, gps were early introduced in
-geostatistics as kriging, which have gained interest in a wider ml
+geostatistics as kriging, which have gained interest in a wider machine learning
 context as gp. Recently, dl becoming popular and particularly
 breakthroughs in computer vision have sparked interest in applying
 machine learning computer vision to asi in the hopes for increased
@@ -53,7 +53,7 @@ conference papers.
 `11 <#sec:theory>`__ provides a theoretical introduction into 4D seismic
 principles, followed by a thorough overview of the development of
 machine learning with a special focus on geoscience. This chapter
-focuses particularly on the development of ml applications in geoscience
+focuses particularly on the development of machine learning applications in geoscience
 through history. The main contribution in this chapter is a
 peer-reviewed book chapter published in Advances in Geophysics (Jesper
 Sören Dramsch 2020c).
@@ -69,18 +69,18 @@ to apply the work and close out the chapter.
 
 `13 <#sec:transfer>`__ discusses a conference paper contribution to asi
 using dl (Jesper Sören Dramsch and Lüthje 2018a). The paper uses
-transfer learning of nns pre-trained on natural image data sets to
+transfer learning of neural networks pre-trained on natural image data sets to
 fine-tune the network to perform asi on seismic data. The chapter
-expands on the data and training of the nn. The chapter then expands on
+expands on the data and training of the neural network. The chapter then expands on
 the applications that resulted from the paper, using the composition of
 nns into more adequate architectures for a task that is called semantic
 segmentation, which more closely resembles asi.
 
 `14 <#sec:complex>`__ covers a journal paper on the application of
-complex-valued cnns to seismic data (Jesper Sören Dramsch, Lüthje, and
+complex-valued convolutional neural networks to seismic data (Jesper Sören Dramsch, Lüthje, and
 Christensen 2019). These networks perform a complex convolution in the
 nn layers. The paper tests the hypothesis that providing phase
-information explicitly can improve the capacity of the cnn, which is
+information explicitly can improve the capacity of the convolutional neural network, which is
 tested on an ae architecture, which lossily compresses the data at
 different rates and measures the reconstruction error. The phase
 information is derived directly from the seismic data via a Hilbert
@@ -124,4 +124,4 @@ Finally, `17 <#sec:conclusion>`__ is the conclusion of this thesis
 recapitulating the contributions and findings of the papers and
 scientific work. The contributions span multiple geoscientific
 disciplines with a focus in geophysics and particularly 4D seismic
-unified by ml.
+unified by machine learning.

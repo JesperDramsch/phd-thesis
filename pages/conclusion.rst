@@ -8,17 +8,17 @@
 .. type: text
 .. _sec:conclusion:
 
-This thesis contributes ml applications in geoscience with a focus on
+This thesis contributes machine learning applications in geoscience with a focus on
 field data applications in 4D seismic, bsem, and asi. Additionally, the
-introduction contains a published review of the history of ml in
+introduction contains a published review of the history of machine learning in
 geoscience with insights into the recent interest around the topic.
 
 The book chapter in `11.2 <#sec:mlingeo>`__ discusses the historic
-development of ml in geoscience. It highlights key papers and
+development of machine learning in geoscience. It highlights key papers and
 developments through the decades, relating the developments to larger
-developments in the field of ai and ml. In the book key algorithms are
+developments in the field of ai and machine learning. In the book key algorithms are
 detailed including svm, rf, gp and the development from kriging, as well
-as, key nn developments and dl architectures that enable modern
+as, key neural network developments and dl architectures that enable modern
 applications throughout many scientific disciplines including geoscience
 as a whole.
 
@@ -38,7 +38,7 @@ machine learning tasks.
 
 The research in `13 <#sec:transfer>`__ showed that transfer learning
 could alleviate the necessity for large amounts of labelled data, by
-re-using a nn trained on natural images. This study showed that nns can
+re-using a neural network trained on natural images. This study showed that neural networks can
 be transferred to seismic data and outperform smaller networks trained
 from scratch. The smaller network size was necessary to avoid
 overfitting. The source code for this research was made available and
@@ -47,7 +47,7 @@ This has broad applications in industry and research settings performing
 asi. The limited availability of labelled data and wide availability of
 pre-trained network architectures makes this a viable option to obtain
 improved results and more robust models. Moreover, this insight is
-applicable to pre-training geoscientific nns.
+applicable to pre-training geoscientific neural networks.
 
 Jesper Sören Dramsch, Lüthje, and Christensen (2019) shows that
 explicitly using phase information as input in a complex-valued neural
@@ -94,7 +94,7 @@ differing acquisition parameters, without supplying any time shift
 information. After applying the method, the 3D seismic volumes are well
 aligned, with the diffeomorphic constraint performing well on seismic
 data. This work tests the trained network on two other 3D seismic volume
-pairs to test the generalization of the cnn after training. The two test
+pairs to test the generalization of the convolutional neural network after training. The two test
 sets show that the trained model on a single 3D seismic volume pair
 transfers well to the same field with different acquisition parameters
 and even a different field with a vastly different geological setting.

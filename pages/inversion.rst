@@ -98,12 +98,12 @@ on the hold-out data.
 Machine Learning Model
 ----------------------
 
-A primary application of ml is building regression models. The data
+A primary application of machine learning is building regression models. The data
 available is not particularly abundant, which restricts the choice of
 model or training strategy. Following a premise of simplicity, a dense
 neural network was implemented, which treats each cell of a map
-independently. It is possible that a cnn increases the performance, but
-due to the nature of deep cnns more training data needs to be generated.
+independently. It is possible that a convolutional neural network increases the performance, but
+due to the nature of deep convolutional neural networks more training data needs to be generated.
 
 In Jesper Sören Dramsch, Corte, et al. (2019d) we present a novel
 network structure that explicitly includes avo gradient calculation
@@ -695,11 +695,11 @@ Discussion of 4D Inversion
 --------------------------
 
 The workshop paper Jesper Sören Dramsch, Corte, et al. (2019a) contains
-the nn results compared to the simulation and Bayesian inversion
+the neural network results compared to the simulation and Bayesian inversion
 results, shown in `15.8 <#inv1:fig:avo-net-results>`__. This network
 does not calculate the inversion solution; it merely approximates the
 inverse problem. These initial results on limited training data show
-that a nn can estimate pressure saturation information from field data,
+that a neural network can estimate pressure saturation information from field data,
 after training on simulation data.
 
 The results presented in `15.8 <#inv1:fig:avo-net-results>`__ contain
@@ -710,7 +710,7 @@ range of output values for the network is unconstrained, but the network
 calculates values in the ranges that are expected from the simulation
 and Bayesian inversion results. However, and more interestingly, the
 networks do not contain spatial information, being a feed-forward dnn
-not a cnn, yet returns continuous albeit noisy outputs when re-assembled
+not a convolutional neural network, yet returns continuous albeit noisy outputs when re-assembled
 into maps.
 
 While the overall result is promising, regions of strong gas saturation

@@ -79,12 +79,12 @@ on the hold-out data.</p>
 </div>
 <div class="section" id="machine-learning-model">
 <h1>Machine Learning Model</h1>
-<p>A primary application of ml is building regression models. The data
+<p>A primary application of machine learning is building regression models. The data
 available is not particularly abundant, which restricts the choice of
 model or training strategy. Following a premise of simplicity, a dense
 neural network was implemented, which treats each cell of a map
-independently. It is possible that a cnn increases the performance, but
-due to the nature of deep cnns more training data needs to be generated.</p>
+independently. It is possible that a convolutional neural network increases the performance, but
+due to the nature of deep convolutional neural networks more training data needs to be generated.</p>
 <p>In Jesper Sören Dramsch, Corte, et al. (2019d) we present a novel
 network structure that explicitly includes avo gradient calculation
 within the network as physical knowledge, shown in
@@ -238,7 +238,7 @@ independent fluctuations of the seismic maps. This significantly
 decreases the training and validation performance on noise free
 synthetic data. On field data, however, this enables good transfer of
 the neural network.</p>
-<pre class="code python"><a name="rest_code_2816f70e8e2d4385b71d2fab962e6e64-1"></a><span class="n">noisy_input</span> <span class="o">=</span> <span class="n">GaussianNoise</span><span class="p">(</span><span class="mf">0.02</span><span class="p">)(</span><span class="n">input_data</span><span class="p">)</span>
+<pre class="code python"><a name="rest_code_e7032818ba28425a9b863331e9570337-1"></a><span class="n">noisy_input</span> <span class="o">=</span> <span class="n">GaussianNoise</span><span class="p">(</span><span class="mf">0.02</span><span class="p">)(</span><span class="n">input_data</span><span class="p">)</span>
 </pre></div>
 <div class="section" id="explicit-avo-gradient-calculation">
 <h3>Explicit AVO gradient calculation</h3>
@@ -259,17 +259,17 @@ G = \frac{A_{\Theta_1} - A_{\Theta_0}}{x_{\Theta_1} - x_{\Theta_0}},
 </div>
 <p>where <span class="math">\(G\)</span> is the PP AVO gradient, <span class="math">\(A\)</span> is the seismic P wave
 amplitude, <span class="math">\(x\)</span> is the offset, and <span class="math">\(\Theta\)</span> is the angle.</p>
-<pre class="code python"><a name="rest_code_7c4ab19ab3c8453089a53874ba581fae-1"></a><span class="n">mid_near</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">(</span>
-<a name="rest_code_7c4ab19ab3c8453089a53874ba581fae-2"></a>    <span class="k">lambda</span> <span class="n">inputs</span><span class="p">:</span> <span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<a name="rest_code_7c4ab19ab3c8453089a53874ba581fae-3"></a><span class="p">)([</span><span class="n">noisy_mid</span><span class="p">,</span> <span class="n">noisy_near</span><span class="p">])</span>
-<a name="rest_code_7c4ab19ab3c8453089a53874ba581fae-4"></a>
-<a name="rest_code_7c4ab19ab3c8453089a53874ba581fae-5"></a><span class="n">far_mid</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">(</span>
-<a name="rest_code_7c4ab19ab3c8453089a53874ba581fae-6"></a>    <span class="k">lambda</span> <span class="n">inputs</span><span class="p">:</span> <span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<a name="rest_code_7c4ab19ab3c8453089a53874ba581fae-7"></a><span class="p">)([</span><span class="n">noisy_far</span><span class="p">,</span> <span class="n">noisy_mid</span><span class="p">])</span>
-<a name="rest_code_7c4ab19ab3c8453089a53874ba581fae-8"></a>
-<a name="rest_code_7c4ab19ab3c8453089a53874ba581fae-9"></a><span class="n">far_near</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">(</span>
-<a name="rest_code_7c4ab19ab3c8453089a53874ba581fae-10"></a>    <span class="k">lambda</span> <span class="n">inputs</span><span class="p">:</span> <span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">20</span><span class="p">)</span>
-<a name="rest_code_7c4ab19ab3c8453089a53874ba581fae-11"></a><span class="p">)([</span><span class="n">noisy_far</span><span class="p">,</span> <span class="n">noisy_near</span><span class="p">])</span>
+<pre class="code python"><a name="rest_code_bbfd05b7629446f587afcc565a646138-1"></a><span class="n">mid_near</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">(</span>
+<a name="rest_code_bbfd05b7629446f587afcc565a646138-2"></a>    <span class="k">lambda</span> <span class="n">inputs</span><span class="p">:</span> <span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<a name="rest_code_bbfd05b7629446f587afcc565a646138-3"></a><span class="p">)([</span><span class="n">noisy_mid</span><span class="p">,</span> <span class="n">noisy_near</span><span class="p">])</span>
+<a name="rest_code_bbfd05b7629446f587afcc565a646138-4"></a>
+<a name="rest_code_bbfd05b7629446f587afcc565a646138-5"></a><span class="n">far_mid</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">(</span>
+<a name="rest_code_bbfd05b7629446f587afcc565a646138-6"></a>    <span class="k">lambda</span> <span class="n">inputs</span><span class="p">:</span> <span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<a name="rest_code_bbfd05b7629446f587afcc565a646138-7"></a><span class="p">)([</span><span class="n">noisy_far</span><span class="p">,</span> <span class="n">noisy_mid</span><span class="p">])</span>
+<a name="rest_code_bbfd05b7629446f587afcc565a646138-8"></a>
+<a name="rest_code_bbfd05b7629446f587afcc565a646138-9"></a><span class="n">far_near</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">(</span>
+<a name="rest_code_bbfd05b7629446f587afcc565a646138-10"></a>    <span class="k">lambda</span> <span class="n">inputs</span><span class="p">:</span> <span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<a name="rest_code_bbfd05b7629446f587afcc565a646138-11"></a><span class="p">)([</span><span class="n">noisy_far</span><span class="p">,</span> <span class="n">noisy_near</span><span class="p">])</span>
 </pre></div>
 <div class="section" id="encoder-decoder-architecture">
 <h3>Encoder-decoder architecture</h3>
@@ -598,11 +598,11 @@ dataset. We thank Mikael Lüthje for valuable feedback.</p>
 <div class="section" id="discussion-of-4d-inversion">
 <h1>Discussion of 4D Inversion</h1>
 <p>The workshop paper Jesper Sören Dramsch, Corte, et al. (2019a) contains
-the nn results compared to the simulation and Bayesian inversion
+the neural network results compared to the simulation and Bayesian inversion
 results, shown in <a class="reference external" href="#inv1:fig:avo-net-results">15.8</a>. This network
 does not calculate the inversion solution; it merely approximates the
 inverse problem. These initial results on limited training data show
-that a nn can estimate pressure saturation information from field data,
+that a neural network can estimate pressure saturation information from field data,
 after training on simulation data.</p>
 <p>The results presented in <a class="reference external" href="#inv1:fig:avo-net-results">15.8</a> contain
 three indicators that the network learned a regression for the
@@ -612,7 +612,7 @@ range of output values for the network is unconstrained, but the network
 calculates values in the ranges that are expected from the simulation
 and Bayesian inversion results. However, and more interestingly, the
 networks do not contain spatial information, being a feed-forward dnn
-not a cnn, yet returns continuous albeit noisy outputs when re-assembled
+not a convolutional neural network, yet returns continuous albeit noisy outputs when re-assembled
 into maps.</p>
 <p>While the overall result is promising, regions of strong gas saturation
 changes present a problem. This could be due to problems in the

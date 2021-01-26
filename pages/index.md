@@ -15,6 +15,10 @@ This presents a webview of the thesis "Machine Learning in Geoscience" by [Jespe
 
 [![DTU Logo](images/cover.png)](https://orbit.dtu.dk/en/publications/machine-learning-in-4d-seismic-data-analysis-deep-neural-networks)
 
+
+## Defence Presentation
+{{% media url=https://www.youtube.com/watch?v=aNXyx215brU %}}
+
 ## Popular Science Summary
 Machine learning is a new paradigm in instructing computers to perform a task. Classically, computers were told rules to follow, when given some data, whereas, in machine learning computers are provided with data and answers and left with a method to figure out the rules. Recently these methods have become increasingly powerful in identifying images, which enabled image search and self-driving cars.
 

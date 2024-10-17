@@ -2,3 +2,7 @@ cache
 .doit.db
 __pycache__
 output
+
+# pixi environments
+.pixi
+*.egg-info

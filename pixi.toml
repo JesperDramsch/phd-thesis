@@ -1,0 +1,18 @@
+[project]
+authors = ["Jesper Dramsch <jesper@dramsch.net>"]
+channels = ["conda-forge"]
+description = "Open-source PhD thesis of Jesper Dramsch"
+name = "phd-thesis"
+platforms = ["win-64"]
+version = "0.1.0"
+
+[tasks]
+build = "nikola build"
+serve = { cmd = "nikola serve -b", depends-on = ["build"] }
+[dependencies]
+python = ">=3.13.0,<4"
+setuptools = ">=75.1.0,<76"
+pybtex = ">=0.24.0,<0.25"
+
+[pypi-dependencies]
+nikola = { version = ">=8.3.1, <9", extras = ["extras"] }

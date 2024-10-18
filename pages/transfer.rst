@@ -1,24 +1,24 @@
 .. title: Transfer Learning in Automatic Seismic Interpretation
 .. slug: transfer-learning-in-automatic-seismic-interpretation
 .. date: 2021-01-15 13:32:55 UTC
-.. tags: 
-.. category: 
-.. link: 
-.. description: 
+.. tags:
+.. category:
+.. link:
+.. description:
 .. type: text
 .. has_math: yes
 .. _sec:transfer:
 
 +-----------+-----------+-----------+----------------------------------+
 | |image5|  | |image6|  | |image7|  | |image8|                         |
-+-----------+-----------+-----------+----------------------------------+                         
++-----------+-----------+-----------+----------------------------------+
 |   `Dramsch, J. S. <https://orcid.org/0000-0001-8273-905X>`__, &      |
 |   `Lüthje, M. <https://orcid.org/0000-0003-2715-1653>`__ (2018).     |
 |   Deep-learning seismic facies on state-of-the-art convolutional     |
 |   neural network architectures.                                      |
 |   In SEG Technical Program Expanded Abstracts 2018 (pp. 2036-2040).  |
 |   Society of Exploration Geophysicists.                              |
-+----------------------------------------------------------------------+                         
++----------------------------------------------------------------------+
 | Github: https://github.com/JesperDramsch/segam18                     |
 +----------------------------------------------------------------------+
 
@@ -33,7 +33,7 @@ where data is expensive and difficult to acquire, labelling by experts
 is complicated and prone to bias (Bond et al. 2007), and often only
 available within commercial environments. In (Jesper Sören Dramsch and
 Lüthje 2018b) we show that sotas convolutional neural networks pre-trained on a natural image
-data set (ImageNet, cf. `11.2.2.4 <#book:dl>`__) can be transferred to
+data set (ImageNet, cf. `2.2.2.4 <#book:dl>`__) can be transferred to
 perform asi. This paper forms the central contribution of this chapter.
 
 In the computer vision community, hand-labelled data sets like ImageNet,
@@ -112,11 +112,11 @@ Research into deep convolutional networks showed that the data in the
 network would lose signal with increasing depth, named vanishing
 gradient problem (Hochreiter 1998). This vanishing gradient problem led
 to the limitation of VGG at 19 layers; this is detailed further in
-`11.2.2.6 <#ssec:cnnarch>`__. Residual blocks introduced a solution to
+`2.2.2.6 <#ssec-cnnarch>`__. Residual blocks introduced a solution to
 this problem by implementing a shortcut between the original data and
-the output from the block. `11.14 <#bookchapter:fig:resnet>`__ presents
+the output from the block. `Chapter 2.14 <#bookchapter-fig-resnet>`__ presents
 the original ResNet block architecture, which was used in ResNet-50 and
-ResNet-101 in `13.1 <#fig:cnnsota>`__ (K. He et al. 2016). Details on
+ResNet-101 in `Figure 4.1 <#fig-cnnsota>`__ (K. He et al. 2016). Details on
 ResNet blocks differ, the main take-away being the sum or concatenation
 of the original data with the block output. DenseNets (G. Huang et al.
 2017) and Inception-style networks (Szegedy et al. 2015) are other
@@ -126,14 +126,14 @@ approaches to build deeper neural networks.
   :alt: Top-5 Accuracies of Neural Architectures on ImageNet plotted
    against Million Parameters, color-coded to similar network type. Data
    and references shown in `[tab:imagenet-sota] <#tab:imagenet-sota>`__
-  :name: fig:cnnsota
+  :name: fig-cnnsota
   :width: 110.0%
 
   Top-5 Accuracies of Neural Architectures on ImageNet plotted against
   Million Parameters, color-coded to similar network type. Data and
   references shown in `[tab:imagenet-sota] <#tab:imagenet-sota>`__
 
-`13.1 <#fig:cnnsota>`__ additionally contains several classes of neural network
+`Figure 4.1 <#fig-cnnsota>`__ additionally contains several classes of neural network
 architectures, namely AmoebaNet, NASNet, and EfficientNet. These
 categories are a more recent development in neural architecture
 research, based on nas, which automates the search for novel
@@ -157,7 +157,7 @@ parameter.
 
 VGG-16 and ResNet-52 are two network architectures that are used in the
 paper in this chapter. These can be identified in
-`13.1 <#fig:cnnsota>`__. The performance of both models in the Top-5
+`Figure 4.1 <#fig-cnnsota>`__. The performance of both models in the Top-5
 accuracy on ImageNet is comparable, while the number of parameters
 vastly differ. VGG-16 contains 138 million parameters, while ResNet- 52
 contains 23 million parameters, the VGG-16 network is, however, 16
@@ -174,12 +174,15 @@ optimal results. The Waldeland convolutional neural network is end-to-end traine
 data. The VGG-16 and ResNet-52 are fine-tuned with pre-trained weights,
 which require a lower learning rate and fixing the weights in parts of
 the network. The networks are trained with the categorical cross-entropy
-loss discussed in `[eq:crossentropy] <#eq:crossentropy>`__. The
+loss discussed in `equation [crossentropy] <#eq-crossentropy>`__. The
 categorical cross-entropy enables training on multi-class labels by
 optimizing the multi-variate negative log-likelihood. It is reprinted
 here for convenience:
 
-.. math:: CE = - \sum\limits^C_j y_j \log{\left(o_{j}\right)}
+.. math::
+  :name: eq-crossentropy
+
+  CE = - \sum\limits^C_j y_j \log{\left(o_{j}\right)}
 
 The VGG-16 model has the first seven layers frozen. The ResNet-52 has
 the first 44 layers frozen. This ensures that the most general features
@@ -201,7 +204,7 @@ particularly essential when fine-tuning an over-parametrized network to
 smaller-scale data.
 
 End-to-End convolutional neural network training
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The training of the Waldeland convolutional neural network is trained end-to-end. The optimizer
 for the Waldeland convolutional neural network is the Adam optimizer (Diederik P. Kingma and Ba
@@ -211,11 +214,11 @@ moments of :math:`\beta_1=0.9`, and second-order moments of
 
 .. figure:: ../images/waldeland-loss.png
   :alt: Accuracy and Categorical Cross Entropy for Waldeland convolutional neural network
-  :name: fig:waldeland-loss
+  :name: fig-waldeland-loss
 
   Accuracy and Categorical Cross Entropy for Waldeland convolutional neural network
 
-`13.2 <#fig:waldeland-loss>`__ shows the training loss of end-to-end
+`Figure 4.2 <#fig-waldeland-loss>`__ shows the training loss of end-to-end
 training. The accuracy shows that the network very quickly reaches 100%
 accuracy on the training data while performing close to perfect on the
 test set. The training is stopped after ten epochs. The loss shows that
@@ -245,7 +248,7 @@ that updates the learning rate (lr) according to
 
 .. figure:: ../images/vgg-loss.png
   :alt: Accuracy and Categorical Cross Entropy for VGG16 convolutional neural network
-  :name: fig:vgg-loss
+  :name: fig-vgg-loss
 
   Accuracy and Categorical Cross Entropy for VGG16 convolutional neural network
 
@@ -257,19 +260,19 @@ results despite possibly increasing the convergence.
 
 .. figure:: ../images/resnet-loss.png
   :alt: Accuracy and Categorical Cross Entropy for ResNet52 convolutional neural network
-  :name: fig:resnet-loss
+  :name: fig-resnet-loss
 
   Accuracy and Categorical Cross Entropy for ResNet52 convolutional neural network
 
 The ResNet-52 network immediately reports a training accuracy of close
 to 100% while the test data report 11% accuracy, which is a performance
 equivalent to random chance on this dataset containing nine classes. The
-loss in `13.4 <#fig:resnet-loss>`__ shows the same problem of a
+loss in `Figure 4.4 <#fig-resnet-loss>`__ shows the same problem of a
 massively overfit network. For this reason, the network predictions were
 not displayed in the paper in this chapter.
 
 Conference Paper: Deep learning seismic facies on state of the art convolutional neural network architectures
-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
 
 .. _introduction-1:
 
@@ -328,7 +331,7 @@ seismic facies in the open F3 data set. The classes describe steep
 dipping reflectors, salt intrusions, low coherency regions, low
 amplitude dipping reflectors, high amplitude regions continuous high
 amplitude regions and grizzly amplitude patterns presented in
-figure `13.7 <#transfer:fig:labels>`__. Additionally, a catch-all “else”
+`Figure 4.7 <#transfer-fig-labels>`__. Additionally, a catch-all “else”
 region are picked. In this approach we chose Keras (Chollet and others
 2015a) with a Tensorflow (Abadi et al. 2015a) backend on a K5200 GPU at
 DHRTC. Keras is a high level abstraction of tensor arithmetics.
@@ -337,7 +340,7 @@ graphs. We train 2D convolutional neural networks (CNN) of varying depth
 on seismic slices to propagate single slice interpretations to a volume.
 CNNs are highly flexible models for computer vision tasks.
 
-Network one depicted in figure `13.5 <#transfer:fig:waldelandcnn>`__ was
+Network one depicted in `Figure 4.5 <#transfer-fig-waldelandcnn>`__ was
 developed by (Anders Waldeland and Solberg 2016) to identify salt bodies
 in 3D seismic data. Three layers are fully connected for classification.
 The network uses a kernel of 5 by 5 pixels for convolution and a stride
@@ -357,7 +360,7 @@ deep learning networks with 95,735 parameters to optimize for.
    Classification Layer on bottom. Width of objects shows ``log`` of
    spatial extent of layer. Height shows ``log`` of complexity of layer.
    The layers are color coded to show similar purpose.
-  :name: transfer:fig:waldelandcnn
+  :name: transfer-fig-waldelandcnn
 
   Waldeland convolutional neural network architecture. Input at the Top. Softmax Classification
   Layer on bottom. Width of objects shows ``log`` of spatial extent of
@@ -370,16 +373,14 @@ Visual Geometry Group. It contains 16 layers and 1,524,2605 parameters.
 Convolutional blocks are interspersed with max-pooling layers for
 down-sampling. The last three layers are fully connected layers for
 classification. The VGG16 architecture was proposed for the ImageNet
-challenge in 2013. It is widely used for it’s simplicity in teaching and
+challenge in 204. It is widely used for it’s simplicity in teaching and
 it’s generalizability in transfer learning tasks.
 
 .. figure:: ../images/vgg.png
   :alt: VGG16 architecture. Same visualization as
-   figure `13.5 <#transfer:fig:waldelandcnn>`__
-  :name: transfer:fig:vgg
+  :name: transfer-fig-vgg
 
-  VGG16 architecture. Same visualization as
-  figure `13.5 <#transfer:fig:waldelandcnn>`__
+  VGG16 architecture. Same visualization as `Figure 4.5 <#transfer-fig-waldelandcnn>`__
 
 Network three is the ResNet50 architecture by Microsoft. The network
 consists of 50 layers with 2,361,6569 parameters. It implements a recent
@@ -414,24 +415,28 @@ prediction pipeline to populate each one 2D inline and crossline of the
 seismic data to qualitatively visualize the prediction capability of the
 networks. The labels for the supervised interpretation are taken from
 the MalenoV interpretation by ConocoPhillips, shown in
-figure `13.7 <#transfer:fig:labels>`__.
+`Figure 4.7 <#transfer-fig-labels>`__.
 
 .. container::
    :name: tab:scores
 
    .. table:: Training and Test scores on Networks. Test scores are prediction results on a labeled hold-out data set. Mismatch of test and training scores indicates over-fitting.
-   
-      ============= ======== ====== ===== ======
-      Network       Run      Loss   MAE   Acc
-      ============= ======== ====== ===== ======
-      Waldeland convolutional neural network Training 0.001  0.000 100.0%
-                    Test     0.003  0.000 99.9%
-      VGG16         Training 0.010  0.005 99.8%
-                    Test     0.127  0.026 100.0%
-      ResNet50      Training 0.011  0.001 100.0%
-                    Test     14.166 0.195 12.1%
-                                          
-      ============= ======== ====== ===== ======
+
+      +-------------+--------+------+-----+------+
+      |Network      |Run     |Loss  |MAE  |Acc   |
+      +=============+========+======+=====+======+
+      |Waldeland CNN|Training|0.001 |0.000|100.0%|
+      +-------------+--------+------+-----+------+
+      |             |Test    |0.003 |0.000|99.9% |
+      +-------------+--------+------+-----+------+
+      |VGG16        |Training|0.010 |0.005|99.8% |
+      +-------------+--------+------+-----+------+
+      |             |Test    |0.127 |0.026|100.0%|
+      +-------------+--------+------+-----+------+
+      |ResNet50     |Training|0.011 |0.001|100.0%|
+      +-------------+--------+------+-----+------+
+      |             |Test    |14.166|0.195|12.1% |
+      +-------------+--------+------+-----+------+
 
 .. figure:: ../images/label.png
   :alt: Labeled data set on one 2D inline slice. Color interpretation:
@@ -439,7 +444,7 @@ figure `13.7 <#transfer:fig:labels>`__.
    dipping reflectors (grass green), continuous high amplitude regions
    (blue), grizzly (orange), low amplitude (yellow), high amplitude
    (magenta), salt intrusions (gray), else (turquoise).
-  :name: transfer:fig:labels
+  :name: transfer-fig-labels
 
   Labeled data set on one 2D inline slice. Color interpretation: Low
   coherency (brown), Steep dipping reflectors (gray), low amplitude
@@ -455,7 +460,7 @@ Crossline 339 has been interpreted by ConocoPhillips and made available
 freely. We show results of crossline slice 500. We have used the same
 plotting parameters for both either results, both have been generated
 programatically, without human intervention.
-Figure `[transfer:fig:predi] <#transfer:fig:predi>`__ shows the
+`Figure 4.8 (a) <#transfer-fig-predi>`__ shows the
 prediction of the Waldeland convolutional neural network at every location of the 2D slice based
 on a 65 x 65 patch of the data. Border patches were zero padded. We see
 clear patches for the low coherency region in brown. The low amplitude
@@ -479,9 +484,9 @@ will often give problems due to the padding. Around location 800 high
 amplitudes (orange) have been mislabeled as grizzly amplitudes.
 
 The VGG16 network classification is shown in
-figure `[transfer:fig:vggpredi] <#transfer:fig:vggpredi>`__. The network
+`Figure 4.8 (b) <#transfer-fig-vggpredi>`__. The network
 performs similar to the Waldeland convolutional neural network in
-figure `[transfer:fig:predi] <#transfer:fig:predi>`__, however some key
+`Figure 4.8 (a) <#transfer-fig-predi>`__, however some key
 differences will be pointed out. The separation of low coherency and the
 "else" region around :math:`t\approx400~\text{ms}` is less defined and,
 therefore, worse. The coherency of low amplitude dipping (grass green)
@@ -500,13 +505,33 @@ interpretation. It is present toward the bottom left corner.
 The results of the ResNet50 are not shown. The network classifies all
 seismic facies as "else". This indicates that the network is overfitting
 the data. This is supported by the numeric results presented in
-table `13.1 <#tab:scores>`__. The network training error indicates a
+table `Figure 4.1 <#tab:scores>`__. The network training error indicates a
 perfect fit to the data, whereas the test score is unseen data with
 labels to evaluate the performance of networks on unseen data. While
 both the Waldeland convolutional neural network and VGG16 perform well, the ResNet50 performs
 very poorly.
 
-| 
+
+.. _transfer-fig-preds:
+
+.. list-table::
+   :width: 100%
+   :class: borderless
+
+   * - .. figure:: ../images/pred1_i.png
+          :alt: Waldeland CNN interpretation of crossline 500.
+          :width: 100%
+          :name: transfer-fig-predi
+
+       (a) Waldeland CNN interpretation of crossline 500.
+   * - .. figure:: ../images/vgg1_i.png
+          :alt: VGG16 interpretation of crossline 500.
+          :width: 100%
+          :name: transfer-fig-vggpredi
+
+       (b) VGG16 interpretation of crossline 500.
+
+Figure 4.8: Automatic seismic interpretation with CNNs. Color interpretation: Low coherency (brown), Steep dipping reflectors (gray), low amplitude dipping reflectors (grass green), continuous high amplitude regions (blue), grizzly (orange), low amplitude (yellow), high amplitude (magenta), salt intrusions (gray), else (turquoise).
 
 Conclusion
 ~~~~~~~~~~
@@ -541,7 +566,7 @@ dgb for providing the F3 data set.
 Applications of Transfer Learning for Automatic Seismic Interpretation
 ----------------------------------------------------------------------
 
-`[transfer:fig:predi] <#transfer:fig:predi>`__ shows the results of a
+`Figure 4.8 (a) <#transfer-fig-predi>`__ shows the results of a
 fully trained network compared to a pre-trained network. The pre-trained
 network decreases both training time and data requirements
 significantly, while not compromising accuracy. A pre-trained network
@@ -571,7 +596,7 @@ seismic interpretation.
 U-Nets present a special type of encoder-decoder networks that learn
 semantic segmentation on from small datasets (Ronneberger, Fischer, and
 Brox 2015a). They form a special kind of fcn shown in
-`11.15 <#bookchapter:fig:unet>`__. Originally developed on biomedical
+`Chapter 2.15 <#bookchapter-fig-unet>`__. Originally developed on biomedical
 images, the network found wide acceptance in label-sparse disciplines.
 The U-Net implements shortcut connections between convolutional layers
 of equal extent in the Encoder and Decoder networks. This alleviates the
@@ -579,7 +604,7 @@ pressure of the network learning and reconstructing the output data from
 the bottleneck in isolation.
 
 The data set in this training is very small and non-diverse as shown in
-`13.7 <#transfer:fig:labels>`__ and this only made training on a
+`Figure 4.7 <#transfer-fig-labels>`__ and this only made training on a
 classification network possible. Image segmentation would need a dense
 labelling of the training data and more than one 2D section available.
 This has been approached by Alaudah et al. (2019) by labelling the full
@@ -599,7 +624,7 @@ Sanakoyeu, and Kitamura 2019b; G. Li et al. 2019; M. Liu et al. 2019).
 The transfer learning enables utilizing neural networks that were
 trained on a diverse dataset and then fine-tuning them with data that
 contains far fewer samples. This outperforms smaller networks that can
-be trained end-to-end on these small datasets. The code is available at.
+be trained end-to-end on these small datasets. The code is available at `<https://github.com/JesperDramsch/seismic-transfer-learning>`__.
 
 .. |image5| image:: https://img.shields.io/badge/PDF-Download-important
    :target: ../2018.4.pdf

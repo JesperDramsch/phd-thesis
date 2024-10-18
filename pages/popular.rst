@@ -1,33 +1,11 @@
-.. title: Jesper Dramsch’ PhD Thesis
-.. slug: index
+.. title: Popular Science Summary
+.. slug: popular-science-summary
 .. date: 2021-01-15 10:29:45 UTC
 .. tags:
 .. category:
 .. link:
 .. description:
 .. type: text
-
-Jesper S Dramsch (`Orcid <https://orcid.org/0000-0001-8273-905X>`__)
-
-.. figure:: images/fysik_uk.png
-   :alt: DTU Logo
-
-   DTU Logo
-
-This presents a webview of the thesis “Machine Learning in Geoscience”
-by `Jesper Dramsch <dramsch.net>`__. The webview can contain errors. The
-thesis is available as `PDF download \[6MB\] <Dramsch-thesis.pdf>`__ and you can try loading this `epub for e-readers \[18MB\] <dramsch-phd-thesis.epub>`__. This is the product of a
-thorough revision after `v1 \[4MB\] <v1.pdf>`__ was rejected.
-
-|DTU Logo|
-
-Defence Presentation
---------------------
-
-{{% media url=https://www.youtube.com/watch?v=aNXyx215brU %}}
-
-Popular Science Summary
------------------------
 
 Machine learning is a new paradigm in instructing computers to perform a
 task. Classically, computers were told rules to follow, when given some
@@ -83,6 +61,3 @@ Instead, we apply a mathematical constraint that ensures that the
 algorithm does not cross geological layers, a simple yet powerful
 limitation to guides the algorithm to develop physically and
 geologically sensible matching patterns.
-
-.. |DTU Logo| image:: images/cover.png
-   :target: https://orbit.dtu.dk/en/publications/machine-learning-in-4d-seismic-data-analysis-deep-neural-networks

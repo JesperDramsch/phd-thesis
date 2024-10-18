@@ -1,10 +1,10 @@
 .. title: Machine Learning in 4D Seismic Inversion
 .. slug: machine-learning-in-4d-seismic-inversion
 .. date: 2021-01-15 13:59:11 UTC
-.. tags: 
-.. category: 
-.. link: 
-.. description: 
+.. tags:
+.. category:
+.. link:
+.. description:
 .. type: text
 .. has_math: yes
 .. _sec:inversion:
@@ -12,20 +12,20 @@
 
 +-----------+-----------+-----------+--------------------------------------+
 | |image12| | |image13| | |image14| | |image15|                            |
-+-----------+-----------+-----------+--------------------------------------+                         
++-----------+-----------+-----------+--------------------------------------+
 |   `Dramsch, J. S. <https://orcid.org/0000-0001-8273-905X>`__, Corte,     |
 |   G., `Amini, H. <https://orcid.org/0000-0001-9588-6374>`__, `MacBeth,   |
 |   C. <https://orcid.org/0000-0001-8593-3456>`__, & `Lüthje,              |
 |   M. <https://orcid.org/0000-0003-2715-1653>`__. (2019). Including       |
 |   Physics in Deep Learning–An example from 4D seismic pressure           |
 |   saturation inversion. arXiv preprint arXiv:1904.02254.                 |
-+--------------------------------------------------------------------------+                         
++--------------------------------------------------------------------------+
 | Github: https://github.com/JesperDramsch/4D-seismic-neural-inversion     |
 +--------------------------------------------------------------------------+
 
 +-----------+-----------+-----------+--------------------------------------+
 | |image16| | |image17| | |image18| | |image19|                            |
-+-----------+-----------+-----------+--------------------------------------+                         
++-----------+-----------+-----------+--------------------------------------+
 |   `Dramsch, J. S. <https://orcid.org/0000-0001-8273-905X>`__, Corte,     |
 |   G., `Amini, H. <https://orcid.org/0000-0001-9588-6374>`__, `Lüthje,    |
 |   M. <https://orcid.org/0000-0003-2715-1653>`__, & `MacBeth,             |
@@ -33,7 +33,7 @@
 |   Learning Application for 4D Pressure Saturation Inversion Compared to  |
 |   Bayesian Inversion on North Sea Data. In Second EAGE Workshop          |
 |   Practical Reservoir Monitoring 2019.                                   |
-+--------------------------------------------------------------------------+                         
++--------------------------------------------------------------------------+
 | Github: https://github.com/JesperDramsch/4D-seismic-neural-inversion     |
 +--------------------------------------------------------------------------+
 
@@ -91,12 +91,12 @@ significant levels of noise. The seismic field data can therefore
 diverge from the theoretical prediction based on the pressure and
 saturation data. These fluctuations are not smooth across individual
 cells of the map, which can be seen in
-`15.7 <#inv1:fig:schiehalliondata>`__.
+`6.7 <#inv1:fig:schiehalliondata>`__.
 
 The validation strategy in this problem setting is using one time step
 as a hold-out set that is not used during the training of the neural
 network. The time step used was recorded in the year 2004 and is
-presented in `15.7 <#inv1:fig:schiehalliondata>`__. The remaining time
+presented in `6.7 <#inv1:fig:schiehalliondata>`__. The remaining time
 steps are used during the training. Results in the paper are presented
 on the hold-out data.
 
@@ -113,7 +113,7 @@ due to the nature of deep convolutional neural networks more training data needs
 In Jesper Sören Dramsch, Corte, et al. (2019d) we present a novel
 network structure that explicitly includes avo gradient calculation
 within the network as physical knowledge, shown in
-`15.6 <#inv1:fig:avo-net>`__.
+`6.6 <#inv1:fig:avo-net>`__.
 
 The network architecture was chosen to follow an encoder-decoder
 architecture as a forcing function for information distillation. The
@@ -156,8 +156,8 @@ bottleneck layer computing as :math:`z = \mu + \sigma \cdot \epsilon`.
 
 The pore volume is passed as-is to the network. The estimated pore
 volume helps the network to decouple the rock matrix from the fluid
-effects, which is further explored in `15.4 <#sec:confincluding>`__. A
-schematic of the network is shown in `15.6 <#inv1:fig:avo-net>`__, which
+effects, which is further explored in `6.4 <#sec:confincluding>`__. A
+schematic of the network is shown in `6.6 <#inv1:fig:avo-net>`__, which
 shows the connections of the individual operations.
 
 The network explicitly includes avo gradient calculation in the network
@@ -201,11 +201,11 @@ the R\ :sup:`2`-Score and mse, which is an expected effect of noisy
 regression data (Hastie, Tibshirani, and Friedman 2009). Nevertheless,
 this produces consistent results on field data upon visual inspection.
 
-The paper in `15.4 <#sec:confincluding>`__ provides an ablation study,
+The paper in `6.4 <#sec:confincluding>`__ provides an ablation study,
 where parts of the neural network architecture are systematically
 switched off. Ablation studies are commonly used to explore and evaluate
 the effect of the individual components on the regression result. The
-paper in `15.5 <#sec:conf4d>`__ shows the results of the deep neural
+paper in `6.5 <#sec:conf4d>`__ shows the results of the deep neural
 network compared to a Bayesian inversion.
 
 .. _sec:confincluding:
@@ -365,8 +365,8 @@ Results
 
   Schiehallion 2004 Timestep Seismic data, pore volume and sim2seis results.
 
-In figure `15.2 <#inv2:fig:input>`__ we show the 2004 time step of the
-Schiehallion 4D. Figure `15.3 <#inv2:fig:vae>`__ contains the inversion
+In figure `6.2 <#inv2:fig:input>`__ we show the 2004 time step of the
+Schiehallion 4D. Figure `6.3 <#inv2:fig:vae>`__ contains the inversion
 result using the variational encoder decoder architecture. Some
 coherency in the maps can be seen, but each map is very noisy and the
 gas saturation map contains many data points that indicate gas
@@ -382,7 +382,7 @@ When we add the gradient, we can clean up some of the misfit in the gas
 saturation maps :math:`\Delta S_g`. Particularly, the event with the
 strongest softening in the amplitude maps, is partially reassigned to
 the pressure map :math:`\Delta P`. However, the inversion process is
-still very prone to noise. In figure `15.5 <#inv2:fig:noisegradvae>`__,
+still very prone to noise. In figure `6.5 <#inv2:fig:noisegradvae>`__,
 we show the inversion results of a AVO-gradient neural network with a
 noise injection at training of :math:`\sigma = .02`. The inversion maps
 are very coherent. Noise injection without gradient calculation does not
@@ -488,7 +488,7 @@ showed that the 4D AVO attributes are in line with the theoretical
 expectations. The seismic data used for inversion is the 4D difference
 of the sum of negative amplitudes (:math:`\Delta`\ SNA) map attribute,
 extracted from three angle-stacks, along the reservoir time window (see
-figure `15.7 <#inv1:fig:schiehalliondata>`__).
+figure `6.7 <#inv1:fig:schiehalliondata>`__).
 
 Method 1 - Model-based Bayesian inversion
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -554,7 +554,7 @@ density (J. S. Bergstra et al. 2011).
 
   Architecture for sample-based seismic inversion with explicit gradient calculation.
 
-The architecture is shown in figure `15.6 <#inv1:fig:avo-net>`__. Inputs
+The architecture is shown in figure `6.6 <#inv1:fig:avo-net>`__. Inputs
 are Near, Mid, Far seismic, and Pore volume. These Input Layers are
 passed on to calculate the mid-near, far-mid, and far-near gradients.
 These four inputs and three gradients are concatenated and fed to the
@@ -588,10 +588,10 @@ standard deviation of :math:`\sigma = .02`, therefore, approximately
 :math:`95~\%` of the noise may distort up to a maximum :math:`40~\%` of
 the clean signal.
 
-Figure `15.7 <#inv1:fig:schiehalliondata>`__ shows the observed 4D
+Figure `6.7 <#inv1:fig:schiehalliondata>`__ shows the observed 4D
 seismic maps (:math:`\Delta`\ SNA) for the 2004 monitor acquisition
 using the 1996 acquisition as baseline.
-Figure `15.8 <#inv1:fig:avo-net-results>`__ shows, in the first row, the
+Figure `6.8 <#inv1:fig:avo-net-results>`__ shows, in the first row, the
 simulation model results (used in the Bayesian method as prior
 information), in the second row, the inversion results for the Bayesian
 method, and in the third row, the inversion results for the neural
@@ -603,7 +603,7 @@ network method.
 
   Schiehallion 2004 Timestep Seismic data, pore volume and sim2seis results.
 
-From figure `15.8 <#inv1:fig:avo-net-results>`__ we can see clearly the
+From figure `6.8 <#inv1:fig:avo-net-results>`__ we can see clearly the
 influence of the prior simulation model in the Bayesian results. The
 neural network does not use a prior, so the results are not influenced
 by the simulation model and can be seen as a direct interpretation of
@@ -701,13 +701,13 @@ Discussion of 4D Inversion
 
 The workshop paper Jesper Sören Dramsch, Corte, et al. (2019a) contains
 the neural network results compared to the simulation and Bayesian inversion
-results, shown in `15.8 <#inv1:fig:avo-net-results>`__. This network
+results, shown in `6.8 <#inv1:fig:avo-net-results>`__. This network
 does not calculate the inversion solution; it merely approximates the
 inverse problem. These initial results on limited training data show
 that a neural network can estimate pressure saturation information from field data,
 after training on simulation data.
 
-The results presented in `15.8 <#inv1:fig:avo-net-results>`__ contain
+The results presented in `6.8 <#inv1:fig:avo-net-results>`__ contain
 three indicators that the network learned a regression for the
 Schiehallion field. The network returns the overall trend in increase
 and decrease of pressure and saturation correctly. Additionally, the

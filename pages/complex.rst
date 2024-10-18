@@ -1,10 +1,10 @@
 .. title: Complex-valued Neural Networks
 .. slug: complex-valued-neural-networks
 .. date: 2021-01-15 13:34:27 UTC
-.. tags: 
-.. category: 
-.. link: 
-.. description: 
+.. tags:
+.. category:
+.. link:
+.. description:
 .. type: text
 .. has_math: yes
 .. _sec:complex:
@@ -18,7 +18,7 @@
 |   (2019). Complex-valued neural networks for machine learning on      |
 |   non-stationary physical data. arXiv preprint                        |
 |   arXiv:`1905.12321 <https://arxiv.org/abs/1905.12321>`__.            |
-+-----------------------------------------------------------------------+                         
++-----------------------------------------------------------------------+
 | Github: https://github.com/JesperDramsch/Complex-CNN-Seismic          |
 +-----------------------------------------------------------------------+
 
@@ -129,7 +129,7 @@ Basic principles
 
 Convolutional neural networks (Y. LeCun et al. 1999) use multiple layers
 of convolution and subsampling to extract relevant information from the
-data (see Figure `[complex:fig:3] <#complex:fig:3>`__)
+data (see `Figure 5.1 <#complex-fig-3>`__)
 
 The input image is repeatedly convolved with filters and subsampled.
 This creates many, but smaller and smaller images. For a classification
@@ -141,6 +141,34 @@ learned based on the training. If the goal is - for example - to
 classify geological facies, the convolutional kernels will learn to
 extract information from the input, that helps with that task. It is
 thus a very strong methodology, that can be adapted to many tasks.
+
+.. _complex-fix-3:
+
+.. list-table::
+   :width: 100%
+   :class: borderless
+
+   * - .. image:: ../images/real.png
+          :width: 100%
+          :name: complex-fig-real
+
+       (a) Real Neural Network
+
+     - .. image:: ../images/cmplx.png
+          :width: 100%
+          :name: complex-fix-cmplx
+
+       (b) Complex Neural Network
+
+Figure 5.1: Schematic of equivalent real- and complex-valued convolutional neural networks.
+Yellow is the input image data and purple shows the 3 × 3 convolutional filters.
+In (a) the input image is convolved with filters. This results in several smaller outputs.
+The process is repeated, resulting in more outputs even further reduced in size. In (b) we
+present the complex-valued network. We start with a complex valued input represented
+by two layers, namely the real-valued a and complex-valued b complement in a+ib. The
+complex information is propagated through the network by keeping - in each step - the
+real and complex information in different layers after convolution with complex-valued
+filters.
 
 .. _sec:conv:
 
@@ -169,7 +197,7 @@ Complex Convolutional Neural Networks
 
 .. figure:: ../images/image9.png
   :alt: Implementation details of Complex Convolution (Courtesy Trabelsi et al. (2017))
-  :name: complex:fig:4
+  :name: complex-fig-4
 
   Implementation details of Complex Convolution (Courtesy Trabelsi et al. (2017))
 
@@ -178,7 +206,7 @@ modelling the phase space of physical systems (Trabelsi et al. 2017).
 Unfortunately it is not possible to feed complex numbers directly to a
 CNN, as they are not supported by any of the standard implementations
 (PyTorch or Tensorflow). Instead, we can represent them in another form.
-The complex convolution introduced in Section `14.1.2.2 <#sec:conv>`__,
+The complex convolution introduced in Section `3.1.2.2 <#sec:conv>`__,
 can be explicitly implemented as convolutions of the real and complex
 components of both kernels and the data. A complex-valued data matrix in
 cartesian notation is defined as :math:`\textbf{M} = M_\Re + i M_\Im`
@@ -193,12 +221,12 @@ Solving the convolution of
 .. math:: M' = K * M = (M_\Re + i M_\Im) * (K_\Re + i K_\Im),
 
 we can apply the distributivity of convolutions
-(cf. section `14.1.2.2 <#sec:conv>`__) to obtain
+(cf. section `5.1.2.2 <#sec:conv>`__) to obtain
 
 .. math:: M' =  \{M_\Re * K_\Re - M_\Im * K_\Im\} + i \{ M_\Re * K_\Im + M_\Im * K_\Re\},
 
 where :math:`K` is the Kernel and :math:`M` is a data vector (see
-Figure `14.1 <#complex:fig:4>`__).
+`Figure 5.1 <#complex-fig-4>`__).
 
 We can reformulate this in algebraic notation
 
@@ -248,7 +276,7 @@ Autoencoders
    the input. The decoder contains upsampling operations (blue) followed
    by convolutional layers symmetrical to the encoder. Alternatively,
    the encoder is sometimes made up of transpose convolutions.
-  :name: complex:fig:autoencoder
+  :name: complex-fig-autoencoder
 
   Typical autoencoder architecture. The data is compressed to a low
   dimensional bottleneck, and then reconstructed. In the encoder
@@ -270,7 +298,7 @@ lossy representation. Commonly, recovered data is blurred by this
 process.
 
 The principle is illustrated in
-figure `14.2 <#complex:fig:autoencoder>`__. The input is transformed to
+`Figure 5.2 <#complex-fig-autoencoder>`__. The input is transformed to
 a low-dimensional representation - called a code or latent space - and
 then reconstructed again from this low dimensional representation. The
 intuition is, that the network has to extract the most salient parts
@@ -306,7 +334,7 @@ Windowed Aliasing
 
 Non-stationary data such as seismic data can contain sections within the
 data that contain spurious offsets from the mean.
-Figure `14.3 <#complex:fig:aliasing>`__ shows varying sizes of cutouts,
+`Figure 5.3 <#complex-fig-aliasing>`__ shows varying sizes of cutouts,
 with 101 and 256 samples respectively. In the middle, the full
 normalised amplitude spectra are presented. On the right, the
 corresponding phase spectra are presented. On the left, we focus on the
@@ -327,7 +355,7 @@ applications pertaining to regression tasks.
    (green) is 0 at a frequency of 0 Hz, whereas windows of the data
    experience low-frequency aliasing that introduce a non-zero offset at
    0 Hz analogous to the Nyquist-Shannon theorem for high frequencies.
-  :name: complex:fig:aliasing
+  :name: complex-fig-aliasing
 
   Spectral aliasing dependent on window-size (modified from Jesper
   Sören Dramsch and Lüthje (2018d)). The true amplitude spectrum
@@ -395,7 +423,7 @@ Architecture
 ^^^^^^^^^^^^
 
 .. container::
-   :name: tab:1
+   :name: tab-1
 
    .. table:: Layers used in the four autoencoders and according
     parameter count on the computational graph for complex-valued
@@ -467,18 +495,18 @@ Architecture
 
 The autoencoder architecture compresses the input data to a lower
 dimensional representation, i.e. bottleneck
-(cf. Figure `14.2 <#complex:fig:autoencoder>`__), with an encoder
+(cf. `Figure 5.2 <#complex-fig-autoencoder>`__), with an encoder
 network and reconstruct the input data from the bottleneck with a
 decoder network. It is common that the encoder and decoder networks are
 formulated symmetrically, as we have done in this paper. We reduce a
 64x64 input 4 times by a factor of two spatially to encode a 4x4
 encoding layer. We define varying amounts of filters during the
 downsampling steps and in the code layer to achieve varying amounts of
-compression shown in Table `14.1 <#tab:1>`__. The architecture for the
+compression shown in `Table 5.1 <#tab-1>`__. The architecture for the
 complex convolutional network is identical to the real network, except
 for replacing the real-valued 2D convolutions with complex-valued
 convolutions represented by two feature maps instead of one. The layers
-for each network are shown in Table `14.1 <#tab:1>`__ with additional
+for each network are shown in `Table 5.1 <#tab-1>`__ with additional
 values, including learnable parameters counted on the computational
 graph, compression ratio, and size on disk. In total four network
 architectures are presented, two real-valued and complex-valued networks
@@ -501,7 +529,7 @@ derived from a neural network directly and should not provide an
 improvement to the networks reconstruction error. We define a
 complex-valued network that has the same number of filters as the
 real-valued network in both the "small" and "large" formulation in
-Table `14.1 <#tab:1>`__. This network effectively has half the available
+`Table 5.1 <#tab-1>`__. This network effectively has half the available
 feature maps for the real-valued seismic input, as the other half is
 used for the complex-valued information. That means the smaller
 real-valued network contains as many feature maps for the real-valued
@@ -517,13 +545,13 @@ We train the networks with an Adam optimizer (Diederik P. Kingma and Ba
 epochs. The loss function is mean squared error, as the seismic data
 contains values in the range of [-1,1]. All networks reach stable
 convergence without overfitting, shown in
-Figure `14.4 <#complex:fig:loss>`__.
+`Figure 5.4 <#complex-fig-loss>`__.
 
 .. figure:: ../images/All-Losses-log.png
   :alt: Validation Loss (MSE) on 7 random seeds per network.
    (Real-valued loss on real-valued seismic and combined complex-valued
    loss on complex-valued seismic, as the network "sees" it.)
-  :name: complex:fig:loss
+  :name: complex-fig-loss
 
   Validation Loss (MSE) on 7 random seeds per network. (Real-valued
   loss on real-valued seismic and combined complex-valued loss on
@@ -545,9 +573,9 @@ Results
 
 We trained four neural network autoencoders with seven random
 initializations for each network, to allow for error bars on the
-estimates in Figure `14.4 <#complex:fig:loss>`__. The mean squared error
+estimates in `Figure 5.4 <#complex-fig-loss>`__. The mean squared error
 and the mean absolute error for each parameter configuration during
-training is given in Table `14.2 <#tab:2>`__. There is a clear
+training is given in `Table 5.2 <#tab-2>`__. There is a clear
 correspondence of the reconstruction error of the autoencoder to the
 size of network. The real-valued networks outperform the complex-valued
 networks in both the mean squared error and mean absolute error,
@@ -560,7 +588,7 @@ errors.
    chose the "top" section for it’s faulted chaotic texture, "bottom"
    for the faulted blocks, and "silent" for a noisy but geologically
    uninteresting section.
-  :name: complex:fig:eval_seis
+  :name: complex-fig-eval-seis
   :width: 120.0%
 
   Seismic Test Data with marked section for closer inspection. We chose
@@ -571,7 +599,7 @@ errors.
 |
 
 .. container::
-   :name: tab:2
+   :name: tab-2
 
    .. table:: Compression, parameters and errors for networks (lower is better). Losses on network validation. The complex-valued networks achieve similar reconstruction errors at twice the compression values.
 
@@ -588,7 +616,7 @@ errors.
       +-------------+-------------+------------+---------------+---------------+
 
 
-The seismic sections in Figure `14.5 <#complex:fig:eval_seis>`__ show
+The seismic sections in `Figure 5.5 <#complex-fig-eval-seis>`__ show
 the unseen test seismic section. We perform a closer inspection of the
 regions "top" and "bottom" to focus on geologically relevant sections in
 the reconstruction process. The noisy segment without strong reflectors
@@ -596,18 +624,18 @@ is a good baseline to evaluate the noise reduction of the autoencoder
 and the behaviour of the different networks on low amplitude data.
 Overall, all networks denoise the original seismic, with the lowest
 reconstruction errors being root-mean-squared (RMS) of 0.1187 and MAE of
-0.0947 (cf. Table `14.3 <#tab:errors>`__).
-Figure `[complex:fig:silent_fk] <#complex:fig:silent_fk>`__ shows the
+0.0947 (cf. `Table 5.3 <#tab-errors>`__).
+`Figure 5.7 <#complex-fig-silent-fk>`__ shows the
 frequency-wavenumber (FK) of the ground truth
-(`[complex:fig:silent_fk] <#complex:fig:silent_fk>`__ (a)) and the large
+(`Figure 5.7 (a) <#complex-fig-silent-fk>`__ ) and the large
 complex network reconstruction
-(`[complex:fig:silent_fk] <#complex:fig:silent_fk>`__ (b)). These show a
+(`Figure 5.7 (b) <#complex-fig-silent-fk>`__ ). These show a
 decrease in the 0 - 60 Hz band for larger absolute wavenumbers.
 
-| 
+|
 
 .. container::
-   :name: tab:errors
+   :name: tab-errors
 
    .. table:: RMS and MAE on real component of Data Patches.
 
@@ -625,18 +653,42 @@ decrease in the 0 - 60 Hz band for larger absolute wavenumbers.
       +---------+--------+--------+--------+--------+--------+--------+--------+--------+
       | R_big   | 0.1469 | 0.1072 | 0.1214 | 0.0967 | 0.2222 | 0.1679 | 0.1459 | 0.1088 |
       +---------+--------+--------+--------+--------+--------+--------+--------+--------+
-      
+
+
+.. _complex-fig-silent-fk:
+
+.. list-table::
+   :width: 100%
+   :class: borderless
+
+   * - .. image:: ../images/silent_fk_truth.png
+         :width: 100%
+         :alt: FK transform of Ground Truth data
+         :align: center
+
+       (a) Ground Truth
+
+     - .. image:: ../images/silent_fk_big_complex.png
+         :width: 100%
+         :alt: FK transform of Large Complex Network data
+         :align: center
+
+       (b) Large Complex Network
+
+Figure 5.7: Evaluation on Silent Noise Patch in FK Domain. Noise reduction of frequencies below 50~Hz apparent, while reconstruction does not introduce visible aliasing.
+
+
 "Top" seismic section
 ^^^^^^^^^^^^^^^^^^^^^
 
 The "top" segment contains strong reflections that are very faulted with
-strong reflectors. Figure `[complex:fig:top] <#complex:fig:top>`__ shows
+strong reflectors. `Figure 5.8 <#complex-fig-top>`__ shows
 the top segment and the reconstructions of the four networks. All
 networks display various amounts of smoothing. The quantitative results
 show that the complex networks perform very similar regardless of size.
 The large real-valued network outperforms the complex networks by 2.5 %
 on RMS, while the small real-valued network underperforms by 2.5 % on
-RMS. The panel in Figure `[complex:fig:top_sr] <#complex:fig:top_sr>`__
+RMS. The panel in `Figure 5.8 (c) <#complex-fig-top-sr>`__
 shows a very smooth result. Despite the close score of the complex
 networks, it appears that the complex-valued network restores more
 high-frequency content. We can also see less smearing of discontinuities
@@ -648,34 +700,133 @@ areas like 1.1 s at 2000 m, however, some of the steeply dipping
 artifacts are visible below the reflector packet between 0 m and 2000 m
 offset.
 
-| 
+
+
+.. _complex-fig-top:
+
+.. list-table::
+    :width: 100%
+    :class: borderless
+
+    * - .. image:: ../images/top_truth.png
+          :width: 100%
+          :alt: Ground Truth
+          :align: center
+          :name: complex-fig-top-truth
+
+        (a) Ground Truth
+
+      -
+
+    * - .. image:: ../images/top_small_complex.png
+          :width: 100%
+          :alt: Small Complex Network top Patch
+          :align: center
+          :name: complex-fig-top-sc
+
+        (b) Small Complex Network
+
+      - .. image:: ../images/top_small_real.png
+          :width: 100%
+          :alt: Small Real Network top Patch
+          :align: center
+          :name: complex-fig-top-sr
+
+        (c) Small Real Network
+
+    * - .. image:: ../images/top_big_complex.png
+          :width: 100%
+          :alt: Large Complex Network top Patch
+          :align: center
+          :name: complex-fig-top-bc
+
+        (d) Large Complex Network
+
+      - .. image:: ../images/top_big_real.png
+          :width: 100%
+          :alt: Large Real Network top Patch
+          :align: center
+          :name: complex-fig-top-br
+
+        (e) Large Real Network
+
+Figure 5.8: Evaluation on Top Noise Patch. Data is normalized between -1 and 1.
 
 "Bottom" seismic section
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-The data marke as "bottom" in Figure `14.5 <#complex:fig:eval_seis>`__
+The data marked as "bottom" in `Figure 5.5 <#complex-fig-eval-seis>`__
 contains a faulted anticline and relatively strong noise levels. The
 small complex network in
-Figure `[complex:fig:bottom_sc] <#complex:fig:bottom_sc>`__ reconstructs
+`Figure 5.9 (d) <#complex-fig-bottom-sc>`__ reconstructs
 a denoised image with good reconstruction of the visible
 discontinuities. Some leakage of the reflector starting at 1.5 s across
 discontinuities is visible. The real small network in
-Figure `[complex:fig:bottom_sr] <#complex:fig:bottom_sr>`__ reconstructs
+`Figure 5.9(c) <#complex-fig-bottom-sr>`__ reconstructs
 a strongly smoothed image, with some ringing below the main reflector,
 which is not visible in the other reconstructions. The dipping reflector
 at an offset of 16000 m is well reconstructed, however, it seems like
 the reconstruction introduced ringing noise over the vertical image. The
 large real-valued network in
-Figure `[complex:fig:bottom_br] <#complex:fig:bottom_br>`__ performs
-best quantitatively (cf. Table `14.3 <#tab:errors>`__). The
+`Figure 5.9 (e) <#complex-fig-bottom-br>`__ performs
+best quantitatively (cf. `Table 5.3 <#tab-errors>`__). The
 complex-valued large network in
-Figure `[complex:fig:bottom_bc] <#complex:fig:bottom_bc>`__ does a
+`Figure 5.9 (d) <#complex-fig-bottom-bc>`__ does a
 fairly good job at reconstructing the image, similar to the large
 real-valued network. However, the amplitude reconstruction of
 high-amplitude events particularly in the main reflector around 1.5 s is
 showing.
 
-| 
+.. _complex-fig-bottom:
+
+.. list-table::
+    :width: 100%
+    :class: borderless
+
+    * - .. image:: ../images/bottom_truth.png
+          :width: 100%
+          :alt: Ground Truth
+          :align: center
+          :name: complex-fig-bottom-truth
+
+        (a) Ground Truth
+
+      -
+
+    * - .. image:: ../images/bottom_small_complex.png
+          :width: 100%
+          :alt: Small Complex Network bottom Patch
+          :align: center
+          :name: complex-fig-bottom-sc
+
+        (b) Small Complex Network
+
+      - .. image:: ../images/bottom_small_real.png
+          :width: 100%
+          :alt: Small Real Network bottom Patch
+          :align: center
+          :name: complex-fig-bottom-sr
+
+        (c) Small Real Network
+
+    * - .. image:: ../images/bottom_big_complex.png
+          :width: 100%
+          :alt: Large Complex Network bottom Patch
+          :align: center
+          :name: complex-fig-bottom-bc
+
+        (d) Large Complex Network
+
+      - .. image:: ../images/bottom_big_real.png
+          :width: 100%
+          :alt: Large Real Network bottom Patch
+          :align: center
+          :name: complex-fig-bottom-br
+
+        (e) Large Real Network
+
+Figure 5.9: Evaluation on Bottom Noise Patch. Data is normalized between -1 and 1.
+
 
 Full seismic test data
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -685,21 +836,53 @@ performance of the smaller complex-valued network, even less so when
 compared to the large complex-valued network. We therefore compare the
 large networks on the full seismic data.
 
-| 
+
+.. _complex-fig-full-fk:
+
+.. list-table::
+    :width: 100%
+    :class: borderless
+
+    * - .. image:: ../images/full_fk_truth.png
+          :width: 100%
+          :alt: Ground Truth
+          :align: center
+          :name: complex-fig-full-truth-fk
+
+        (a) Ground Truth
+
+      - .. image:: ../images/full_fk_big_complex.png
+          :width: 100%
+          :alt: Large Complex Network
+          :align: center
+          :name: complex-fig-full-bc-fk
+
+        (b) Large Complex Network
+
+      - .. image:: ../images/full_fk_big_real.png
+          :width: 100%
+          :alt: Large Real Network
+          :align: center
+          :name: complex-fig-full-br-fk
+
+        (c) Large Real Network
+
+Figure 5.10: FK domain of full seismic data.
+
 
 Overall, both networks return a smoothed image. The findings for the
 strongly faulted sections in the "top" panel hold across the entire
 faulted area around 1.1 s in
-Figure `[complex:fig:full] <#complex:fig:full>`__. The complex-valued
+`Figure 5.11 <#complex-fig-full>`__. The complex-valued
 network does a better job at reconstructing faults and discontinuities.
 The real-valued network is better at reconstructing high-amplitude
 regions that appear dimmer in the complex-valued region. The
 reconstruction of both networks seems adequately close to the ground
 truth, with differences in the details. Quantitatively, the real-valued
-network does the better reconstruction in Table `14.3 <#tab:errors>`__
+network does the better reconstruction in `Table 5.3 <#tab-errors>`__
 with an improvement of 2.5 % over the large complex-valued network. The
 FK domain shows a very similar reduction in noise in the sub 50 Hz band
-in Figure `[complex:fig:full_fk] <#complex:fig:full_fk>`__. All networks
+in `Figure 5.10 <#complex-fig-full-fk>`__. All networks
 introduce an increase of energy across all frequencies at wave-number
 :math:`k=0~km^{-1}`. Additionally, a dimming of the frequencies around
 :math:`k=2.5~km^{-1}` appears in all reconstructions, but is more
@@ -707,11 +890,43 @@ prominent in the large complex-valued network. The ground truth seismic
 contains some scattered energy in the high-frequency mid-wavenumber
 region, visible as "diagonal stripes". These were attenuated in the
 complex-valued network in
-Figure `[complex:fig:full_bc_fk] <#complex:fig:full_bc_fk>`__, but are
+`Figure 5.10 (b) <#complex-fig-full-bc-fk>`__, but are
 partially present in the real-valued reconstruction in
-Figure `[complex:fig:full_br_fk] <#complex:fig:full_br_fk>`__.
+`Figure 5.10 (c) <#complex-fig-full-br-fk>`__.
 
-| 
+
+.. _complex-fig-full:
+
+.. list-table::
+    :width: 100%
+    :class: borderless
+
+    * - .. image:: ../images/full_truth.png
+          :width: 100%
+          :alt: Ground Truth
+          :align: center
+          :name: complex-fig-full-truth
+
+        (a) Ground Truth
+
+    * - .. image:: ../images/full_big_complex.png
+          :width: 100%
+          :alt: Large Complex Network
+          :align: center
+          :name: complex-fig-full-bc
+
+        (b) Large Complex Network
+
+    * - .. image:: ../images/full_big_real.png
+          :width: 100%
+          :alt: Large Real Network
+          :align: center
+          :name: complex-fig-full-br
+
+        (c) Large Real Network
+
+Figure 5.11: Evaluation on full seismic data. Data is normalized between -1 and 1.
+
 
 Discussion
 ~~~~~~~~~~
@@ -741,7 +956,7 @@ real-valued network needs to learn this information implicitly from the
 data itself. Considering, that during the training, the complex network
 evaluates both the real-valued seismic, which we primarily care about in
 addition to the complex-valued component, we can see how the losses in
-Figure `14.4 <#complex:fig:loss>`__ differ from the real-valued
+`Figure 5.4 <#complex-fig-loss>`__ differ from the real-valued
 networks.
 
 The largest network with 790,945 trainable parameters quantitatively

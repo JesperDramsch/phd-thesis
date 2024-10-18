@@ -22,7 +22,8 @@ thorough revision after `v1 \[4MB\] <v1.pdf>`__ was rejected.
 Defence Presentation
 --------------------
 
-{{% media url=https://www.youtube.com/watch?v=aNXyx215brU %}}
+.. youtube:: aNXyx215brU
+           :width: 100%
 
 Popular Science Summary
 -----------------------

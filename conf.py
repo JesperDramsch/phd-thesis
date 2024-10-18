@@ -1101,7 +1101,7 @@ PRETTY_URLS = True
 # feature yet, it's faster and the output looks better.
 # USE_KATEX = True
 
-MATHJAX_CONFIG = """
+MATHJAX_CONFIG = r"""
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
     TeX: {

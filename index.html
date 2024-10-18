@@ -15,12 +15,12 @@ MathJax.Hub.Config({
     TeX: {
     extensions: ["color.js", "boldsymbol.js", "AMSmath.js", "AMSsymbols.js"],
     Macros: {
-        bm: ["f{#1}",1]
+        bm: ["\bf{#1}",1]
     }
     },
     tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-        displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{equation}", "\\end{equation}"] ],
+        inlineMath: [ ['$','$'], ["\\\(","\\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\\[","\\\]"], ["\\\\begin{equation}", "\\\\end{equation}"] ],
         processEscapes: true
     },
     displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
@@ -89,8 +89,9 @@ thesis is available as <a class="reference external" href="Dramsch-thesis.pdf">P
 thorough revision after <a class="reference external" href="v1.pdf">v1 [4MB]</a> was rejected.</p>
 <p><a class="reference external image-reference" href="https://orbit.dtu.dk/en/publications/machine-learning-in-4d-seismic-data-analysis-deep-neural-networks"><img alt="DTU Logo" src="images/cover.png"></a></p>
 <section id="defence-presentation"><h2>Defence Presentation</h2>
-<p><iframe width="200" height="113" src="https://www.youtube.com/embed/aNXyx215brU?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="Machine Learning in Geoscience - PhD Defence of Jesper Dramsch"></iframe></p>
-</section><section id="popular-science-summary"><h2>Popular Science Summary</h2>
+<div class="youtube-video">
+<iframe width="100%" height="315" src="https://www.youtube-nocookie.com/embed/aNXyx215brU?rel=0&amp;wmode=transparent" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+</div></section><section id="popular-science-summary"><h2>Popular Science Summary</h2>
 <p>Machine learning is a new paradigm in instructing computers to perform a
 task. Classically, computers were told rules to follow, when given some
 data, whereas, in machine learning computers are provided with data and

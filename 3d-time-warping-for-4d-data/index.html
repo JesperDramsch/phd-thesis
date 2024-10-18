@@ -15,12 +15,12 @@ MathJax.Hub.Config({
     TeX: {
     extensions: ["color.js", "boldsymbol.js", "AMSmath.js", "AMSsymbols.js"],
     Macros: {
-        bm: ["f{#1}",1]
+        bm: ["\bf{#1}",1]
     }
     },
     tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-        displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{equation}", "\\end{equation}"] ],
+        inlineMath: [ ['$','$'], ["\\\(","\\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\\[","\\\]"], ["\\\\begin{equation}", "\\\\end{equation}"] ],
         processEscapes: true
     },
     displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
@@ -302,38 +302,38 @@ L_\delta (a, b) =
 <p>which is convex for small values, scales linearly for outliers and is
 differentiable for all values of <span class="math">\(\mathbb{R}\)</span>, with <span class="math">\(\delta\)</span>
 being a scaling factor.</p>
-<div class="code"><pre class="code text"><a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-1" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-1" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-1"></a>Algorithm: DTW(a, b)
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-2" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-2" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-2"></a>Given: Trace `a` and Trace `b` of lengths `n`.
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-3" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-3" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-3"></a>
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-4" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-4" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-4"></a>Function CalculateDistanceMatrix(a, b)
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-5" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-5" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-5"></a>   D ← dist(a, b)
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-6" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-6" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-6"></a>   return D
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-7" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-7" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-7"></a>
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-8" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-8" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-8"></a>Function CalculateCumulativeCost(D)
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-9" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-9" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-9"></a>   C[0,0] ← 0
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-10" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-10" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-10"></a>   for i = 1 to n  # Populate Edge
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-11" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-11" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-11"></a>      C[0,i] ← D[0,i] + C[0,i-1]
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-12" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-12" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-12"></a>      C[i,0] ← D[i,0] + C[i-1,0]
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-13" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-13" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-13"></a>
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-14" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-14" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-14"></a>   for i = 1 to n  # Fill Cumulative Cost Matrix
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-15" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-15" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-15"></a>      for j = 1 to n
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-16" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-16" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-16"></a>         C_min ← min(C[i,j-1], C[i-1,j-1], C[i-1,j])
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-17" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-17" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-17"></a>         C[i,j] ← D[i,j] + C_min
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-18" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-18" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-18"></a>   return C
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-19" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-19" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-19"></a>
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-20" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-20" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-20"></a>Function BacktrackMinimumCostPath(C)
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-21" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-21" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-21"></a>   P ← C[n,n]
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-22" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-22" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-22"></a>   while i &gt; 0 or j &gt; 0
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-23" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-23" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-23"></a>      i, j ← index(P[last])
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-24" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-24" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-24"></a>      C_min ← min(C[i,j-1], C[i-1,j-1], C[i-1,j])
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-25" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-25" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-25"></a>      P.append(index(C_min))
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-26" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-26" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-26"></a>   return P
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-27" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-27" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-27"></a>
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-28" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-28" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-28"></a>D ← CalculateDistanceMatrix(a, b)
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-29" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-29" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-29"></a>C ← CalculateCumulativeCost(D)
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-30" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-30" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-30"></a>P ← BacktrackMinimumCostPath(C)
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-31" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-31" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-31"></a>
-<a id="rest_code_30a70efe75864ac5b522728a3d46dfa3-32" name="rest_code_30a70efe75864ac5b522728a3d46dfa3-32" href="#rest_code_30a70efe75864ac5b522728a3d46dfa3-32"></a>return P
+<div class="code"><pre class="code text"><a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-1" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-1" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-1"></a>Algorithm: DTW(a, b)
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-2" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-2" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-2"></a>Given: Trace `a` and Trace `b` of lengths `n`.
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-3" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-3" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-3"></a>
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-4" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-4" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-4"></a>Function CalculateDistanceMatrix(a, b)
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-5" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-5" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-5"></a>   D ← dist(a, b)
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-6" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-6" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-6"></a>   return D
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-7" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-7" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-7"></a>
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-8" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-8" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-8"></a>Function CalculateCumulativeCost(D)
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-9" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-9" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-9"></a>   C[0,0] ← 0
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-10" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-10" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-10"></a>   for i = 1 to n  # Populate Edge
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-11" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-11" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-11"></a>      C[0,i] ← D[0,i] + C[0,i-1]
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-12" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-12" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-12"></a>      C[i,0] ← D[i,0] + C[i-1,0]
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-13" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-13" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-13"></a>
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-14" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-14" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-14"></a>   for i = 1 to n  # Fill Cumulative Cost Matrix
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-15" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-15" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-15"></a>      for j = 1 to n
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-16" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-16" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-16"></a>         C_min ← min(C[i,j-1], C[i-1,j-1], C[i-1,j])
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-17" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-17" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-17"></a>         C[i,j] ← D[i,j] + C_min
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-18" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-18" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-18"></a>   return C
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-19" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-19" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-19"></a>
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-20" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-20" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-20"></a>Function BacktrackMinimumCostPath(C)
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-21" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-21" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-21"></a>   P ← C[n,n]
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-22" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-22" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-22"></a>   while i &gt; 0 or j &gt; 0
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-23" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-23" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-23"></a>      i, j ← index(P[last])
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-24" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-24" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-24"></a>      C_min ← min(C[i,j-1], C[i-1,j-1], C[i-1,j])
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-25" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-25" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-25"></a>      P.append(index(C_min))
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-26" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-26" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-26"></a>   return P
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-27" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-27" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-27"></a>
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-28" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-28" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-28"></a>D ← CalculateDistanceMatrix(a, b)
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-29" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-29" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-29"></a>C ← CalculateCumulativeCost(D)
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-30" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-30" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-30"></a>P ← BacktrackMinimumCostPath(C)
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-31" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-31" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-31"></a>
+<a id="rest_code_e7ac96e95c874b2ca8caee38672564d3-32" name="rest_code_e7ac96e95c874b2ca8caee38672564d3-32" href="#rest_code_e7ac96e95c874b2ca8caee38672564d3-32"></a>return P
 </pre></div>
 <p>Algorithm 1: Dynamic time warping algorithm consists of calculating the element-wise distance matrix, cumulative cost and then find the optimal path in the cumulative cost matrix</p>
 <p>Additionally, the search space on the cumulative distance matrix can be
@@ -1438,12 +1438,12 @@ MathJax.Hub.Config({
     TeX: {
     extensions: ["color.js", "boldsymbol.js", "AMSmath.js", "AMSsymbols.js"],
     Macros: {
-        bm: ["f{#1}",1]
+        bm: ["\bf{#1}",1]
     }
     },
     tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-        displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{equation}", "\\end{equation}"] ],
+        inlineMath: [ ['$','$'], ["\\\(","\\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\\[","\\\]"], ["\\\\begin{equation}", "\\\\end{equation}"] ],
         processEscapes: true
     },
     displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.

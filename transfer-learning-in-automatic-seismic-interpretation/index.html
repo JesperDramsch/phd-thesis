@@ -15,12 +15,12 @@ MathJax.Hub.Config({
     TeX: {
     extensions: ["color.js", "boldsymbol.js", "AMSmath.js", "AMSsymbols.js"],
     Macros: {
-        bm: ["f{#1}",1]
+        bm: ["\bf{#1}",1]
     }
     },
     tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-        displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{equation}", "\\end{equation}"] ],
+        inlineMath: [ ['$','$'], ["\\\(","\\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\\[","\\\]"], ["\\\\begin{equation}", "\\\\end{equation}"] ],
         processEscapes: true
     },
     displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
@@ -633,12 +633,12 @@ MathJax.Hub.Config({
     TeX: {
     extensions: ["color.js", "boldsymbol.js", "AMSmath.js", "AMSsymbols.js"],
     Macros: {
-        bm: ["f{#1}",1]
+        bm: ["\bf{#1}",1]
     }
     },
     tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-        displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{equation}", "\\end{equation}"] ],
+        inlineMath: [ ['$','$'], ["\\\(","\\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\\[","\\\]"], ["\\\\begin{equation}", "\\\\end{equation}"] ],
         processEscapes: true
     },
     displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.

@@ -12,8 +12,6 @@ Jesper S Dramsch (`Orcid <https://orcid.org/0000-0001-8273-905X>`__)
 .. figure:: images/fysik_uk.png
    :alt: DTU Logo
 
-   DTU Logo
-
 This presents a webview of the thesis “Machine Learning in Geoscience”
 by `Jesper Dramsch <dramsch.net>`__. The webview can contain errors. The
 thesis is available as `PDF download \[6MB\] <Dramsch-thesis.pdf>`__ and you can try loading this `epub for e-readers \[18MB\] <dramsch-phd-thesis.epub>`__. This is the product of a

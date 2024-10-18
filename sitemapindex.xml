@@ -6,15 +6,11 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
-  <loc>https://dramsch.net/phd/galleries/rss.xml</loc>
-  <lastmod>2024-10-17T20:20:00Z</lastmod>
- </sitemap>
- <sitemap>
   <loc>https://dramsch.net/phd/rss.xml</loc>
   <lastmod>2024-10-17T21:16:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://dramsch.net/phd/sitemap.xml</loc>
-  <lastmod>2024-10-17T23:09:00Z</lastmod>
+  <lastmod>2024-10-18T03:38:00Z</lastmod>
  </sitemap>
 </sitemapindex>

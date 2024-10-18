@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://dramsch.net/phd/</loc>
-  <lastmod>2024-10-17T23:00:00Z</lastmod>
+  <lastmod>2024-10-18T03:33:00Z</lastmod>
  </url>
  <url>
   <loc>https://dramsch.net/phd/3d-time-warping-for-4d-data/</loc>
@@ -39,7 +39,7 @@
  </url>
  <url>
   <loc>https://dramsch.net/phd/code/</loc>
-  <lastmod>2024-10-17T22:37:00Z</lastmod>
+  <lastmod>2024-10-18T03:33:00Z</lastmod>
  </url>
  <url>
   <loc>https://dramsch.net/phd/complex-valued-neural-networks/</loc>
@@ -54,20 +54,12 @@
   <lastmod>2024-10-17T21:16:00Z</lastmod>
  </url>
  <url>
-  <loc>https://dramsch.net/phd/galleries/</loc>
-  <lastmod>2024-10-17T20:20:00Z</lastmod>
- </url>
- <url>
   <loc>https://dramsch.net/phd/imagenet-results/</loc>
   <lastmod>2024-10-17T21:16:00Z</lastmod>
  </url>
  <url>
   <loc>https://dramsch.net/phd/introduction/</loc>
   <lastmod>2024-10-17T21:16:00Z</lastmod>
- </url>
- <url>
-  <loc>https://dramsch.net/phd/listings/</loc>
-  <lastmod>2024-10-17T20:20:00Z</lastmod>
  </url>
  <url>
   <loc>https://dramsch.net/phd/machine-learning-in-4d-seismic-inversion/</loc>

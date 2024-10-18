@@ -7,12 +7,51 @@ platforms = ["win-64"]
 version = "0.1.0"
 
 [tasks]
+clean = "nikola clean"
 build = "nikola build"
-serve = { cmd = "nikola serve -b", depends-on = ["build"] }
+serve = { cmd = "nikola serve", depends-on = ["build"] }
 [dependencies]
-python = ">=3.13.0,<4"
-setuptools = ">=75.1.0,<76"
+python = ">=3.10.0,<4"
 pybtex = ">=0.24.0,<0.25"
 
 [pypi-dependencies]
 nikola = { version = ">=8.3.1, <9", extras = ["extras"] }
+
+[feature.epub.dependencies]
+pandoc = "*"
+
+[feature.epub.tasks]
+book = """pandoc -f rst -t epub -o files/dramsch-phd-thesis.epub \
+        pages/popular.rst \
+        pages/abstract.rst \
+        pages/dansk-resume.rst \
+        pages/preface.rst \
+        pages/introduction.rst \
+        pages/methods-theory.rst \
+        pages/bsem.rst \
+        pages/transfer.rst \
+        pages/complex.rst \
+        pages/inversion.rst \
+        pages/warping.rst \
+        pages/conclusion.rst \
+        pages/ref.rst \
+        pages/acronyms.rst \
+        pages/code.rst \
+        --metadata title="PhD Thesis: Machine Learning Geoscience" \
+        --metadata author="Jesper Dramsch" \
+        --metadata date="2022" \
+        --metadata language="en" \
+        --metadata cover-image="images/cover.png" \
+        --metadata cover-title="PhD Thesis: Machine Learning Geoscience" \
+        --metadata cover-subtitle="Open-source PhD thesis of Jesper Dramsch" \
+        --metadata cover-author="Jesper Dramsch" \
+        --metadata cover-date="2022" \
+        --metadata cover-color="#000000" \
+        --metadata cover-font-color="#ffffff" \
+        --metadata cover-font-size="24" \
+        --resource-path=images/ \
+        --webtex \
+        """
+
+[environments]
+epub = { features = ["epub"], no-default-feature = true }

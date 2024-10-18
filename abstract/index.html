@@ -6,12 +6,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Machine Learning Geoscience · Abstract </title>
 <link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700%7CAbril+Fatface">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 <meta content="#5670d4" name="theme-color">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
 <link rel="canonical" href="https://dramsch.net/phd/abstract/">
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
+    TeX: {
+    extensions: ["color.js", "boldsymbol.js", "AMSmath.js", "AMSsymbols.js"],
+    Macros: {
+        bm: ["f{#1}",1]
+    }
+    },
     tex2jax: {
         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
         displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{equation}", "\\end{equation}"] ],
@@ -21,6 +27,10 @@ MathJax.Hub.Config({
     "HTML-CSS": {
         styles: {'.MathJax_Display': {"margin": 0}}
     }
+});
+MathJax.Hub.Register.StartupHook("TeX color Ready", function() {
+     MathJax.Extension["TeX/color"].colors["red"] = '#B86CBA';
+     MathJax.Extension["TeX/color"].colors["cyan"] = '#6CBAB8';
 });
 </script><!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><meta name="author" content="Jesper S Dramsch">
 </head>
@@ -59,7 +69,7 @@ MathJax.Hub.Config({
     
     
     </nav><footer id="footer"><span class="copyright">
-              Contents © 2021         <a href="https://dramsch.net">Jesper S Dramsch</a>
+              Contents © 2024         <a href="https://dramsch.net">Jesper S Dramsch</a>
             </span>
             
             

@@ -1,10 +1,10 @@
 .. title: Methods & Theory
 .. slug: methods-theory
 .. date: 2021-01-15 13:08:29 UTC
-.. tags: 
-.. category: 
-.. link: 
-.. description: 
+.. tags:
+.. category:
+.. link:
+.. description:
 .. type: text
 .. has_math: yes
 .. _sec:theory:
@@ -91,7 +91,7 @@ we can express the changes in traveltime as:
 .. math::
 
    \frac{\Delta t}{t} = \frac{\Delta z}{z} - \frac{\Delta v}{v},
-       \label{eq:timestrain}
+   \label{eq:timestrain}
 
 for homogeneous isotropic :math:`v` and small changes in :math:`z` and
 :math:`v`. Originally developed in P. Hatchell, Bourne, and Netherlands
@@ -108,7 +108,7 @@ relate velocity changes and vertical strain
 .. math::
 
    \frac{\Delta v}{v} = - R \xi_{zz}
-       \label{eq:R}
+   \label{eq:R}
 
 with :math:`R` being the single parameter hbr-factor (P. J. Hatchell,
 Bourne, and Netherlands. 2005; MacBeth, Mangriotis, and Amini 2019). The
@@ -429,9 +429,9 @@ learner (Rosenblatt 1958). This decision was calculated as follows:
 .. math::
 
    \begin{array}{ll}
-       {\color{DesatCyan}o_{j}} & = \sigma \left({\color{DesatMagenta}\sum_j w_{ij} x_{i} + b}\right)\\
-       & = \sigma \left({\color{DesatMagenta}a_j}\right)\\
-       & = \begin{cases}1&{\color{DesatMagenta}a_j} > 0 \\
+       {\color{cyan}o_{j}} & = \sigma \left({\color{red}\sum_j w_{ij} x_{i} + b}\right)\\
+       & = \sigma \left({\color{red}a_j}\right)\\
+       & = \begin{cases}1&{\color{red}a_j} > 0 \\
        0 &\text{otherwise}   \end{cases}
    \end{array}
    \label{eq:perceptron}
@@ -445,7 +445,7 @@ received ample attention since its inception. During this period, a
 binary :math:`\sigma` became uncommon and was replaced by non-linear
 mathematical functions. Neural networks are commonly trained by gradient
 descent, therefore, differentiable functions like sigmoid or tanh,
-allowing for the activation :math:`{\color{DesatCyan}o}` of each neuron
+allowing for the activation :math:`{\color{cyan}o}` of each neuron
 in a neural network to be continuous.
 
 .. figure:: ../images/shallow-nn.png
@@ -471,8 +471,8 @@ as input neurons to the next layer
 .. math::
 
    \begin{array}{ll}
-       o_k & = \sigma \left(\sum_k w_{jk} \cdot {\color{DesatCyan}o_j} + b\right)\\
-       & = \sigma \left(\sum_k w_{jk} \cdot {\color{DesatCyan} \sigma \left(\sum_j w_{ij} x_{i} + b\right)} + b\right)
+       o_k & = \sigma \left(\sum_k w_{jk} \cdot {\color{cyan}o_j} + b\right)\\
+       & = \sigma \left(\sum_k w_{jk} \cdot {\color{cyan} \sigma \left(\sum_j w_{ij} x_{i} + b\right)} + b\right)
    \end{array}
    \label{eq:deepnetwork}
 
@@ -496,7 +496,7 @@ triaxial compression tests (Feng and Seto 1998).
   :alt: Sigmoid activation function (red) and derivative (blue) to train multi-layer Neural Network described in equation `[eq:deepnetwork] <#eq:deepnetwork>`__.
   :name: bookchapter:fig:mlp
 
-  Sigmoid activation function (red) and derivative (blue) to train multi-layer Neural Network described in equation `[eq:deepnetwork] <#eq:deepnetwork>`__. 
+  Sigmoid activation function (red) and derivative (blue) to train multi-layer Neural Network described in equation `[eq:deepnetwork] <#eq:deepnetwork>`__.
 
 Kriging and Gaussian Processes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -718,8 +718,8 @@ is fixed to make these examples reproducible.
 
    # Split data into train and validation set
    from sklearn.model_selection import train_test_split
-   X_train, X_test, y_train, y_test = train_test_split(X, y, 
-                                               test_size=.25, 
+   X_train, X_test, y_train, y_test = train_test_split(X, y,
+                                               test_size=.25,
                                                random_state=0)
 
 Then we need to define a machine learning model, considering the
@@ -746,11 +746,11 @@ these hyperparameters is laid out in the scikit-learn documentation
    svm = SVC(random_state=0)
    svm.fit(X_train, y_train)
 
-   >>> SVC(C=1.0, break_ties=False, cache_size=200, 
-           class_weight=None, coef0=0.0, degree=3, 
-           decision_function_shape='ovr', gamma='scale', 
-           kernel='rbf', max_iter=-1, probability=False, 
-           random_state=0, shrinking=True, tol=0.001, 
+   >>> SVC(C=1.0, break_ties=False, cache_size=200,
+           class_weight=None, coef0=0.0, degree=3,
+           decision_function_shape='ovr', gamma='scale',
+           kernel='rbf', max_iter=-1, probability=False,
+           random_state=0, shrinking=True, tol=0.001,
            verbose=False)
 
 The trained SVM can the be used to predict on new data, by calling
@@ -765,8 +765,8 @@ input vectors are performed on the previously trained model.
 .. code:: python
 
    # Predict on new data with trained SVM
-   print(svm.predict([[0, 0, 0, 0, 0], 
-                     [-1, -1, -1, -1, -1], 
+   print(svm.predict([[0, 0, 0, 0, 0],
+                     [-1, -1, -1, -1, -1],
                      [1, 1, 1, 1, 1]]))
    >>> [1 0 1]
 
@@ -901,7 +901,7 @@ maximum amount of information to predict the labels.
 
    # Calculate permutation importance of SVM model
    from sklearn.inspection import permutation_importance
-   importances = permutation_importance(svm, X_train, y_train, 
+   importances = permutation_importance(svm, X_train, y_train,
                                         n_repeats=10, random_state=0)
 
    # Show mean value of importances and the ranking
@@ -957,12 +957,12 @@ without further optimization of these.
    rf.fit(X_train, y_train)
 
    >>> RandomForestClassifier(bootstrap=True, ccp_alpha=0.0,
-                   class_weight=None, criterion='gini', max_depth=7, 
-                   max_features='auto', max_leaf_nodes=None, 
-                   max_samples=None, min_impurity_decrease=0.0, 
-                   min_impurity_split=None, min_samples_leaf=1, 
-                   min_samples_split=2, min_weight_fraction_leaf=0.0, 
-                   n_estimators=100, n_jobs=None, oob_score=False, 
+                   class_weight=None, criterion='gini', max_depth=7,
+                   max_features='auto', max_leaf_nodes=None,
+                   max_samples=None, min_impurity_decrease=0.0,
+                   min_impurity_split=None, min_samples_leaf=1,
+                   min_samples_split=2, min_weight_fraction_leaf=0.0,
+                   n_estimators=100, n_jobs=None, oob_score=False,
                    random_state=0, verbose=0, warm_start=False)
 
 The prediction of the random forest is performed in the same API call
@@ -972,8 +972,8 @@ slightly different from the prediction of the SVM.
 .. code:: python
 
    # Predict on new data with trained Random Forest
-   print(rf.predict([[0, 0, 0, 0, 0], 
-                    [-1, -1, -1, -1, -1], 
+   print(rf.predict([[0, 0, 0, 0, 0],
+                    [-1, -1, -1, -1, -1],
                     [1, 1, 1, 1, 1]]))
    >>> [1 0 1]
 
@@ -1141,7 +1141,7 @@ rectifiers with different properties have been introduced.
 
 .. math::
 
-   \sigma({\color{DesatMagenta} a}) = max(0, {\color{DesatMagenta}a})
+   \sigma({\color{red} a}) = max(0, {\color{red}a})
        \label{eq:relu}
 
 .. figure:: ../images/act_relu.png
@@ -1154,12 +1154,12 @@ The other activation function used in the example is the "softmax"
 function on the output layer. This activation is commonly used for
 classification tasks, as it normalizes all activations at all outputs to
 one. It achieves this by applying the exponential function to each of
-the outputs in :math:`{\color{DesatMagenta}\vec{a}}` for class :math:`C`
+the outputs in :math:`{\color{red}\vec{a}}` for class :math:`C`
 and dividing that value by the sum of all exponentials:
 
 .. math::
 
-   \sigma({\color{DesatMagenta}\vec{a}}) = \frac{e^{{\color{DesatMagenta}a_j}}}{\sum\limits_{p}^C e^{{\color{DesatMagenta}a_p}}}
+   \sigma({\color{red}\vec{a}}) = \frac{e^{{\color{red}a_j}}}{\sum\limits_{p}^C e^{{\color{red}a_p}}}
    \label{eq:softmax}
 
 The example additionally uses a Dropout layer, which is a common layer
@@ -1234,12 +1234,12 @@ self-organizing maps.
 
 .. math::
 
-   MAE = \lvert{y_j - \color{DesatCyan}o_{j}}\rvert \newline
+   MAE = \lvert{y_j - \color{cyan}o_{j}}\rvert
        \label{eq:mae}
 
 .. math::
 
-   MSE = ({y_j - \color{DesatCyan}o_{j}})^2
+   MSE = ({y_j - \color{cyan}o_{j}})^2
        \label{eq:mse}
 
 In regression problems the error is often calculated using the Mean
@@ -1253,7 +1253,7 @@ prediction in the output layer.
 
 .. math::
 
-   CE = - \sum\limits^C_j y_j \log{\left({\color{DesatCyan}o_{j}}\right)}
+   CE = - \sum\limits^C_j y_j \log{\left({\color{cyan}o_{j}}\right)}
        \label{eq:crossentropy}
 
 Many machine learning data sets have one true label :math:`y_{true} = 1`
@@ -1262,11 +1262,11 @@ makes the sum over all labels obsolete. It is debatable how much binary
 labels reflects reality, but it simplifies
 equation `[eq:crossentropy] <#eq:crossentropy>`__ to minimizing the
 (negative) logarithm of the neural network output
-:math:`{\color{DesatCyan}o_{j}}`, also known as negative log-likelihood:
+:math:`{\color{cyan}o_{j}}`, also known as negative log-likelihood:
 
 .. math::
 
-   CE = - \log{\left({\color{DesatCyan}o_{j}}\right)}
+   CE = - \log{\left({\color{cyan}o_{j}}\right)}
        \label{eq:binarycrossentropy}
 
 Technically, the data we generated is a binary classification problem,
@@ -1295,14 +1295,14 @@ training data set from 3750 to 3375 individual samples.
 
 .. code:: python
 
-   model.fit(X_train, 
-             y_train, 
+   model.fit(X_train,
+             y_train,
              validation_split=.1,
              epochs=100)
    >>> [...]
        Epoch 100/100
        3375/3375 [==============================] - 0s 66us/sample
-       loss: 0.1567 - accuracy: 0.9401 - 
+       loss: 0.1567 - accuracy: 0.9401 -
        val_loss: 0.1731 - val_accuracy: 0.9359
 
 Neural networks are trained with variations of stochastic gradient
@@ -1719,7 +1719,7 @@ learning model makes them versatile and powerful tools that were
 leveraged in every subdiscipline of the Earth sciences.
 
 The State of machine learning on Geoscience
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Overall, geoscience and especially geophysics has followed developments
 in machine learning closely. Across disciplines, machine learning

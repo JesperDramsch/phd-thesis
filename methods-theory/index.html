@@ -6,12 +6,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Machine Learning Geoscience · Methods &amp; Theory </title>
 <link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700%7CAbril+Fatface">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 <meta content="#5670d4" name="theme-color">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
 <link rel="canonical" href="https://dramsch.net/phd/methods-theory/">
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
+    TeX: {
+    extensions: ["color.js", "boldsymbol.js", "AMSmath.js", "AMSsymbols.js"],
+    Macros: {
+        bm: ["f{#1}",1]
+    }
+    },
     tex2jax: {
         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
         displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{equation}", "\\end{equation}"] ],
@@ -21,6 +27,10 @@ MathJax.Hub.Config({
     "HTML-CSS": {
         styles: {'.MathJax_Display': {"margin": 0}}
     }
+});
+MathJax.Hub.Register.StartupHook("TeX color Ready", function() {
+     MathJax.Extension["TeX/color"].colors["red"] = '#B86CBA';
+     MathJax.Extension["TeX/color"].colors["cyan"] = '#6CBAB8';
 });
 </script><!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><meta name="author" content="Jesper S Dramsch">
 </head>
@@ -59,7 +69,7 @@ MathJax.Hub.Config({
     
     
     </nav><footer id="footer"><span class="copyright">
-              Contents © 2021         <a href="https://dramsch.net">Jesper S Dramsch</a>
+              Contents © 2024         <a href="https://dramsch.net">Jesper S Dramsch</a>
             </span>
             
             
@@ -72,8 +82,7 @@ MathJax.Hub.Config({
 
         
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <div>
-<p>This thesis applies machine learning methods to 4D seismic data. In this chapter I
+    <p>This thesis applies machine learning methods to 4D seismic data. In this chapter I
 introduce 4D seismic concepts and the motivation to acquire and analyze
 4D seismic data. I go on to introduce machine learning and review the
 development of machine learning in itself and in the field of
@@ -82,8 +91,7 @@ geophysical problems. Considering recent developments in computer
 vision, a focus on convolutional neural networks, the developments and break-throughs of this
 type of neural network and the innovations that lead to the recent adoption of machine learning in
 geoscience are explored in a published book chapter, reprinted here.</p>
-<div class="section" id="d-seismic">
-<h2>4D seismic</h2>
+<section id="d-seismic"><h2>4D seismic</h2>
 <p>4D seismic is the analysis of seismic data that was acquired over the
 same location after some calendar time has passed. The repeated imaging
 of the same subsurface location highlights changes in the subsurface
@@ -144,7 +152,7 @@ we can express the changes in traveltime as:</p>
 <div class="math">
 \begin{equation*}
 \frac{\Delta t}{t} = \frac{\Delta z}{z} - \frac{\Delta v}{v},
-    \label{eq:timestrain}
+\label{eq:timestrain}
 \end{equation*}
 </div>
 <p>for homogeneous isotropic <span class="math">\(v\)</span> and small changes in <span class="math">\(z\)</span> and
@@ -160,7 +168,7 @@ relate velocity changes and vertical strain</p>
 <div class="math">
 \begin{equation*}
 \frac{\Delta v}{v} = - R \xi_{zz}
-    \label{eq:R}
+\label{eq:R}
 \end{equation*}
 </div>
 <p>with <span class="math">\(R\)</span> being the single parameter hbr-factor (P. J. Hatchell,
@@ -221,9 +229,7 @@ by trace-wise windowed cross-correlation, which lends itself to machine
 learning applications. The next chapter will give a detailed review of
 the use of machine learning in geoscience, while introducing important
 theoretical concepts for this thesis.</p>
-</div>
-<div class="section" id="machine-learning-in-geoscience">
-<span id="sec-mlingeo"></span><h2>Machine Learning in Geoscience</h2>
+</section><section id="machine-learning-in-geoscience"><span id="sec-mlingeo"></span><h2>Machine Learning in Geoscience</h2>
 <p>In <a class="reference external" href="#sec:mlingeo">11.2</a> a published peer-reviewed book chapter
 provides a treatment of the history and recent advancements and
 developments of machine learning in geoscience (Jesper Sören Dramsch
@@ -255,9 +261,7 @@ discusses the necessity of thorough model validation. The machine
 learning applications in this thesis split the labelled data into
 subsets that are used for training and validation. This serves as a
 basic test of generalization of the individual machine learning model to unseen data.</p>
-</div>
-<div class="section" id="book-chapter-70-years-of-machine-learning-in-geoscience-in-review">
-<span id="sec-mlgeotheory"></span><h2>Book Chapter: 70 years of machine learning in geoscience in review</h2>
+</section><section id="book-chapter-70-years-of-machine-learning-in-geoscience-in-review"><span id="sec-mlgeotheory"></span><h2>Book Chapter: 70 years of machine learning in geoscience in review</h2>
 <p>In recent years machine learning has become an increasingly important
 interdisciplinary tool that has advanced several fields of science, such
 as biology (Ching et al. 2018), chemistry (Schütt et al. 2017b),
@@ -277,7 +281,7 @@ engineering and mitigation to address the problem (Rolnick et al. 2019).
 This review addresses the development of applied statistics and machine
 learning in the wider discipline of geoscience in the past 70 years and
 aims to provide context for the recent increase in interest and
-successes in machine learning and its challenges <a class="footnote-reference brackets" href="#id4" id="id1">1</a>.</p>
+successes in machine learning and its challenges <a class="brackets" href="#footnote-1" id="footnote-reference-1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
 <p>Machine learning (ML) is deeply rooted in applied statistics, building
 computational models that use inference and pattern recognition instead
 of explicit sets of rules. Machine learning is generally regarded as a
@@ -318,14 +322,12 @@ compute being affordable to anyone from cloud computing vendors.
 High-quality software for machine learning is widely available through
 the free and open-source software movement, with major companies
 (Google, Facebook, Microsoft) competing for the usage of their
-open-source machine learning frameworks (Tensorflow, Pytorch, CNTK <a class="footnote-reference brackets" href="#id5" id="id2">2</a>)
+open-source machine learning frameworks (Tensorflow, Pytorch, CNTK <a class="brackets" href="#footnote-2" id="footnote-reference-2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>)
 and independent developments reaching wide applications such as
 scikit-learn (F. Pedregosa et al. 2011) and xgboost (T. Chen and
 Guestrin 2016).</p>
-<div class="figure">
-<img alt="Machine Learning timeline from (Jesper Sören Dramsch 2019a). Neural Networks: (S. J. Russell and Norvig 2010); Kriging: (Krige 1951); Decision Trees: (Belson 1959); Nearest Neighbours: (Cover and Hart 1967); Automatic Differentiation: (Linnainmaa 1970); Convolutional Neural Networks: (Fukushima 1980; Y. LeCun, Bengio, and Hinton 2015); Recurrent Neural Networks: (Hopfield 1982); Backpropagation: (Kelley 1960; Bryson 1961; Dreyfus 1962; David E. Rumelhart et al. 1988); Reinforcement Learning: (Watkins 1989); Support Vector Machines: (Cortes and Vapnik 1995); Random Forests: (Ho 1995); LSTM: (Hochreiter and Schmidhuber 1997); Torch Library: (Collobert, Bengio, and Mariéthoz 2002); ImageNet: (Jia Deng et al. 2009); Scikit-Learn: (F. Pedregosa et al. 2011); LibSVM: (C.-C. Chang and Lin 2011); Generative Adversarial Networks: (I. Goodfellow et al. 2014a); Tensorflow: (Abadi et al. 2015a); XGBoost: (T. Chen and Guestrin 2016)" id="bookchapter-fig-ml-timeline" src="../images/ML-Timeline.png"><p class="caption">Machine Learning timeline from (Jesper Sören Dramsch 2019a). Neural Networks: (S. J. Russell and Norvig 2010); Kriging: (Krige 1951); Decision Trees: (Belson 1959); Nearest Neighbours: (Cover and Hart 1967); Automatic Differentiation: (Linnainmaa 1970); Convolutional Neural Networks: (Fukushima 1980; Y. LeCun, Bengio, and Hinton 2015); Recurrent Neural Networks: (Hopfield 1982); Backpropagation: (Kelley 1960; Bryson 1961; Dreyfus 1962; David E. Rumelhart et al. 1988); Reinforcement Learning: (Watkins 1989); Support Vector Machines: (Cortes and Vapnik 1995); Random Forests: (Ho 1995); LSTM: (Hochreiter and Schmidhuber 1997); Torch Library: (Collobert, Bengio, and Mariéthoz 2002); ImageNet: (Jia Deng et al. 2009); Scikit-Learn: (F. Pedregosa et al. 2011); LibSVM: (C.-C. Chang and Lin 2011); Generative Adversarial Networks: (I. Goodfellow et al. 2014a); Tensorflow: (Abadi et al. 2015a); XGBoost: (T. Chen and Guestrin 2016)</p>
-</div>
-<p>Nevertheless, investigations of machine learning in geoscience are not a
+<figure><img alt="Machine Learning timeline from (Jesper Sören Dramsch 2019a). Neural Networks: (S. J. Russell and Norvig 2010); Kriging: (Krige 1951); Decision Trees: (Belson 1959); Nearest Neighbours: (Cover and Hart 1967); Automatic Differentiation: (Linnainmaa 1970); Convolutional Neural Networks: (Fukushima 1980; Y. LeCun, Bengio, and Hinton 2015); Recurrent Neural Networks: (Hopfield 1982); Backpropagation: (Kelley 1960; Bryson 1961; Dreyfus 1962; David E. Rumelhart et al. 1988); Reinforcement Learning: (Watkins 1989); Support Vector Machines: (Cortes and Vapnik 1995); Random Forests: (Ho 1995); LSTM: (Hochreiter and Schmidhuber 1997); Torch Library: (Collobert, Bengio, and Mariéthoz 2002); ImageNet: (Jia Deng et al. 2009); Scikit-Learn: (F. Pedregosa et al. 2011); LibSVM: (C.-C. Chang and Lin 2011); Generative Adversarial Networks: (I. Goodfellow et al. 2014a); Tensorflow: (Abadi et al. 2015a); XGBoost: (T. Chen and Guestrin 2016)" id="bookchapter-fig-ml-timeline" src="../images/ML-Timeline.png"><figcaption><p>Machine Learning timeline from (Jesper Sören Dramsch 2019a). Neural Networks: (S. J. Russell and Norvig 2010); Kriging: (Krige 1951); Decision Trees: (Belson 1959); Nearest Neighbours: (Cover and Hart 1967); Automatic Differentiation: (Linnainmaa 1970); Convolutional Neural Networks: (Fukushima 1980; Y. LeCun, Bengio, and Hinton 2015); Recurrent Neural Networks: (Hopfield 1982); Backpropagation: (Kelley 1960; Bryson 1961; Dreyfus 1962; David E. Rumelhart et al. 1988); Reinforcement Learning: (Watkins 1989); Support Vector Machines: (Cortes and Vapnik 1995); Random Forests: (Ho 1995); LSTM: (Hochreiter and Schmidhuber 1997); Torch Library: (Collobert, Bengio, and Mariéthoz 2002); ImageNet: (Jia Deng et al. 2009); Scikit-Learn: (F. Pedregosa et al. 2011); LibSVM: (C.-C. Chang and Lin 2011); Generative Adversarial Networks: (I. Goodfellow et al. 2014a); Tensorflow: (Abadi et al. 2015a); XGBoost: (T. Chen and Guestrin 2016)</p>
+</figcaption></figure><p>Nevertheless, investigations of machine learning in geoscience are not a
 novel development. The research into machine learning follows interest
 in artificial intelligence closely. Since its inception, artificial
 intelligence has experienced two periods of a decline in interest and
@@ -334,8 +336,7 @@ geoscience follow this wide-spread cycle of enthusiasm and loss of
 interest with a time lag of a few years. This may be the result of a
 variety of factors, including research funding availability and a change
 in willingness to publish results.</p>
-<div class="section" id="historic-machine-learning-in-geoscience">
-<h3>Historic Machine Learning in Geoscience</h3>
+<section id="historic-machine-learning-in-geoscience"><h3>Historic Machine Learning in Geoscience</h3>
 <p>The 1950s and 1960s were decades of machine learning optimism, with
 machines learning to play simple games and perform tasks like route
 mapping. Intuitive methods like k-means, Markov models, and decision
@@ -360,8 +361,7 @@ cultural shift and found applications in mining (Huijbregts and Matheron
 1970), oceanography (Chiles and Chauvet 1975), and hydrology (Delhomme
 1978). This was in part due to superior results over other interpolation
 techniques, but also the provision of uncertainty measures.</p>
-<div class="section" id="expert-systems-to-knowledge-driven-ai">
-<h4>Expert Systems to Knowledge-Driven AI</h4>
+<section id="expert-systems-to-knowledge-driven-ai"><h4>Expert Systems to Knowledge-Driven AI</h4>
 <p>The 1980s marked uptake in interest in machine learning and artificial
 intelligence through so-called "expert systems" and corresponding
 specialized hardware. While neural networks were introduced in 1950, the
@@ -412,9 +412,7 @@ large amounts of data for training and can be expensive to train, after
 further development in 2011 (Ciresan et al. 2011) it gained popularity
 in commercial time series applications particularly speech and audio
 analysis.</p>
-</div>
-<div class="section" id="neural-networks">
-<span id="book-nn"></span><h4>Neural Networks</h4>
+</section><section id="neural-networks"><span id="book-nn"></span><h4>Neural Networks</h4>
 <p>M. McCormack (1991) marks the first review of the emerging tool of
 neural networks in geophysics. The paper goes into the mathematical
 details and explores pattern recognition. The author summarizes neural
@@ -438,9 +436,9 @@ learner (Rosenblatt 1958). This decision was calculated as follows:</p>
 <div class="math">
 \begin{align*}
 \begin{array}{ll}
-    {\color{DesatCyan}o_{j}} &amp; = \sigma \left({\color{DesatMagenta}\sum_j w_{ij} x_{i} + b}\right)\\
-    &amp; = \sigma \left({\color{DesatMagenta}a_j}\right)\\
-    &amp; = \begin{cases}1&amp;{\color{DesatMagenta}a_j} &gt; 0 \\
+    {\color{cyan}o_{j}} &amp; = \sigma \left({\color{red}\sum_j w_{ij} x_{i} + b}\right)\\
+    &amp; = \sigma \left({\color{red}a_j}\right)\\
+    &amp; = \begin{cases}1&amp;{\color{red}a_j} &gt; 0 \\
     0 &amp;\text{otherwise}   \end{cases}
 \end{array}
 \label{eq:perceptron}
@@ -455,16 +453,14 @@ received ample attention since its inception. During this period, a
 binary <span class="math">\(\sigma\)</span> became uncommon and was replaced by non-linear
 mathematical functions. Neural networks are commonly trained by gradient
 descent, therefore, differentiable functions like sigmoid or tanh,
-allowing for the activation <span class="math">\({\color{DesatCyan}o}\)</span> of each neuron
+allowing for the activation <span class="math">\({\color{cyan}o}\)</span> of each neuron
 in a neural network to be continuous.</p>
-<div class="figure">
-<img alt="Single layer neural network as described in equation `[eq:perceptron] &lt;#eq:perceptron&gt;`__. Two inputs :math:`x_i` are multiplied by the weights :math:`w_{ij}` and summed with the biases :math:`b_j`. Subsequently an activation function :math:`\sigma` is applied to obtain out outputs :math:`o_j`." id="bookchapter-fig-shallownn" src="../images/shallow-nn.png"><p class="caption">Single layer neural network as described in
+<figure><img alt="Single layer neural network as described in equation `[eq:perceptron] &lt;#eq:perceptron&gt;`__. Two inputs :math:`x_i` are multiplied by the weights :math:`w_{ij}` and summed with the biases :math:`b_j`. Subsequently an activation function :math:`\sigma` is applied to obtain out outputs :math:`o_j`." id="bookchapter-fig-shallownn" src="../images/shallow-nn.png"><figcaption><p>Single layer neural network as described in
 equation <a class="reference external" href="#eq:perceptron">[eq:perceptron]</a>. Two inputs <span class="math">\(x_i\)</span>
 are multiplied by the weights <span class="math">\(w_{ij}\)</span> and summed with the
 biases <span class="math">\(b_j\)</span>. Subsequently an activation function
 <span class="math">\(\sigma\)</span> is applied to obtain out outputs <span class="math">\(o_j\)</span>.</p>
-</div>
-<p>Deep learning (Dechter 1986) expands on this concept. It is the
+</figcaption></figure><p>Deep learning (Dechter 1986) expands on this concept. It is the
 combination of multiple layers of neurons in a neural network. These
 deep networks learn representations with multiple levels of abstraction
 and can be expressed using equation <a class="reference external" href="#eq:perceptron">[eq:perceptron]</a>
@@ -472,16 +468,14 @@ as input neurons to the next layer</p>
 <div class="math">
 \begin{equation*}
 \begin{array}{ll}
-    o_k &amp; = \sigma \left(\sum_k w_{jk} \cdot {\color{DesatCyan}o_j} + b\right)\\
-    &amp; = \sigma \left(\sum_k w_{jk} \cdot {\color{DesatCyan} \sigma \left(\sum_j w_{ij} x_{i} + b\right)} + b\right)
+    o_k &amp; = \sigma \left(\sum_k w_{jk} \cdot {\color{cyan}o_j} + b\right)\\
+    &amp; = \sigma \left(\sum_k w_{jk} \cdot {\color{cyan} \sigma \left(\sum_j w_{ij} x_{i} + b\right)} + b\right)
 \end{array}
 \label{eq:deepnetwork}
 \end{equation*}
 </div>
-<div class="figure">
-<img alt="Deep multi-layer neural network as described inequation `[eq:deepnetwork] &lt;#eq:deepnetwork&gt;`__." id="bookchapter-fig-deepnn" src="../images/deep-nn.png"><p class="caption">Deep multi-layer neural network as described in equation <a class="reference external" href="#eq:deepnetwork">[eq:deepnetwork]</a>.</p>
-</div>
-<p>Röth and Tarantola (1994) apply these building blocks of multi-layered
+<figure><img alt="Deep multi-layer neural network as described inequation `[eq:deepnetwork] &lt;#eq:deepnetwork&gt;`__." id="bookchapter-fig-deepnn" src="../images/deep-nn.png"><figcaption><p>Deep multi-layer neural network as described in equation <a class="reference external" href="#eq:deepnetwork">[eq:deepnetwork]</a>.</p>
+</figcaption></figure><p>Röth and Tarantola (1994) apply these building blocks of multi-layered
 neural networks with sigmoid activation to perform seismic inversion.
 They successfully invert low-noise and noise-free data on small training
 data. The authors note that the approach is susceptible to errors at low
@@ -490,12 +484,8 @@ include electromagnetic subsurface localization (Poulton, Sternberg, and
 Glass 1992), magnetotelluric inversion via Hopfield neural networks (Y.
 Zhang and Paulson 1997), and geomechanical microfractures modelling in
 triaxial compression tests (Feng and Seto 1998).</p>
-<div class="figure">
-<img alt="Sigmoid activation function (red) and derivative (blue) to train multi-layer Neural Network described in equation `[eq:deepnetwork] &lt;#eq:deepnetwork&gt;`__." id="bookchapter-fig-mlp" src="../images/act_sigmoid.png"><p class="caption">Sigmoid activation function (red) and derivative (blue) to train multi-layer Neural Network described in equation <a class="reference external" href="#eq:deepnetwork">[eq:deepnetwork]</a>.</p>
-</div>
-</div>
-<div class="section" id="kriging-and-gaussian-processes">
-<h4>Kriging and Gaussian Processes</h4>
+<figure><img alt="Sigmoid activation function (red) and derivative (blue) to train multi-layer Neural Network described in equation `[eq:deepnetwork] &lt;#eq:deepnetwork&gt;`__." id="bookchapter-fig-mlp" src="../images/act_sigmoid.png"><figcaption><p>Sigmoid activation function (red) and derivative (blue) to train multi-layer Neural Network described in equation <a class="reference external" href="#eq:deepnetwork">[eq:deepnetwork]</a>.</p>
+</figcaption></figure></section><section id="kriging-and-gaussian-processes"><h4>Kriging and Gaussian Processes</h4>
 <p>Cressie (1990) review the history of kriging, prompted by the uptake of
 interest in geostatistics. The author defines kriging as Best Linear
 Unbiased Prediction and reviews the historical co-development of
@@ -542,8 +532,7 @@ learning task is one of the benefits of the Gaussian Process. The kernel
 is where expert knowledge can be incorporated into data, e.g.
 seasonality metereological data can be described by a periodic
 covariance function.</p>
-<div class="figure">
-<img alt="Gaussian Process separating two classes with different kernels. This image presents a 2D slice out of a 3D decision space. The decision boundary learnt from the data is visible, as well as the prediction in every location of the 2D slice. The two kernels presented are a linear kernel and a radial basis function (RBF) kernel, which show a significant discrepancy in performance. The bottom right number shows the accuracy on unseen test data. The linear kernel achieves :math:`71~\%` accuracy, while the RBF kernel achieves :math:`90~\%`." id="bookchapter-fig-gp" src="../images/gaussian-processes.png"><p class="caption">Gaussian Process separating two classes with different kernels. This
+<figure><img alt="Gaussian Process separating two classes with different kernels. This image presents a 2D slice out of a 3D decision space. The decision boundary learnt from the data is visible, as well as the prediction in every location of the 2D slice. The two kernels presented are a linear kernel and a radial basis function (RBF) kernel, which show a significant discrepancy in performance. The bottom right number shows the accuracy on unseen test data. The linear kernel achieves :math:`71~\%` accuracy, while the RBF kernel achieves :math:`90~\%`." id="bookchapter-fig-gp" src="../images/gaussian-processes.png"><figcaption><p>Gaussian Process separating two classes with different kernels. This
 image presents a 2D slice out of a 3D decision space. The decision
 boundary learnt from the data is visible, as well as the prediction
 in every location of the 2D slice. The two kernels presented are a
@@ -551,8 +540,7 @@ linear kernel and a radial basis function (RBF) kernel, which show a
 significant discrepancy in performance. The bottom right number shows
 the accuracy on unseen test data. The linear kernel achieves
 <span class="math">\(71~\%\)</span> accuracy, while the RBF kernel achieves <span class="math">\(90~\%\)</span>.</p>
-</div>
-<p>Figure <a class="reference external" href="#bookchapter:fig:gp">11.5</a> present a 2D slice of 3D data with
+</figcaption></figure><p>Figure <a class="reference external" href="#bookchapter:fig:gp">11.5</a> present a 2D slice of 3D data with
 two classes. This binary problem can be approached by applying a
 Gaussian Process to it. In the second panel, a linear kernel is shown,
 which predicts the data relatively poorly with an accuracy of
@@ -607,10 +595,7 @@ perception of artificial intelligence during this decade. Artificial
 intelligence and expert systems over-promised human-like performance,
 causing a shift in focus on research into specialized sub-fields, e.g.
 machine learning, fuzzy logic, and cognitive systems.</p>
-</div>
-</div>
-<div class="section" id="contemporary-machine-learning-in-geoscience">
-<h3>Contemporary Machine Learning in Geoscience</h3>
+</section></section><section id="contemporary-machine-learning-in-geoscience"><h3>Contemporary Machine Learning in Geoscience</h3>
 <p>Mjolsness and DeCoste (2001) review machine learning in a broader
 context outside of exploration geoscience. The authors discuss recent
 successes in applications of remote sensing and robotic geology using
@@ -629,8 +614,7 @@ craters, faults, and ridges.</p>
 </blockquote>
 <p>The review points out the profound impact SVMs have on identifying
 geomorphological features without modelling the underlying processes.</p>
-<div class="section" id="modern-machine-learning-tools">
-<h4>Modern Machine Learning Tools</h4>
+<section id="modern-machine-learning-tools"><h4>Modern Machine Learning Tools</h4>
 <p>This decade of the 2000s introduces a shift in tooling, which is a
 direct contributor to the recent increase in adoption and research of
 both shallow and deep machine learning research.</p>
@@ -661,9 +645,7 @@ learning algorithms, including SVMs, Random Forests and single-layer
 neural networks, as well as utility functions including
 cross-validation, stratification, metrics and train-test splitting,
 necessary for robust machine learning model building and evaluation.</p>
-</div>
-<div class="section" id="support-vector-machines">
-<span id="ssec-svm"></span><h4>Support-Vector Machines</h4>
+</section><section id="support-vector-machines"><span id="ssec-svm"></span><h4>Support-Vector Machines</h4>
 <p>The impact of scikit-learn has shaped the current machine learning
 software package by implementing a unified application programming
 interface (API) (Buitinck et al. 2013). This API is explored by example
@@ -675,12 +657,12 @@ different arguments to adjust the desired arguments, we are generating
 (<code class="docutils literal">n_features</code>), of which three features are actually relevant to the
 classification (<code class="docutils literal">n_informative</code>). The data is stored in <span class="math">\(X\)</span>,
 whereas the labels are contained in <span class="math">\(y\)</span>.</p>
-<pre class="code python"><a name="rest_code_d7256553761b4cf6a83689fe562913f2-1"></a><span class="c1"># Generate random classification dataset for example</span>
-<a name="rest_code_d7256553761b4cf6a83689fe562913f2-2"></a><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
-<a name="rest_code_d7256553761b4cf6a83689fe562913f2-3"></a><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-<a name="rest_code_d7256553761b4cf6a83689fe562913f2-4"></a>                           <span class="n">n_informative</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_redundant</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-<a name="rest_code_d7256553761b4cf6a83689fe562913f2-5"></a>                           <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre>
+<div class="code"><pre class="code python"><a id="rest_code_8742a5ec07314f98af1e26affed5392e-1" name="rest_code_8742a5ec07314f98af1e26affed5392e-1" href="#rest_code_8742a5ec07314f98af1e26affed5392e-1"></a><span class="c1"># Generate random classification dataset for example</span>
+<a id="rest_code_8742a5ec07314f98af1e26affed5392e-2" name="rest_code_8742a5ec07314f98af1e26affed5392e-2" href="#rest_code_8742a5ec07314f98af1e26affed5392e-2"></a><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
+<a id="rest_code_8742a5ec07314f98af1e26affed5392e-3" name="rest_code_8742a5ec07314f98af1e26affed5392e-3" href="#rest_code_8742a5ec07314f98af1e26affed5392e-3"></a><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+<a id="rest_code_8742a5ec07314f98af1e26affed5392e-4" name="rest_code_8742a5ec07314f98af1e26affed5392e-4" href="#rest_code_8742a5ec07314f98af1e26affed5392e-4"></a>                           <span class="n">n_informative</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_redundant</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<a id="rest_code_8742a5ec07314f98af1e26affed5392e-5" name="rest_code_8742a5ec07314f98af1e26affed5392e-5" href="#rest_code_8742a5ec07314f98af1e26affed5392e-5"></a>                           <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
 <p>It is good practice to divide the available labeled data into a training
 data set and a validation or test data set. This split ensures that
 models can be evaluated on unseen data to test the generalization to
@@ -689,12 +671,12 @@ arbitrary amount of input arrays and separates them according to
 specified arguments. In this case 25% of the data are kept for the
 hold-out validation set and not used in training. The <code class="docutils literal">random_state</code>
 is fixed to make these examples reproducible.</p>
-<pre class="code python"><a name="rest_code_277ca22674e845339226eff0fdb65e59-1"></a><span class="c1"># Split data into train and validation set</span>
-<a name="rest_code_277ca22674e845339226eff0fdb65e59-2"></a><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<a name="rest_code_277ca22674e845339226eff0fdb65e59-3"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
-<a name="rest_code_277ca22674e845339226eff0fdb65e59-4"></a>                                            <span class="n">test_size</span><span class="o">=.</span><span class="mi">25</span><span class="p">,</span>
-<a name="rest_code_277ca22674e845339226eff0fdb65e59-5"></a>                                            <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</pre>
+<div class="code"><pre class="code python"><a id="rest_code_a2ee0d44ebb44f979ee5d92d1fbc40f6-1" name="rest_code_a2ee0d44ebb44f979ee5d92d1fbc40f6-1" href="#rest_code_a2ee0d44ebb44f979ee5d92d1fbc40f6-1"></a><span class="c1"># Split data into train and validation set</span>
+<a id="rest_code_a2ee0d44ebb44f979ee5d92d1fbc40f6-2" name="rest_code_a2ee0d44ebb44f979ee5d92d1fbc40f6-2" href="#rest_code_a2ee0d44ebb44f979ee5d92d1fbc40f6-2"></a><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<a id="rest_code_a2ee0d44ebb44f979ee5d92d1fbc40f6-3" name="rest_code_a2ee0d44ebb44f979ee5d92d1fbc40f6-3" href="#rest_code_a2ee0d44ebb44f979ee5d92d1fbc40f6-3"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+<a id="rest_code_a2ee0d44ebb44f979ee5d92d1fbc40f6-4" name="rest_code_a2ee0d44ebb44f979ee5d92d1fbc40f6-4" href="#rest_code_a2ee0d44ebb44f979ee5d92d1fbc40f6-4"></a>                                            <span class="n">test_size</span><span class="o">=</span><span class="mf">.25</span><span class="p">,</span>
+<a id="rest_code_a2ee0d44ebb44f979ee5d92d1fbc40f6-5" name="rest_code_a2ee0d44ebb44f979ee5d92d1fbc40f6-5" href="#rest_code_a2ee0d44ebb44f979ee5d92d1fbc40f6-5"></a>                                            <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
 <p>Then we need to define a machine learning model, considering the
 previous discussion of high impact machine learning models, the first
 example is an SVM classifier. This example uses the default values for
@@ -711,18 +693,18 @@ scikit-learn model contains information about all its hyperparameters in
 addition to the trained model, shown below. The exact meaning of all
 these hyperparameters is laid out in the scikit-learn documentation
 (Buitinck et al. 2013).</p>
-<pre class="code python"><a name="rest_code_127a0955465840759a71c02553f8c8ba-1"></a><span class="c1"># Define and train a Support Vector Machine Classifier</span>
-<a name="rest_code_127a0955465840759a71c02553f8c8ba-2"></a><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
-<a name="rest_code_127a0955465840759a71c02553f8c8ba-3"></a><span class="n">svm</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<a name="rest_code_127a0955465840759a71c02553f8c8ba-4"></a><span class="n">svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<a name="rest_code_127a0955465840759a71c02553f8c8ba-5"></a>
-<a name="rest_code_127a0955465840759a71c02553f8c8ba-6"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">SVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">break_ties</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cache_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
-<a name="rest_code_127a0955465840759a71c02553f8c8ba-7"></a>        <span class="n">class_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coef0</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-<a name="rest_code_127a0955465840759a71c02553f8c8ba-8"></a>        <span class="n">decision_function_shape</span><span class="o">=</span><span class="s1">'ovr'</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="s1">'scale'</span><span class="p">,</span>
-<a name="rest_code_127a0955465840759a71c02553f8c8ba-9"></a>        <span class="n">kernel</span><span class="o">=</span><span class="s1">'rbf'</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">probability</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<a name="rest_code_127a0955465840759a71c02553f8c8ba-10"></a>        <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shrinking</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
-<a name="rest_code_127a0955465840759a71c02553f8c8ba-11"></a>        <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre>
+<div class="code"><pre class="code python"><a id="rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-1" name="rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-1" href="#rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-1"></a><span class="c1"># Define and train a Support Vector Machine Classifier</span>
+<a id="rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-2" name="rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-2" href="#rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-2"></a><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<a id="rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-3" name="rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-3" href="#rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-3"></a><span class="n">svm</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<a id="rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-4" name="rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-4" href="#rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-4"></a><span class="n">svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-5" name="rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-5" href="#rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-5"></a>
+<a id="rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-6" name="rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-6" href="#rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-6"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">SVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">break_ties</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cache_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+<a id="rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-7" name="rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-7" href="#rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-7"></a>        <span class="n">class_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coef0</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<a id="rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-8" name="rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-8" href="#rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-8"></a>        <span class="n">decision_function_shape</span><span class="o">=</span><span class="s1">'ovr'</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="s1">'scale'</span><span class="p">,</span>
+<a id="rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-9" name="rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-9" href="#rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-9"></a>        <span class="n">kernel</span><span class="o">=</span><span class="s1">'rbf'</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">probability</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<a id="rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-10" name="rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-10" href="#rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-10"></a>        <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shrinking</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+<a id="rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-11" name="rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-11" href="#rest_code_aaf1999f0beb4174a4a4caf82e1ddbc1-11"></a>        <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
 <p>The trained SVM can the be used to predict on new data, by calling
 <code class="docutils literal">classifier.predict(data)</code> on the trained classifier object. The new
 data has to contain four features like the training data did. Generally,
@@ -731,12 +713,12 @@ input features as the data available for prediction. The <code class="docutils l
 method outputs the most likely estimate on the new data to generate
 predictions. In the following code snippet, three predictions on three
 input vectors are performed on the previously trained model.</p>
-<pre class="code python"><a name="rest_code_ed5fdd677fa8408283c05fc6b42a5cb6-1"></a><span class="c1"># Predict on new data with trained SVM</span>
-<a name="rest_code_ed5fdd677fa8408283c05fc6b42a5cb6-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">svm</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-<a name="rest_code_ed5fdd677fa8408283c05fc6b42a5cb6-3"></a>                  <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
-<a name="rest_code_ed5fdd677fa8408283c05fc6b42a5cb6-4"></a>                  <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]))</span>
-<a name="rest_code_ed5fdd677fa8408283c05fc6b42a5cb6-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
-</pre>
+<div class="code"><pre class="code python"><a id="rest_code_01858e0f53e84850af193df37a570c3f-1" name="rest_code_01858e0f53e84850af193df37a570c3f-1" href="#rest_code_01858e0f53e84850af193df37a570c3f-1"></a><span class="c1"># Predict on new data with trained SVM</span>
+<a id="rest_code_01858e0f53e84850af193df37a570c3f-2" name="rest_code_01858e0f53e84850af193df37a570c3f-2" href="#rest_code_01858e0f53e84850af193df37a570c3f-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">svm</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<a id="rest_code_01858e0f53e84850af193df37a570c3f-3" name="rest_code_01858e0f53e84850af193df37a570c3f-3" href="#rest_code_01858e0f53e84850af193df37a570c3f-3"></a>                  <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+<a id="rest_code_01858e0f53e84850af193df37a570c3f-4" name="rest_code_01858e0f53e84850af193df37a570c3f-4" href="#rest_code_01858e0f53e84850af193df37a570c3f-4"></a>                  <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]))</span>
+<a id="rest_code_01858e0f53e84850af193df37a570c3f-5" name="rest_code_01858e0f53e84850af193df37a570c3f-5" href="#rest_code_01858e0f53e84850af193df37a570c3f-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
 <p>The blackbox model should be evaluated with the <code class="docutils literal">classifier.score()</code>
 function. Evaluating the performance on the training data set gives an
 indication how well the model is performing, but this is generally not
@@ -760,20 +742,18 @@ than training score can be an indication of a deeper problem with the
 data split, scoring, class imbalances, and needs to be investigated by
 means of external cross-validation, building standard "dummy" models,
 independence tests, and further manual investigations.</p>
-<pre class="code python"><a name="rest_code_9de996ae4ccb4f87a014e2ae62c77655-1"></a><span class="c1"># Score SVM on train and test data</span>
-<a name="rest_code_9de996ae4ccb4f87a014e2ae62c77655-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
-<a name="rest_code_9de996ae4ccb4f87a014e2ae62c77655-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
-<a name="rest_code_9de996ae4ccb4f87a014e2ae62c77655-4"></a><span class="o">&gt;&gt;&gt;</span> <span class="mf">0.9098666666666667</span>
-<a name="rest_code_9de996ae4ccb4f87a014e2ae62c77655-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="mf">0.9032</span>
-</pre>
-<div class="figure">
-<img alt="Example of Support Vector Machine separating two classes, showing the decision boundary learnt from the data. The data contains three informative features, the decision boundary is therefore three dimensional, shown is a central slice of data points in 2D. (A video is available at (Jesper Soeren Dramsch 2020a))" id="bookchapter-fig-svm" src="../images/SVM.png"><p class="caption">Example of Support Vector Machine separating two classes, showing the
+<div class="code"><pre class="code python"><a id="rest_code_3ea0a62633704da88137888723652d1c-1" name="rest_code_3ea0a62633704da88137888723652d1c-1" href="#rest_code_3ea0a62633704da88137888723652d1c-1"></a><span class="c1"># Score SVM on train and test data</span>
+<a id="rest_code_3ea0a62633704da88137888723652d1c-2" name="rest_code_3ea0a62633704da88137888723652d1c-2" href="#rest_code_3ea0a62633704da88137888723652d1c-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
+<a id="rest_code_3ea0a62633704da88137888723652d1c-3" name="rest_code_3ea0a62633704da88137888723652d1c-3" href="#rest_code_3ea0a62633704da88137888723652d1c-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+<a id="rest_code_3ea0a62633704da88137888723652d1c-4" name="rest_code_3ea0a62633704da88137888723652d1c-4" href="#rest_code_3ea0a62633704da88137888723652d1c-4"></a><span class="o">&gt;&gt;&gt;</span> <span class="mf">0.9098666666666667</span>
+<a id="rest_code_3ea0a62633704da88137888723652d1c-5" name="rest_code_3ea0a62633704da88137888723652d1c-5" href="#rest_code_3ea0a62633704da88137888723652d1c-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="mf">0.9032</span>
+</pre></div>
+<figure><img alt="Example of Support Vector Machine separating two classes, showing the decision boundary learnt from the data. The data contains three informative features, the decision boundary is therefore three dimensional, shown is a central slice of data points in 2D. (A video is available at (Jesper Soeren Dramsch 2020a))" id="bookchapter-fig-svm" src="../images/SVM.png"><figcaption><p>Example of Support Vector Machine separating two classes, showing the
 decision boundary learnt from the data. The data contains three
 informative features, the decision boundary is therefore three
 dimensional, shown is a central slice of data points in 2D. (A video
 is available at (Jesper Soeren Dramsch 2020a))</p>
-</div>
-<p>Support-vector machines can be employed for each class of machine
+</figcaption></figure><p>Support-vector machines can be employed for each class of machine
 learning problem, i.e. classification, regression, and clustering. In a
 two-class problem, the algorithm considers the <span class="math">\(n\)</span>-dimensional
 input and attempts to find a <span class="math">\((n-1)\)</span>-dimensional hyperplane that
@@ -830,13 +810,11 @@ surface in Figure <a class="reference external" href="#bookchapter:fig:svm">11.
 Gaussian areas. The RBF is generally regarded as a good default, in
 part, due to being translation invariant (i.e. stationary) and smoothly
 varying.</p>
-<div class="figure">
-<img alt="Samples from two classes that are not linearly separable input data (left). Applying a Gaussian Radial Basis Function centered around :math:`(0.4, 0.33)` with :math:`\lambda = .5` results in the two classes being linearly separable." id="bookchapter-fig-rbf" src="../images/rbf-separation.png"><p class="caption">Samples from two classes that are not linearly separable input data
+<figure><img alt="Samples from two classes that are not linearly separable input data (left). Applying a Gaussian Radial Basis Function centered around :math:`(0.4, 0.33)` with :math:`\lambda = .5` results in the two classes being linearly separable." id="bookchapter-fig-rbf" src="../images/rbf-separation.png"><figcaption><p>Samples from two classes that are not linearly separable input data
 (left). Applying a Gaussian Radial Basis Function centered around
 <span class="math">\((0.4, 0.33)\)</span> with <span class="math">\(\lambda = .5\)</span> results in the two
 classes being linearly separable.</p>
-</div>
-<p>An important topic in machine learning is explainability, which inspects
+</figcaption></figure><p>An important topic in machine learning is explainability, which inspects
 the influence of input variables on the prediction. We can employ the
 utility function <code class="docutils literal">permutation_importance</code> to inspect any model and how
 they perform with regard to their input features (Breiman 2001). The
@@ -849,17 +827,17 @@ and two random data columns. The mean values of the calculated
 importances show that three features are estimated to be three
 magnitudes more important, with the second feature containing the
 maximum amount of information to predict the labels.</p>
-<pre class="code python"><a name="rest_code_e0d240ca72404c08a53e11b5d4017b03-1"></a><span class="c1"># Calculate permutation importance of SVM model</span>
-<a name="rest_code_e0d240ca72404c08a53e11b5d4017b03-2"></a><span class="kn">from</span> <span class="nn">sklearn.inspection</span> <span class="kn">import</span> <span class="n">permutation_importance</span>
-<a name="rest_code_e0d240ca72404c08a53e11b5d4017b03-3"></a><span class="n">importances</span> <span class="o">=</span> <span class="n">permutation_importance</span><span class="p">(</span><span class="n">svm</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span>
-<a name="rest_code_e0d240ca72404c08a53e11b5d4017b03-4"></a>                                     <span class="n">n_repeats</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<a name="rest_code_e0d240ca72404c08a53e11b5d4017b03-5"></a>
-<a name="rest_code_e0d240ca72404c08a53e11b5d4017b03-6"></a><span class="c1"># Show mean value of importances and the ranking</span>
-<a name="rest_code_e0d240ca72404c08a53e11b5d4017b03-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">importances</span><span class="o">.</span><span class="n">importances_mean</span><span class="p">)</span>
-<a name="rest_code_e0d240ca72404c08a53e11b5d4017b03-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">importances</span><span class="o">.</span><span class="n">importances_mean</span><span class="o">.</span><span class="n">argsort</span><span class="p">())</span>
-<a name="rest_code_e0d240ca72404c08a53e11b5d4017b03-9"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span> <span class="mf">2.1787e-01</span>  <span class="mf">2.8712e-01</span>  <span class="mf">1.2293e-01</span> <span class="o">-</span><span class="mf">1.8667e-04</span>  <span class="mf">7.7333e-04</span><span class="p">]</span>
-<a name="rest_code_e0d240ca72404c08a53e11b5d4017b03-10"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">3</span> <span class="mi">4</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
-</pre>
+<div class="code"><pre class="code python"><a id="rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-1" name="rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-1" href="#rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-1"></a><span class="c1"># Calculate permutation importance of SVM model</span>
+<a id="rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-2" name="rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-2" href="#rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-2"></a><span class="kn">from</span> <span class="nn">sklearn.inspection</span> <span class="kn">import</span> <span class="n">permutation_importance</span>
+<a id="rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-3" name="rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-3" href="#rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-3"></a><span class="n">importances</span> <span class="o">=</span> <span class="n">permutation_importance</span><span class="p">(</span><span class="n">svm</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span>
+<a id="rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-4" name="rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-4" href="#rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-4"></a>                                     <span class="n">n_repeats</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<a id="rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-5" name="rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-5" href="#rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-5"></a>
+<a id="rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-6" name="rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-6" href="#rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-6"></a><span class="c1"># Show mean value of importances and the ranking</span>
+<a id="rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-7" name="rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-7" href="#rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">importances</span><span class="o">.</span><span class="n">importances_mean</span><span class="p">)</span>
+<a id="rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-8" name="rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-8" href="#rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">importances</span><span class="o">.</span><span class="n">importances_mean</span><span class="o">.</span><span class="n">argsort</span><span class="p">())</span>
+<a id="rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-9" name="rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-9" href="#rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-9"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span> <span class="mf">2.1787e-01</span>  <span class="mf">2.8712e-01</span>  <span class="mf">1.2293e-01</span> <span class="o">-</span><span class="mf">1.8667e-04</span>  <span class="mf">7.7333e-04</span><span class="p">]</span>
+<a id="rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-10" name="rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-10" href="#rest_code_1d486b3f6eed4f0cbc34bbcfbf12fea8-10"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">3</span> <span class="mi">4</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
 <p>Support-vector machines were applied to seismic data analysis (J. Li and
 Castagna 2004) and the automatic seismic interpretation (Yexin Liu et
 al. 2015; H. Di, Shafiq, and AlRegib 2017b; Mardan, Javaherian, and
@@ -882,9 +860,7 @@ classification (Z. Zhao and Gross 2017), seismic well ties (Chaki,
 Routray, and Mohanty 2018), landslide susceptibility (Marjanović et al.
 2011; Ballabio and Sterlacchini 2012), digital rock models (Ma et al.
 2012), and lithology mapping (Cracknell and Reading 2013).</p>
-</div>
-<div class="section" id="random-forests">
-<h4>Random Forests</h4>
+</section><section id="random-forests"><h4>Random Forests</h4>
 <p>The following example shows the application of Random Forests, to
 illustrate the similarity of the API for different machine learning
 algorithms in the scikit-learn library. The Random Forest classifier is
@@ -897,29 +873,29 @@ modify for the inclined reader. The classifier is then trained using the
 same API of all classifiers in scikit-learn. The example shows a very
 high number of hyperparameters, however, Random Forests work well
 without further optimization of these.</p>
-<pre class="code python"><a name="rest_code_764a0b2fdf4f406b8de519e7201cb15f-1"></a><span class="c1"># Define and train a Random Forest Classifier</span>
-<a name="rest_code_764a0b2fdf4f406b8de519e7201cb15f-2"></a><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
-<a name="rest_code_764a0b2fdf4f406b8de519e7201cb15f-3"></a><span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<a name="rest_code_764a0b2fdf4f406b8de519e7201cb15f-4"></a><span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<a name="rest_code_764a0b2fdf4f406b8de519e7201cb15f-5"></a>
-<a name="rest_code_764a0b2fdf4f406b8de519e7201cb15f-6"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">bootstrap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ccp_alpha</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
-<a name="rest_code_764a0b2fdf4f406b8de519e7201cb15f-7"></a>                <span class="n">class_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s1">'gini'</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
-<a name="rest_code_764a0b2fdf4f406b8de519e7201cb15f-8"></a>                <span class="n">max_features</span><span class="o">=</span><span class="s1">'auto'</span><span class="p">,</span> <span class="n">max_leaf_nodes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<a name="rest_code_764a0b2fdf4f406b8de519e7201cb15f-9"></a>                <span class="n">max_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_impurity_decrease</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
-<a name="rest_code_764a0b2fdf4f406b8de519e7201cb15f-10"></a>                <span class="n">min_impurity_split</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<a name="rest_code_764a0b2fdf4f406b8de519e7201cb15f-11"></a>                <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">min_weight_fraction_leaf</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
-<a name="rest_code_764a0b2fdf4f406b8de519e7201cb15f-12"></a>                <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">oob_score</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<a name="rest_code_764a0b2fdf4f406b8de519e7201cb15f-13"></a>                <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">warm_start</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre>
+<div class="code"><pre class="code python"><a id="rest_code_79e546bd60804636be2d33c019099013-1" name="rest_code_79e546bd60804636be2d33c019099013-1" href="#rest_code_79e546bd60804636be2d33c019099013-1"></a><span class="c1"># Define and train a Random Forest Classifier</span>
+<a id="rest_code_79e546bd60804636be2d33c019099013-2" name="rest_code_79e546bd60804636be2d33c019099013-2" href="#rest_code_79e546bd60804636be2d33c019099013-2"></a><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<a id="rest_code_79e546bd60804636be2d33c019099013-3" name="rest_code_79e546bd60804636be2d33c019099013-3" href="#rest_code_79e546bd60804636be2d33c019099013-3"></a><span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<a id="rest_code_79e546bd60804636be2d33c019099013-4" name="rest_code_79e546bd60804636be2d33c019099013-4" href="#rest_code_79e546bd60804636be2d33c019099013-4"></a><span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="rest_code_79e546bd60804636be2d33c019099013-5" name="rest_code_79e546bd60804636be2d33c019099013-5" href="#rest_code_79e546bd60804636be2d33c019099013-5"></a>
+<a id="rest_code_79e546bd60804636be2d33c019099013-6" name="rest_code_79e546bd60804636be2d33c019099013-6" href="#rest_code_79e546bd60804636be2d33c019099013-6"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">bootstrap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ccp_alpha</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+<a id="rest_code_79e546bd60804636be2d33c019099013-7" name="rest_code_79e546bd60804636be2d33c019099013-7" href="#rest_code_79e546bd60804636be2d33c019099013-7"></a>                <span class="n">class_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s1">'gini'</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+<a id="rest_code_79e546bd60804636be2d33c019099013-8" name="rest_code_79e546bd60804636be2d33c019099013-8" href="#rest_code_79e546bd60804636be2d33c019099013-8"></a>                <span class="n">max_features</span><span class="o">=</span><span class="s1">'auto'</span><span class="p">,</span> <span class="n">max_leaf_nodes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<a id="rest_code_79e546bd60804636be2d33c019099013-9" name="rest_code_79e546bd60804636be2d33c019099013-9" href="#rest_code_79e546bd60804636be2d33c019099013-9"></a>                <span class="n">max_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_impurity_decrease</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+<a id="rest_code_79e546bd60804636be2d33c019099013-10" name="rest_code_79e546bd60804636be2d33c019099013-10" href="#rest_code_79e546bd60804636be2d33c019099013-10"></a>                <span class="n">min_impurity_split</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<a id="rest_code_79e546bd60804636be2d33c019099013-11" name="rest_code_79e546bd60804636be2d33c019099013-11" href="#rest_code_79e546bd60804636be2d33c019099013-11"></a>                <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">min_weight_fraction_leaf</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+<a id="rest_code_79e546bd60804636be2d33c019099013-12" name="rest_code_79e546bd60804636be2d33c019099013-12" href="#rest_code_79e546bd60804636be2d33c019099013-12"></a>                <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">oob_score</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<a id="rest_code_79e546bd60804636be2d33c019099013-13" name="rest_code_79e546bd60804636be2d33c019099013-13" href="#rest_code_79e546bd60804636be2d33c019099013-13"></a>                <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">warm_start</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
 <p>The prediction of the random forest is performed in the same API call
 again, also consistent with all classifiers available. The values are
 slightly different from the prediction of the SVM.</p>
-<pre class="code python"><a name="rest_code_bcb5d1ad383449f88b29b2df0400a763-1"></a><span class="c1"># Predict on new data with trained Random Forest</span>
-<a name="rest_code_bcb5d1ad383449f88b29b2df0400a763-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-<a name="rest_code_bcb5d1ad383449f88b29b2df0400a763-3"></a>                 <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
-<a name="rest_code_bcb5d1ad383449f88b29b2df0400a763-4"></a>                 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]))</span>
-<a name="rest_code_bcb5d1ad383449f88b29b2df0400a763-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
-</pre>
+<div class="code"><pre class="code python"><a id="rest_code_88b16282c9d0449bb0153cc98ab31b4b-1" name="rest_code_88b16282c9d0449bb0153cc98ab31b4b-1" href="#rest_code_88b16282c9d0449bb0153cc98ab31b4b-1"></a><span class="c1"># Predict on new data with trained Random Forest</span>
+<a id="rest_code_88b16282c9d0449bb0153cc98ab31b4b-2" name="rest_code_88b16282c9d0449bb0153cc98ab31b4b-2" href="#rest_code_88b16282c9d0449bb0153cc98ab31b4b-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<a id="rest_code_88b16282c9d0449bb0153cc98ab31b4b-3" name="rest_code_88b16282c9d0449bb0153cc98ab31b4b-3" href="#rest_code_88b16282c9d0449bb0153cc98ab31b4b-3"></a>                 <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+<a id="rest_code_88b16282c9d0449bb0153cc98ab31b4b-4" name="rest_code_88b16282c9d0449bb0153cc98ab31b4b-4" href="#rest_code_88b16282c9d0449bb0153cc98ab31b4b-4"></a>                 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]))</span>
+<a id="rest_code_88b16282c9d0449bb0153cc98ab31b4b-5" name="rest_code_88b16282c9d0449bb0153cc98ab31b4b-5" href="#rest_code_88b16282c9d0449bb0153cc98ab31b4b-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
 <p>The training score of the random forest model is 2.5 % better than the
 SVM in this instance, this score however not informative. Comparing the
 test scores shows only a 0.88 % difference, which is the relevant value
@@ -933,12 +909,12 @@ be avoided in real application, but can be seen in competitions, on
 benchmarks, and show-cases of new algorithms and architectures to
 oversell the improvement over state-of-the-art methods (Recht et al.
 2019).</p>
-<pre class="code python"><a name="rest_code_497050d8274e4c309e3ca9607707b629-1"></a><span class="c1"># Score Random Forest on train and test data</span>
-<a name="rest_code_497050d8274e4c309e3ca9607707b629-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
-<a name="rest_code_497050d8274e4c309e3ca9607707b629-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
-<a name="rest_code_497050d8274e4c309e3ca9607707b629-4"></a><span class="o">&gt;&gt;&gt;</span> <span class="mf">0.9306</span>
-<a name="rest_code_497050d8274e4c309e3ca9607707b629-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="mf">0.912</span>
-</pre>
+<div class="code"><pre class="code python"><a id="rest_code_735acb9c7fac4be3bdb383a182c92c44-1" name="rest_code_735acb9c7fac4be3bdb383a182c92c44-1" href="#rest_code_735acb9c7fac4be3bdb383a182c92c44-1"></a><span class="c1"># Score Random Forest on train and test data</span>
+<a id="rest_code_735acb9c7fac4be3bdb383a182c92c44-2" name="rest_code_735acb9c7fac4be3bdb383a182c92c44-2" href="#rest_code_735acb9c7fac4be3bdb383a182c92c44-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
+<a id="rest_code_735acb9c7fac4be3bdb383a182c92c44-3" name="rest_code_735acb9c7fac4be3bdb383a182c92c44-3" href="#rest_code_735acb9c7fac4be3bdb383a182c92c44-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+<a id="rest_code_735acb9c7fac4be3bdb383a182c92c44-4" name="rest_code_735acb9c7fac4be3bdb383a182c92c44-4" href="#rest_code_735acb9c7fac4be3bdb383a182c92c44-4"></a><span class="o">&gt;&gt;&gt;</span> <span class="mf">0.9306</span>
+<a id="rest_code_735acb9c7fac4be3bdb383a182c92c44-5" name="rest_code_735acb9c7fac4be3bdb383a182c92c44-5" href="#rest_code_735acb9c7fac4be3bdb383a182c92c44-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="mf">0.912</span>
+</pre></div>
 <p>Random forests have specialized methods available for introspection,
 which can be used to calculate feature importance. These are based on
 the decision process the random forest used to build the machine
@@ -955,12 +931,12 @@ importance instead is a valid choice. In this instance as opposed to the
 permutation importance, the random forest estimates the two
 non-informative features to be one magnitude less useful than the
 informative features, instead of two magnitudes.</p>
-<pre class="code python"><a name="rest_code_b8fe6e84cd8d40c5b5cfaa65f75c772e-1"></a><span class="c1"># Inspect random forest for feature importance</span>
-<a name="rest_code_b8fe6e84cd8d40c5b5cfaa65f75c772e-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">)</span>
-<a name="rest_code_b8fe6e84cd8d40c5b5cfaa65f75c772e-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">feature_importances_</span><span class="o">.</span><span class="n">argsort</span><span class="p">())</span>
-<a name="rest_code_b8fe6e84cd8d40c5b5cfaa65f75c772e-4"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mf">0.2324</span> <span class="mf">0.4877</span> <span class="mf">0.2527</span> <span class="mf">0.0141</span> <span class="mf">0.0129</span><span class="p">]</span>
-<a name="rest_code_b8fe6e84cd8d40c5b5cfaa65f75c772e-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">4</span> <span class="mi">3</span> <span class="mi">0</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">]</span>
-</pre>
+<div class="code"><pre class="code python"><a id="rest_code_1fd7b47d18b344b185f3107df2bffd0e-1" name="rest_code_1fd7b47d18b344b185f3107df2bffd0e-1" href="#rest_code_1fd7b47d18b344b185f3107df2bffd0e-1"></a><span class="c1"># Inspect random forest for feature importance</span>
+<a id="rest_code_1fd7b47d18b344b185f3107df2bffd0e-2" name="rest_code_1fd7b47d18b344b185f3107df2bffd0e-2" href="#rest_code_1fd7b47d18b344b185f3107df2bffd0e-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">)</span>
+<a id="rest_code_1fd7b47d18b344b185f3107df2bffd0e-3" name="rest_code_1fd7b47d18b344b185f3107df2bffd0e-3" href="#rest_code_1fd7b47d18b344b185f3107df2bffd0e-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">feature_importances_</span><span class="o">.</span><span class="n">argsort</span><span class="p">())</span>
+<a id="rest_code_1fd7b47d18b344b185f3107df2bffd0e-4" name="rest_code_1fd7b47d18b344b185f3107df2bffd0e-4" href="#rest_code_1fd7b47d18b344b185f3107df2bffd0e-4"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mf">0.2324</span> <span class="mf">0.4877</span> <span class="mf">0.2527</span> <span class="mf">0.0141</span> <span class="mf">0.0129</span><span class="p">]</span>
+<a id="rest_code_1fd7b47d18b344b185f3107df2bffd0e-5" name="rest_code_1fd7b47d18b344b185f3107df2bffd0e-5" href="#rest_code_1fd7b47d18b344b185f3107df2bffd0e-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">4</span> <span class="mi">3</span> <span class="mi">0</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
 <p>Random forests and other tree-based methods, including gradient
 boosting, a specialized version of random forests, have generally found
 wider application with the implementation into scikit-learn and packages
@@ -980,12 +956,10 @@ challenge (M. Hall and Hall 2017) for well-log analysis, propelling a
 variety of publications in facies prediction (Bestagini, Lipari, and
 Tubaro 2017; Blouin et al. 2017; Antoine Caté et al. 2018; Saporetti et
 al. 2018).</p>
-<div class="figure">
-<img alt="Binary Decision Boundary for Random Forest in 2D. This is the same central slice of the 3D decision volume used in Figure `11.6 &lt;#bookchapter:fig:svm&gt;`__." id="bookchapter-fig-randomforest" src="../images/Random_Forest.png"><p class="caption">Binary Decision Boundary for Random Forest in 2D. This is the same
+<figure><img alt="Binary Decision Boundary for Random Forest in 2D. This is the same central slice of the 3D decision volume used in Figure `11.6 &lt;#bookchapter:fig:svm&gt;`__." id="bookchapter-fig-randomforest" src="../images/Random_Forest.png"><figcaption><p>Binary Decision Boundary for Random Forest in 2D. This is the same
 central slice of the 3D decision volume used in
 Figure <a class="reference external" href="#bookchapter:fig:svm">11.6</a>.</p>
-</div>
-<p>Furthermore, various methods that have been introduced into scikit-learn
+</figcaption></figure><p>Furthermore, various methods that have been introduced into scikit-learn
 have been applied to a multitude of geoscience problems. Hidden Markov
 models were used on seismological event classification (Ohrnberger 2001;
 Beyreuther and Wassermann 2008; Bicego, Acosta-Muñoz, and Orozco-Alzate
@@ -1012,9 +986,7 @@ fracture networks (Karra et al. 2018). These graphical models are
 effective in causal modelling and gained popularity in modern
 applications of machine learning explainability, interpretability, and
 generalization in combination with do-calculus (Pearl 2012).</p>
-</div>
-<div class="section" id="modern-deep-learning">
-<span id="book-dl"></span><h4>Modern Deep Learning</h4>
+</section><section id="modern-deep-learning"><span id="book-dl"></span><h4>Modern Deep Learning</h4>
 <p>The 2010s marked a renaissance of deep learning and particularly
 convolutional neural networks. The convolutional neural network (CNN)
 architecture AlexNet (Krizhevsky, Sutskever, and Hinton 2012c) was the
@@ -1065,22 +1037,20 @@ equation <a class="reference external" href="#eq:relu">[eq:relu]</a>. Since it�
 rectifiers with different properties have been introduced.</p>
 <div class="math">
 \begin{equation*}
-\sigma({\color{DesatMagenta} a}) = max(0, {\color{DesatMagenta}a})
+\sigma({\color{red} a}) = max(0, {\color{red}a})
     \label{eq:relu}
 \end{equation*}
 </div>
-<div class="figure">
-<img alt="ReLU activation (red) and derivative (blue) for efficient gradient computation." id="bookchapter-fig-relu" src="../images/act_relu.png"><p class="caption">ReLU activation (red) and derivative (blue) for efficient gradient computation.</p>
-</div>
-<p>The other activation function used in the example is the "softmax"
+<figure><img alt="ReLU activation (red) and derivative (blue) for efficient gradient computation." id="bookchapter-fig-relu" src="../images/act_relu.png"><figcaption><p>ReLU activation (red) and derivative (blue) for efficient gradient computation.</p>
+</figcaption></figure><p>The other activation function used in the example is the "softmax"
 function on the output layer. This activation is commonly used for
 classification tasks, as it normalizes all activations at all outputs to
 one. It achieves this by applying the exponential function to each of
-the outputs in <span class="math">\({\color{DesatMagenta}\vec{a}}\)</span> for class <span class="math">\(C\)</span>
+the outputs in <span class="math">\({\color{red}\vec{a}}\)</span> for class <span class="math">\(C\)</span>
 and dividing that value by the sum of all exponentials:</p>
 <div class="math">
 \begin{equation*}
-\sigma({\color{DesatMagenta}\vec{a}}) = \frac{e^{{\color{DesatMagenta}a_j}}}{\sum\limits_{p}^C e^{{\color{DesatMagenta}a_p}}}
+\sigma({\color{red}\vec{a}}) = \frac{e^{{\color{red}a_j}}}{\sum\limits_{p}^C e^{{\color{red}a_p}}}
 \label{eq:softmax}
 \end{equation*}
 </div>
@@ -1094,13 +1064,13 @@ constraints, or early-stopping of the training loop (I. Goodfellow,
 Bengio, and Courville 2016a). Modern deep learning systems may even
 leverage noisy student-teacher networks for regularization (Q. Xie et
 al. 2019).</p>
-<pre class="code python"><a name="rest_code_02b57d2a691e4d2989f3cffe56bbf061-1"></a><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
-<a name="rest_code_02b57d2a691e4d2989f3cffe56bbf061-2"></a><span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
-<a name="rest_code_02b57d2a691e4d2989f3cffe56bbf061-3"></a><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">),</span>
-<a name="rest_code_02b57d2a691e4d2989f3cffe56bbf061-4"></a><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="o">.</span><span class="mi">3</span><span class="p">),</span>
-<a name="rest_code_02b57d2a691e4d2989f3cffe56bbf061-5"></a><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">),</span>
-<a name="rest_code_02b57d2a691e4d2989f3cffe56bbf061-6"></a><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'softmax'</span><span class="p">)])</span>
-</pre>
+<div class="code"><pre class="code python"><a id="rest_code_a14818f0712a4352b7f37d59dfd354ba-1" name="rest_code_a14818f0712a4352b7f37d59dfd354ba-1" href="#rest_code_a14818f0712a4352b7f37d59dfd354ba-1"></a><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<a id="rest_code_a14818f0712a4352b7f37d59dfd354ba-2" name="rest_code_a14818f0712a4352b7f37d59dfd354ba-2" href="#rest_code_a14818f0712a4352b7f37d59dfd354ba-2"></a><span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+<a id="rest_code_a14818f0712a4352b7f37d59dfd354ba-3" name="rest_code_a14818f0712a4352b7f37d59dfd354ba-3" href="#rest_code_a14818f0712a4352b7f37d59dfd354ba-3"></a><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">),</span>
+<a id="rest_code_a14818f0712a4352b7f37d59dfd354ba-4" name="rest_code_a14818f0712a4352b7f37d59dfd354ba-4" href="#rest_code_a14818f0712a4352b7f37d59dfd354ba-4"></a><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">.3</span><span class="p">),</span>
+<a id="rest_code_a14818f0712a4352b7f37d59dfd354ba-5" name="rest_code_a14818f0712a4352b7f37d59dfd354ba-5" href="#rest_code_a14818f0712a4352b7f37d59dfd354ba-5"></a><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">),</span>
+<a id="rest_code_a14818f0712a4352b7f37d59dfd354ba-6" name="rest_code_a14818f0712a4352b7f37d59dfd354ba-6" href="#rest_code_a14818f0712a4352b7f37d59dfd354ba-6"></a><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'softmax'</span><span class="p">)])</span>
+</pre></div>
 <p>These sequential models are also used for simple image classification
 models using convolutional neural networks. Instead of Dense layers, these are built up with
 convolutional layers, which are readily available in 1D, 2D, and 3D as
@@ -1119,8 +1089,7 @@ coordinate <span class="math">\(c\)</span>. In convolutional neural networks eac
 and <span class="math">\(m\)</span> to compress the spatial information. This serves as a
 forcing function to learn increasingly abstract representations in
 subsequent convolutional layers.</p>
-<div class="figure">
-<img alt='Three layer convolutional network. The input image (yellow) is convolved with several filters or kernel matrices (purple). Commonly, the convolution is used to downsample an image in the spatial dimension, while expanding the dimension of the filter response, hence expanding in "thickness" in the schematic. The filters are learned in the machine learning optimization loop. The shared weights within a filter improve efficiency of the network over classic dense networks.' id="bookchapter-fig-cnn" src="../images/conv.png"><p class="caption">Three layer convolutional network. The input image (yellow) is
+<figure><img alt='Three layer convolutional network. The input image (yellow) is convolved with several filters or kernel matrices (purple). Commonly, the convolution is used to downsample an image in the spatial dimension, while expanding the dimension of the filter response, hence expanding in "thickness" in the schematic. The filters are learned in the machine learning optimization loop. The shared weights within a filter improve efficiency of the network over classic dense networks.' id="bookchapter-fig-cnn" src="../images/conv.png"><figcaption><p>Three layer convolutional network. The input image (yellow) is
 convolved with several filters or kernel matrices (purple). Commonly,
 the convolution is used to downsample an image in the spatial
 dimension, while expanding the dimension of the filter response,
@@ -1128,8 +1097,7 @@ hence expanding in "thickness" in the schematic. The filters are
 learned in the machine learning optimization loop. The shared weights
 within a filter improve efficiency of the network over classic dense
 networks.</p>
-</div>
-<p>This sequential example model of densely connected layers with a single
+</figcaption></figure><p>This sequential example model of densely connected layers with a single
 input, 32, 16, and two neurons contains a total of 754 trainable
 weights. Initially, each of these weights is set to a pseudo-random
 value, which is often drawn from a distribution beneficial to fast
@@ -1141,13 +1109,13 @@ exist and are employed in machine learning, e.g. competitive learning in
 self-organizing maps.</p>
 <div class="math">
 \begin{equation*}
-MAE = \lvert{y_j - \color{DesatCyan}o_{j}}\rvert \newline
+MAE = \lvert{y_j - \color{cyan}o_{j}}\rvert
     \label{eq:mae}
 \end{equation*}
 </div>
 <div class="math">
 \begin{equation*}
-MSE = ({y_j - \color{DesatCyan}o_{j}})^2
+MSE = ({y_j - \color{cyan}o_{j}})^2
     \label{eq:mse}
 \end{equation*}
 </div>
@@ -1161,7 +1129,7 @@ The cross-entropy is dependent on the true label <span class="math">\(y\)</span>
 prediction in the output layer.</p>
 <div class="math">
 \begin{equation*}
-CE = - \sum\limits^C_j y_j \log{\left({\color{DesatCyan}o_{j}}\right)}
+CE = - \sum\limits^C_j y_j \log{\left({\color{cyan}o_{j}}\right)}
     \label{eq:crossentropy}
 \end{equation*}
 </div>
@@ -1171,10 +1139,10 @@ makes the sum over all labels obsolete. It is debatable how much binary
 labels reflects reality, but it simplifies
 equation <a class="reference external" href="#eq:crossentropy">[eq:crossentropy]</a> to minimizing the
 (negative) logarithm of the neural network output
-<span class="math">\({\color{DesatCyan}o_{j}}\)</span>, also known as negative log-likelihood:</p>
+<span class="math">\({\color{cyan}o_{j}}\)</span>, also known as negative log-likelihood:</p>
 <div class="math">
 \begin{equation*}
-CE = - \log{\left({\color{DesatCyan}o_{j}}\right)}
+CE = - \log{\left({\color{cyan}o_{j}}\right)}
     \label{eq:binarycrossentropy}
 \end{equation*}
 </div>
@@ -1183,10 +1151,10 @@ and this means we could use the sigmoid activation function in the last
 layer and optimize a binary CE. This can speed up computation, but in
 this example, an approach is shown that works for many other problems
 and can therefore be applied to the readers data.</p>
-<pre class="code python"><a name="rest_code_788b74a58d8243898efbbe8619fd3df4-1"></a><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">'adam'</span><span class="p">,</span> <span class="c1"># Often 'adam' or 'sgd' are good</span>
-<a name="rest_code_788b74a58d8243898efbbe8619fd3df4-2"></a>              <span class="n">loss</span><span class="o">=</span><span class="s1">'sparse_categorical_crossentropy'</span><span class="p">,</span>
-<a name="rest_code_788b74a58d8243898efbbe8619fd3df4-3"></a>              <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">'accuracy'</span><span class="p">])</span> <span class="c1"># Monitor other metrics</span>
-</pre>
+<div class="code"><pre class="code python"><a id="rest_code_c2bc2b88086440d784841aa4eddc29c2-1" name="rest_code_c2bc2b88086440d784841aa4eddc29c2-1" href="#rest_code_c2bc2b88086440d784841aa4eddc29c2-1"></a><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">'adam'</span><span class="p">,</span> <span class="c1"># Often 'adam' or 'sgd' are good</span>
+<a id="rest_code_c2bc2b88086440d784841aa4eddc29c2-2" name="rest_code_c2bc2b88086440d784841aa4eddc29c2-2" href="#rest_code_c2bc2b88086440d784841aa4eddc29c2-2"></a>              <span class="n">loss</span><span class="o">=</span><span class="s1">'sparse_categorical_crossentropy'</span><span class="p">,</span>
+<a id="rest_code_c2bc2b88086440d784841aa4eddc29c2-3" name="rest_code_c2bc2b88086440d784841aa4eddc29c2-3" href="#rest_code_c2bc2b88086440d784841aa4eddc29c2-3"></a>              <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">'accuracy'</span><span class="p">])</span> <span class="c1"># Monitor other metrics</span>
+</pre></div>
 <p>Large neural networks can be extremely costly to train with significant
 developments in 2019/2020 reporting multi-billion parameter language
 models (Google, OpenAI) trained on massive hardware infrastructure for
@@ -1198,16 +1166,16 @@ set. The validation set can be provided or be defined as a percentage of
 the training data, as shown below. In the example, 10% of the training
 data are held out for validation after every epoch, reducing the
 training data set from 3750 to 3375 individual samples.</p>
-<pre class="code python"><a name="rest_code_b58615acd3954e879a9d1798ba55f3d9-1"></a><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span>
-<a name="rest_code_b58615acd3954e879a9d1798ba55f3d9-2"></a>          <span class="n">y_train</span><span class="p">,</span>
-<a name="rest_code_b58615acd3954e879a9d1798ba55f3d9-3"></a>          <span class="n">validation_split</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span>
-<a name="rest_code_b58615acd3954e879a9d1798ba55f3d9-4"></a>          <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<a name="rest_code_b58615acd3954e879a9d1798ba55f3d9-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span>
-<a name="rest_code_b58615acd3954e879a9d1798ba55f3d9-6"></a>    <span class="n">Epoch</span> <span class="mi">100</span><span class="o">/</span><span class="mi">100</span>
-<a name="rest_code_b58615acd3954e879a9d1798ba55f3d9-7"></a>    <span class="mi">3375</span><span class="o">/</span><span class="mi">3375</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">0</span><span class="n">s</span> <span class="mi">66</span><span class="n">us</span><span class="o">/</span><span class="n">sample</span>
-<a name="rest_code_b58615acd3954e879a9d1798ba55f3d9-8"></a>    <span class="n">loss</span><span class="p">:</span> <span class="mf">0.1567</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.9401</span> <span class="o">-</span>
-<a name="rest_code_b58615acd3954e879a9d1798ba55f3d9-9"></a>    <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.1731</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">0.9359</span>
-</pre>
+<div class="code"><pre class="code python"><a id="rest_code_e46412f734b84011b52f8a4117fab019-1" name="rest_code_e46412f734b84011b52f8a4117fab019-1" href="#rest_code_e46412f734b84011b52f8a4117fab019-1"></a><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span>
+<a id="rest_code_e46412f734b84011b52f8a4117fab019-2" name="rest_code_e46412f734b84011b52f8a4117fab019-2" href="#rest_code_e46412f734b84011b52f8a4117fab019-2"></a>          <span class="n">y_train</span><span class="p">,</span>
+<a id="rest_code_e46412f734b84011b52f8a4117fab019-3" name="rest_code_e46412f734b84011b52f8a4117fab019-3" href="#rest_code_e46412f734b84011b52f8a4117fab019-3"></a>          <span class="n">validation_split</span><span class="o">=</span><span class="mf">.1</span><span class="p">,</span>
+<a id="rest_code_e46412f734b84011b52f8a4117fab019-4" name="rest_code_e46412f734b84011b52f8a4117fab019-4" href="#rest_code_e46412f734b84011b52f8a4117fab019-4"></a>          <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<a id="rest_code_e46412f734b84011b52f8a4117fab019-5" name="rest_code_e46412f734b84011b52f8a4117fab019-5" href="#rest_code_e46412f734b84011b52f8a4117fab019-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<a id="rest_code_e46412f734b84011b52f8a4117fab019-6" name="rest_code_e46412f734b84011b52f8a4117fab019-6" href="#rest_code_e46412f734b84011b52f8a4117fab019-6"></a>    <span class="n">Epoch</span> <span class="mi">100</span><span class="o">/</span><span class="mi">100</span>
+<a id="rest_code_e46412f734b84011b52f8a4117fab019-7" name="rest_code_e46412f734b84011b52f8a4117fab019-7" href="#rest_code_e46412f734b84011b52f8a4117fab019-7"></a>    <span class="mi">3375</span><span class="o">/</span><span class="mi">3375</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">0</span><span class="n">s</span> <span class="mi">66</span><span class="n">us</span><span class="o">/</span><span class="n">sample</span>
+<a id="rest_code_e46412f734b84011b52f8a4117fab019-8" name="rest_code_e46412f734b84011b52f8a4117fab019-8" href="#rest_code_e46412f734b84011b52f8a4117fab019-8"></a>    <span class="n">loss</span><span class="p">:</span> <span class="mf">0.1567</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.9401</span> <span class="o">-</span>
+<a id="rest_code_e46412f734b84011b52f8a4117fab019-9" name="rest_code_e46412f734b84011b52f8a4117fab019-9" href="#rest_code_e46412f734b84011b52f8a4117fab019-9"></a>    <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.1731</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">0.9359</span>
+</pre></div>
 <p>Neural networks are trained with variations of stochastic gradient
 descent (SGD), an incremental version of the classic steepest descent
 algorithm. We use the Adam optimizer, a variation of SGD that converges
@@ -1234,16 +1202,14 @@ example. The amount of epochs defines how many cycles of optimization on
 the full training data set are performed. Conventional wisdom for neural
 network training is that it should always learn for more epochs than
 machine learning researchers estimate initially.</p>
-<div class="figure">
-<img alt="Loss and Accuracy of example neural network on ten random initializations. Training for 100 epochs with the shaded area showing the 95% confidence intervals of the loss and metric. Analyzing loss curves is important to evaluate overfitting. The trining loss decreasing, while validation loss is close to plateauing is a sign of overfitting. Generally, it can be seen that the model converged and is only making marginal gains with the risk of overfitting." id="bookchapter-fig-training-loss" src="../images/nn-loss.png"><p class="caption">Loss and Accuracy of example neural network on ten random
+<figure><img alt="Loss and Accuracy of example neural network on ten random initializations. Training for 100 epochs with the shaded area showing the 95% confidence intervals of the loss and metric. Analyzing loss curves is important to evaluate overfitting. The trining loss decreasing, while validation loss is close to plateauing is a sign of overfitting. Generally, it can be seen that the model converged and is only making marginal gains with the risk of overfitting." id="bookchapter-fig-training-loss" src="../images/nn-loss.png"><figcaption><p>Loss and Accuracy of example neural network on ten random
 initializations. Training for 100 epochs with the shaded area showing
 the 95% confidence intervals of the loss and metric. Analyzing loss
 curves is important to evaluate overfitting. The trining loss
 decreasing, while validation loss is close to plateauing is a sign of
 overfitting. Generally, it can be seen that the model converged and
 is only making marginal gains with the risk of overfitting.</p>
-</div>
-<p>It can be difficult to fix all sources of randomness and stochasticity
+</figcaption></figure><p>It can be difficult to fix all sources of randomness and stochasticity
 in neural networks, to make both research and examples reproducible.
 This example does not fix these so-called random seeds as it would
 detract from the example. That implies that the results for loss and
@@ -1252,11 +1218,11 @@ seed is very important to ensure reproducibility of claims. Moreover, to
 avoid bad practices or so-called "lucky seeds", a statistical analysis
 of multiple fixed seeds is good practice to report results in any
 machine learning model.</p>
-<pre class="code python"><a name="rest_code_7a45502ce52948fc85b26b0f274f50fc-1"></a><span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-<a name="rest_code_7a45502ce52948fc85b26b0f274f50fc-2"></a><span class="o">&gt;&gt;&gt;</span> <span class="mi">1250</span><span class="o">/</span><span class="mi">1250</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">0</span><span class="n">s</span> <span class="mi">93</span><span class="n">us</span><span class="o">/</span><span class="n">sample</span>
-<a name="rest_code_7a45502ce52948fc85b26b0f274f50fc-3"></a>    <span class="n">loss</span><span class="p">:</span> <span class="mf">0.1998</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.9360</span>
-<a name="rest_code_7a45502ce52948fc85b26b0f274f50fc-4"></a>    <span class="p">[</span><span class="mf">0.19976349686831235</span><span class="p">,</span> <span class="mf">0.936</span><span class="p">]</span>
-</pre>
+<div class="code"><pre class="code python"><a id="rest_code_ef81f7d89d504f35beaee861ed2d5c9c-1" name="rest_code_ef81f7d89d504f35beaee861ed2d5c9c-1" href="#rest_code_ef81f7d89d504f35beaee861ed2d5c9c-1"></a><span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<a id="rest_code_ef81f7d89d504f35beaee861ed2d5c9c-2" name="rest_code_ef81f7d89d504f35beaee861ed2d5c9c-2" href="#rest_code_ef81f7d89d504f35beaee861ed2d5c9c-2"></a><span class="o">&gt;&gt;&gt;</span> <span class="mi">1250</span><span class="o">/</span><span class="mi">1250</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">0</span><span class="n">s</span> <span class="mi">93</span><span class="n">us</span><span class="o">/</span><span class="n">sample</span>
+<a id="rest_code_ef81f7d89d504f35beaee861ed2d5c9c-3" name="rest_code_ef81f7d89d504f35beaee861ed2d5c9c-3" href="#rest_code_ef81f7d89d504f35beaee861ed2d5c9c-3"></a>    <span class="n">loss</span><span class="p">:</span> <span class="mf">0.1998</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.9360</span>
+<a id="rest_code_ef81f7d89d504f35beaee861ed2d5c9c-4" name="rest_code_ef81f7d89d504f35beaee861ed2d5c9c-4" href="#rest_code_ef81f7d89d504f35beaee861ed2d5c9c-4"></a>    <span class="p">[</span><span class="mf">0.19976349686831235</span><span class="p">,</span> <span class="mf">0.936</span><span class="p">]</span>
+</pre></div>
 <p>In the example before, the SVM and Random Forest classifier were scored
 on unseen data. This is equally important for neural networks. Neural
 networks are prone to overfit, which we try to circumvent by
@@ -1270,12 +1236,10 @@ overfit if we let training continue. The exemplary decision boundary in
 figure <a class="reference external" href="#bookchapter:fig:dnndecision">11.12</a> very closely models the
 local distribution of the data, which is true for the entire decision
 volume (Jesper Soeren Dramsch 2020a).</p>
-<div class="figure">
-<img alt="Central 2D slice of decision Boundary of deep neural network in trained on data with 3 informative features. The 3D volume is available in (Jesper Soeren Dramsch 2020a)." id="bookchapter-fig-dnndecision" src="../images/DNN.png"><p class="caption">Central 2D slice of decision Boundary of deep neural network in
+<figure><img alt="Central 2D slice of decision Boundary of deep neural network in trained on data with 3 informative features. The 3D volume is available in (Jesper Soeren Dramsch 2020a)." id="bookchapter-fig-dnndecision" src="../images/DNN.png"><figcaption><p>Central 2D slice of decision Boundary of deep neural network in
 trained on data with 3 informative features. The 3D volume is
 available in (Jesper Soeren Dramsch 2020a).</p>
-</div>
-<p>These examples illustrate the open source revolution in machine learning
+</figcaption></figure><p>These examples illustrate the open source revolution in machine learning
 software. The consolidated API and utility functions make it seem
 trivial to apply various machine learning algorithms to scientific data.
 This can be seen in the recent explosion of publications of applied
@@ -1296,9 +1260,7 @@ computation, further reduced training times. Finally, open-source
 software that is well-maintained, tested, and documented with a
 consistent API made both shallow and deep machine learning accessible to
 non-experts.</p>
-</div>
-<div class="section" id="neural-network-architectures">
-<h4>Neural Network Architectures</h4>
+</section><section id="neural-network-architectures"><h4>Neural Network Architectures</h4>
 <p>In deep learning, implementation of models is commonly more complicated
 than understanding the underlying algorithm. Modern deep learning makes
 use of various recent developments that can be beneficial to the data
@@ -1311,19 +1273,15 @@ standard benchmark data sets. This facilitates thorough inspection and
 transferring the new insights to applied tasks such as geoscience. In
 the following, some relevant neural network architectures and their
 application are explored.</p>
-</div>
-<div class="section" id="convolutional-neural-network-architectures">
-<span id="ssec-cnnarch"></span><h4>Convolutional Neural Network Architectures</h4>
-<div class="figure">
-<img alt="Schematic of a VGG16 network for ImageNet. The input data is convolved and down-sampled repeatedly. The final image classification is performed by flattening the image and feeding it to a classic feed-forward densely connected neural network. The 1000 output nodes for the 1000 ImageNet classes are normalized by a final softmax layer (cf. equation `[eq:softmax] &lt;#eq:softmax&gt;`__). Visualization library (Iqbal 2018)" id="bookchapter-fig-vgg16" src="../images/vgg16.png"><p class="caption">Schematic of a VGG16 network for ImageNet. The input data is
+</section><section id="convolutional-neural-network-architectures"><span id="ssec-cnnarch"></span><h4>Convolutional Neural Network Architectures</h4>
+<figure><img alt="Schematic of a VGG16 network for ImageNet. The input data is convolved and down-sampled repeatedly. The final image classification is performed by flattening the image and feeding it to a classic feed-forward densely connected neural network. The 1000 output nodes for the 1000 ImageNet classes are normalized by a final softmax layer (cf. equation `[eq:softmax] &lt;#eq:softmax&gt;`__). Visualization library (Iqbal 2018)" id="bookchapter-fig-vgg16" src="../images/vgg16.png"><figcaption><p>Schematic of a VGG16 network for ImageNet. The input data is
 convolved and down-sampled repeatedly. The final image classification
 is performed by flattening the image and feeding it to a classic
 feed-forward densely connected neural network. The 1000 output nodes
 for the 1000 ImageNet classes are normalized by a final softmax layer
 (cf. equation <a class="reference external" href="#eq:softmax">[eq:softmax]</a>). Visualization library
 (Iqbal 2018)</p>
-</div>
-<p>The first model to discuss is the VGG-16 model, a 16-layer deep
+</figcaption></figure><p>The first model to discuss is the VGG-16 model, a 16-layer deep
 convolutional neural network (Simonyan and Zisserman 2014a) represented
 in figure <a class="reference external" href="#bookchapter:fig:vgg16">11.13</a>. This network was an
 attempt at building even deeper networks and uses small <span class="math">\(3\times3\)</span>
@@ -1353,13 +1311,11 @@ error.</p>
 <li><p>He et al. (2016)</p></li>
 </ol>
 </blockquote>
-<div class="figure">
-<img alt="Schematic of a ResNet block. The block contains a :math:`1\times1`, :math:`3\times3`, and :math:`1\times1` convolution with ReLU activation. The output is concatenated with the input and passed through another ReLU activation function." id="bookchapter-fig-resnet" src="../images/resnet.png"><p class="caption">Schematic of a ResNet block. The block contains a <span class="math">\(1\times1\)</span>,
+<figure><img alt="Schematic of a ResNet block. The block contains a :math:`1\times1`, :math:`3\times3`, and :math:`1\times1` convolution with ReLU activation. The output is concatenated with the input and passed through another ReLU activation function." id="bookchapter-fig-resnet" src="../images/resnet.png"><figcaption><p>Schematic of a ResNet block. The block contains a <span class="math">\(1\times1\)</span>,
 <span class="math">\(3\times3\)</span>, and <span class="math">\(1\times1\)</span> convolution with ReLU
 activation. The output is concatenated with the input and passed
 through another ReLU activation function.</p>
-</div>
-<p>The developments and successes in image classification on benchmark
+</figcaption></figure><p>The developments and successes in image classification on benchmark
 competitions like ImageNet and Pascal-VOC inspired applications in
 automatic seismic interpretation. These networks are usually single
 image classifiers using convolutional neural networks (CNNs). The first
@@ -1410,15 +1366,13 @@ architectures like VGG-16 with 138 million parameters. Essentially,
 enabling models that are ten times as deep with less than half the
 parameters, and significantly better accuracy on image benchmark
 problems.</p>
-<div class="figure">
-<img alt="Schematic of Unet architecture. Convolutional layers are followed by a downsampling operation in the encoder. The central bottleneck contains a compressed representation of the input data. The decoder contains upsampling operations followed by convolutions. The last layer is commonly a softmax layer to provide classes. Equally sized layers are connected via shortcut connections." id="bookchapter-fig-unet" src="../images/unet.png"><p class="caption">Schematic of Unet architecture. Convolutional layers are followed by
+<figure><img alt="Schematic of Unet architecture. Convolutional layers are followed by a downsampling operation in the encoder. The central bottleneck contains a compressed representation of the input data. The decoder contains upsampling operations followed by convolutions. The last layer is commonly a softmax layer to provide classes. Equally sized layers are connected via shortcut connections." id="bookchapter-fig-unet" src="../images/unet.png"><figcaption><p>Schematic of Unet architecture. Convolutional layers are followed by
 a downsampling operation in the encoder. The central bottleneck
 contains a compressed representation of the input data. The decoder
 contains upsampling operations followed by convolutions. The last
 layer is commonly a softmax layer to provide classes. Equally sized
 layers are connected via shortcut connections.</p>
-</div>
-<p>In 2018 the seismic contractor TGS made a seismic interpretation
+</figcaption></figure><p>In 2018 the seismic contractor TGS made a seismic interpretation
 challenge available on the data science competition platform Kaggle.
 Successful participants in the competition combined ResNet architectures
 with the Unet architecture as their base architecture and modified these
@@ -1447,9 +1401,7 @@ U-net architecture originally is relatively shallow, but was modified to
 contain a modified ResNet for the Kaggle salt identification challenge
 instead (Babakhin, Sanakoyeu, and Kitamura 2019a). Overall, serving as
 examples for the flexibility of neural networks.</p>
-</div>
-<div class="section" id="generative-adversarial-networks">
-<h4>Generative Adversarial Networks</h4>
+</section><section id="generative-adversarial-networks"><h4>Generative Adversarial Networks</h4>
 <p>Generative adversarial networks (GAN) take composition of neural network
 to another level, where two networks are trained in aggregate to get a
 desired result. In GANs, a generator network <span class="math">\(G\)</span> and a
@@ -1498,9 +1450,7 @@ and Elsheikh 2017), which was subsequently extended with the capability
 to be conditioned on physical measurements (Dupont et al. 2018).
 Naturally, GANs were applied to the growing field of automatic seismic
 interpretation (P. Lu et al. 2018).</p>
-</div>
-<div class="section" id="recurrent-neural-network-architectures">
-<h4>Recurrent Neural Network Architectures</h4>
+</section><section id="recurrent-neural-network-architectures"><h4>Recurrent Neural Network Architectures</h4>
 <p>The final type of architecture applied in geoscience is recurrent neural
 networks (RNN). In contrast to all previous architectures, recurrent
 neural networks feed back into themselves. There are many types of RNNs,
@@ -1518,12 +1468,10 @@ state. Finally, the output gate regulates the direct contribution of the
 input value to the output value combined with the internal state of the
 cell. Additionally, a peephole functionality helps with the training
 that serves as a shortcut between inputs and gates.</p>
-<div class="figure">
-<img alt="Schematic of LSTM architecture. The input data is processed together with the hidden state and cell state. The LSTM avoid the exploding gradient problem by implemented a input, forget, and output gate." id="bookchapter-fig-lstm" src="../images/lstm.png"><p class="caption">Schematic of LSTM architecture. The input data is processed together
+<figure><img alt="Schematic of LSTM architecture. The input data is processed together with the hidden state and cell state. The LSTM avoid the exploding gradient problem by implemented a input, forget, and output gate." id="bookchapter-fig-lstm" src="../images/lstm.png"><figcaption><p>Schematic of LSTM architecture. The input data is processed together
 with the hidden state and cell state. The LSTM avoid the exploding
 gradient problem by implemented a input, forget, and output gate.</p>
-</div>
-<p>A classic application of LSTMs is text analysis and natural language
+</figcaption></figure><p>A classic application of LSTMs is text analysis and natural language
 understanding, which has been applied to geological relation extraction
 from unstructured text documents (Luo et al. 2017; Blondelle et al.
 2017). Due to the nature of LSTMs being suited for time series data, it
@@ -1560,15 +1508,7 @@ can introduce an implicit bias into the network (Wirgin 2004; Kim et al.
 2019). Nevertheless, particularly this blackbox property of machine
 learning model makes them versatile and powerful tools that were
 leveraged in every subdiscipline of the Earth sciences.</p>
-</div>
-<div class="section" id="the-state-of-machine-learning-on-geoscience">
-<h4>The State of machine learning on Geoscience</h4>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">&lt;string&gt;</span>, line 1711)</p>
-<p>Title underline too short.</p>
-<pre class="literal-block">The State of machine learning on Geoscience
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</pre>
-</div>
+</section><section id="the-state-of-machine-learning-on-geoscience"><h4>The State of machine learning on Geoscience</h4>
 <p>Overall, geoscience and especially geophysics has followed developments
 in machine learning closely. Across disciplines, machine learning
 methods have been applied to various problems that can generally be
@@ -1623,12 +1563,10 @@ meta-analysis article, is commonly done in medicine and considered a
 gold-standard study, and would greatly benefit the geoscientific
 community to determine the efficacy of algorithms on sets of similar
 problems.</p>
-<div class="figure">
-<img alt="Bibliometry of 242 papers in Machine Learning for Geoscience per year. Search terms include variations of machine learning terms and geoscientific subdisciplines but exclude remote sensing and kriging." id="bookchapter-fig-number-papers" src="../images/Papers.png"><p class="caption">Bibliometry of 242 papers in Machine Learning for Geoscience per
+<figure><img alt="Bibliometry of 242 papers in Machine Learning for Geoscience per year. Search terms include variations of machine learning terms and geoscientific subdisciplines but exclude remote sensing and kriging." id="bookchapter-fig-number-papers" src="../images/Papers.png"><figcaption><p>Bibliometry of 242 papers in Machine Learning for Geoscience per
 year. Search terms include variations of machine learning terms and
 geoscientific subdisciplines but exclude remote sensing and kriging.</p>
-</div>
-<p>Analogous to the medical field, obtaining accurate ground truth data, is
+</figcaption></figure><p>Analogous to the medical field, obtaining accurate ground truth data, is
 often impossible and usually expensive. Geological ground truth data for
 seismic data is usually obtained through expert interpreters.
 Quantifying the uncertainty of these interpretations is an active field
@@ -1680,7 +1618,7 @@ yield criterion, could be used to build a surrogate logistic regression.
 The resulting surrogate or baseline model outperforms the deep network
 and overfits less. Moreover, replacing the ~13,000 parameter model with
 the two-parameter baseline model increases calculation speed, which is
-essential in aftershock forecasting and disaster response <a class="footnote-reference brackets" href="#id6" id="id3">3</a>. More
+essential in aftershock forecasting and disaster response <a class="brackets" href="#footnote-3" id="footnote-reference-3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>. More
 generally, this is an example where data science practices such as model
 validation, baseline models, and preventing data leakage and overfitting
 become increasingly important when the tools of applying machine
@@ -1821,11 +1759,7 @@ unprecedented applications in geoscience. Overall, applied machine
 learning has matured into an established tool in computational
 geoscience and has the potential to provide further insights into the
 theory of geoscience itself.</p>
-</div>
-</div>
-</div>
-<div class="section" id="contributions-of-this-study">
-<h2>Contributions of this Study</h2>
+</section></section></section><section id="contributions-of-this-study"><h2>Contributions of this Study</h2>
 <p>This chapter provides the basic principles in 4D seismic and an overview
 of machine learning in geoscience in the last 70 years. This lays the foundation for
 the applications outlined in the following chapters that use convolutional neural networks on
@@ -1833,31 +1767,28 @@ seismic data, as well as dnns on seismic maps. Specialized theory and
 methods are introduced in their respective chapters. The work in this
 chapter resulted in a review book chapter (Jesper Sören Dramsch 2020c)
 with the code available in (Jesper Sören Dramsch 2020a).</p>
-<dl class="footnote brackets">
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd>
+<aside class="footnote-list brackets"><aside class="footnote brackets" id="footnote-1" role="doc-footnote"><span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#footnote-reference-1">1</a><span class="fn-bracket">]</span></span>
 <p>The author of this manuscript has a background in geophysics,
 exploration geoscience, and active source 4D seismic. While this
 skews the expertise, they attempt to give a full overview over
 developments in all of geoscience with the minimum amount of bias
 possible.</p>
-</dd>
-<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd>
+</aside><aside class="footnote brackets" id="footnote-2" role="doc-footnote"><span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#footnote-reference-2">2</a><span class="fn-bracket">]</span></span>
 <p>Deprecated 2019</p>
-</dd>
-<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
-<dd>
+</aside><aside class="footnote brackets" id="footnote-3" role="doc-footnote"><span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#footnote-reference-3">3</a><span class="fn-bracket">]</span></span>
 <p>All authors point out the potential in deep and machine learning
 research in geoscience regardless and do not wish to stifle such
 research.(Shah and Innig 2019; Mignan and Broccardo 2019b)</p>
-</dd>
-</dl>
+</aside></aside></section>
 </div>
-</div>
-    </div>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
 MathJax.Hub.Config({
+    TeX: {
+    extensions: ["color.js", "boldsymbol.js", "AMSmath.js", "AMSsymbols.js"],
+    Macros: {
+        bm: ["f{#1}",1]
+    }
+    },
     tex2jax: {
         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
         displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{equation}", "\\end{equation}"] ],
@@ -1867,6 +1798,10 @@ MathJax.Hub.Config({
     "HTML-CSS": {
         styles: {'.MathJax_Display': {"margin": 0}}
     }
+});
+MathJax.Hub.Register.StartupHook("TeX color Ready", function() {
+     MathJax.Extension["TeX/color"].colors["red"] = '#B86CBA';
+     MathJax.Extension["TeX/color"].colors["cyan"] = '#6CBAB8';
 });
 </script></article>
 </div>

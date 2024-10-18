@@ -6,12 +6,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Machine Learning Geoscience · Transfer Learning in Automatic Seismic Interpretation </title>
 <link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700%7CAbril+Fatface">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 <meta content="#5670d4" name="theme-color">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
 <link rel="canonical" href="https://dramsch.net/phd/transfer-learning-in-automatic-seismic-interpretation/">
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
+    TeX: {
+    extensions: ["color.js", "boldsymbol.js", "AMSmath.js", "AMSsymbols.js"],
+    Macros: {
+        bm: ["f{#1}",1]
+    }
+    },
     tex2jax: {
         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
         displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{equation}", "\\end{equation}"] ],
@@ -21,6 +27,10 @@ MathJax.Hub.Config({
     "HTML-CSS": {
         styles: {'.MathJax_Display': {"margin": 0}}
     }
+});
+MathJax.Hub.Register.StartupHook("TeX color Ready", function() {
+     MathJax.Extension["TeX/color"].colors["red"] = '#B86CBA';
+     MathJax.Extension["TeX/color"].colors["cyan"] = '#6CBAB8';
 });
 </script><!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><meta name="author" content="Jesper S Dramsch">
 </head>
@@ -59,7 +69,7 @@ MathJax.Hub.Config({
     
     
     </nav><footer id="footer"><span class="copyright">
-              Contents © 2021         <a href="https://dramsch.net">Jesper S Dramsch</a>
+              Contents © 2024         <a href="https://dramsch.net">Jesper S Dramsch</a>
             </span>
             
             
@@ -72,19 +82,11 @@ MathJax.Hub.Config({
 
         
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <div>
-<table>
-<colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 51%">
-</colgroup>
-<tbody>
+    <table><tbody>
 <tr>
-<td><p><a class="reference external" href="../2018.4.pdf"><img alt="image5" src="https://img.shields.io/badge/PDF-Download-important"></a></p></td>
-<td><p><a class="reference external" href="https://github.com/JesperDramsch/segam18"><img alt="image6" src="https://img.shields.io/github/repo-size/JesperDramsch/segam18"></a></p></td>
-<td><p><a class="reference external" href="https://doi.org/10.6084/m9.figshare.7301645.v1"><img alt="image7" src="https://img.shields.io/badge/talk-presentation-informational"></a></p></td>
+<td><p><a class="reference external image-reference" href="../2018.4.pdf"><img alt="image5" src="https://img.shields.io/badge/PDF-Download-important"></a></p></td>
+<td><p><a class="reference external image-reference" href="https://github.com/JesperDramsch/segam18"><img alt="image6" src="https://img.shields.io/github/repo-size/JesperDramsch/segam18"></a></p></td>
+<td><p><a class="reference external image-reference" href="https://doi.org/10.6084/m9.figshare.7301645.v1"><img alt="image7" src="https://img.shields.io/badge/talk-presentation-informational"></a></p></td>
 <td><p><img alt="image8" src="https://img.shields.io/badge/license-MIT-green"></p></td>
 </tr>
 <tr>
@@ -98,8 +100,7 @@ Society of Exploration Geophysicists.</p></td>
 <tr>
 <td colspan="4"><p>Github: <a class="reference external" href="https://github.com/JesperDramsch/segam18">https://github.com/JesperDramsch/segam18</a></p></td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <hr class="docutils">
 <p>This chapter discusses transfer learning in asi. Transfer learning is a
 technique that uses a dnns pre-trained on a different data set that is
@@ -110,7 +111,7 @@ where data is expensive and difficult to acquire, labelling by experts
 is complicated and prone to bias (Bond et al. 2007), and often only
 available within commercial environments. In (Jesper Sören Dramsch and
 Lüthje 2018b) we show that sotas convolutional neural networks pre-trained on a natural image
-data set (ImageNet, cf. <a class="reference external" href="#book:dl">11.2.2.4</a>) can be transferred to
+data set (ImageNet, cf. <a class="reference external" href="#book:dl">2.2.2.4</a>) can be transferred to
 perform asi. This paper forms the central contribution of this chapter.</p>
 <p>In the computer vision community, hand-labelled data sets like ImageNet,
 CIFAR, and PASCAL-VOC are openly available, which catalyzed the
@@ -185,21 +186,19 @@ Liu et al. 2019) and rl (Yu et al. 2019).</p>
 network would lose signal with increasing depth, named vanishing
 gradient problem (Hochreiter 1998). This vanishing gradient problem led
 to the limitation of VGG at 19 layers; this is detailed further in
-<a class="reference external" href="#ssec:cnnarch">11.2.2.6</a>. Residual blocks introduced a solution to
+<a class="reference external" href="#ssec-cnnarch">2.2.2.6</a>. Residual blocks introduced a solution to
 this problem by implementing a shortcut between the original data and
-the output from the block. <a class="reference external" href="#bookchapter:fig:resnet">11.14</a> presents
+the output from the block. <a class="reference external" href="#bookchapter-fig-resnet">Chapter 2.14</a> presents
 the original ResNet block architecture, which was used in ResNet-50 and
-ResNet-101 in <a class="reference external" href="#fig:cnnsota">13.1</a> (K. He et al. 2016). Details on
+ResNet-101 in <a class="reference external" href="#fig-cnnsota">Figure 4.1</a> (K. He et al. 2016). Details on
 ResNet blocks differ, the main take-away being the sum or concatenation
 of the original data with the block output. DenseNets (G. Huang et al.
 2017) and Inception-style networks (Szegedy et al. 2015) are other
 approaches to build deeper neural networks.</p>
-<div class="figure">
-<img alt="Top-5 Accuracies of Neural Architectures on ImageNet plotted against Million Parameters, color-coded to similar network type. Data and references shown in `[tab:imagenet-sota] &lt;#tab:imagenet-sota&gt;`__" id="fig-cnnsota" src="../images/imagenetsota.png" style="width: 110.0%;"><p class="caption">Top-5 Accuracies of Neural Architectures on ImageNet plotted against
+<figure><img alt="Top-5 Accuracies of Neural Architectures on ImageNet plotted against Million Parameters, color-coded to similar network type. Data and references shown in `[tab:imagenet-sota] &lt;#tab:imagenet-sota&gt;`__" id="fig-cnnsota" src="../images/imagenetsota.png" style="width: 110.0%;"><figcaption><p>Top-5 Accuracies of Neural Architectures on ImageNet plotted against
 Million Parameters, color-coded to similar network type. Data and
 references shown in <a class="reference external" href="#tab:imagenet-sota">[tab:imagenet-sota]</a></p>
-</div>
-<p><a class="reference external" href="#fig:cnnsota">13.1</a> additionally contains several classes of neural network
+</figcaption></figure><p><a class="reference external" href="#fig-cnnsota">Figure 4.1</a> additionally contains several classes of neural network
 architectures, namely AmoebaNet, NASNet, and EfficientNet. These
 categories are a more recent development in neural architecture
 research, based on nas, which automates the search for novel
@@ -222,26 +221,25 @@ resolution-scaling of deep neural networks using a single scaling
 parameter.</p>
 <p>VGG-16 and ResNet-52 are two network architectures that are used in the
 paper in this chapter. These can be identified in
-<a class="reference external" href="#fig:cnnsota">13.1</a>. The performance of both models in the Top-5
+<a class="reference external" href="#fig-cnnsota">Figure 4.1</a>. The performance of both models in the Top-5
 accuracy on ImageNet is comparable, while the number of parameters
 vastly differ. VGG-16 contains 138 million parameters, while ResNet- 52
 contains 23 million parameters, the VGG-16 network is, however, 16
 layers deep, while Resnet-52 contains 52 layers. These networks are
 compared to the end-to-end trained convolutional neural network built by Anders Waldeland and
 Solberg (2016).</p>
-<div class="section" id="training-and-fine-tuning">
-<h2>Training and Fine-Tuning</h2>
+<section id="training-and-fine-tuning"><h2>Training and Fine-Tuning</h2>
 <p>The training of the three networks in this chapter, namely Waldeland
 CNN, VGG-16, and Resnet-52, requires different strategies to obtain
 optimal results. The Waldeland convolutional neural network is end-to-end trained on the training
 data. The VGG-16 and ResNet-52 are fine-tuned with pre-trained weights,
 which require a lower learning rate and fixing the weights in parts of
 the network. The networks are trained with the categorical cross-entropy
-loss discussed in <a class="reference external" href="#eq:crossentropy">[eq:crossentropy]</a>. The
+loss discussed in <a class="reference external" href="#eq-crossentropy">equation [crossentropy]</a>. The
 categorical cross-entropy enables training on multi-class labels by
 optimizing the multi-variate negative log-likelihood. It is reprinted
 here for convenience:</p>
-<div class="math">
+<div class="math" id="eq-crossentropy">
 \begin{equation*}
 CE = - \sum\limits^C_j y_j \log{\left(o_{j}\right)}
 \end{equation*}
@@ -263,31 +261,20 @@ stop the training when the validation loss and validation accuracy
 deteriorate. This avoids overfitting of the network, which is
 particularly essential when fine-tuning an over-parametrized network to
 smaller-scale data.</p>
-<div class="section" id="end-to-end-convolutional-neural-network-training">
-<h3>End-to-End convolutional neural network training</h3>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">&lt;string&gt;</span>, line 193)</p>
-<p>Title underline too short.</p>
-<pre class="literal-block">End-to-End convolutional neural network training
-~~~~~~~~~~~~~~~~~~~~~~~</pre>
-</div>
+<section id="end-to-end-convolutional-neural-network-training"><h3>End-to-End convolutional neural network training</h3>
 <p>The training of the Waldeland convolutional neural network is trained end-to-end. The optimizer
 for the Waldeland convolutional neural network is the Adam optimizer (Diederik P. Kingma and Ba
 2014) with a learning rate of <span class="math">\(0.001\)</span>, the decay of first-order
 moments of <span class="math">\(\beta_1=0.9\)</span>, and second-order moments of
 <span class="math">\(\beta_2=0.999\)</span>.</p>
-<div class="figure">
-<img alt="Accuracy and Categorical Cross Entropy for Waldeland convolutional neural network" id="fig-waldeland-loss" src="../images/waldeland-loss.png"><p class="caption">Accuracy and Categorical Cross Entropy for Waldeland convolutional neural network</p>
-</div>
-<p><a class="reference external" href="#fig:waldeland-loss">13.2</a> shows the training loss of end-to-end
+<figure><img alt="Accuracy and Categorical Cross Entropy for Waldeland convolutional neural network" id="fig-waldeland-loss" src="../images/waldeland-loss.png"><figcaption><p>Accuracy and Categorical Cross Entropy for Waldeland convolutional neural network</p>
+</figcaption></figure><p><a class="reference external" href="#fig-waldeland-loss">Figure 4.2</a> shows the training loss of end-to-end
 training. The accuracy shows that the network very quickly reaches 100%
 accuracy on the training data while performing close to perfect on the
 test set. The training is stopped after ten epochs. The loss shows that
 the model starts overfitting at epoch 7. A dataset with more diverse
 labels and samples would improve this situation.</p>
-</div>
-<div class="section" id="fine-tuning-pre-trained-networks">
-<h3>Fine-Tuning Pre-Trained Networks</h3>
+</section><section id="fine-tuning-pre-trained-networks"><h3>Fine-Tuning Pre-Trained Networks</h3>
 <p>Pre-trained networks were trained on a dataset and made available by the
 researchers and companies, including weights and biases. These are often
 trained on large corpuses of data. In computer vision, classically
@@ -304,35 +291,21 @@ The learning rate for the sgd is set to <span class="math">\(0.0001\)</span>, wi
 of <span class="math">\(0.9\)</span>. Additionally, a learning rate schedule is implemented
 that updates the learning rate (lr) according to
 <span class="math">\(lr(t) = 0.0001 \cdot \left( 1 + 10^{-6} \cdot t \right)^{-1}\)</span>.</p>
-<div class="figure">
-<img alt="Accuracy and Categorical Cross Entropy for VGG16 convolutional neural network" id="fig-vgg-loss" src="../images/vgg-loss.png"><p class="caption">Accuracy and Categorical Cross Entropy for VGG16 convolutional neural network</p>
-</div>
-<p>The VGG-16 network quickly converges to 100% accuracy, the loss, however
+<figure><img alt="Accuracy and Categorical Cross Entropy for VGG16 convolutional neural network" id="fig-vgg-loss" src="../images/vgg-loss.png"><figcaption><p>Accuracy and Categorical Cross Entropy for VGG16 convolutional neural network</p>
+</figcaption></figure><p>The VGG-16 network quickly converges to 100% accuracy, the loss, however
 smoothly converges towards a cross-entropy of <span class="math">\(0.1\)</span>. The network
 does not show signs of overfitting and trains the full 20 epochs. With
 the available hardware at the time of writing the paper and the good
 results despite possibly increasing the convergence.</p>
-<div class="figure">
-<img alt="Accuracy and Categorical Cross Entropy for ResNet52 convolutional neural network" id="fig-resnet-loss" src="../images/resnet-loss.png"><p class="caption">Accuracy and Categorical Cross Entropy for ResNet52 convolutional neural network</p>
-</div>
-<p>The ResNet-52 network immediately reports a training accuracy of close
+<figure><img alt="Accuracy and Categorical Cross Entropy for ResNet52 convolutional neural network" id="fig-resnet-loss" src="../images/resnet-loss.png"><figcaption><p>Accuracy and Categorical Cross Entropy for ResNet52 convolutional neural network</p>
+</figcaption></figure><p>The ResNet-52 network immediately reports a training accuracy of close
 to 100% while the test data report 11% accuracy, which is a performance
 equivalent to random chance on this dataset containing nine classes. The
-loss in <a class="reference external" href="#fig:resnet-loss">13.4</a> shows the same problem of a
+loss in <a class="reference external" href="#fig-resnet-loss">Figure 4.4</a> shows the same problem of a
 massively overfit network. For this reason, the network predictions were
 not displayed in the paper in this chapter.</p>
-</div>
-</div>
-<div class="section" id="conference-paper-deep-learning-seismic-facies-on-state-of-the-art-convolutional-neural-network-architectures">
-<h2>Conference Paper: Deep learning seismic facies on state of the art convolutional neural network architectures</h2>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">&lt;string&gt;</span>, line 261)</p>
-<p>Title underline too short.</p>
-<pre class="literal-block">Conference Paper: Deep learning seismic facies on state of the art convolutional neural network architectures
-------------------------------------------------------------------------------------</pre>
-</div>
-<div class="section" id="introduction">
-<span id="introduction-1"></span><h3>Introduction</h3>
+</section></section><section id="conference-paper-deep-learning-seismic-facies-on-state-of-the-art-convolutional-neural-network-architectures"><h2>Conference Paper: Deep learning seismic facies on state of the art convolutional neural network architectures</h2>
+<section id="introduction"><span id="introduction-1"></span><h3>Introduction</h3>
 <p>Seismic interpretation is often dependent on the interpreters experience
 and knowledge. While deep learning cannot replace expert knowledge, we
 explore the accuracy of convolutional networks in interpreting seismic
@@ -372,16 +345,14 @@ interpretation. We compare three convolutional neural networks of
 increasing complexity in the task of supervised automatic seismic
 interpretation. We evaluate these tasks qualitatively and
 quantitatively.</p>
-</div>
-<div class="section" id="methods">
-<h3>Methods</h3>
+</section><section id="methods"><h3>Methods</h3>
 <p>The neural networks in this study learn supervised. The features were
 published alongside the open source framework MalenoV and describe nine
 seismic facies in the open F3 data set. The classes describe steep
 dipping reflectors, salt intrusions, low coherency regions, low
 amplitude dipping reflectors, high amplitude regions continuous high
 amplitude regions and grizzly amplitude patterns presented in
-figure <a class="reference external" href="#transfer:fig:labels">13.7</a>. Additionally, a catch-all “else”
+<a class="reference external" href="#transfer-fig-labels">Figure 4.7</a>. Additionally, a catch-all “else”
 region are picked. In this approach we chose Keras (Chollet and others
 2015a) with a Tensorflow (Abadi et al. 2015a) backend on a K5200 GPU at
 DHRTC. Keras is a high level abstraction of tensor arithmetics.
@@ -389,7 +360,7 @@ Tensorflow is an open source numerical computation library on static
 graphs. We train 2D convolutional neural networks (CNN) of varying depth
 on seismic slices to propagate single slice interpretations to a volume.
 CNNs are highly flexible models for computer vision tasks.</p>
-<p>Network one depicted in figure <a class="reference external" href="#transfer:fig:waldelandcnn">13.5</a> was
+<p>Network one depicted in <a class="reference external" href="#transfer-fig-waldelandcnn">Figure 4.5</a> was
 developed by (Anders Waldeland and Solberg 2016) to identify salt bodies
 in 3D seismic data. Three layers are fully connected for classification.
 The network uses a kernel of 5 by 5 pixels for convolution and a stride
@@ -403,25 +374,20 @@ overfitting the model by over-training. We chose two metrics to monitor
 in the training and validation sets, namely mean absolute error and
 accuracy. The Waldeland convolutional neural network is relatively shallow compared to modern
 deep learning networks with 95,735 parameters to optimize for.</p>
-<div class="figure">
-<img alt="Waldeland convolutional neural network architecture. Input at the Top. Softmax Classification Layer on bottom. Width of objects shows ``log`` of spatial extent of layer. Height shows ``log`` of complexity of layer. The layers are color coded to show similar purpose." id="transfer-fig-waldelandcnn" src="../images/waldeland_complexity.png"><p class="caption">Waldeland convolutional neural network architecture. Input at the Top. Softmax Classification
+<figure><img alt="Waldeland convolutional neural network architecture. Input at the Top. Softmax Classification Layer on bottom. Width of objects shows ``log`` of spatial extent of layer. Height shows ``log`` of complexity of layer. The layers are color coded to show similar purpose." id="transfer-fig-waldelandcnn" src="../images/waldeland_complexity.png"><figcaption><p>Waldeland convolutional neural network architecture. Input at the Top. Softmax Classification
 Layer on bottom. Width of objects shows <code class="docutils literal">log</code> of spatial extent of
 layer. Height shows <code class="docutils literal">log</code> of complexity of layer. The layers are
 color coded to show similar purpose.</p>
-</div>
-<p>Network two is the VGG16 network (Simonyan and Zisserman 2014b) by the
+</figcaption></figure><p>Network two is the VGG16 network (Simonyan and Zisserman 2014b) by the
 Visual Geometry Group. It contains 16 layers and 1,524,2605 parameters.
 13 of these layers ore convolutional layers with a 3x3 kernel.
 Convolutional blocks are interspersed with max-pooling layers for
 down-sampling. The last three layers are fully connected layers for
 classification. The VGG16 architecture was proposed for the ImageNet
-challenge in 2013. It is widely used for it’s simplicity in teaching and
+challenge in 204. It is widely used for it’s simplicity in teaching and
 it’s generalizability in transfer learning tasks.</p>
-<div class="figure">
-<img alt="VGG16 architecture. Same visualization as figure `13.5 &lt;#transfer:fig:waldelandcnn&gt;`__" id="transfer-fig-vgg" src="../images/vgg.png"><p class="caption">VGG16 architecture. Same visualization as
-figure <a class="reference external" href="#transfer:fig:waldelandcnn">13.5</a></p>
-</div>
-<p>Network three is the ResNet50 architecture by Microsoft. The network
+<figure><img alt="VGG16 architecture. Same visualization as" id="transfer-fig-vgg" src="../images/vgg.png"><figcaption><p>VGG16 architecture. Same visualization as <a class="reference external" href="#transfer-fig-waldelandcnn">Figure 4.5</a></p>
+</figcaption></figure><p>Network three is the ResNet50 architecture by Microsoft. The network
 consists of 50 layers with 2,361,6569 parameters. It implements a recent
 development, called residual blocks. These residual blocks add a skip-
 or identity-connection around a stack of 1x1, 3x3, 1x1 convolutional
@@ -452,42 +418,75 @@ prediction pipeline to populate each one 2D inline and crossline of the
 seismic data to qualitatively visualize the prediction capability of the
 networks. The labels for the supervised interpretation are taken from
 the MalenoV interpretation by ConocoPhillips, shown in
-figure <a class="reference external" href="#transfer:fig:labels">13.7</a>.</p>
+<a class="reference external" href="#transfer-fig-labels">Figure 4.7</a>.</p>
 <div class="docutils container" id="tab-scores">
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<span class="docutils literal">&lt;string&gt;</span>, line 411)</p>
-<p>Error parsing content block for the "table" directive: exactly one table expected.</p>
-<pre class="literal-block">.. table:: Training and Test scores on Networks. Test scores are prediction results on a labeled hold-out data set. Mismatch of test and training scores indicates over-fitting.
-
-   ============= ======== ====== ===== ======
-   Network       Run      Loss   MAE   Acc
-   ============= ======== ====== ===== ======
-   Waldeland convolutional neural network Training 0.001  0.000 100.0%
-                 Test     0.003  0.000 99.9%
-   VGG16         Training 0.010  0.005 99.8%
-                 Test     0.127  0.026 100.0%
-   ResNet50      Training 0.011  0.001 100.0%
-                 Test     14.166 0.195 12.1%
-
-   ============= ======== ====== ===== ======</pre>
+<table>
+<caption>Training and Test scores on Networks. Test scores are prediction results on a labeled hold-out data set. Mismatch of test and training scores indicates over-fitting.</caption>
+<thead><tr>
+<th class="head"><p>Network</p></th>
+<th class="head"><p>Run</p></th>
+<th class="head"><p>Loss</p></th>
+<th class="head"><p>MAE</p></th>
+<th class="head"><p>Acc</p></th>
+</tr></thead>
+<tbody>
+<tr>
+<td><p>Waldeland CNN</p></td>
+<td><p>Training</p></td>
+<td><p>0.001</p></td>
+<td><p>0.000</p></td>
+<td><p>100.0%</p></td>
+</tr>
+<tr>
+<td></td>
+<td><p>Test</p></td>
+<td><p>0.003</p></td>
+<td><p>0.000</p></td>
+<td><p>99.9%</p></td>
+</tr>
+<tr>
+<td><p>VGG16</p></td>
+<td><p>Training</p></td>
+<td><p>0.010</p></td>
+<td><p>0.005</p></td>
+<td><p>99.8%</p></td>
+</tr>
+<tr>
+<td></td>
+<td><p>Test</p></td>
+<td><p>0.127</p></td>
+<td><p>0.026</p></td>
+<td><p>100.0%</p></td>
+</tr>
+<tr>
+<td><p>ResNet50</p></td>
+<td><p>Training</p></td>
+<td><p>0.011</p></td>
+<td><p>0.001</p></td>
+<td><p>100.0%</p></td>
+</tr>
+<tr>
+<td></td>
+<td><p>Test</p></td>
+<td><p>14.166</p></td>
+<td><p>0.195</p></td>
+<td><p>12.1%</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-</div>
-<div class="figure">
-<img alt="Labeled data set on one 2D inline slice. Color interpretation: Low coherency (brown), Steep dipping reflectors (gray), low amplitude dipping reflectors (grass green), continuous high amplitude regions (blue), grizzly (orange), low amplitude (yellow), high amplitude (magenta), salt intrusions (gray), else (turquoise)." id="transfer-fig-labels" src="../images/label.png"><p class="caption">Labeled data set on one 2D inline slice. Color interpretation: Low
+<figure><img alt="Labeled data set on one 2D inline slice. Color interpretation: Low coherency (brown), Steep dipping reflectors (gray), low amplitude dipping reflectors (grass green), continuous high amplitude regions (blue), grizzly (orange), low amplitude (yellow), high amplitude (magenta), salt intrusions (gray), else (turquoise)." id="transfer-fig-labels" src="../images/label.png"><figcaption><p>Labeled data set on one 2D inline slice. Color interpretation: Low
 coherency (brown), Steep dipping reflectors (gray), low amplitude
 dipping reflectors (grass green), continuous high amplitude regions
 (blue), grizzly (orange), low amplitude (yellow), high amplitude
 (magenta), salt intrusions (gray), else (turquoise).</p>
-</div>
-</div>
-<div class="section" id="results">
-<h3>Results</h3>
+</figcaption></figure></section><section id="results"><h3>Results</h3>
 <p>We use the open Dutch F3 data set to calibrate our predictions.
 Crossline 339 has been interpreted by ConocoPhillips and made available
 freely. We show results of crossline slice 500. We have used the same
 plotting parameters for both either results, both have been generated
 programatically, without human intervention.
-Figure <a class="reference external" href="#transfer:fig:predi">[transfer:fig:predi]</a> shows the
+<a class="reference external" href="#transfer-fig-predi">Figure 4.8 (a)</a> shows the
 prediction of the Waldeland convolutional neural network at every location of the 2D slice based
 on a 65 x 65 patch of the data. Border patches were zero padded. We see
 clear patches for the low coherency region in brown. The low amplitude
@@ -510,9 +509,9 @@ between grizzly and salt with "else" interspersed. However, the edges
 will often give problems due to the padding. Around location 800 high
 amplitudes (orange) have been mislabeled as grizzly amplitudes.</p>
 <p>The VGG16 network classification is shown in
-figure <a class="reference external" href="#transfer:fig:vggpredi">[transfer:fig:vggpredi]</a>. The network
+<a class="reference external" href="#transfer-fig-vggpredi">Figure 4.8 (b)</a>. The network
 performs similar to the Waldeland convolutional neural network in
-figure <a class="reference external" href="#transfer:fig:predi">[transfer:fig:predi]</a>, however some key
+<a class="reference external" href="#transfer-fig-predi">Figure 4.8 (a)</a>, however some key
 differences will be pointed out. The separation of low coherency and the
 "else" region around <span class="math">\(t\approx400~\text{ms}\)</span> is less defined and,
 therefore, worse. The coherency of low amplitude dipping (grass green)
@@ -530,17 +529,29 @@ interpretation. It is present toward the bottom left corner.</p>
 <p>The results of the ResNet50 are not shown. The network classifies all
 seismic facies as "else". This indicates that the network is overfitting
 the data. This is supported by the numeric results presented in
-table <a class="reference external" href="#tab:scores">13.1</a>. The network training error indicates a
+table <a class="reference external" href="#tab:scores">Figure 4.1</a>. The network training error indicates a
 perfect fit to the data, whereas the test score is unseen data with
 labels to evaluate the performance of networks on unseen data. While
 both the Waldeland convolutional neural network and VGG16 perform well, the ResNet50 performs
 very poorly.</p>
-<div class="line-block">
-<div class="line"><br></div>
-</div>
-</div>
-<div class="section" id="conclusion">
-<h3>Conclusion</h3>
+<table class="borderless" id="transfer-fig-preds" style="width: 100%;"><tbody>
+<tr>
+<td>
+<figure><img alt="Waldeland CNN interpretation of crossline 500." id="transfer-fig-predi" src="../images/pred1_i.png" style="width: 100%;"></figure><ol class="loweralpha simple">
+<li><p>Waldeland CNN interpretation of crossline 500.</p></li>
+</ol>
+</td>
+</tr>
+<tr>
+<td>
+<figure><img alt="VGG16 interpretation of crossline 500." id="transfer-fig-vggpredi" src="../images/vgg1_i.png" style="width: 100%;"></figure><ol class="loweralpha simple" start="2">
+<li><p>VGG16 interpretation of crossline 500.</p></li>
+</ol>
+</td>
+</tr>
+</tbody></table>
+<p>Figure 4.8: Automatic seismic interpretation with CNNs. Color interpretation: Low coherency (brown), Steep dipping reflectors (gray), low amplitude dipping reflectors (grass green), continuous high amplitude regions (blue), grizzly (orange), low amplitude (yellow), high amplitude (magenta), salt intrusions (gray), else (turquoise).</p>
+</section><section id="conclusion"><h3>Conclusion</h3>
 <p>Convolutional neural networks show good results for propagating
 interpretations through seismic cubes. The pre-trained VGG16 convolutional neural network has
 shown very good results in adapting to seismic texture identification.
@@ -555,9 +566,7 @@ the VGG learned features prove to be more general to computer vision
 tasks. More complicated architectures may perform well, trained directly
 with the according data, but they learn specific features fit for the
 problem space that do not transfer well.</p>
-</div>
-<div class="section" id="acknowledgments">
-<h3>Acknowledgments</h3>
+</section><section id="acknowledgments"><h3>Acknowledgments</h3>
 <p>The authors would like to thank the DHRTC and DUC for their continued
 support. We thank Colin MacBeth, Peter Bormann, Sebastian Tølbøll
 Glavind, Lukas Mosser and the "Software Underground" community for great
@@ -565,11 +574,8 @@ discussion and support with MalenoV and ConocoPhillips for making the
 data and software freely available. We also thank Agile Scientific for
 great tutorials at the intersection of Python and geoscience. We thank
 dgb for providing the F3 data set.</p>
-</div>
-</div>
-<div class="section" id="applications-of-transfer-learning-for-automatic-seismic-interpretation">
-<h2>Applications of Transfer Learning for Automatic Seismic Interpretation</h2>
-<p><a class="reference external" href="#transfer:fig:predi">[transfer:fig:predi]</a> shows the results of a
+</section></section><section id="applications-of-transfer-learning-for-automatic-seismic-interpretation"><h2>Applications of Transfer Learning for Automatic Seismic Interpretation</h2>
+<p><a class="reference external" href="#transfer-fig-predi">Figure 4.8 (a)</a> shows the results of a
 fully trained network compared to a pre-trained network. The pre-trained
 network decreases both training time and data requirements
 significantly, while not compromising accuracy. A pre-trained network
@@ -597,14 +603,14 @@ seismic interpretation.</p>
 <p>U-Nets present a special type of encoder-decoder networks that learn
 semantic segmentation on from small datasets (Ronneberger, Fischer, and
 Brox 2015a). They form a special kind of fcn shown in
-<a class="reference external" href="#bookchapter:fig:unet">11.15</a>. Originally developed on biomedical
+<a class="reference external" href="#bookchapter-fig-unet">Chapter 2.15</a>. Originally developed on biomedical
 images, the network found wide acceptance in label-sparse disciplines.
 The U-Net implements shortcut connections between convolutional layers
 of equal extent in the Encoder and Decoder networks. This alleviates the
 pressure of the network learning and reconstructing the output data from
 the bottleneck in isolation.</p>
 <p>The data set in this training is very small and non-diverse as shown in
-<a class="reference external" href="#transfer:fig:labels">13.7</a> and this only made training on a
+<a class="reference external" href="#transfer-fig-labels">Figure 4.7</a> and this only made training on a
 classification network possible. Image segmentation would need a dense
 labelling of the training data and more than one 2D section available.
 This has been approached by Alaudah et al. (2019) by labelling the full
@@ -612,21 +618,24 @@ Dutch F3 dataset, which cites the paper presented here. Modern
 applications of transfer learning were able to leverage ResNet
 architectures as an encoder in U-nets on seismic data (Babakhin,
 Sanakoyeu, and Kitamura 2019a).</p>
-</div>
-<div class="section" id="contributions-of-this-study">
-<span id="contributions-of-this-study-2"></span><h2>Contributions of this Study</h2>
+</section><section id="contributions-of-this-study"><span id="contributions-of-this-study-2"></span><h2>Contributions of this Study</h2>
 <p>This study introduced transfer learning for deep learning tasks in asi
 and has found an application across geophysics (see e.g. Babakhin,
 Sanakoyeu, and Kitamura 2019b; G. Li et al. 2019; M. Liu et al. 2019).
 The transfer learning enables utilizing neural networks that were
 trained on a diverse dataset and then fine-tuning them with data that
 contains far fewer samples. This outperforms smaller networks that can
-be trained end-to-end on these small datasets. The code is available at.</p>
+be trained end-to-end on these small datasets. The code is available at <a class="reference external" href="https://github.com/JesperDramsch/seismic-transfer-learning">https://github.com/JesperDramsch/seismic-transfer-learning</a>.</p>
+</section>
 </div>
-</div>
-    </div>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
 MathJax.Hub.Config({
+    TeX: {
+    extensions: ["color.js", "boldsymbol.js", "AMSmath.js", "AMSsymbols.js"],
+    Macros: {
+        bm: ["f{#1}",1]
+    }
+    },
     tex2jax: {
         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
         displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{equation}", "\\end{equation}"] ],
@@ -636,6 +645,10 @@ MathJax.Hub.Config({
     "HTML-CSS": {
         styles: {'.MathJax_Display': {"margin": 0}}
     }
+});
+MathJax.Hub.Register.StartupHook("TeX color Ready", function() {
+     MathJax.Extension["TeX/color"].colors["red"] = '#B86CBA';
+     MathJax.Extension["TeX/color"].colors["cyan"] = '#6CBAB8';
 });
 </script></article>
 </div>

@@ -6,12 +6,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Machine Learning Geoscience · Unsupervised Geological Image Segmentation </title>
 <link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700%7CAbril+Fatface">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 <meta content="#5670d4" name="theme-color">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
 <link rel="canonical" href="https://dramsch.net/phd/unsupervised-geological-image-segmentation/">
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
+    TeX: {
+    extensions: ["color.js", "boldsymbol.js", "AMSmath.js", "AMSsymbols.js"],
+    Macros: {
+        bm: ["f{#1}",1]
+    }
+    },
     tex2jax: {
         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
         displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{equation}", "\\end{equation}"] ],
@@ -21,6 +27,10 @@ MathJax.Hub.Config({
     "HTML-CSS": {
         styles: {'.MathJax_Display': {"margin": 0}}
     }
+});
+MathJax.Hub.Register.StartupHook("TeX color Ready", function() {
+     MathJax.Extension["TeX/color"].colors["red"] = '#B86CBA';
+     MathJax.Extension["TeX/color"].colors["cyan"] = '#6CBAB8';
 });
 </script><!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><meta name="author" content="Jesper S Dramsch">
 </head>
@@ -59,7 +69,7 @@ MathJax.Hub.Config({
     
     
     </nav><footer id="footer"><span class="copyright">
-              Contents © 2021         <a href="https://dramsch.net">Jesper S Dramsch</a>
+              Contents © 2024         <a href="https://dramsch.net">Jesper S Dramsch</a>
             </span>
             
             
@@ -72,19 +82,11 @@ MathJax.Hub.Config({
 
         
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <div>
-<table>
-<colgroup>
-<col style="width: 15%">
-<col style="width: 15%">
-<col style="width: 15%">
-<col style="width: 56%">
-</colgroup>
-<tbody>
+    <table><tbody>
 <tr>
-<td><p><a class="reference external" href="../2018.2.pdf"><img alt="image1" class="align-middle" src="https://img.shields.io/badge/PDF-Download-important"></a></p></td>
-<td><p><a class="reference external" href="https://github.com/JesperDramsch/backscatter-sem-segmentation"><img alt="image2" class="align-middle" src="https://img.shields.io/github/repo-size/JesperDramsch/backscatter-sem-segmentation"></a></p></td>
-<td><p><a class="reference external" href="https://doi.org/10.6084/m9.figshare.7421489.v1"><img alt="image3" class="align-middle" src="https://img.shields.io/badge/talk-presentation-informational"></a></p></td>
+<td><p><a class="reference external image-reference" href="../2018.2.pdf"><img alt="image1" class="align-middle" src="https://img.shields.io/badge/PDF-Download-important"></a></p></td>
+<td><p><a class="reference external image-reference" href="https://github.com/JesperDramsch/backscatter-sem-segmentation"><img alt="image2" class="align-middle" src="https://img.shields.io/github/repo-size/JesperDramsch/backscatter-sem-segmentation"></a></p></td>
+<td><p><a class="reference external image-reference" href="https://doi.org/10.6084/m9.figshare.7421489.v1"><img alt="image3" class="align-middle" src="https://img.shields.io/badge/talk-presentation-informational"></a></p></td>
 <td><p><img alt="image4" class="align-middle" src="https://img.shields.io/badge/license-MIT-green"></p></td>
 </tr>
 <tr>
@@ -98,8 +100,7 @@ In First EAGE/PESGB Workshop Machine Learning.</p></td>
 <tr>
 <td colspan="4"><p>Github: <a class="reference external" href="https://github.com/JesperDramsch/backscatter-sem-segmentation">https://github.com/JesperDramsch/backscatter-sem-segmentation</a></p></td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <hr class="docutils">
 <p>Analysis of chalk samples can be done by bsem. The resulting images
 contain black-white images of the sample that can be measured and
@@ -116,11 +117,8 @@ The intra-grain porosity is best seen in the grain located at
 <span class="math">\((1000, 200)\)</span> in <a class="reference external" href="#fig:bsem">[fig:bsem]</a>. bsem data is noisy,
 which can distort the image. Additionally, grain boundaries tend to be
 jagged, which is aggravated by the noise.</p>
-<div class="figure">
-<img alt="Backscatter SEM image of chalk data" id="fig-bsemchalk" src="../images/bsem-image.png"><p class="caption">Backscatter SEM image of chalk data</p>
-</div>
-<div class="section" id="unsupervised-image-segmentation">
-<h2>Unsupervised Image Segmentation</h2>
+<figure><img alt="Backscatter SEM image of chalk data" id="fig-bsemchalk" src="../images/bsem-image.png"><figcaption><p>Backscatter SEM image of chalk data</p>
+</figcaption></figure><section id="unsupervised-image-segmentation"><h2>Unsupervised Image Segmentation</h2>
 <p>Labelled training data was not available to apply convolutional neural networks to this problem.
 Instead of hand-labelling the data, unsupervised clustering was
 appropriate to find the optimal boundary of the grains from the
@@ -130,13 +128,10 @@ clusters with the gmm and classical histogram boundary are displayed in
 <a class="reference external" href="#fig:GMMloglikelihood">12.1</a>. These boundaries do not coincide, and
 while they are close, the two-pixel difference changes the prediction
 significantly.</p>
-<div class="figure">
-<img alt="Greyscale values overlaid with negative log likelihood predicted by gmm (red) with decision boundaries from gmm (green) and histogram decision boundary (blue)." id="fig-gmmloglikelihood" src="../images/loglikelihood.png"><p class="caption">Greyscale values overlaid with negative log likelihood predicted by
+<figure><img alt="Greyscale values overlaid with negative log likelihood predicted by gmm (red) with decision boundaries from gmm (green) and histogram decision boundary (blue)." id="fig-gmmloglikelihood" src="../images/loglikelihood.png"><figcaption><p>Greyscale values overlaid with negative log likelihood predicted by
 gmm (red) with decision boundaries from gmm (green) and histogram
 decision boundary (blue).</p>
-</div>
-<div class="section" id="gaussian-mixture-models">
-<h3>Gaussian Mixture Models</h3>
+</figcaption></figure><section id="gaussian-mixture-models"><h3>Gaussian Mixture Models</h3>
 <p>In detail, the gmm can model normally distributed sub-populations that
 constitute a larger population. The Gaussian distributions are usually
 estimated by using the maximum likelihood method. Because
@@ -196,9 +191,7 @@ are uniformly distributed as
 <span class="math">\(\phi_1, \phi_2, ..., \phi_K = \frac{1}{K}\)</span>. The iteration is
 stopped when the model converges, that is the expectation of subsequent
 steps changes less then a pre-set <span class="math">\(\epsilon\)</span>.</p>
-</div>
-<div class="section" id="morphological-filtering">
-<h3>Morphological Filtering</h3>
+</section><section id="morphological-filtering"><h3>Morphological Filtering</h3>
 <p>This single-valued intensity value causes the boundary to be non-smooth
 around the grains. Therefore morphological filtering was applied to
 smooth out the boundaries programmatically. Smooth boundaries are
@@ -239,12 +232,8 @@ A \circ B  = (A \ominus B) \oplus B.
 </div>
 <p>Repeating erosion and dilation alternatingly smoothes out the boundary
 we obtain from gmm.</p>
-</div>
-</div>
-<div class="section" id="workshop-paper-gaussian-mixture-models-for-robust-unsupervised-scanning-electron-microscopy-image-segmentation-of-north-sea-chalk">
-<h2>Workshop Paper: Gaussian Mixture Models For Robust Unsupervised Scanning-Electron Microscopy Image Segmentation Of North Sea Chalk</h2>
-<div class="section" id="introduction">
-<h3>Introduction</h3>
+</section></section><section id="workshop-paper-gaussian-mixture-models-for-robust-unsupervised-scanning-electron-microscopy-image-segmentation-of-north-sea-chalk"><h2>Workshop Paper: Gaussian Mixture Models For Robust Unsupervised Scanning-Electron Microscopy Image Segmentation Of North Sea Chalk</h2>
+<section id="introduction"><h3>Introduction</h3>
 <p>In the oil and gas industry, assessment and prediction of the
 hydrocarbon reserves and flow properties throughout a chalk reservoir
 lifetime relies, among others, on conventional and special core analysis
@@ -270,11 +259,8 @@ present study represents a robust method in the application of machine
 learning on thin-section images collected by BSEM. This cheap and
 relatively rapid technique allows to quickly analyse a large number of
 pictures that do not need to be manually labeled.</p>
-</div>
-<div class="section" id="method">
-<h3>Method</h3>
-<div class="section" id="sem-analysis-as-image-segmentation">
-<h4>SEM Analysis as Image Segmentation</h4>
+</section><section id="method"><h3>Method</h3>
+<section id="sem-analysis-as-image-segmentation"><h4>SEM Analysis as Image Segmentation</h4>
 <p>Scanning Electron Microscopy (SEM) is an imaging method that allows the
 visualisation of the grains and pores of chalk deposits
 (Figure <a class="reference external" href="#gauss:fig:segment">12.2</a>). Grayscale images of the rock
@@ -288,10 +274,8 @@ segmented by histogram methods. Carbonates and specifically chalk vary
 on grayscale, and grains are not illuminated homogeneously. However,
 image segmentation has made many improvements in recent years, which
 extends the toolkit beyond histogram segmentation.</p>
-<div class="figure">
-<img alt="Original SEM image, binary mask obtained by GMM, and resulting grain image." id="gauss-fig-segment" src="../images/segmentation.png"><p class="caption">Original SEM image, binary mask obtained by GMM, and resulting grain image.</p>
-</div>
-<p>Modern Neural Networks (NN) can segment images exceptionally well
+<figure><img alt="Original SEM image, binary mask obtained by GMM, and resulting grain image." id="gauss-fig-segment" src="../images/segmentation.png"><figcaption><p>Original SEM image, binary mask obtained by GMM, and resulting grain image.</p>
+</figcaption></figure><p>Modern Neural Networks (NN) can segment images exceptionally well
 (Ronneberger, Fischer, and Brox 2015b). Modarres et al. (2017)
 investigated the application of neural networks to SEM images. However, as with most
 applications in Geoscience and supervised learning, we would have to
@@ -309,13 +293,9 @@ like k-means. In this application, we aim at segmenting the background
 from the chalk, which lends itself to specify two Gaussian distributions
 as learning parameter to obtain a binary mask, presented in
 Figure <a class="reference external" href="#gauss:fig:segment">12.2</a>.</p>
-</div>
-<div class="section" id="id1">
-<span id="morphological-filtering-1"></span><h4>Morphological Filtering</h4>
-<div class="figure">
-<img alt="Filtered segmentation of BSEM" id="gauss-fig-filtsem" src="../images/segmentation_small.png"><p class="caption">Filtered segmentation of BSEM</p>
-</div>
-<p>We apply morphological filtering to clean up the segmentation (Serra and
+</section><section id="morphological-filtering-2"><span id="morphological-filtering-1"></span><h4>Morphological Filtering</h4>
+<figure><img alt="Filtered segmentation of BSEM" id="gauss-fig-filtsem" src="../images/segmentation_small.png"><figcaption><p>Filtered segmentation of BSEM</p>
+</figcaption></figure><p>We apply morphological filtering to clean up the segmentation (Serra and
 Vincent 1992). Due to the noisy images of BSEM, the edges of grains
 appear fuzzy. For the automatic analysis of the perimeter for instance,
 seen in Figure <a class="reference external" href="#gauss:fig:filtsem">12.3</a>.</p>
@@ -324,23 +304,15 @@ scikit-learn and scikit-image (F. Pedregosa et al. 2011). This provides
 area, perimeter and rotation of grains in the image among other
 geometrical factors of the grains. These can be very valuable in digital
 rock physics and pore analysis.</p>
-</div>
-</div>
-<div class="section" id="conclusions">
-<h3>Conclusions</h3>
+</section></section><section id="conclusions"><h3>Conclusions</h3>
 <p>We present an effective segmentation method for BSEM image data.
 Gaussian Mixture Models learn a good representation of the grayscale
 data and morphological filtering further improves the results.</p>
-</div>
-<div class="section" id="acknowledgements">
-<span id="acknowledgements-1"></span><h3>Acknowledgements</h3>
+</section><section id="acknowledgements"><span id="acknowledgements-1"></span><h3>Acknowledgements</h3>
 <p>The research leading to these results has received funding from the
 Danish Hydrocarbon Research and Technology Centre under the Advanced
 Water Flooding program.</p>
-</div>
-</div>
-<div class="section" id="computational-granulometry">
-<h2>Computational Granulometry</h2>
+</section></section><section id="computational-granulometry"><h2>Computational Granulometry</h2>
 <p>Identifying the grains in an bsem image enables us to perform
 computational granulometry on the images. The segmented images can be
 analysed with standard image processing algorithms that can return
@@ -359,14 +331,10 @@ grains which is in accordance with our expectation for chalk oolites.</p>
 from the image. The porosity calculated is 44.25%. The measured porosity
 of the chalk sample is 42%, which is close for a 2D image of the 3D pore
 space.</p>
-<div class="figure">
-<img alt="bsem data with three large chalk grains outlined from the gmm process (orange). The image shows mostly brecciated chalk grains with some interspersed circular oolites." id="fig-threelargebsem" src="../images/SEMGranulometryFocus.png"><p class="caption">bsem data with three large chalk grains outlined from the gmm process
+<figure><img alt="bsem data with three large chalk grains outlined from the gmm process (orange). The image shows mostly brecciated chalk grains with some interspersed circular oolites." id="fig-threelargebsem" src="../images/SEMGranulometryFocus.png"><figcaption><p>bsem data with three large chalk grains outlined from the gmm process
 (orange). The image shows mostly brecciated chalk grains with some
 interspersed circular oolites.</p>
-</div>
-</div>
-<div class="section" id="contributions-of-this-study">
-<span id="contributions-of-this-study-1"></span><h2>Contributions of this Study</h2>
+</figcaption></figure></section><section id="contributions-of-this-study"><span id="contributions-of-this-study-1"></span><h2>Contributions of this Study</h2>
 <p>This study introduced unsupervised gmm clustering for chalk grain bsem
 image segmentation. Overall, the method shows a very good separation of
 the grains from the background in the image. The method performs well on
@@ -385,11 +353,16 @@ This data has good accordance with the image data, as well as measured
 porosity on the rock sample. Finally, this method can be used to
 generate labels for more complex machine learning models, i.e. convolutional neural networks.</p>
 <p>The code of this analysis is published under .</p>
+</section>
 </div>
-</div>
-    </div>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
 MathJax.Hub.Config({
+    TeX: {
+    extensions: ["color.js", "boldsymbol.js", "AMSmath.js", "AMSsymbols.js"],
+    Macros: {
+        bm: ["f{#1}",1]
+    }
+    },
     tex2jax: {
         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
         displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{equation}", "\\end{equation}"] ],
@@ -399,6 +372,10 @@ MathJax.Hub.Config({
     "HTML-CSS": {
         styles: {'.MathJax_Display': {"margin": 0}}
     }
+});
+MathJax.Hub.Register.StartupHook("TeX color Ready", function() {
+     MathJax.Extension["TeX/color"].colors["red"] = '#B86CBA';
+     MathJax.Extension["TeX/color"].colors["cyan"] = '#6CBAB8';
 });
 </script></article>
 </div>

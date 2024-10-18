@@ -6,12 +6,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Machine Learning Geoscience · Machine Learning in 4D Seismic Inversion </title>
 <link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700%7CAbril+Fatface">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 <meta content="#5670d4" name="theme-color">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
 <link rel="canonical" href="https://dramsch.net/phd/machine-learning-in-4d-seismic-inversion/">
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
+    TeX: {
+    extensions: ["color.js", "boldsymbol.js", "AMSmath.js", "AMSsymbols.js"],
+    Macros: {
+        bm: ["f{#1}",1]
+    }
+    },
     tex2jax: {
         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
         displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{equation}", "\\end{equation}"] ],
@@ -21,6 +27,10 @@ MathJax.Hub.Config({
     "HTML-CSS": {
         styles: {'.MathJax_Display': {"margin": 0}}
     }
+});
+MathJax.Hub.Register.StartupHook("TeX color Ready", function() {
+     MathJax.Extension["TeX/color"].colors["red"] = '#B86CBA';
+     MathJax.Extension["TeX/color"].colors["cyan"] = '#6CBAB8';
 });
 </script><!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><meta name="author" content="Jesper S Dramsch">
 </head>
@@ -59,7 +69,7 @@ MathJax.Hub.Config({
     
     
     </nav><footer id="footer"><span class="copyright">
-              Contents © 2021         <a href="https://dramsch.net">Jesper S Dramsch</a>
+              Contents © 2024         <a href="https://dramsch.net">Jesper S Dramsch</a>
             </span>
             
             
@@ -72,19 +82,11 @@ MathJax.Hub.Config({
 
         
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <div>
-<table>
-<colgroup>
-<col style="width: 15%">
-<col style="width: 15%">
-<col style="width: 15%">
-<col style="width: 54%">
-</colgroup>
-<tbody>
+    <table><tbody>
 <tr>
-<td><p><a class="reference external" href="../2019.3.pdf"><img alt="image12" src="https://img.shields.io/badge/PDF-Download-important"></a></p></td>
-<td><p><a class="reference external" href="https://github.com/JesperDramsch/4D-seismic-neural-inversion"><img alt="image13" src="https://img.shields.io/github/repo-size/JesperDramsch/4D-seismic-neural-inversion"></a></p></td>
-<td><p><a class="reference external" href="https://doi.org/10.6084/m9.figshare.8218421.v1"><img alt="image14" src="https://img.shields.io/badge/talk-presentation-informational"></a></p></td>
+<td><p><a class="reference external image-reference" href="../2019.3.pdf"><img alt="image12" src="https://img.shields.io/badge/PDF-Download-important"></a></p></td>
+<td><p><a class="reference external image-reference" href="https://github.com/JesperDramsch/4D-seismic-neural-inversion"><img alt="image13" src="https://img.shields.io/github/repo-size/JesperDramsch/4D-seismic-neural-inversion"></a></p></td>
+<td><p><a class="reference external image-reference" href="https://doi.org/10.6084/m9.figshare.8218421.v1"><img alt="image14" src="https://img.shields.io/badge/talk-presentation-informational"></a></p></td>
 <td><p><img alt="image15" src="https://img.shields.io/badge/license-Apache--2.0-green"></p></td>
 </tr>
 <tr>
@@ -98,21 +100,13 @@ saturation inversion. arXiv preprint arXiv:1904.02254.</p></td>
 <tr>
 <td colspan="4"><p>Github: <a class="reference external" href="https://github.com/JesperDramsch/4D-seismic-neural-inversion">https://github.com/JesperDramsch/4D-seismic-neural-inversion</a></p></td>
 </tr>
-</tbody>
-</table>
-<table>
-<colgroup>
-<col style="width: 15%">
-<col style="width: 15%">
-<col style="width: 15%">
-<col style="width: 54%">
-</colgroup>
-<tbody>
+</tbody></table>
+<table><tbody>
 <tr>
-<td><p><a class="reference external" href="../2019.2.pdf"><img alt="image16" src="https://img.shields.io/badge/PDF-Download-important"></a></p></td>
-<td><p><a class="reference external" href="https://github.com/JesperDramsch/4D-seismic-neural-inversion"><img alt="image17" src="https://img.shields.io/github/repo-size/JesperDramsch/4D-seismic-neural-inversion"></a></p></td>
-<td><p><a class="reference external" href="https://doi.org/10.6084/m9.figshare.7963775.v1"><img alt="image18" src="https://img.shields.io/badge/talk-presentation-informational"></a></p></td>
-<td><p><a class="reference external" href="https://www.youtube.com/watch?v=-5YHV2vdKHo"><img alt="image19" src="https://img.shields.io/badge/video-youtube-red"></a></p></td>
+<td><p><a class="reference external image-reference" href="../2019.2.pdf"><img alt="image16" src="https://img.shields.io/badge/PDF-Download-important"></a></p></td>
+<td><p><a class="reference external image-reference" href="https://github.com/JesperDramsch/4D-seismic-neural-inversion"><img alt="image17" src="https://img.shields.io/github/repo-size/JesperDramsch/4D-seismic-neural-inversion"></a></p></td>
+<td><p><a class="reference external image-reference" href="https://doi.org/10.6084/m9.figshare.7963775.v1"><img alt="image18" src="https://img.shields.io/badge/talk-presentation-informational"></a></p></td>
+<td><p><a class="reference external image-reference" href="https://www.youtube.com/watch?v=-5YHV2vdKHo"><img alt="image19" src="https://img.shields.io/badge/video-youtube-red"></a></p></td>
 </tr>
 <tr>
 <td colspan="4"><p><a class="reference external" href="https://orcid.org/0000-0001-8273-905X">Dramsch, J. S.</a>, Corte,
@@ -126,8 +120,7 @@ Practical Reservoir Monitoring 2019.</p></td>
 <tr>
 <td colspan="4"><p>Github: <a class="reference external" href="https://github.com/JesperDramsch/4D-seismic-neural-inversion">https://github.com/JesperDramsch/4D-seismic-neural-inversion</a></p></td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <hr class="docutils">
 <p>This chapter discusses a neural network application to approximate the
 pressure-saturation inversion of 4D seismic data. It contains two
@@ -139,8 +132,7 @@ from seismic amplitude difference maps in the Schiehallion field. The
 first paper presents an ablation study of the components in the
 architecture. The second paper discusses the neural network result and
 presents a comparison to a classical Bayesian inversion.</p>
-<div class="section" id="data">
-<span id="data-1"></span><h2>Data</h2>
+<section id="data"><span id="data-1"></span><h2>Data</h2>
 <p>The Schiehallion field is a stacked turbidite reservoir in the UK North
 Sea, which makes it very heterogeneous and compartmentalized. The T31
 sandstone reservoir has the most lateral extent with the thickness
@@ -174,16 +166,14 @@ significant levels of noise. The seismic field data can therefore
 diverge from the theoretical prediction based on the pressure and
 saturation data. These fluctuations are not smooth across individual
 cells of the map, which can be seen in
-<a class="reference external" href="#inv1:fig:schiehalliondata">15.7</a>.</p>
+<a class="reference external" href="#inv1:fig:schiehalliondata">6.7</a>.</p>
 <p>The validation strategy in this problem setting is using one time step
 as a hold-out set that is not used during the training of the neural
 network. The time step used was recorded in the year 2004 and is
-presented in <a class="reference external" href="#inv1:fig:schiehalliondata">15.7</a>. The remaining time
+presented in <a class="reference external" href="#inv1:fig:schiehalliondata">6.7</a>. The remaining time
 steps are used during the training. Results in the paper are presented
 on the hold-out data.</p>
-</div>
-<div class="section" id="machine-learning-model">
-<h2>Machine Learning Model</h2>
+</section><section id="machine-learning-model"><h2>Machine Learning Model</h2>
 <p>A primary application of machine learning is building regression models. The data
 available is not particularly abundant, which restricts the choice of
 model or training strategy. Following a premise of simplicity, a dense
@@ -193,7 +183,7 @@ due to the nature of deep convolutional neural networks more training data needs
 <p>In Jesper Sören Dramsch, Corte, et al. (2019d) we present a novel
 network structure that explicitly includes avo gradient calculation
 within the network as physical knowledge, shown in
-<a class="reference external" href="#inv1:fig:avo-net">15.6</a>.</p>
+<a class="reference external" href="#inv1:fig:avo-net">6.6</a>.</p>
 <p>The network architecture was chosen to follow an encoder-decoder
 architecture as a forcing function for information distillation. The
 encoder decreases in size with each layer, gradually compressing the
@@ -237,8 +227,8 @@ distribution, and <span class="math">\(\epsilon\)</span> being a random sample f
 bottleneck layer computing as <span class="math">\(z = \mu + \sigma \cdot \epsilon\)</span>.</p>
 <p>The pore volume is passed as-is to the network. The estimated pore
 volume helps the network to decouple the rock matrix from the fluid
-effects, which is further explored in <a class="reference external" href="#sec:confincluding">15.4</a>. A
-schematic of the network is shown in <a class="reference external" href="#inv1:fig:avo-net">15.6</a>, which
+effects, which is further explored in <a class="reference external" href="#sec:confincluding">6.4</a>. A
+schematic of the network is shown in <a class="reference external" href="#inv1:fig:avo-net">6.6</a>, which
 shows the connections of the individual operations.</p>
 <p>The network explicitly includes avo gradient calculation in the network
 architecture, considering it is physical knowledge we know will
@@ -252,9 +242,7 @@ training. This implies that instead of learning one pre-computed avo
 relation, we can perform data augmentation of the input data and train
 on a significantly higher amount of correctly calculated avo gradients.
 This strategy can significantly improve the training strategy.</p>
-</div>
-<div class="section" id="training-the-deep-neural-network-for-4d-seismic-inversion">
-<h2>Training the Deep Neural Network for 4D Seismic Inversion</h2>
+</section><section id="training-the-deep-neural-network-for-4d-seismic-inversion"><h2>Training the Deep Neural Network for 4D Seismic Inversion</h2>
 <p>The model training is carried out in multiple phases. The first phase
 solely trains on un-augmented simulation data to determine an ideal
 network structure. The second phase trains on the fixed architecture
@@ -277,17 +265,14 @@ gradients that correspond to the augmented input. This process reduces
 the R<sup>2</sup>-Score and mse, which is an expected effect of noisy
 regression data (Hastie, Tibshirani, and Friedman 2009). Nevertheless,
 this produces consistent results on field data upon visual inspection.</p>
-<p>The paper in <a class="reference external" href="#sec:confincluding">15.4</a> provides an ablation study,
+<p>The paper in <a class="reference external" href="#sec:confincluding">6.4</a> provides an ablation study,
 where parts of the neural network architecture are systematically
 switched off. Ablation studies are commonly used to explore and evaluate
 the effect of the individual components on the regression result. The
-paper in <a class="reference external" href="#sec:conf4d">15.5</a> shows the results of the deep neural
+paper in <a class="reference external" href="#sec:conf4d">6.5</a> shows the results of the deep neural
 network compared to a Bayesian inversion.</p>
-</div>
-<div class="section" id="workshop-paper-including-physics-in-deep-learning-an-example-from-4d-seismic-pressure-saturation-inversion">
-<span id="sec-confincluding"></span><h2>Workshop Paper: Including Physics in Deep Learning – An example from 4D seismic pressure saturation inversion</h2>
-<div class="section" id="introduction">
-<span id="introduction-3"></span><h3>Introduction</h3>
+</section><section id="workshop-paper-including-physics-in-deep-learning-an-example-from-4d-seismic-pressure-saturation-inversion"><span id="sec-confincluding"></span><h2>Workshop Paper: Including Physics in Deep Learning – An example from 4D seismic pressure saturation inversion</h2>
+<section id="introduction"><span id="introduction-3"></span><h3>Introduction</h3>
 <p>Physics in machine learning often relies on transformations of data to
 beneficial domains and simulating additional data. Karpatne et al.
 (2017) show a physics-guided approach to model lake temperatures with
@@ -319,9 +304,7 @@ of feed-forward multi-layer perceptron neural networks by including an
 explicit calculation of the AVO gradient within the network
 architecture. It’s exemplary for including domain knowledge as a prior
 in machine learning.</p>
-</div>
-<div class="section" id="method">
-<span id="method-1"></span><h3>Method</h3>
+</section><section id="method"><span id="method-1"></span><h3>Method</h3>
 <p>We build a deep feed-forward network to invert seismic amplitude maps
 for pressure and saturation changes. We use the high-level Python
 framework <code class="docutils literal">keras</code> with a <code class="docutils literal">tensorflow</code> backend. The neural network
@@ -331,8 +314,7 @@ stacks, and pore volume. We inject 20% Gaussian noise to model the
 noisier field data directly after the input layer. This is fed to a
 custom layer that calculates the PP AVO gradient between far-mid,
 mid-near, and far-near. The main components are as follows:</p>
-<div class="section" id="gaussian-noise-injection">
-<h4>Gaussian noise injection</h4>
+<section id="gaussian-noise-injection"><h4>Gaussian noise injection</h4>
 <p>The synthetic model is noise-free. While we get good results on the
 training data and the modelled test data, the network does not transfer
 well to noisy field data. Although the 4D NRMS is very low in the data
@@ -343,11 +325,9 @@ independent fluctuations of the seismic maps. This significantly
 decreases the training and validation performance on noise free
 synthetic data. On field data, however, this enables good transfer of
 the neural network.</p>
-<pre class="code python"><a name="rest_code_056b49d3efaa4c26b0258a3359dfbaf7-1"></a><span class="n">noisy_input</span> <span class="o">=</span> <span class="n">GaussianNoise</span><span class="p">(</span><span class="mf">0.02</span><span class="p">)(</span><span class="n">input_data</span><span class="p">)</span>
-</pre>
-</div>
-<div class="section" id="explicit-avo-gradient-calculation">
-<h4>Explicit AVO gradient calculation</h4>
+<div class="code"><pre class="code python"><a id="rest_code_6deb933d7eb7464e846a12dd5099628e-1" name="rest_code_6deb933d7eb7464e846a12dd5099628e-1" href="#rest_code_6deb933d7eb7464e846a12dd5099628e-1"></a><span class="n">noisy_input</span> <span class="o">=</span> <span class="n">GaussianNoise</span><span class="p">(</span><span class="mf">0.02</span><span class="p">)(</span><span class="n">input_data</span><span class="p">)</span>
+</pre></div>
+</section><section id="explicit-avo-gradient-calculation"><h4>Explicit AVO gradient calculation</h4>
 <p>The Schiehallion field is a good example of imbalanced learning. We have
 many samples of pressure changes <span class="math">\(\Delta P\)</span>, a good selection of
 water saturation changes <span class="math">\(\Delta S_w\)</span>, and very few gas saturation
@@ -365,21 +345,19 @@ G = \frac{A_{\Theta_1} - A_{\Theta_0}}{x_{\Theta_1} - x_{\Theta_0}},
 </div>
 <p>where <span class="math">\(G\)</span> is the PP AVO gradient, <span class="math">\(A\)</span> is the seismic P wave
 amplitude, <span class="math">\(x\)</span> is the offset, and <span class="math">\(\Theta\)</span> is the angle.</p>
-<pre class="code python"><a name="rest_code_205564f84434479b87759a5e653c6a86-1"></a><span class="n">mid_near</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">(</span>
-<a name="rest_code_205564f84434479b87759a5e653c6a86-2"></a>    <span class="k">lambda</span> <span class="n">inputs</span><span class="p">:</span> <span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<a name="rest_code_205564f84434479b87759a5e653c6a86-3"></a><span class="p">)([</span><span class="n">noisy_mid</span><span class="p">,</span> <span class="n">noisy_near</span><span class="p">])</span>
-<a name="rest_code_205564f84434479b87759a5e653c6a86-4"></a>
-<a name="rest_code_205564f84434479b87759a5e653c6a86-5"></a><span class="n">far_mid</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">(</span>
-<a name="rest_code_205564f84434479b87759a5e653c6a86-6"></a>    <span class="k">lambda</span> <span class="n">inputs</span><span class="p">:</span> <span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<a name="rest_code_205564f84434479b87759a5e653c6a86-7"></a><span class="p">)([</span><span class="n">noisy_far</span><span class="p">,</span> <span class="n">noisy_mid</span><span class="p">])</span>
-<a name="rest_code_205564f84434479b87759a5e653c6a86-8"></a>
-<a name="rest_code_205564f84434479b87759a5e653c6a86-9"></a><span class="n">far_near</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">(</span>
-<a name="rest_code_205564f84434479b87759a5e653c6a86-10"></a>    <span class="k">lambda</span> <span class="n">inputs</span><span class="p">:</span> <span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">20</span><span class="p">)</span>
-<a name="rest_code_205564f84434479b87759a5e653c6a86-11"></a><span class="p">)([</span><span class="n">noisy_far</span><span class="p">,</span> <span class="n">noisy_near</span><span class="p">])</span>
-</pre>
-</div>
-<div class="section" id="encoder-decoder-architecture">
-<h4>Encoder-decoder architecture</h4>
+<div class="code"><pre class="code python"><a id="rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-1" name="rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-1" href="#rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-1"></a><span class="n">mid_near</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">(</span>
+<a id="rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-2" name="rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-2" href="#rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-2"></a>    <span class="k">lambda</span> <span class="n">inputs</span><span class="p">:</span> <span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<a id="rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-3" name="rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-3" href="#rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-3"></a><span class="p">)([</span><span class="n">noisy_mid</span><span class="p">,</span> <span class="n">noisy_near</span><span class="p">])</span>
+<a id="rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-4" name="rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-4" href="#rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-4"></a>
+<a id="rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-5" name="rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-5" href="#rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-5"></a><span class="n">far_mid</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">(</span>
+<a id="rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-6" name="rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-6" href="#rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-6"></a>    <span class="k">lambda</span> <span class="n">inputs</span><span class="p">:</span> <span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<a id="rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-7" name="rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-7" href="#rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-7"></a><span class="p">)([</span><span class="n">noisy_far</span><span class="p">,</span> <span class="n">noisy_mid</span><span class="p">])</span>
+<a id="rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-8" name="rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-8" href="#rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-8"></a>
+<a id="rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-9" name="rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-9" href="#rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-9"></a><span class="n">far_near</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">(</span>
+<a id="rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-10" name="rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-10" href="#rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-10"></a>    <span class="k">lambda</span> <span class="n">inputs</span><span class="p">:</span> <span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<a id="rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-11" name="rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-11" href="#rest_code_acc9bb3c1ef04f1f8c436d8d484ab454-11"></a><span class="p">)([</span><span class="n">noisy_far</span><span class="p">,</span> <span class="n">noisy_near</span><span class="p">])</span>
+</pre></div>
+</section><section id="encoder-decoder-architecture"><h4>Encoder-decoder architecture</h4>
 <p>Subsequently, the four input maps and the three gradient maps are
 concatenated and fed to an encoder architecture that condenses the
 information to an embedding layer <span class="math">\(z\)</span>. This layer learns a
@@ -393,12 +371,8 @@ the network to learn a lossy compression of the input data as
 <span class="math">\(z\)</span>-vector. The decoder increases the number of nodes per layer
 toward the output. The network therefore learns to correlate the low
 resolution representation with the desired output.</p>
-<div class="figure">
-<img alt="Full Architecture from Jesper S. Dramsch et al. (2019)." id="inv2-fig-avonet" src="../images/AVO-Net.png" style="width: 110.0%;"><p class="caption">Full Architecture from Jesper S. Dramsch et al. (2019).</p>
-</div>
-</div>
-<div class="section" id="variational-z-vector">
-<h4>Variational Z Vector</h4>
+<figure><img alt="Full Architecture from Jesper S. Dramsch et al. (2019)." id="inv2-fig-avonet" src="../images/AVO-Net.png" style="width: 110.0%;"><figcaption><p>Full Architecture from Jesper S. Dramsch et al. (2019).</p>
+</figcaption></figure></section><section id="variational-z-vector"><h4>Variational Z Vector</h4>
 <p>The inversion of noisy input benefits from a variational representation
 of compressed z-vector. The networks learns Gaussian distributions in
 the embedding layer. Therefore, we have to apply the reparametrization
@@ -406,40 +380,27 @@ trick outlined in Diederik P. Kingma and Welling (2013) to circumvent
 the sampling process cannot be learned by gradient descent. We use the
 implementation in Chollet and others (2015b) for variational
 autoencoders.</p>
-</div>
-</div>
-<div class="section" id="results">
-<span id="results-2"></span><h3>Results</h3>
-<div class="figure">
-<img alt="Schiehallion 2004 Timestep Seismic data, pore volume and sim2seis results." id="inv2-fig-input" src="../images/x-seismic-input.png"><p class="caption">Schiehallion 2004 Timestep Seismic data, pore volume and sim2seis results.</p>
-</div>
-<p>In figure <a class="reference external" href="#inv2:fig:input">15.2</a> we show the 2004 time step of the
-Schiehallion 4D. Figure <a class="reference external" href="#inv2:fig:vae">15.3</a> contains the inversion
+</section></section><section id="results"><span id="results-2"></span><h3>Results</h3>
+<figure><img alt="Schiehallion 2004 Timestep Seismic data, pore volume and sim2seis results." id="inv2-fig-input" src="../images/x-seismic-input.png"><figcaption><p>Schiehallion 2004 Timestep Seismic data, pore volume and sim2seis results.</p>
+</figcaption></figure><p>In figure <a class="reference external" href="#inv2:fig:input">6.2</a> we show the 2004 time step of the
+Schiehallion 4D. Figure <a class="reference external" href="#inv2:fig:vae">6.3</a> contains the inversion
 result using the variational encoder decoder architecture. Some
 coherency in the maps can be seen, but each map is very noisy and the
 gas saturation map contains many data points that indicate gas
 desaturation, which cannot be confirmed by production data.</p>
-<div class="figure">
-<img alt="Variational Encoder Decoder Architecture Inversion" id="inv2-fig-vae" src="../images/x-gustavonew-vae-alldata.png"><p class="caption">Variational Encoder Decoder Architecture Inversion</p>
-</div>
-<p>When we add the gradient, we can clean up some of the misfit in the gas
+<figure><img alt="Variational Encoder Decoder Architecture Inversion" id="inv2-fig-vae" src="../images/x-gustavonew-vae-alldata.png"><figcaption><p>Variational Encoder Decoder Architecture Inversion</p>
+</figcaption></figure><p>When we add the gradient, we can clean up some of the misfit in the gas
 saturation maps <span class="math">\(\Delta S_g\)</span>. Particularly, the event with the
 strongest softening in the amplitude maps, is partially reassigned to
 the pressure map <span class="math">\(\Delta P\)</span>. However, the inversion process is
-still very prone to noise. In figure <a class="reference external" href="#inv2:fig:noisegradvae">15.5</a>,
+still very prone to noise. In figure <a class="reference external" href="#inv2:fig:noisegradvae">6.5</a>,
 we show the inversion results of a AVO-gradient neural network with a
 noise injection at training of <span class="math">\(\sigma = .02\)</span>. The inversion maps
 are very coherent. Noise injection without gradient calculation does not
 give adequate results.</p>
-<div class="figure">
-<img alt="AVO-Gradient Variational Encoder Decoder Architecture Inversion" id="inv2-fig-gradvae" src="../images/x-0-gradient-vae-noisy.png"><p class="caption">AVO-Gradient Variational Encoder Decoder Architecture Inversion</p>
-</div>
-<div class="figure">
-<img alt="Noiseinjected AVO-Gradient Variational Encoder Decoder Architecture Inversion" id="inv2-fig-noisegradvae" src="../images/x-2-gradient-vae-noisy.png"><p class="caption">Noiseinjected AVO-Gradient Variational Encoder Decoder Architecture Inversion</p>
-</div>
-</div>
-<div class="section" id="conclusions">
-<span id="conclusions-1"></span><h3>Conclusions</h3>
+<figure><img alt="AVO-Gradient Variational Encoder Decoder Architecture Inversion" id="inv2-fig-gradvae" src="../images/x-0-gradient-vae-noisy.png"><figcaption><p>AVO-Gradient Variational Encoder Decoder Architecture Inversion</p>
+</figcaption></figure><figure><img alt="Noiseinjected AVO-Gradient Variational Encoder Decoder Architecture Inversion" id="inv2-fig-noisegradvae" src="../images/x-2-gradient-vae-noisy.png"><figcaption><p>Noiseinjected AVO-Gradient Variational Encoder Decoder Architecture Inversion</p>
+</figcaption></figure></section><section id="conclusions"><span id="conclusions-1"></span><h3>Conclusions</h3>
 <p>We have shown a neural network architecture that incorporates physical
 domain knowledge to enable transfer from synthetic to field data. The
 final inversion result has very good coherency, despite the network not
@@ -447,9 +408,7 @@ having any spatial context. While further investigation is necessary,
 this indicates that useful information has been learned. This is one
 example, where bias can be intentionally introduced into the network
 architecture to include physics into machine learning.</p>
-</div>
-<div class="section" id="acknowledgements">
-<span id="acknowledgements-2"></span><h3>Acknowledgements</h3>
+</section><section id="acknowledgements"><span id="acknowledgements-2"></span><h3>Acknowledgements</h3>
 <p>The research leading to these results has received funding from the
 Danish Hydrocarbon Research and Technology Centre under the Advanced
 Water Flooding program. We thank the sponsors of the Edinburgh
@@ -459,12 +418,8 @@ Shell, Taqa, and Woodside) for supporting this research. The Brazilian
 governmental research-funding agency CNPq. We are also grateful to Linda
 Hodgson and Ross Walder for important discussions on the field and
 dataset.</p>
-</div>
-</div>
-<div class="section" id="workshop-paper-deep-learning-application-for-4d-pressure-saturation-inversion-compared-to-bayesian-inversion-on-north-sea-data">
-<span id="sec-conf4d"></span><h2>Workshop Paper: Deep Learning Application for 4D Pressure Saturation Inversion Compared to Bayesian Inversion on North Sea Data</h2>
-<div class="section" id="id1">
-<span id="introduction-4"></span><h3>Introduction</h3>
+</section></section><section id="workshop-paper-deep-learning-application-for-4d-pressure-saturation-inversion-compared-to-bayesian-inversion-on-north-sea-data"><span id="sec-conf4d"></span><h2>Workshop Paper: Deep Learning Application for 4D Pressure Saturation Inversion Compared to Bayesian Inversion on North Sea Data</h2>
+<section id="introduction-1"><span id="introduction-4"></span><h3>Introduction</h3>
 <p>Estimating reservoir property change during a period of production from
 4D seismic data has been a concentrated challenge and ambition for
 geoscientists in the oil and gas industry. These estimates can
@@ -489,9 +444,7 @@ train the network, then apply the inversion to observed data. The
 methods are applied to the same field data giving a nice platform to
 compare the neural network inversion results to a more conventional
 approach.</p>
-</div>
-<div class="section" id="schiehallion-data">
-<h3>Schiehallion Data</h3>
+</section><section id="schiehallion-data"><h3>Schiehallion Data</h3>
 <p>The inversions are applied to maps of Schiehallion’s upper T31
 sandstone. It is a fairly thin reservoir (5-30m), which is well defined
 in the seismic data by one single trough. For this reason, a map-based
@@ -512,10 +465,8 @@ showed that the 4D AVO attributes are in line with the theoretical
 expectations. The seismic data used for inversion is the 4D difference
 of the sum of negative amplitudes (<span class="math">\(\Delta\)</span>SNA) map attribute,
 extracted from three angle-stacks, along the reservoir time window (see
-figure <a class="reference external" href="#inv1:fig:schiehalliondata">15.7</a>).</p>
-</div>
-<div class="section" id="method-1-model-based-bayesian-inversion">
-<h3>Method 1 - Model-based Bayesian inversion</h3>
+figure <a class="reference external" href="#inv1:fig:schiehalliondata">6.7</a>).</p>
+</section><section id="method-1-model-based-bayesian-inversion"><h3>Method 1 - Model-based Bayesian inversion</h3>
 <p>The Bayesian invesion workflow is explained in detail in Gustavo Corte,
 MacBeth, and Amini (submitted 2019). Essentially the workflow uses a
 petro-elastic model calibrated to the seismic data by H. Amini (2018)
@@ -537,9 +488,7 @@ certain property the method will bring this information from the
 simulation model. The inversion results will deviate from the simulation
 in areas where the seismic data contains enough consistent information
 to indicate an update is necessary.</p>
-</div>
-<div class="section" id="method-2-neural-network-inversion">
-<h3>Method 2 - Neural network inversion</h3>
+</section><section id="method-2-neural-network-inversion"><h3>Method 2 - Neural network inversion</h3>
 <p>We use a deep neural network to model the inversion process, based on
 the synthetic convolution seismic data. Although convolutional neural
 networks are considered the state of the art in spatially correlated
@@ -568,10 +517,8 @@ of Parzen (TPE) estimator for hyperparameter estimation. The estimator
 models <span class="math">\(P(x|y)\)</span> and <span class="math">\(P(y)\)</span>, where <span class="math">\(y\)</span> the quality of
 fit and <span class="math">\(x\)</span> is the hyperparameter set drawn from a non-parametric
 density (J. S. Bergstra et al. 2011).</p>
-<div class="figure">
-<img alt="Architecture for sample-based seismic inversion with explicit gradient calculation." id="inv1-fig-avo-net" src="../images/AVO-Net.png"><p class="caption">Architecture for sample-based seismic inversion with explicit gradient calculation.</p>
-</div>
-<p>The architecture is shown in figure <a class="reference external" href="#inv1:fig:avo-net">15.6</a>. Inputs
+<figure><img alt="Architecture for sample-based seismic inversion with explicit gradient calculation." id="inv1-fig-avo-net" src="../images/AVO-Net.png"><figcaption><p>Architecture for sample-based seismic inversion with explicit gradient calculation.</p>
+</figcaption></figure><p>The architecture is shown in figure <a class="reference external" href="#inv1:fig:avo-net">6.6</a>. Inputs
 are Near, Mid, Far seismic, and Pore volume. These Input Layers are
 passed on to calculate the mid-near, far-mid, and far-near gradients.
 These four inputs and three gradients are concatenated and fed to the
@@ -592,9 +539,7 @@ to the input layer, to apply Gaussian Noise during the training phase.
 This significantly improved the inference on observed seismic data. The
 total training time for the network was 3 hours on a K5200 GPU,
 prediction speed takes <span class="math">\(5.11~s \pm  22.1~ms\)</span>.</p>
-</div>
-<div class="section" id="schiehallion-field-data-example">
-<h3>Schiehallion Field Data Example</h3>
+</section><section id="schiehallion-field-data-example"><h3>Schiehallion Field Data Example</h3>
 <p>The field data differs significantly from the synthetic data in that it
 is noisier, assuming the same ground truth. This is a true challenge for
 a sample-wise process to produce consistent results. We have trained the
@@ -602,18 +547,16 @@ network with Gaussian noise on the input data with zero mean and a
 standard deviation of <span class="math">\(\sigma = .02\)</span>, therefore, approximately
 <span class="math">\(95~\%\)</span> of the noise may distort up to a maximum <span class="math">\(40~\%\)</span> of
 the clean signal.</p>
-<p>Figure <a class="reference external" href="#inv1:fig:schiehalliondata">15.7</a> shows the observed 4D
+<p>Figure <a class="reference external" href="#inv1:fig:schiehalliondata">6.7</a> shows the observed 4D
 seismic maps (<span class="math">\(\Delta\)</span>SNA) for the 2004 monitor acquisition
 using the 1996 acquisition as baseline.
-Figure <a class="reference external" href="#inv1:fig:avo-net-results">15.8</a> shows, in the first row, the
+Figure <a class="reference external" href="#inv1:fig:avo-net-results">6.8</a> shows, in the first row, the
 simulation model results (used in the Bayesian method as prior
 information), in the second row, the inversion results for the Bayesian
 method, and in the third row, the inversion results for the neural
 network method.</p>
-<div class="figure">
-<img alt="Schiehallion 2004 Timestep Seismic data, pore volume and sim2seis results." id="inv1-fig-schiehalliondata" src="../images/Seis_Data.PNG"><p class="caption">Schiehallion 2004 Timestep Seismic data, pore volume and sim2seis results.</p>
-</div>
-<p>From figure <a class="reference external" href="#inv1:fig:avo-net-results">15.8</a> we can see clearly the
+<figure><img alt="Schiehallion 2004 Timestep Seismic data, pore volume and sim2seis results." id="inv1-fig-schiehalliondata" src="../images/Seis_Data.PNG"><figcaption><p>Schiehallion 2004 Timestep Seismic data, pore volume and sim2seis results.</p>
+</figcaption></figure><p>From figure <a class="reference external" href="#inv1:fig:avo-net-results">6.8</a> we can see clearly the
 influence of the prior simulation model in the Bayesian results. The
 neural network does not use a prior, so the results are not influenced
 by the simulation model and can be seen as a direct interpretation of
@@ -630,10 +573,8 @@ inversion process. Since there is no initial gas saturation in those
 areas the saturation change cannot be negative, these comprehensive
 constraints are imbedded into the Bayesian workflow but not in the
 neural network.</p>
-<div class="figure">
-<img alt="Schiehallion 2004 Timestep Bayesian Inversion and Neural Inversion" id="inv1-fig-avo-net-results" src="../images/NN_results.PNG"><p class="caption">Schiehallion 2004 Timestep Bayesian Inversion and Neural Inversion</p>
-</div>
-<p>Water saturation has a distinctive hardening effect on seismic data, but
+<figure><img alt="Schiehallion 2004 Timestep Bayesian Inversion and Neural Inversion" id="inv1-fig-avo-net-results" src="../images/NN_results.PNG"><figcaption><p>Schiehallion 2004 Timestep Bayesian Inversion and Neural Inversion</p>
+</figcaption></figure><p>Water saturation has a distinctive hardening effect on seismic data, but
 in this map it is highly obscured by stronger overlying softening
 effects due to pressure increase and gas breakout. The neural network
 interprets all the hardening anomalies correctly as water saturation
@@ -660,9 +601,7 @@ network training the pore volume has shown to be important in guiding
 the inversion from the seismic data. Adding pore volume data adds a
 structural component to the neural inversion process, which improves the
 overall results from the sample-based method significantly.</p>
-</div>
-<div class="section" id="id2">
-<span id="conclusions-2"></span><h3>Conclusions</h3>
+</section><section id="conclusions-3"><span id="conclusions-2"></span><h3>Conclusions</h3>
 <p>This work presents Deep Neural Inversion of 4D seismic data. We compare
 the results with a Bayesian Inversion approach. We show that Deep Neural
 Networks can model seismic inversion trained on synthetic data. Explicit
@@ -680,9 +619,7 @@ presented is in combining all knowledge about the reservoir to create a
 general view of the reservoir dynamics. These results show the current
 understanding of reservoir dynamics updated by imprinting seismic
 information on top of the history matched simulation results.</p>
-</div>
-<div class="section" id="id3">
-<span id="acknowledgements-3"></span><h3>Acknowledgements</h3>
+</section><section id="acknowledgements-1"><span id="acknowledgements-3"></span><h3>Acknowledgements</h3>
 <p>The research leading to these results has received funding from the
 Danish Hydrocarbon Research and Technology Centre under the Advanced
 Water Flooding program. We thank the sponsors of the Edinburgh
@@ -692,18 +629,15 @@ Shell, Taqa, and Woodside) for supporting this research. The Brazilian
 governmental research-funding agency CNPq. We are also grateful to Linda
 Hodgson and Ross Walder for important discussions on the field and
 dataset. We thank Mikael Lüthje for valuable feedback.</p>
-</div>
-</div>
-<div class="section" id="discussion-of-4d-inversion">
-<h2>Discussion of 4D Inversion</h2>
+</section></section><section id="discussion-of-4d-inversion"><h2>Discussion of 4D Inversion</h2>
 <p>The workshop paper Jesper Sören Dramsch, Corte, et al. (2019a) contains
 the neural network results compared to the simulation and Bayesian inversion
-results, shown in <a class="reference external" href="#inv1:fig:avo-net-results">15.8</a>. This network
+results, shown in <a class="reference external" href="#inv1:fig:avo-net-results">6.8</a>. This network
 does not calculate the inversion solution; it merely approximates the
 inverse problem. These initial results on limited training data show
 that a neural network can estimate pressure saturation information from field data,
 after training on simulation data.</p>
-<p>The results presented in <a class="reference external" href="#inv1:fig:avo-net-results">15.8</a> contain
+<p>The results presented in <a class="reference external" href="#inv1:fig:avo-net-results">6.8</a> contain
 three indicators that the network learned a regression for the
 Schiehallion field. The network returns the overall trend in increase
 and decrease of pressure and saturation correctly. Additionally, the
@@ -717,9 +651,7 @@ into maps.</p>
 changes present a problem. This could be due to problems in the
 modelling, as well as the fact, that they generate strong amplitude
 differences and are far in between, essentially behaving like outliers.</p>
-</div>
-<div class="section" id="contribution-of-this-study">
-<h2>Contribution of this study</h2>
+</section><section id="contribution-of-this-study"><h2>Contribution of this study</h2>
 <p>This study introduced a dnn to approximate a 4D qi pressure-saturation
 inversion problem with a regression model. The contribution of this
 study is threefold in that it approximated the pressure-saturation
@@ -729,11 +661,16 @@ thesis are two workshop papers (Jesper Sören Dramsch, Corte, et al.
 2019d, 2019a); however, a journal paper (Côrte et al. 2020) and
 conference paper (G. Corte et al. 2020) have been published, resulting
 directly from this work.</p>
+</section>
 </div>
-</div>
-    </div>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
 MathJax.Hub.Config({
+    TeX: {
+    extensions: ["color.js", "boldsymbol.js", "AMSmath.js", "AMSsymbols.js"],
+    Macros: {
+        bm: ["f{#1}",1]
+    }
+    },
     tex2jax: {
         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
         displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{equation}", "\\end{equation}"] ],
@@ -743,6 +680,10 @@ MathJax.Hub.Config({
     "HTML-CSS": {
         styles: {'.MathJax_Display': {"margin": 0}}
     }
+});
+MathJax.Hub.Register.StartupHook("TeX color Ready", function() {
+     MathJax.Extension["TeX/color"].colors["red"] = '#B86CBA';
+     MathJax.Extension["TeX/color"].colors["cyan"] = '#6CBAB8';
 });
 </script></article>
 </div>

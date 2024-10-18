@@ -1,13 +1,13 @@
 .. title: 3D Time Warping for 4D Data
 .. slug: 3d-time-warping-for-4d-data
 .. date: 2021-01-15 14:01:48 UTC
-.. tags: 
-.. category: 
-.. link: 
-.. description: 
+.. tags:
+.. category:
+.. link:
+.. description:
 .. type: text
 .. has_math: yes
-.. _sec:timeshift:
+.. _sec-timeshift:
 
 
 +-----------+-----------+------------------------------------------------+
@@ -19,7 +19,7 @@
 |   M. <https://orcid.org/0000-0003-2715-1653>`__ (2019, October 31).    |
 |   Deep Unsupervised 4D Seismic 3D Time-Shift Estimation with           |
 |   Convolutional Neural Networks. https://doi.org/10.31223/osf.io/82bnj |
-+------------------------------------------------------------------------+                         
++------------------------------------------------------------------------+
 | Github: https://github.com/JesperDramsch/voxelmorph-seismic            |
 +------------------------------------------------------------------------+
 
@@ -67,11 +67,11 @@ transformations (Goshtasby 1988), radial basis function-based methods
 2005), which has not found application in 4D seismic, due to being
 computationally expensive. The method finds a combination of
 diffeomorphisms, which will be introduced in
-`16.1 <#sec:diffeomorphisms>`__, through the deformation field of two
+`16.1 <#sec-diffeomorphisms>`__, through the deformation field of two
 images. lddmm then finds the shortest path of these diffeomorphisms
 iteratively.
 
-.. _sec:diffeomorphisms:
+.. _sec-diffeomorphisms:
 
 Diffeomorphisms
 ---------------
@@ -208,11 +208,25 @@ but does not expand on the method; hence an introduction to the
 algorithm is presented here. dtw is a signal processing tool for time
 series with the capability to match arbitrary time-series. Within
 geophysics it is applicable to 4D time shifts, seismic-well ties,
-well-to-well ties, and seismic pre- and post-stack migration (Hale2013?;
-Luo*2014?). dtw itself is a dynamic programming problem described in
-`[dtw] <#dtw>`__.
+well-to-well ties, and seismic pre- and post-stack migration (Hale2013;
+Luo2014). dtw itself is a dynamic programming problem described in
+`[Algorithm 1] <#dtw>`__.
 
- 
+.. _fig-constraints:
+
+.. list-table::
+   :width: 100%
+   :class: borderless
+
+   * - .. image:: ../images/minimum_path_all_losses_itakura_.png
+          :width: 100%
+          :name: fig-itakura
+
+     - .. image:: ../images/minimum_path_all_losses_sakoe_chiba_.png
+          :width: 100%
+          :name: fig-sakoe
+
+Figure 7.1: Minimum path for constraint masks for cumulative cost in DTW. Images show the optimum path for different loss functions, including L1, L2, and the Huber loss.
 
 The dtw algorithm, represented in `[dtw] <#dtw>`__, relies on
 calculating a distance matrix sample-wise between two traces :math:`a`
@@ -228,7 +242,7 @@ advantages of the :math:`L_1` norm and :math:`L_2` norm
 
 .. math::
 
-   L_\delta (a, b) = 
+   L_\delta (a, b) =
    \begin{cases}
     \frac{1}{2} (b-a)^2 & \text{for } |b-a| \le \delta, \\
     \delta (|b-a| - \frac{1}{2} \delta), & \text{otherwise.}
@@ -239,27 +253,56 @@ which is convex for small values, scales linearly for outliers and is
 differentiable for all values of :math:`\mathbb{R}`, with :math:`\delta`
 being a scaling factor.
 
-Given: Trace :math:`a` and Trace :math:`b` of lengths :math:`n`.
-:math:`D \gets dist(a,b)` :math:`C[0,0] \gets 0`
-:math:`C[0,i] \gets D[0,i] + C[0,i-1]`
-:math:`C[i,0] \gets D[i,0] + C[i-1,0]`
-:math:`C_{min} \gets \textbf{min} \{C[i,j-1], C[i-1,j-1], C[i-1,j]\}`
-:math:`C[i,j] \gets D[i,j] + C_{min}` :math:`P \gets C[n,n]`
-:math:`i, j \gets \textbf{index} \{ P[last] \}`
-:math:`C_{min} \gets \textbf{min} \{C[i,j-1], C[i-1,j-1], C[i-1,j]\}`
-:math:`P.\textbf{append} \gets \textbf{index} \{ C_{min} \}`
+.. _dtw:
+
+.. code-block:: text
+
+   Algorithm: DTW(a, b)
+   Given: Trace `a` and Trace `b` of lengths `n`.
+
+   Function CalculateDistanceMatrix(a, b)
+      D ← dist(a, b)
+      return D
+
+   Function CalculateCumulativeCost(D)
+      C[0,0] ← 0
+      for i = 1 to n  # Populate Edge
+         C[0,i] ← D[0,i] + C[0,i-1]
+         C[i,0] ← D[i,0] + C[i-1,0]
+
+      for i = 1 to n  # Fill Cumulative Cost Matrix
+         for j = 1 to n
+            C_min ← min(C[i,j-1], C[i-1,j-1], C[i-1,j])
+            C[i,j] ← D[i,j] + C_min
+      return C
+
+   Function BacktrackMinimumCostPath(C)
+      P ← C[n,n]
+      while i > 0 or j > 0
+         i, j ← index(P[last])
+         C_min ← min(C[i,j-1], C[i-1,j-1], C[i-1,j])
+         P.append(index(C_min))
+      return P
+
+   D ← CalculateDistanceMatrix(a, b)
+   C ← CalculateCumulativeCost(D)
+   P ← BacktrackMinimumCostPath(C)
+
+   return P
+
+Algorithm 1: Dynamic time warping algorithm consists of calculating the element-wise distance matrix, cumulative cost and then find the optimal path in the cumulative cost matrix
 
 Additionally, the search space on the cumulative distance matrix can be
 constrained to both increase performance and avoid non-optimal
 solutions. The different global constraint strategies are presented in
-`[fig:constraints] <#fig:constraints>`__. The Itakura parallelogram
-(Itakura1975?) in `[fig:itakura] <#fig:itakura>`__ describes a
+`[fig-constraints] <#fig-constraints>`__. The Itakura parallelogram
+(Itakura1975?) in `[fig-itakura] <#fig-itakura>`__ describes a
 parallelogram that has the largest width across the diagonal of the
 matrix, providing the highest degree of flexibility for the dtw
 algorithm in the centre parts of the seismic traces. The Sakoe-Chiba
 disc (Sakoe1978?) follows a different strategy, which provides a
 constant maximum warp path. This strategy in
-`[fig:sakoe] <#fig:sakoe>`__ introduces a global maximum time shift.
+`[fig-sakoe] <#fig-sakoe>`__ introduces a global maximum time shift.
 Other constraints on the warp path in dtw are local rate changes that
 limit the local changes, also called step patterns (Sakoe1978?; Giorgino
 and others 2009).
@@ -469,9 +512,9 @@ methods are all based on convolutional neural networks (CNNs).
    responses. This second layer is again convolved with a
    :math:`3\times3` filter to obtain the next layer. Subsampling is
    achieved by strided convolutions or pooling.
-  :name: 3d:fig:cnn
+  :name: fig-cnn
 
-  Schematic convolutional neural network. The input layer (yellow) is
+  Figure 7.2: Schematic convolutional neural network. The input layer (yellow) is
   convolved with a :math:`3\times3` filter that results in a spatially
   subsampled subsequent layer that contains the filter responses. This
   second layer is again convolved with a :math:`3\times3` filter to
@@ -484,14 +527,14 @@ optimized based on the chosen objective via gradient descent. These
 filters can operate on real images, medical images, or seismic data
 alike. The convolutional filter benefits from weight sharing, making the
 operation efficient and particularly suited to GPUs or specialized
-hardware. In Figure `16.1 <#3d:fig:cnn>`__ we show a schematic image,
+hardware. In `Figure 7.2 <#fig-cnn>`__ we show a schematic image,
 that is convolved with moving 3x3 filters repeatedly to obtain a
 spatially downsampled representation. These convolutional layers in
 neural networks can be arranged in different architectures that we
 explore in the following analysis of prior methods in image alignment.
 
 Supervised convolutional neural networks
-'''''''''''''''
+''''''''''''''''''''''''''''''''''''''''
 
 Supervised end-to-end convolutional neural networks rely on reliable ground truth, including the
 time shifts being available. Training a supervised machine learning
@@ -519,7 +562,7 @@ varying types of network architectures, optimizations, and losses that
 attempt to solve the optical flow problem in computer vision.
 
 Unsupervised convolutional neural networks
-'''''''''''''''''
+''''''''''''''''''''''''''''''''''''''''''
 
 Unsupervised or self-supervised convolutional neural networks only rely on the data, relaxing the
 necessity for ground truth time shifts. In (Meister, Hur, and Roth 2018)
@@ -572,8 +615,11 @@ time-shifts.
 Method
 ~~~~~~
 
-.. image:: figures/Voxelmorph_Full.png
+.. figure:: ../images/Voxelmorph_Full.png
    :alt: image
+   :name: fig-voxelmorph
+
+   Figure 7.3: 2D representation of Modified 3D Voxelmorph architecture to obtain full scale warp velocity field. The Encoder side of the U-Net architecture consists of four consecutive Convolutional (orange) and Pooling (red) layers, followed by a convolutional Bottleneck layer. The decoder of the U-Net architecture consists offour Upsampling (blue) and Convolutional layers are connected to the respective same size layers in the Encoder. The output is passed to two convolutional layers that are sampled by the reparametrization trick, to provide the static velocity field. The field is integrated via scaling and squaring and passed to the Spatial Transformer layer (green), which transforms the monitor to optimally match the base image, which is enforced by minimizing the mean squared error (MSE) of the images.
 
 The Voxelmorph (Balakrishnan et al. 2019) implements a U-net
 (Ronneberger, Fischer, and Brox 2015b) architecture to obtain a dense
@@ -592,7 +638,7 @@ of data, considering it was introduced on a small biomedical dataset.
 The short-cut concatenation between the input and output layers
 stabilizes training and avoids the vanishing gradient problem. It is
 particularly suited to stable training in this image matching
-architecture. In Figure `[3d:fig:voxelmorph] <#3d:fig:voxelmorph>`__ the
+architecture. In `Figure 7.3 <#fig-voxelmorph>`__ the
 U-Net is the left-most stack of layers, aranged in an hourglass
 architecture with shortcuts. These feed into a variational layer
 :math:`\mathcal{N(\mu,\sigma)}`, the variational layer is sampled with
@@ -605,7 +651,7 @@ to the warp velocity field obtained from the integrated sampler. The
 result is used to calculate the data loss between the warped image and
 the base cube.
 
-More formally, we define two 3D images :math:`\bm{b, m}` being the base
+More formally, we define two 3D images :math:`\bf{b, m}` being the base
 and monitor seismic respectively. We try to find a deformation field
 :math:`\phi` parameterized by the latent variable :math:`z` such that
 :math:`\phi_z: \mathbb{R}^3 \rightarrow \mathbb{R}^3`. The deformation
@@ -615,48 +661,48 @@ according to (Balakrishnan et al. 2019):
 .. math:: \frac{\partial\phi^{(t)}}{\partial t} = v(\phi^{(t)}),
 
 where :math:`t` is time, :math:`v` is the stationary velocity and the
-following holds true :math:`\phi^{(0)} = \bm{I}`. The integration of
+following holds true :math:`\phi^{(0)} = \bf{I}`. The integration of
 :math:`v` over :math:`t=[0,1]` provides :math:`\phi^{(1)}`. This
 integration represents and implements the one-parameter diffeomorphism
 in this network architecture. The variational Voxelmorph formulation
 assumes an approximate posterior probability
-:math:`q_\psi(z|\bm{b};\bm{m})`, with :math:`\psi` representing the
+:math:`q_\psi(z|\bf{b};\bf{m})`, with :math:`\psi` representing the
 parameterization. This posterior is modeled as a multivariate normal
 distribution with the covariance :math:`\Sigma_{z|m,b}` being diagonal:
 
-.. math:: q_\psi(z|\bm{b};\bm{m}) = \mathcal{N}(z,\bm{\mu}_{z|m,b}, \Sigma_{z|m,b}),
+.. math:: q_\psi(z|\bf{b};\bf{m}) = \mathcal{N}(z,\bf{\mu}_{z|m,b}, \Sigma_{z|m,b}),
 
 the effects of this assumption are explored in (Dalca, Balakrishnan,
 Guttag, et al. 2018).
 
 The approximate posterior probability :math:`q_\psi` is used to obtain
 the variational lower bound of the model evidence by minimizing the
-Kullback-Leibler (KL) divergence with :math:`p(z|\bm{b};\bm{m})` being
+Kullback-Leibler (KL) divergence with :math:`p(z|\bf{b};\bf{m})` being
 the intractable posterior probability. Following the full derivation in
 (Dalca, Balakrishnan, Guttag, et al. 2018), considering the sampling of
-:math:`z_k \sim q_\psi(z|\bm{b},\bm{m})` for each image pair
-:math:`(\bm{b},\bm{m})`, we compute :math:`\bm{m}\circ\phi_{z_k}` the
+:math:`z_k \sim q_\psi(z|\bf{b},\bf{m})` for each image pair
+:math:`(\bf{b},\bf{m})`, we compute :math:`\bf{m}\circ\phi_{z_k}` the
 warped image we obtain the loss:
 
 .. math::
 
    \begin{split}
-       \mathcal{L}(\psi; \bm{b}, \bm{m}) & = - \mathbf{E}_q [\log p(\bm{b}|z;\bm{m})] \\
-       & \hspace{4mm} + \mathbf{KL} [q_\psi(z|\bm{b};\bm{m}) || p_\psi(z|\bm{b};\bm{m})]\\
+       \mathcal{L}(\psi; \bf{b}, \bf{m}) & = - \mathbf{E}_q [\log p(\bf{b}|z;\bf{m})] \\
+       & \hspace{4mm} + \mathbf{KL} [q_\psi(z|\bf{b};\bf{m}) || p_\psi(z|\bf{b};\bf{m})]\\
        & \hspace{4mm} + \text{const}\\
-       & = \frac{1}{2\sigma^2K} \sum_k || \bm{b} - \bm{m} \circ \phi_{z_k} ||^2 \\
-       & \hspace{4mm} + \frac{1}{2} [\mathbf{tr}(\lambda\bm{D}\Sigma_{z|x;y}) - \log \Sigma_{z|x;y}) \\
-       & \hspace{12mm} + \bm{\mu}^T_{z|m,b}\bm{\Lambda}_z\bm{\mu}_{z|m,b}] + \text{const},
+       & = \frac{1}{2\sigma^2K} \sum_k || \bf{b} - \bf{m} \circ \phi_{z_k} ||^2 \\
+       & \hspace{4mm} + \frac{1}{2} [\mathbf{tr}(\lambda\bf{D}\Sigma_{z|x;y}) - \log \Sigma_{z|x;y}) \\
+       & \hspace{12mm} + \bf{\mu}^T_{z|m,b}\bf{\Lambda}_z\bf{\mu}_{z|m,b}] + \text{const},
    \end{split}
 
 where :math:`\Lambda_z` is a precision matrix, enforcing smoothness by
-the relationship :math:`\Sigma_z^{-1} = \Lambda_z = \lambda \bm{L}`,
+the relationship :math:`\Sigma_z^{-1} = \Lambda_z = \lambda \bf{L}`,
 :math:`\lambda` controlling the scale of the velocity field.
 Furthermore, following (Dalca, Balakrishnan, Guttag, et al. 2018)
-:math:`\bm{L} = \bm{D} - \bm{A}` is the Laplacian of a neighbourhood
-graph over the voxel grid, where :math:`\bm{D}` is the graph degree
+:math:`\bf{L} = \bf{D} - \bf{A}` is the Laplacian of a neighbourhood
+graph over the voxel grid, where :math:`\bf{D}` is the graph degree
 matrix, and :math:`A` defining the voxel neighbourhood. :math:`K`
-signifies the number of samples. We can express :math:`\bm{\mu}_{z|m,b}`
+signifies the number of samples. We can express :math:`\bf{\mu}_{z|m,b}`
 and :math:`\Sigma_{z|m,b}` as variational layers in a neural network and
 sample from the distributions of these layers. Given the diagonal
 constraint on :math:`\Sigma`, we define the variational layer as the
@@ -699,7 +745,7 @@ computational constraints. We decided to modify the network to provide
 full-scale flow fields, despite the computational cost. This enables
 direct interpretation of the warp field, which is common in 4D seismic
 analysis. However, we do provide an analysis in
-Section `16.4.4.2.4 <#sec:subsample>`__ of the sub-sampled flow-field
+`Section 7.4.4.2 <#sec-subsample>`__ of the sub-sampled flow-field
 interpolated to full scale, in the way it would be passed to the Spatial
 Transformer layer.
 
@@ -715,7 +761,7 @@ which was 16 and purely manually tuned to the maximum possible. The KL
 divergence and MSE loss are unweighted in the total loss.
 
 The network definition for the subsampled flow field differs from the
-definition in Figure `[3d:fig:voxelmorph] <#3d:fig:voxelmorph>`__ that
+definition in `Figure 7.3 <#fig-voxelmorph>`__ that
 the last upsampling and convolution layer in the Unet, including the
 skip connection, right before the variational layers
 :math:`(\mu, \sigma)` is omitted. That leaves the flow field at a
@@ -727,9 +773,9 @@ Transformer.
   :alt: Training Losses over time with the KL-divergence at the
    sampling layer, the data loss calculated by MSE, and the combined
    total loss.
-  :name: 3d:fig:loss
+  :name: fig-loss
 
-  Training Losses over time with the KL-divergence at the sampling layer, the data loss calculated by MSE, and the combined total loss.
+  Figure 7.4: Training Losses over time with the KL-divergence at the sampling layer, the data loss calculated by MSE, and the combined total loss.
 
 The data situation for this experiment is special in the sense that the
 method is self-supervised. We therefore do not provide a validation
@@ -751,7 +797,7 @@ from different parts of the world. Considering, that the training set is
 one 4D seismic monitor-base pair, a more robust network would emerge
 from training on a variety of different seismic volumes.
 
-Figure `16.2 <#3d:fig:loss>`__ shows the training losses of the batch
+`Figure  7.4 <#fig-loss>`__ shows the training losses of the batch
 training. Within a few epochs the network converges strongly, however
 within 10 epochs the KL divergence increases slightly over the training.
 The data loss, optimizing the warping result decreases over the training
@@ -764,55 +810,95 @@ requires re-evaluation.
 Results and Discussion
 ^^^^^^^^^^^^^^^^^^^^^^
 
-|    
-|    
-
-|    
-|    
 
 The network presented generates warp fields in three dimensions as well
 as uncertainty measures. We present results for three cases in
-Figure `[3d:fig:a_cross] <#3d:fig:a_cross>`__,
-`[3d:fig:d_inli] <#3d:fig:d_inli>`__, and
-`[3d:fig:hfd_inli] <#3d:fig:hfd_inli>`__ with the corresponding warp
+`Figure 7.5 <#fig-a-cross>`__,
+`Figure 7.10 <#fig-d-inli>`__, and
+`Figure 7.12 <#fig-hfd-inli>`__ with the corresponding warp
 fieds and uncertainties in
-Figure `[3d:fig:a_cross_warp] <#3d:fig:a_cross_warp>`__,
-`[3d:fig:d_inli_warp] <#3d:fig:d_inli_warp>`__, and
-`[3d:fig:hfd_inli_warp] <#3d:fig:hfd_inli_warp>`__. In
-Figure `[3d:fig:a_cross] <#3d:fig:a_cross>`__ we show the results on the
+`Figure  7.6 <#fig-a-cross-warp>`__,
+`Figure 7.11 <#fig-d-inli-warp>`__, and
+`Figure 7.13 <#fig-hfd-inli-warp>`__. In
+`Figure 7.5 <#fig-a-cross>`__ we show the results on the
 data, which the unsupervised method was trained on. Obtaining a warp
 field on the data itself is a good result, however, we additionally
 explore the generalizability of the method. Considering the network is
 trained to find an optimum warp field for the data it was originally
 trained on, we go on to test the network on data from the same field,
 that was recorded with significantly different acquisition parameters in
-Figure `[3d:fig:d_inli] <#3d:fig:d_inli>`__. These results test the
+`Figure 7.10 <#fig-d-inli>`__. These results test the
 networks generalizability on co-located data, therefore not expecting
 vastly differing seismic responses from the subsurface itself. The are
 imaging differences and differences in equipment in addition to the 4D
-difference however. In Figure `[3d:fig:hfd_inli] <#3d:fig:hfd_inli>`__
+difference however. In `Figure 7.12 <#fig-hfd-inli>`__
 we use the network on unseen data from a different field. The geometry
 of the field, as well as the acquisition parameters are different,
 making generalization a challenge.
 
-In Figure `[3d:fig:a_cross] <#3d:fig:a_cross>`__ we collect six 2D
+.. _fig-a-cross:
+
+.. list-table::
+   :width: 100%
+   :class: borderless
+
+   * - .. image:: ../images/a_crossline_base_0.png
+          :width: 100%
+          :name: fig-a-cross-base
+
+       (a) Base Seismic
+
+     - .. image:: ../images/a_crossline_monitor_0_annotated.png
+          :width: 100%
+          :name: fig-a-cross-monitor
+
+       (b) Monitor Seismic
+
+     - .. image:: ../images/a_crossline_matched_0.png
+          :width: 100%
+          :name: fig-a-cross-matched
+
+       (c) Matched Monitor
+
+   * - .. image:: ../images/a_crossline_warp_2.png
+          :width: 100%
+          :name: fig-a-cross-warp-z1
+
+       (d) Z-Direction Shifts
+
+     - .. image:: ../images/a_crossline_monitor_0_diff.png
+          :width: 100%
+          :name: fig-a-cross-monitor-diff
+
+       (e) Difference Monitor-Base
+
+     - .. image:: ../images/a_crossline_matched_0_diff.png
+          :width: 100%
+          :name: fig-a-cross-match-diff1
+
+       (f) Difference Matched-Base
+
+Figure 7.5: Warp results and change in difference on training recall of 1988 to 2005a data. Axes are relative to comply with confidentiality..
+
+
+In `Figure 7.5 <#fig-a-cross>`__ we collect six 2D
 panels from the 3D warping operation. In
-Figure `[3d:fig:a_cross] <#3d:fig:a_cross>`__ and
-Figure `[3d:fig:a_cross] <#3d:fig:a_cross>`__ we show the unaltered base
+`Figure 7.5 (a) <#fig-a-cross-base>`__ and
+`Figure 7.5 (b) <#fig-a-cross-monitor>`__ we show the unaltered base
 and monitor respectively. The difference between the unaltered cubes is
-shown in Figure `[3d:fig:a_cross] <#3d:fig:a_cross>`__. In
-Figure `[3d:fig:a_cross] <#3d:fig:a_cross>`__ we show the warped result
+shown in `Figure 7.5 (e) <#fig-a-cross-monitor-diff>`__. In
+`Figure 7.5 (c) <#fig-a-cross-matched>`__ we show the warped result
 by applying the z-warp field in
-Figure `[3d:fig:a_cross] <#3d:fig:a_cross>`__, as well as the warp
+`Figure 7.5 (d) <#fig-a-cross-warp-z1>`__, as well as the warp
 fields in (x,y) direction fully displayed in
-Figure `[3d:fig:a_cross_warp] <#3d:fig:a_cross_warp>`__ including their
+`Figure 7.6 <#fig-a-cross-warp>`__ including their
 respective uncertainties. The difference of the warped result in
-Figure `[3d:fig:a_cross] <#3d:fig:a_cross>`__ is calculated from the
-matched monitor in Figure `[3d:fig:a_cross] <#3d:fig:a_cross>`__ and the
-base in Figure `[3d:fig:a_cross] <#3d:fig:a_cross>`__.
+`Figure 7.5 (f) <#fig-a-cross-match-diff1>`__ is calculated from the
+matched monitor in `Figure 7.5 (c) <#fig-a-cross-matched>`__ and the
+base in `Figure 7.5 (a) <#fig-a-cross-base>`__.
 
 It is apparent that the matched monitor significantly reduced noise by
-mis-aligned reflections. In Table `16.1 <#tab:results>`__ we present the
+mis-aligned reflections. In Table `7.1 <#tab-results>`__ we present the
 numeric results. These were computed on the 3D cube for an accurate
 representation. We present the root mean square (RMS) and mean absolute
 error (MAE) and the according difference between Monitor and Matched
@@ -826,10 +912,10 @@ the test data on another field show a similar reduction, while the
 absolute error differs in a stable manner.
 
 .. container::
-   :name: tab:results
+   :name: tab-results
 
-   .. table:: Quantitative Evaluation of Results. RMS and MAE calculated against respective base data. Training recall, Test A - Same field, different acquisition, Test B - different field, different acquisition 
-   
+   .. table:: Quantitative Evaluation of Results. RMS and MAE calculated against respective base data. Training recall, Test A - Same field, different acquisition, Test B - different field, different acquisition
+
       ======== ======= ======= ===== ======= ======= =====
       Run      Monitor Matched Ratio Monitor Matched Ratio
                RMS     RMS     %     MAE     MAE     %
@@ -839,53 +925,100 @@ absolute error differs in a stable manner.
       Test B   0.0583  0.0361  62.0  0.0451  0.0254  56.4
       ======== ======= ======= ===== ======= ======= =====
 
-In Figure `[3d:fig:a_cross_warp] <#3d:fig:a_cross_warp>`__ we present
+
+In `Figure 7.6 <#fig-a-cross-warp>`__ we present
 the three dimensional warp field to accompany the results in
-Figure `[3d:fig:a_cross] <#3d:fig:a_cross>`__.
-Figure `[3d:fig:a_cross_warp] <#3d:fig:a_cross_warp>`__, `[3d:fig:a_cross_warp] <#3d:fig:a_cross_warp>`__, and `[3d:fig:a_cross_warp] <#3d:fig:a_cross_warp>`__
+`Figure 7.5 <#fig-a-cross>`__.
+`Figure 7.6 (a) <#fig-a-cross-warp-x>`__, `Figure 7.6 (b) <#fig-a-cross-warp-y>`__, and `Figure 7.6 (c) <#fig-a-cross-warp-z>`__
 show the warp field in x, y, and z-direction. The z-direction is
 generally referred to as time shifts in 4D seismic.
-Figure `[3d:fig:a_cross_warp] <#3d:fig:a_cross_warp>`__, `[3d:fig:a_cross_warp] <#3d:fig:a_cross_warp>`__, and `[3d:fig:a_cross_warp] <#3d:fig:a_cross_warp>`__
+`Figure 7.6 (d) <#fig-a-cross-warp-ux>`__, `Figure 7.6 (e) <#fig-a-cross-warp-uy>`__, and `Figure 7.6 (f) <#fig-a-cross-warp-uz>`__
 contain the corresponding uncertainties in x, y, and z-direction
 obtained from the network.
 
-.. _sec:recall:
+
+.. _fig-a-cross-warp:
+
+.. list-table::
+   :width: 100%
+   :class: borderless
+
+   * - .. image:: ../images/a_crossline_warp_0.png
+          :width: 100%
+          :name: fig-a-cross-warp-x
+
+       (a) X-Direction Shifts
+
+     - .. image:: ../images/a_crossline_warp_1.png
+          :width: 100%
+          :name: fig-a-cross-warp-y
+
+       (b) Y-Direction Shifts
+
+     - .. image:: ../images/a_crossline_warp_2.png
+          :width: 100%
+          :name: fig-a-cross-warp-z
+
+       (c) Z-Direction Shifts
+
+   * - .. image:: ../images/a_crossline_warp_3.png
+          :width: 100%
+          :name: fig-a-cross-warp-ux
+
+       (d) Uncertainty X-Direction
+
+     - .. image:: ../images/a_crossline_warp_4.png
+          :width: 100%
+          :name: fig-a-cross-warp-uy
+
+       (e) Uncertainty Y-Direction
+
+     - .. image:: ../images/a_crossline_warp_5.png
+          :width: 100%
+          :name: fig-a-cross-warp-uz
+
+       (f) Uncertainty Z-Direction
+
+Figure 7.6: Warp fields (top) with uncertainties (bottom) that accompanies training recall in `Figure 7.5 <#fig-a-cross>`__.
+
+
+.. _sec-recall:
 
 Recall to Training Data
 '''''''''''''''''''''''
 
-In Figure `[3d:fig:a_cross] <#3d:fig:a_cross>`__ we evaluate the results
+In `Figure 7.5 <#fig-a-cross>`__ we evaluate the results
 of the self-supervised method on the training data itself. The main
 focus is on the main reflector in the center of the panels. The
-difference in Figure `[3d:fig:a_cross] <#3d:fig:a_cross>`__ shows that
+difference in `Figure 7.5 (e) <#fig-a-cross-monitor-diff>`__ shows that
 the packet of reflectors marked reservoir in the monitor is out of
 alignment, causing a large difference, which is corrected for in
-Figure `[3d:fig:a_cross] <#3d:fig:a_cross>`__. The topmost section in
-the panel of Figure `[3d:fig:a_cross] <#3d:fig:a_cross>`__ shows the
+`Figure 7.5 (f) <#fig-a-cross-match-diff1>`__. The topmost section in
+the panel of `Figure 7.5 (c) <#fig-a-cross-matched>`__ shows the
 alignment of a faulted segment, marked fault in the monitor, to an
 unfaulted segment in the base. The fault appearing is most likely due to
 vastly improved acquisition technology for the monitor.
 
 The warp fields in
-Figure `[3d:fig:a_cross_warp] <#3d:fig:a_cross_warp>`__ are an integral
+`Figure 7.6 <#fig-a-cross-warp>`__ are an integral
 part in QC-ing the validity of the results. Physically, we expect the
 strongest changes in the z-direction in
-Figure `[3d:fig:a_cross_warp] <#3d:fig:a_cross_warp>`__. The changes in
-Figure `[3d:fig:a_cross_warp] <#3d:fig:a_cross_warp>`__ and
-Figure `[3d:fig:a_cross_warp] <#3d:fig:a_cross_warp>`__ show mostly
+`Figure 7.6 (c) <#fig-a-cross-warp-z>`__. The changes in
+`Figure 7.6 (a) <#fig-a-cross-warp-x>`__ and
+`Figure 7.6 (b) <#fig-a-cross-warp-y>`__ show mostly
 sub-sampling magnitude shifts, except for the x-direction shifts around
 the fault in the top-most panel present in the monitor in
-Figure `[3d:fig:a_cross] <#3d:fig:a_cross>`__.
-Figure `[3d:fig:a_cross_warp] <#3d:fig:a_cross_warp>`__ and
-Figure `[3d:fig:a_cross_warp] <#3d:fig:a_cross_warp>`__ show strong
+`Figure 7.5 (b) <#fig-a-cross>`__.
+`Figure 7.6 (a) <#fig-a-cross-warp-x>`__ and
+`Figure 7.6 (b) <#fig-a-cross-warp-y>`__ show strong
 shifts at 0.4s on the left of the panel which corresponds to the strong
 amplitude changes in the base and monitor. On the one side these
 correspond to the strongest difference section, additionally these are
 geological hinges, which are under large geomechanical strain. However,
 these are very close to the sides of the warp, which may cause
-artifacts. Figure `[3d:fig:a_cross_warp] <#3d:fig:a_cross_warp>`__,
-Figure `[3d:fig:a_cross_warp] <#3d:fig:a_cross_warp>`__, and
-Figure `[3d:fig:a_cross_warp] <#3d:fig:a_cross_warp>`__ show the
+artifacts. `Figure 7.6 (d) <#fig-a-cross-warp-ux>`__,
+`Figure 7.6 (e) <#fig-a-cross-warp-uy>`__, and
+`Figure 7.6 (f) <#fig-a-cross-warp-uz>`__ show the
 uncertainty of the network. These uncertainties are across the bank
 within the 10% range of the sampling rate
 (:math:`\Delta t = 4` ms, :math:`\Delta x,y = 25` m). The certainty
@@ -894,46 +1027,109 @@ y-, and z-direction. While being relatively lover in the problematic
 regions discussed before.
 
 The warp field in
-Figure `[3d:fig:a_cross_warp] <#3d:fig:a_cross_warp>`__ contains some
+`Figure 7.6 (d) <#fig-a-cross-warp-ux>`__ contains some
 reflector shaped warp vectors around 0.4 s, which is due to the wavelet
 mismatch of the 1988 base to the 2005 monitor. The diffeomorphic nature
 of the network aligns the reflectors in the image, which causes some
 reflector artifacts in the z-direction maps.
 
-r.5  
-
 Comparison to Baseline Method
 '''''''''''''''''''''''''''''
 
 We use the Dynamic Image Warping method (Dave Hale 2013a) to align the
-images in Figure `[3d:fig:a_cross] <#3d:fig:a_cross>`__. This method
+images in `Figure 7.5 <#fig-a-cross>`__. This method
 extends the Dynamic Time Warping method to 2D and provides a much
 improved result in 2D compared to standard cross-correlation and DTW
 methods. Inversion methods need pre-stack seismic data, which is not
 available. We chose this baseline to provide a fair comparison with the
-available data. Figure `[3d:fig:dtw] <#3d:fig:dtw>`__ shows the
+available data. `Figure 7.7 <#fig-dtw>`__ shows the
 timeshifts or warp fields generated by the Voxelmorph network and by the
 DIW algorithm. The DIW algorithm shows a smoothed image. Overall, the
-Subfigre `[3d:fig:dtw_warp] <#3d:fig:dtw_warp>`__ shows the general
+`Subfigre 7.7 (b) <#fig-dtw_warp>`__ shows the general
 trends of
-Subfigre `[3d:fig:dtw_full_scale_warp] <#3d:fig:dtw_full_scale_warp>`__.
+`Subfigre 7.7 (a) <#fig-dtw_full_scale_warp>`__.
 The Voxelmorph algorithm is more detailed than the DIW image, however
 the general magnitude of the time shifts matches well in the correct
 areas.
 
-Figure `[3d:fig:dtw_cross] <#3d:fig:dtw_cross>`__ shows the matched
+.. _fig-dtw:
+
+.. list-table::
+   :width: 100%
+   :class: borderless
+
+   * - .. image:: ../images/a_crossline_warp_2.png
+          :width: 100%
+          :name: fig-dtw-full-scale-warp
+
+       (a) Full-Scale Warp Field
+
+     - .. image:: ../images/dtw_crossline_warp_2.png
+          :width: 100%
+          :name: fig-dtw-warp
+
+       (b) DIW Timeshifts
+
+Figure 7.7: Comparison of Voxelmorph warp field (left) and Dynamic Image Warping (right) warp fields.
+
+
+`Figure 7.8 <#fig-dtw-cross>`__ shows the matched
 monitors from Voxelmorph and DIW. The matched monitors align quite well
 without any significant discrepancies. The matched difference shows that
 the Voxelmorph algorithm performs similarly to the baseline method,
 while removing more 4D noise from the image. It keeps the 4D signal
 intact, albeit slightly varying. The DIW algorithm seems to struggle to
 align the topmost part of the image, while Voxelmorph aligns these well,
-removing additional 4D noise. Table `16.1 <#tab:results>`__ confirms
+removing additional 4D noise. Table `7.1 <#tab-results>`__ confirms
 this quantitatively, where the overall RMSE and MAE are reduced
 proportionally.
 
-|    
-|    
+
+
+.. _fig-dtw_cross:
+
+.. list-table::
+   :width: 100%
+   :class: borderless
+
+   * - .. image:: ../images/a_crossline_monitor_0.png
+          :width: 100%
+          :name: fig-dtw-cross-base
+
+       (a) Base Seismic
+
+     - .. image:: ../images/dtw_crossline_matched_0.png
+          :width: 100%
+          :name: fig-dtw-cross-monitor
+
+       (b) DTW Monitor Seismic
+
+     - .. image:: ../images/a_crossline_matched_0.png
+          :width: 100%
+          :name: fig-a-dtw-cross-matched
+
+       (c) Voxelmorph Matched Monitor
+
+   * - .. image:: ../images/a_crossline_monitor_0_diff.png
+          :width: 100%
+          :name: fig-dtw-a-cross-monitor-diff
+
+       (d) Unaligned Difference
+
+     - .. image:: ../images/dtw_crossline_matched_difference_0_diff.png
+          :width: 100%
+          :name: fig-dtw-cross-match-diff
+
+       (e) DTW Difference
+
+     - .. image:: ../images/a_crossline_matched_0_diff.png
+          :width: 100%
+          :name: fig-dtw-a-cross-match-diff
+
+       (f) Voxelmorph Difference
+
+Figure 7.8: Results of Voxelmorph warping compared to baseline dynamic image warping algorithm. Top row shows the aligned monitor, bottom row shows the difference to the base volume.
+
 
 Generalization of the Network
 '''''''''''''''''''''''''''''
@@ -944,95 +1140,274 @@ is essential even for self-supervised methods. We test the network on
 two test sets, Test A is conducted on the same geology with unseen data
 from a different acquisition, while Test B is on a different field and a
 different acquisition. The network was trained on a single acquisition
-relation (2005a - 1988). In Figure `[3d:fig:d_inli] <#3d:fig:d_inli>`__
+relation (2005a - 1988). In `Figure 7.10 <#fig-d-inli>`__
 we present the crossline data from the same field the network was
 trained on. The data sets was however acquired at a different calendar
 times (2005b - 2012), with different acquisition parameters. It follows
 that although the geology and therefore the reflection geometry is
 similar, the wavelet and hence the seismic response are vastly
 different. This becomes apparent when comparing the base
-Figure `[3d:fig:d_inli_base] <#3d:fig:d_inli_base>`__ to
-Figure `[3d:fig:a_cross] <#3d:fig:a_cross>`__, which were acquired in
+`Figure 7.10 (a) <#fig-d-inli-base>`__ to
+`Figure 7.5 <#fig-a-cross>`__, which were acquired in
 the same year.
+
+
+.. _d-inli:
+
+.. list-table::
+   :width: 100%
+   :class: borderless
+
+   * - .. image:: ../images/d_inline_base_0.png
+          :width: 100%
+          :name: fig-d-inli-base
+
+       (a) Base Seismic
+
+     - .. image:: ../images/d_inline_monitor_0.png
+          :width: 100%
+          :name: fig-d-inli-monitor
+
+       (b) Monitor Seismic
+
+     - .. image:: ../images/d_inline_matched_0.png
+          :width: 100%
+          :name: fig-d-inli-matched
+
+       (c) Matched Monitor
+
+   * - .. image:: ../images/d_inline_warp_2.png
+          :width: 100%
+          :name: fig-d-inli-warp-z1
+
+       (d) Z-Direction Shifts
+
+     - .. image:: ../images/d_inline_monitor_0_diff.png
+          :width: 100%
+          :name: fig-d-inli-monitor-diff
+
+       (e) Difference Monitor-Base
+
+     - .. image:: ../images/d_inline_matched_0_diff.png
+          :width: 100%
+          :name: fig-d-inli-match-diff
+
+       (f) Difference Matched-Base
+
+Figure 7.10: Matched difference and warp field for generalization of network to same field with different data (2005b and 2012).
 
 Test A evaluates the network performance on unseen data in the same
 field (Train: 1988-2005a, Test A: 2005b - 2012). The quantitative
-results in Table `16.1 <#tab:results>`__ for Test A generally show lower
+results in Table `7.1 <#tab-results>`__ for Test A generally show lower
 absolute errors compared to the training results in
-Section `16.4.4.2.1 <#sec:recall>`__. The reduction of the overall
+`Section 7.4.4.2 <#sec-recall>`__. The reduction of the overall
 amplitudes in the difference maps is reduce by 40%. The unaligned
-monitor difference in Figure `[3d:fig:d_inli] <#3d:fig:d_inli>`__ shows
+monitor difference in `Figure 7.10 (e) <#fig-d-inli-monitor-diff>`__ shows
 a strong coherent difference around below the main packet of reflectors
 around 0.3 s to 0.4 s. This would suggest a velocity draw-down in this
 packet. While the top half of the unaligned difference contains some
 misalignment, we would expect the warp field to display a shift around
 0.35 s, which can be observed in
-Figure `[3d:fig:d_inli] <#3d:fig:d_inli>`__. The aligned difference in
-Figure `[3d:fig:d_inli] <#3d:fig:d_inli>`__ contains less coherent
+`Figure 7.10 (d) <#fig-d-inli-warp-z1>`__. The aligned difference in
+`Figure 7.10 (f) <#fig-d-inli-match-diff>`__ contains less coherent
 differences. The difference does still show some overall noise in the
 maps. This could be improved upon by a more diverse training set. The
 higher resolution data from 2005 and 2012 possibly has an influence on
 the result too. Regardless, we can see some persisting amplitude
 difference around 0.4 s which appears to be signal as opposed to some
 misalignment noise above. The warp fields in
-Figure `[3d:fig:d_inli_warp] <#3d:fig:d_inli_warp>`__ show relatively
+`Figure 7.11 <#fig-d-inli-warp>`__ show relatively
 smooth warp fields in x- and y-direction. The warp field in
-Figure `[3d:fig:d_inli_warp] <#3d:fig:d_inli_warp>`__ shows overall good
+`Figure 7.11 (f) <#fig-d-inli-warp-uz>`__ shows overall good
 coherence, including the change around 0.4 s we would expect. The
 uncertainty values are in sub-sampling range, with the strongest
 certainty within the strong reflector packet at 0.35 s.
 
+
+.. _fig-d-inli-warp:
+
+.. list-table::
+   :width: 100%
+   :class: borderless
+
+   * - .. image:: ../images/d_inline_warp_0.png
+          :width: 100%
+          :name: fig-d-inli-warp-x
+
+       (a) X-Direction Shifts
+
+     - .. image:: ../images/d_inline_warp_1.png
+          :width: 100%
+          :name: fig-d-inli-warp-y
+
+       (b) Y-Direction Shifts
+
+     - .. image:: ../images/d_inline_warp_2.png
+          :width: 100%
+          :name: fig-d-inli-warp-z
+
+       (c) Z-Direction Shifts
+
+   * - .. image:: ../images/d_inline_warp_3.png
+          :width: 100%
+          :name: fig-d-inli-warp-ux
+
+       (d) Uncertainty X-Direction
+
+     - .. image:: ../images/d_inline_warp_4.png
+          :width: 100%
+          :name: fig-d-inli-warp-uy
+
+       (e) Uncertainty Y-Direction
+
+     - .. image:: ../images/d_inline_warp_5.png
+          :width: 100%
+          :name: fig-d-inli-warp-uz
+
+       (f) Uncertainty Z-Direction
+
+Figure 7.11: Warp fields (top) with uncertainties (bottom) that accompanies same field generalization in `Figure 7.10 <#fig-d-inli>`__.
+
+
 Test B evaluates the network performance on a different field, with
 different geology, with unrelated acquisition geometry and equipment and
 at different times. The test shows a very similar reduction of overall
-errors in Table `16.1 <#tab:results>`__. The RMS is reduced by 38% and
+errors in `Table 7.1 <#tab-results>`__. The RMS is reduced by 38% and
 the MAE is reduced more slightly more in comparison to Test A. In
-Figure `[3d:fig:hfd_inli] <#3d:fig:hfd_inli>`__ we present the seismic
+`Figure 7.12 <#fig-hfd-inli>`__ we present the seismic
 panels to accompany Test B. The data in
-Figure `[3d:fig:hfd_inli] <#3d:fig:hfd_inli>`__ and
-Figure `[3d:fig:hfd_inli] <#3d:fig:hfd_inli>`__ is well resolved and
+`Figure 7.12 (a) <#fig-hfd-inli-base>`__ and
+`Figure 7.12 (b) <#fig-hfd-inli-monitor>`__ is well resolved and
 shows good coherence. However, the unaligned difference in
-Figure `[3d:fig:hfd_inli] <#3d:fig:hfd_inli>`__ shows very strong
+`Figure 7.12 (e) <#fig-hfd-inli-monitor-diff>`__ shows very strong
 variations in the difference maps.
-Figure `[3d:fig:hfd_inli] <#3d:fig:hfd_inli>`__ reduces these errors
+`Figure 7.12 (f) <#fig-hfd-inli-matched-diff>`__ reduces these errors
 significantly, bringing out coherent differences in the main reflector
 at 0.27 s. We can see strong chaotic differences in
-Figure `[3d:fig:hfd_inli] <#3d:fig:hfd_inli>`__, due to the faulted
+`Figure 7.12 (e) <#fig-hfd-inli-monitor-diff>`__, due to the faulted
 nature of the geology. The network aligns these faulted blocks
 relatively well, however, some artifacts persist. This is consistent
 with the warp fields in
-Figure `[3d:fig:hfd_inli_warp] <#3d:fig:hfd_inli_warp>`__. The x- and
-y-direction in Figure `[3d:fig:hfd_inli_warp] <#3d:fig:hfd_inli_warp>`__
-and Figure `[3d:fig:hfd_inli_warp] <#3d:fig:hfd_inli_warp>`__
+`Figure 7.13 <#fig-hfd-inli-warp>`__. The x- and
+y-direction in `Figure 7.13 (d) <#fig-hfd-inli-warp-ux>`__
+and `Figure 7.13 (e) <#fig-hfd-inli-warp-uy>`__
 respectively show overall smooth changes, around faults, these changes
 are stronger. The z-direction changes are consistent with the Training
 validation and Test A, where the changes are overall stronger. This is
 also consistent with our geological intuition.
 
-.. _sec:subsample:
+
+.. _hfd-inli:
+
+.. list-table::
+   :width: 100%
+   :class: borderless
+
+   * - .. image:: ../images/hfd_inline_base_0.png
+          :width: 100%
+          :name: fig-hfd-inli-base
+
+       (a) Base Seismic
+
+     - .. image:: ../images/hfd_inline_monitor_0.png
+          :width: 100%
+          :name: fig-hfd-inli-monitor
+
+       (b) Monitor Seismic
+
+     - .. image:: ../images/hfd_inline_matched_0.png
+          :width: 100%
+          :name: fig-hfd-inli-matched
+
+       (c) Matched Monitor
+
+   * - .. image:: ../images/hfd_inline_warp_2.png
+          :width: 100%
+          :name: fig-hfd-inli-warp-z1
+
+       (d) Z-Direction Shifts
+
+     - .. image:: ../images/hfd_inline_monitor_difference_0_diff.png
+          :width: 100%
+          :name: fig-hfd-inli-monitor-diff
+
+       (e) Difference Monitor-Base
+
+     - .. image:: ../images/hfd_inline_matched_difference_0_diff.png
+          :width: 100%
+          :name: fig-hfd-inli-matched-diff
+
+       (f) Difference Matched-Base
+
+Figure 7.12: Matched difference and warp field for generalization of network to a different field (1993 and 2005).
+
+
+.. _fig-hfd-inli-warp:
+
+.. list-table::
+   :width: 100%
+   :class: borderless
+
+   * - .. image:: ../images/hfd_inline_warp_0.png
+          :width: 100%
+          :name: fig-hfd-inli-warp-x
+
+       (a) X-Direction Shifts
+
+     - .. image:: ../images/hfd_inline_warp_1.png
+          :width: 100%
+          :name: fig-hfd-inli-warp-y
+
+       (b) Y-Direction Shifts
+
+     - .. image:: ../images/hfd_inline_warp_2.png
+          :width: 100%
+          :name: fig-hfd-inli-warp-z
+
+       (c) Z-Direction Shifts
+
+   * - .. image:: ../images/hfd_inline_warp_3.png
+          :width: 100%
+          :name: fig-hfd-inli-warp-ux
+
+       (d) Uncertainty X-Direction
+
+     - .. image:: ../images/hfd_inline_warp_4.png
+          :width: 100%
+          :name: fig-hfd-inli-warp-uy
+
+       (e) Uncertainty Y-Direction
+
+     - .. image:: ../images/hfd_inline_warp_5.png
+          :width: 100%
+          :name: fig-hfd-inli-warp-uz
+
+       (f) Uncertainty Z-Direction
+
+Figure 7.13: Warp fields (top) with uncertainties (bottom) that accompanies different field generalization in `Figure 7.12 <#fig-hfd-inli>`__.
+
+
+.. _sec-subsample:
 
 Subsampled Flow
 '''''''''''''''
-
-| r.5  
-|  
 
 The original Voxelmorph implementation uses a subsampled warp field. The
 authors claim two benefits, namely a smoother warp velocity field and
 reduced computational cost. The aforementioned results were obtained
 using our full-scale network. In
-Figure `[3d:fig:upsample] <#3d:fig:upsample>`__ we present the full
+`Figure 7.9 <#fig-upsample>`__ we present the full
 scale and upsampled results on the training set. The matched difference
-in Figure `[3d:fig:upsample_match] <#3d:fig:upsample_match>`__ contains
+in `Figure 7.9 (b) <#fig-upsample-match>`__ contains
 more overall noise compared to
-Figure `[3d:fig:full_scale_match] <#3d:fig:full_scale_match>`__. This is
+`Figure 7.9 (a) <#fig-full-scale-match>`__. This is
 congruent with the warp fields in the figure. The upsampled z-direction
-warp field in Figure `[3d:fig:upsample_warp] <#3d:fig:upsample_warp>`__
+warp field in `Figure 7.9 (d) <#fig-upsample-warp>`__
 seems to have some aliasing on the diagonal reflector around 0.4 s. This
 explains some of the artifacts in the difference in
-Figure `[3d:fig:upsample_match] <#3d:fig:upsample_match>`__. The overall
+`Figure 7.9 (b) <#fig-upsample-match>`__. The overall
 warp velocity in
-Figure `[3d:fig:upsample_warp] <#3d:fig:upsample_warp>`__ is smoother
+`Figure 7.9 (d) <#fig-upsample-warp>`__ is smoother
 compared to the full-scale field. However, the general structure of
 coherent negative and positive areas matches in both warp fields, while
 the details differ. The main persistent difference of the reflector
@@ -1042,6 +1417,39 @@ have stronger residual amplitudes in the upsampled network. Overall, the
 full-scale network results are better for seismic data at a slightly
 increased computational cost. The subsampled field introduced artifacts
 in our observations.
+
+
+.. _fig-upsample:
+
+.. list-table::
+   :width: 100%
+   :class: borderless
+
+   * - .. image:: ../images/a_crossline_matched_0_diff.png
+          :width: 100%
+          :name: fig-full-scale-match
+
+       (a) Full-Scale Matched Difference
+
+     - .. image:: ../images/upsample/a_crossline_matched_difference_0_diff.png
+          :width: 100%
+          :name: fig-upsample-match
+
+       (b) Upsampled Matched Difference
+
+   * - .. image:: ../images/a_crossline_warp_2.png
+          :width: 100%
+          :name: fig-full-scale-warp
+
+       (c) Full-Scale Warp Field
+
+     - .. image:: ../images/upsample/a_crossline_warp_2.png
+          :width: 100%
+          :name: fig-upsample-warp
+
+       (d) Upsampled Warp Field
+
+Figure 7.9: Comparison of matched differences (top) and z-direction warp field (bottom) of full-scale neural architecture (left) and subsampled neural architecture (right).
 
 .. _conclusion-2:
 
@@ -1092,17 +1500,9 @@ network to a new data set is possible without training, while accepting
 some error. Alternatively fine-tuning to new data is possible within few
 epochs (:math:`<`\ 1 h).
 
-|    
-|    
 
-|    
-|    
 
-|    
-|    
 
-|    
-|    
 
 Acknowledgment
 --------------

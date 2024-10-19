@@ -1285,7 +1285,7 @@ PANDOC_OPTIONS = ['--mathjax', '-s']
 # Google Analytics or whatever else you use. Added to the bottom of <body>
 # in the default template (base.tmpl).
 # (translatable)
-# BODY_END = ""
+BODY_END = """<script defer data-domain="jesperdramsch.github.io/phd-thesis" src="http://info.dramsch.net/js/script.js"></script>"""
 
 # The possibility to extract metadata from the filename by using a
 # regular expression.

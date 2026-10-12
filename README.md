@@ -1,6 +1,6 @@
 # Open-source PhD Thesis
 
-[![Website](https://img.shields.io/badge/Thesis-Visit-blue)](https://phd.dramsch.net/phd)
+[![Website](https://img.shields.io/badge/Thesis-Visit-blue)](https://dramsch.net/phd/)
 [![PDF Download](https://img.shields.io/badge/PDF-Download-important)](/files/Dramsch-thesis.pdf)
 [![Epub Download](https://img.shields.io/badge/Epub-Download-green)](/files/dramsch-phd-thesis.epub)
 ![YouTube Video Views](https://img.shields.io/youtube/views/aNXyx215brU?style=flat-square&label=Defense%20views&link=https%3A%2F%2Fyoutu.be%2FaNXyx215brU)
@@ -21,7 +21,7 @@ A webview of the thesis “Machine Learning in Geoscience” by [Jesper Dramsch]
 
 This project uses [pixi](https://pixi.sh) to manage the project and [nikola](https://getnikola.com) to generate the website. The website itself is static and can be hosted on any web server, including Github Pages. The original thesis was written in LaTeX and converted to restructured text using [pandoc](https://pandoc.org). The website is generated using the [nikola](https://getnikola.com) static site generator.
 
-You can read my [online thesis](https://phd.dramsch.net/phd) and [download the pdf](/files/Dramsch-thesis.pdf).
+You can read my [online thesis](https://dramsch.net/phd/) and [download the pdf](/files/Dramsch-thesis.pdf).
 
 ## Recreate this Project
 
